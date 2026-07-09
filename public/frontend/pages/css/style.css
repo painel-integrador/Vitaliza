@@ -1,0 +1,10 @@
+section.banner {
+  color: black;
+}
+
+/*=== BANNER ===*/
+
+section.banner h1 {
+  color: white;
+  text-align: left;
+}

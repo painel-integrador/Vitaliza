@@ -1,0 +1,32 @@
+{
+  "name": "vitaliza",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/painel-integrador/Vitaliza#readme",
+  "bugs": {
+    "url": "https://github.com/painel-integrador/Vitaliza/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/painel-integrador/Vitaliza.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "dotenv": "^17.4.2",
+    "fastify": "^5.10.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^26.1.1",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.8.0"
+  }
+}
