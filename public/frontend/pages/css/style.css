@@ -1,10 +1,51 @@
-section.banner {
-  color: black;
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+html{
+  font-family: work sans, sans-serif;
 }
 
-/*=== BANNER ===*/
-
-section.banner h1 {
-  color: white;
+.title-1 {
+  color: #fff;
+  font-weight: 800;
   text-align: left;
+  margin: 20px;
+}
+.title-1-black
+.title-2 {
+  color: #000;
+  text-align: left;
+  margin: 15px;
+  font-weight: 700;
+}
+.title-3 {
+  color: #000;
+  text-align: left;
+  margin: 15px;
+  font-weight: 500;
+}
+.btn-1 {
+  border-radius: 1000px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+  padding: 5px 3px;
+  margin: 5px;
+}
+.btn-2 {
+  border-radius: 1000px;
+  background-color: #82828282;
+  color: #fff;
+  font-weight: 500;
+  padding: 5px 3px;
+  margin: 5px;
+}
+.txt-1 {
+  color: #000;
+  font-weight: 300;
+  margin: 10px 20px;
+}
+.txt-2 {
+  color: #fff;
+  font-weight: 300;
+  margin: 10px 20px;
 }
