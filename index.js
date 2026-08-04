@@ -1,8 +1,9 @@
-import { app } from "./src/server/server.js";
+import "dotenv/config";
+import servidor from "./src/servidor/servidor.js";
 
-app.listen({ port: 3000 }, function (err, address) {
+servidor.listen({ port: 3000 }, function (err, address) {
   if (err) {
-    fastify.log.error(err);
+    servidor.log.error(err);
     process.exit(1);
   }
 });
