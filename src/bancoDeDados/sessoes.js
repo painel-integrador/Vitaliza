@@ -2,9 +2,10 @@ import bancoDados from "./db.js";
 
 export async function criarSessao(dados) {
   const { data, error } = await bancoDados
-    .from("sessoes") // seleciona a tabela
-    .insert(dados) // insere os dados
-    .select(); // retorna a sessão criada
+    .from("sessoes")
+    .insert(dados)
+    .select()
+    .single();
 
   if (error) {
     console.error(error);
@@ -16,9 +17,10 @@ export async function criarSessao(dados) {
 
 export async function buscarSessaoPorToken(accessToken) {
   const { data, error } = await bancoDados
-    .from("sessoes") // seleciona a tabela
-    .select("*") // busca a sessão
-    .eq("access_token", accessToken); // que tenha o access token do cookie do usuário
+    .from("sessoes")
+    .select("*")
+    .eq("access_token", accessToken)
+    .maybeSingle(); // Retorna o objeto direto ou null
 
   if (error) {
     console.error(error);
@@ -36,15 +38,16 @@ export async function atualizarTokens(
   expiraEmDoisMeses,
 ) {
   const { data, error } = await bancoDados
-    .from("sessoes") // seleciona a tabela
+    .from("sessoes")
     .update({
       access_token: accessToken,
       refresh_token: refreshToken,
       access_token_expira_em: expiraEmDuasHoras,
-      refresh_token_expira_em: expiraEmDuasHoras,
-    }) // atualiza os dados
-    .eq({ id: session_id }) // na sessão certa
-    .select(); // retorna a sessão atualizada
+      refresh_token_expira_em: expiraEmDoisMeses, // Corrigido para expiraEmDoisMeses
+    })
+    .eq("id", sessionId) // Corrigido o método .eq
+    .select()
+    .single();
 
   if (error) {
     console.error(error);
