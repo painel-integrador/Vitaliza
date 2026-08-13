@@ -5,6 +5,7 @@ import {
   buscarSessaoPorToken,
   atualizarTokens,
 } from "../bancoDeDados/sessoes.js";
+import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
 
 function criarAccessToken() {
@@ -22,6 +23,12 @@ function criarRefreshToken() {
 
   return { expiraEmDoisMeses, refreshToken };
 }
+
+export const oAuthClient = new OAuth2Client(
+  process.env.GOOGLE_CLIENT_ID,
+  process.env.GOOGLE_CLIENT_SECRET,
+  "http://localhost:3000/api/auth/callback",
+);
 
 /* Função de criação de sessão que salva nos cookies */
 async function criarSessaoCookie(req, res, contaId) {
@@ -108,6 +115,28 @@ export async function rotasAuth(servidor, opts) {
       return res.status(500).send({ erro });
     }
   });
+
+  servidor.post("/criar_conta_google", async (req, res) => {
+    const url = oAuthClient.generateAuthUrl({
+      prompt: "consent",
+      access_type: "offline",
+      scope: [
+        // profile
+        "https://www.googleapis.com/auth/userinfo.profile",
+        "https://www.googleapis.com/auth/userinfo.email",
+        "openid",
+
+        // health
+        "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
+        "https://www.googleapis.com/auth/googlehealth.location.readonly",
+        "https://www.googleapis.com/auth/googlehealth.profile.readonly",
+        "https://www.googleapis.com/auth/googlehealth.sleep.readonly",
+        "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
+      ],
+    });
+
+    return { url };
+  });
 }
 
 export async function autenticar(req, res) {
@@ -121,8 +150,10 @@ export async function autenticar(req, res) {
     const sessao = await buscarSessaoPorToken(accessToken);
     const horaAtual = new Date(); // Declarado ANTES de comparar as datas
 
-    const tokenAcessoExpirou = new Date(sessao?.access_token_expira_em) < horaAtual;
-    const tokenRefreshExpirou = new Date(sessao?.refresh_token_expira_em) < horaAtual;
+    const tokenAcessoExpirou =
+      new Date(sessao?.access_token_expira_em) < horaAtual;
+    const tokenRefreshExpirou =
+      new Date(sessao?.refresh_token_expira_em) < horaAtual;
 
     if (!sessao || (tokenAcessoExpirou && tokenRefreshExpirou)) {
       return res.status(401).send("Sessão não encontrada ou expirada");
@@ -130,8 +161,10 @@ export async function autenticar(req, res) {
 
     // Gerar novos tokens caso o access token tenha expirado, mas o refresh token ainda seja válido
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
-      const { expiraEmDuasHoras, accessToken: novoAccessToken } = criarAccessToken();
-      const { expiraEmDoisMeses, refreshToken: novoRefreshToken } = criarRefreshToken();
+      const { expiraEmDuasHoras, accessToken: novoAccessToken } =
+        criarAccessToken();
+      const { expiraEmDoisMeses, refreshToken: novoRefreshToken } =
+        criarRefreshToken();
 
       res.setCookie("access_token", novoAccessToken, {
         path: "/",
