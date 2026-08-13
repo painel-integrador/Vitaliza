@@ -1,4 +1,4 @@
-import { hash } from "bcrypt";
+import { hash, compare } from "bcrypt";
 import { buscarContaPorEmail, criarConta } from "../bancoDeDados/contas.js";
 import {
   criarSessao,
@@ -10,7 +10,6 @@ import crypto from "crypto";
 function criarAccessToken() {
   const duasHoras = 2 * 60 * 60 * 1000;
   const expiraEmDuasHoras = new Date(Date.now() + duasHoras);
-
   const accessToken = crypto.randomBytes(32).toString("hex");
 
   return { expiraEmDuasHoras, accessToken };
@@ -19,19 +18,16 @@ function criarAccessToken() {
 function criarRefreshToken() {
   const doisMeses = 60 * 24 * 60 * 60 * 1000;
   const expiraEmDoisMeses = new Date(Date.now() + doisMeses);
-
   const refreshToken = crypto.randomBytes(32).toString("hex");
 
   return { expiraEmDoisMeses, refreshToken };
 }
 
 /* Função de criação de sessão que salva nos cookies */
-async function criarSessao(req, res, contaId) {
-  // token e expiração
+async function criarSessaoCookie(req, res, contaId) {
   const { expiraEmDuasHoras, accessToken } = criarAccessToken();
   const { expiraEmDoisMeses, refreshToken } = criarRefreshToken();
 
-  // pegar os dados
   const userAgent = req.headers["user-agent"];
   const enderecoIp = req.ip;
 
@@ -49,7 +45,7 @@ async function criarSessao(req, res, contaId) {
     path: "/",
     httpOnly: true,
     secure: process.env.ENV === "producao",
-    maxAge: 7 * 24 * 60 * 60, // tempo de vida do cookie
+    maxAge: 7 * 24 * 60 * 60,
     sameSite: "lax",
   });
 
@@ -57,22 +53,15 @@ async function criarSessao(req, res, contaId) {
     path: "/auth/refresh",
     httpOnly: true,
     secure: process.env.ENV === "producao",
-    maxAge: 7 * 24 * 60 * 60, // tempo de vida do cookie
+    maxAge: 7 * 24 * 60 * 60,
     sameSite: "strict",
   });
 }
 
-/*
- * Contém todas as rotas e middlewares de autenticação
- * */
 export async function rotasAuth(servidor, opts) {
-  /*
-   * Recebe:
-   * { email: string, senha: string }
-   * */
   servidor.post("/criar_conta_email_senha", async (req, res) => {
     const dados = req.body;
-    const salt = 10; // rodadas para criptografar
+    const salt = 10;
 
     try {
       const senhaCripto = await hash(dados.senha, salt);
@@ -84,7 +73,7 @@ export async function rotasAuth(servidor, opts) {
 
       const contaCriada = await criarConta(conta);
 
-      await criarSessao(req, res, contaCriada.id);
+      await criarSessaoCookie(req, res, contaCriada.id);
 
       return res.redirect(process.env.URL + "/exercicios");
     } catch (erro) {
@@ -93,28 +82,25 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
-  /*
-   * Recebe:
-   * { email: string, senha: string }
-   * */
   servidor.post("/login_email_senha", async (req, res) => {
     const dados = req.body;
-    const salt = 10;
 
     try {
-      const senhaCripto = await hash(dados.senha, salt);
-
-      const conta = buscarContaPorEmail(dados.email);
+      // Faltava o await na busca da conta
+      const conta = await buscarContaPorEmail(dados.email);
 
       if (!conta) {
         return res.status(401).send({ erro: "Email ou senha inválidos" });
       }
 
-      if (conta.senha_cripto !== senhaCripto) {
+      // Uso correto da comparação de hash via bcrypt.compare
+      const senhaValida = await compare(dados.senha, conta.senha_cripto);
+
+      if (!senhaValida) {
         return res.status(401).send({ erro: "Email ou senha inválidos" });
       }
 
-      await criarSessao(req, res, conta.id);
+      await criarSessaoCookie(req, res, conta.id);
 
       return res.redirect(process.env.URL + "/exercicios");
     } catch (erro) {
@@ -124,56 +110,49 @@ export async function rotasAuth(servidor, opts) {
   });
 }
 
-/*
- * Middleware de autenticação e validação dos tokens
- * */
 export async function autenticar(req, res) {
   try {
     const accessToken = req.cookies.access_token;
-    const refreshToken = req.cookies.refresh_token;
 
-    // buscar sessao
+    if (!accessToken) {
+      return res.status(401).send("Token de acesso ausente");
+    }
+
     const sessao = await buscarSessaoPorToken(accessToken);
+    const horaAtual = new Date(); // Declarado ANTES de comparar as datas
 
-    if (
-      !sessao ||
-      (sessao.access_token_expira_em < horaAtual &&
-        sessao.refresh_token_expira_em < horaAtual)
-    ) {
+    const tokenAcessoExpirou = new Date(sessao?.access_token_expira_em) < horaAtual;
+    const tokenRefreshExpirou = new Date(sessao?.refresh_token_expira_em) < horaAtual;
+
+    if (!sessao || (tokenAcessoExpirou && tokenRefreshExpirou)) {
       return res.status(401).send("Sessão não encontrada ou expirada");
     }
 
-    const horaAtual = new Date();
+    // Gerar novos tokens caso o access token tenha expirado, mas o refresh token ainda seja válido
+    if (tokenAcessoExpirou && !tokenRefreshExpirou) {
+      const { expiraEmDuasHoras, accessToken: novoAccessToken } = criarAccessToken();
+      const { expiraEmDoisMeses, refreshToken: novoRefreshToken } = criarRefreshToken();
 
-    // gerar novo access token e refresh token
-    if (
-      sessao.access_token_expira_em < horaAtual &&
-      sessao.refresh_token_expira_em > horaAtual
-    ) {
-      ({ expiraEmDuasHoras, accessToken } = criarAccessToken());
-      ({ expiraEmDoisMeses, refreshToken } = criarRefreshToken());
-
-      // atualizar os cookies e atualizar DB
-      res.setCookie("access_token", accessToken, {
+      res.setCookie("access_token", novoAccessToken, {
         path: "/",
         httpOnly: true,
         secure: process.env.ENV === "producao",
-        maxAge: 7 * 24 * 60 * 60, // tempo de vida do cookie
+        maxAge: 7 * 24 * 60 * 60,
         sameSite: "lax",
       });
 
-      res.setCookie("refresh_token", refreshToken, {
+      res.setCookie("refresh_token", novoRefreshToken, {
         path: "/auth/refresh",
         httpOnly: true,
         secure: process.env.ENV === "producao",
-        maxAge: 7 * 24 * 60 * 60, // tempo de vida do cookie
+        maxAge: 7 * 24 * 60 * 60,
         sameSite: "strict",
       });
 
       await atualizarTokens(
         sessao.id,
-        accessToken,
-        refreshToken,
+        novoAccessToken,
+        novoRefreshToken,
         expiraEmDuasHoras,
         expiraEmDoisMeses,
       );
