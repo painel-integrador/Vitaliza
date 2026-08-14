@@ -3,6 +3,8 @@ import { rotasAuth } from "./auth.js";
 import fastifyCookie from "@fastify/cookie";
 import fastifyStatic from "@fastify/static";
 import "path";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
