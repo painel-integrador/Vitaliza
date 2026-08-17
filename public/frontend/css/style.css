@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+html {
+  font-family:
+    work sans,
+    sans-serif;
+}
+
+h1 {
+  font-size: clamp(8rem, 16vw, 10rem);
+  color: #fff;
+  font-weight: 800;
+  margin: 20px;
+}
+
+h2 {
+  font-size: clamp(6rem, 12vw, 8rem);
+  color: #000;
+  margin: 15px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: #000;
+  margin: 15px;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: clamp(3.5rem, 6vw, 4.5rem);
+  color: #000;
+  margin: 15px;
+  font-weight: 300;
+}
+
+p {
+  font-size: clamp(3rem, 4vw, 4rem);
+  font-weight: 300;
+  color: #000;
+  margin: 15px;
+}
+
+.btn-1 {
+  border-radius: 20px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 500;
+  font-size: clamp(3rem, 4vw, 4rem);
+  padding: 10px 20px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
+.btn-2 {
+  border-radius: 20px;
+  background-color: #d9d9d9;
+  color: #000000;
+  font-weight: 500;
+  font-size: clamp(3rem, 4vw, 4rem);
+  padding: 10px 20px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+.btn-2:hover,
+.btn-1:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  opacity: 80%;
+}
+
+.shadow {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px 30px;
+  background-color: #d9d9d9;
+}
+
+.link {
+  color: #0044ff;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+.link:hover {
+  color: #113597;
+}
+
+.txt-preto {
+  color: #000000;
+}
+
+.txt-branco {
+  color: #ffffff;
+}
+
+.txt-centro {
+  text-align: center;
+}
+
+.bg-preto {
+  background-color: #000000;
+}
+
+.bg-branco {
+  background-color: #ffffff;
+}
+
+.bg-gray {
+  background-color: #d9d9d9;
+}
+
+form {
+  padding: 20px 30px;
+  margin: 20px 30px;
+}
+
+legend {
+  font-size: clamp(4rem, 8vw, 6rem);
+  color: #000;
+  margin: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+
+label {
+  font-size: clamp(3rem, 4vw, 4rem);
+  font-weight: 500;
+  color: #000;
+  margin: 15px 0;
+
+  white-space: normal;
+  word-break: break-word;
+}
+
+.input-text,
+select {
+  border-radius: 20px;
+  background-color: #fff;
+  color: #000;
+  font-weight: 300;
+  font-size: clamp(3rem, 4vw, 4rem);
+  padding: 10px 20px;
+  margin: 15px 0;
+  width: 100%;
+  border: solid 2px #000000;
+  transition: ease 0.3s;
+}
+.input-text:focus,
+select:focus {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.grid-horizontal {
+  display: flex;
+  gap: 10px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.grid-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.grid-05 {
+  flex: 0.5;
+}
+
+.grid-1 {
+  flex: 1;
+}
+
+.grid-2 {
+  flex: 2;
+}
+
+.centro-verticalmente {
+  display: flex;
+  align-items: center;
+}
+
+.centro-horizontalmente {
+  display: flex;
+  justify-content: center;
+}
+
+.cima-verticalmente {
+  display: flex;
+  align-items: start;
+}
+
+.esquerda-horizontalmente {
+  display: flex;
+  justify-content: start;
+}
+
+.baixo-verticalmente {
+  display: flex;
+  align-items: end;
+}
+
+.direita-horizontalmente {
+  display: flex;
+  justify-content: end;
+}
+
+.box {
+  min-height: 500px;
+}
+
+/* DESKTOP */
+@media screen and (min-width: 600px) {
+}
