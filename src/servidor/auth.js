@@ -32,7 +32,7 @@ function criarRefreshToken() {
 export const oAuthClient = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  "http://localhost:3000/api/auth/google/callback",
+  "http://localhost:3000/api/auth/google/callback"
 );
 
 /* Função de criação de sessão que salva nos cookies */
@@ -96,6 +96,11 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
+  /* {
+    email: string,
+    senha: string,
+  }
+  */
   servidor.post("/login/email_senha", async (req, res) => {
     const dados = req.body;
 
@@ -191,7 +196,7 @@ export async function rotasAuth(servidor, opts) {
 
         contaCriada = await conectarGoogleNaConta(
           contaBanco.id,
-          conexaoGoogle.id,
+          conexaoGoogle.id
         );
 
         await criarSessaoCookie(req, res, contaCriada.id);
@@ -257,7 +262,7 @@ export async function autenticar(req, res) {
         novoAccessToken,
         novoRefreshToken,
         expiraEmDuasHoras,
-        expiraEmDoisMeses,
+        expiraEmDoisMeses
       );
     }
   } catch (erro) {
