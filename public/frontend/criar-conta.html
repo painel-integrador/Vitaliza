@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Criar conta</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <img class="logo" src="src/logo.png" alt="Logo vitaliza" />
+      <img class="menu" src="src/menu.svg" alt="Menu" />
+    </header>
+    <main>
+      <h1 class="title-2">Registra-se</h1>
+      <div>
+        <form action="/enviar" method="POST">
+          <label for="email">E-mail:</label><br />
+          <input type="email" id="email" name="email" required /><br /><br />
+
+          <label for="senha">senha:</label><br />
+          <input type="password" id="senha" name="senha" required /><br /><br />
+          <a href="">Esqueceu a senha?</a> <br />
+
+          <button type="submit" class="btn-2">Entrar</button><br />
+        </form>
+        <a href="">Criar conta</a><br />
+      </div>
+
+      <p class="divider">Ou</p>
+
+      <button>
+        <img src="src/images/images.jpeg" alt="Google logo" />
+        <p>Google</p>
+      </button>
+    </main>
+  </body>
+</html>

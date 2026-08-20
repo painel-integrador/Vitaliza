@@ -156,6 +156,32 @@ select:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000;
+  font-family: sans-serif;
+  margin: 20px 0;
+}
+
+/* Cria as linhas nas laterais */
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Espaçamento entre as linhas e o texto */
+.divider::before {
+  margin-right: 15px;
+}
+
+.divider::after {
+  margin-left: 15px;
+}
+
 .grid-horizontal {
   display: flex;
   gap: 10px;
@@ -211,10 +237,6 @@ select:focus {
 .direita-horizontalmente {
   display: flex;
   justify-content: end;
-}
-
-.box {
-  min-height: 500px;
 }
 
 /* DESKTOP */
