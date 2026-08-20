@@ -25,18 +25,6 @@ await servidor.register(fastifyCookie, {
   secret: process.env.COOKIE_SECRET,
 });
 
-servidor.r;
-
-servidor.get("/ping", async (req, res) => {
-  const IP = req.ip;
-
-  res.status(200).send(`Olá, seu IP é: ${IP}`);
-});
-
-servidor.get("/", async (req, res) => {
-  res.status(200).send("Olá user");
-});
-
 servidor.register(rotasAuth, { prefix: "/api/auth" });
 
 // localhost:3000/

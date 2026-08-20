@@ -6,34 +6,50 @@
     <title>Criar conta</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/criar-conta.css" />
   </head>
   <body>
     <header>
-      <img class="logo" src="src/logo.png" alt="Logo vitaliza" />
-      <img class="menu" src="src/menu.svg" alt="Menu" />
+      <img class="logo" src="src/images/Logo 2(1) 1.png" alt="Logo vitaliza" />
+      <div>
+        <img class="menu" src="src/images/menu.svg" alt="Menu" />
+      </div>
     </header>
     <main>
-      <h1 class="title-2">Registra-se</h1>
-      <div>
-        <form action="/enviar" method="POST">
-          <label for="email">E-mail:</label><br />
-          <input type="email" id="email" name="email" required /><br /><br />
+      <h1 class="txt-preto">Registra-se</h1>
 
-          <label for="senha">senha:</label><br />
-          <input type="password" id="senha" name="senha" required /><br /><br />
-          <a href="">Esqueceu a senha?</a> <br />
+      <form action="/api/auth/login/email_senha" method="POST">
+        <label for="email">E-mail:</label><br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          class="input-text"
+        /><br />
 
-          <button type="submit" class="btn-2">Entrar</button><br />
-        </form>
-        <a href="">Criar conta</a><br />
-      </div>
+        <label for="senha">Senha:</label><br />
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          required
+          class="input-text"
+        /><br />
+        <a href="" class="link">Esqueceu a senha?</a> <br />
+        <a href="" class="link">Criar Conta</a> <br />
+
+        <button type="submit" class="btn-2">Entrar</button>
+      </form>
 
       <p class="divider">Ou</p>
 
-      <button>
-        <img src="src/images/images.jpeg" alt="Google logo" />
-        <p>Google</p>
-      </button>
+      <div class="grid-horizontal centro-horizontalmente">
+        <button class="grid-horizontal btn-2">
+          <img src="src/images/google-svgrepo-com 1.svg" alt="Google logo" />
+          <p>Google</p>
+        </button>
+      </div>
     </main>
   </body>
 </html>

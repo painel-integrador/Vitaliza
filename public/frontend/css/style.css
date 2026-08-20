@@ -7,35 +7,35 @@ html {
 }
 
 h1 {
-  font-size: clamp(8rem, 16vw, 10rem);
+  font-size: clamp(3.5rem, 6vw, 4.5rem);
   color: #fff;
   font-weight: 800;
   margin: 20px;
 }
 
 h2 {
-  font-size: clamp(6rem, 12vw, 8rem);
+  font-size: clamp(3rem, 5vw, 4rem);
   color: #000;
   margin: 15px;
   font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(4rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 4vw, 4rem);
   color: #000;
   margin: 15px;
   font-weight: 500;
 }
 
 h4 {
-  font-size: clamp(3.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 3vw, 3.5rem);
   color: #000;
   margin: 15px;
   font-weight: 300;
 }
 
 p {
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
   font-weight: 300;
   color: #000;
   margin: 15px;
@@ -46,7 +46,7 @@ p {
   background-color: #fff;
   color: #000;
   font-weight: 500;
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
   padding: 10px 20px;
   margin: 15px 0;
   cursor: pointer;
@@ -58,7 +58,7 @@ p {
   background-color: #d9d9d9;
   color: #000000;
   font-weight: 500;
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
   padding: 10px 20px;
   margin: 15px 0;
   cursor: pointer;
@@ -116,12 +116,12 @@ p {
 }
 
 form {
-  padding: 20px 30px;
-  margin: 20px 30px;
+  padding: 10px;
+  margin: 10px 20px;
 }
 
 legend {
-  font-size: clamp(4rem, 8vw, 6rem);
+  font-size: clamp(2.5rem, 4vw, 4rem);
   color: #000;
   margin: 15px;
   font-weight: 500;
@@ -129,7 +129,7 @@ legend {
 }
 
 label {
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(2rem, 3vw, 3.5rem);
   font-weight: 500;
   color: #000;
   margin: 15px 0;
@@ -144,11 +144,11 @@ select {
   background-color: #fff;
   color: #000;
   font-weight: 300;
-  font-size: clamp(3rem, 4vw, 4rem);
+  font-size: clamp(1.5rem, 2vw, 3rem);
   padding: 10px 20px;
   margin: 15px 0;
   width: 100%;
-  border: solid 2px #000000;
+  border: solid 1px #000000;
   transition: ease 0.3s;
 }
 .input-text:focus,
@@ -237,6 +237,10 @@ select:focus {
 .direita-horizontalmente {
   display: flex;
   justify-content: end;
+}
+
+header {
+  
 }
 
 /* DESKTOP */
