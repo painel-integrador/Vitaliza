@@ -6,6 +6,7 @@ import "path";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { rateLimit } from "./rateLimit.js";
+import { rotasTreino } from "./treinos.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,6 +27,7 @@ await servidor.register(fastifyCookie, {
 });
 
 servidor.register(rotasAuth, { prefix: "/api/auth" });
+servidor.register(rotasTreino, { prefix: "/api" });
 
 // localhost:3000/
 

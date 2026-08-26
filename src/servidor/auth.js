@@ -57,16 +57,16 @@ async function criarSessaoCookie(req, res, contaId) {
     path: "/",
     httpOnly: true,
     secure: process.env.ENV === "producao",
-    maxAge: 7 * 24 * 60 * 60,
+    maxAge: 2 * 60 * 60,
     sameSite: "lax",
   });
 
   res.setCookie("refresh_token", refreshToken, {
-    path: "/auth/refresh",
+    path: "/",
     httpOnly: true,
     secure: process.env.ENV === "producao",
-    maxAge: 7 * 24 * 60 * 60,
-    sameSite: "strict",
+    maxAge: 60 * 24 * 60 * 60,
+    sameSite: "lax",
   });
 }
 
@@ -163,11 +163,10 @@ export async function rotasAuth(servidor, opts) {
         })
       ).getPayload();
 
-      let contaBanco = await buscarContaPorEmail(payload.email);
+      const contaBanco = await buscarContaPorEmail(payload.email);
+      let targetContaId;
 
-      let contaCriada;
-
-      // conta nao encontrada nem conexao com google, cria conta e conexao
+      // conta não existe: cria conta e conexão
       if (!contaBanco) {
         const conexaoGoogle = await criarConexaoGoogle({
           google_id: payload.sub,
@@ -176,17 +175,15 @@ export async function rotasAuth(servidor, opts) {
           expira_em: new Date(tokens.tokens.expiry_date),
         });
 
-        contaCriada = await criarConta({
+        const novaConta = await criarConta({
           email: payload.email,
           conexao_google_id: conexaoGoogle.id,
         });
 
-        await criarSessaoCookie(req, res, contaCriada.id);
-
-        return res.redirect(process.env.URL + "/exercicios");
-      } /* conta encontrada mas sem conexao com google, cria conexao */ else if (
-        !contaBanco.conexao_google_id
-      ) {
+        targetContaId = novaConta.id;
+      }
+      // conta existe mas sem conexão Google: apenas conecta
+      else if (!contaBanco.conexao_google_id) {
         const conexaoGoogle = await criarConexaoGoogle({
           google_id: payload.sub,
           access_token: tokens.tokens.access_token,
@@ -194,19 +191,16 @@ export async function rotasAuth(servidor, opts) {
           expira_em: new Date(tokens.tokens.expiry_date),
         });
 
-        contaCriada = await conectarGoogleNaConta(
-          contaBanco.id,
-          conexaoGoogle.id,
-        );
-
-        await criarSessaoCookie(req, res, contaCriada.id);
-
-        return res.redirect(process.env.URL + "/exercicios");
-      } /* conta encontrada e conexao com google pronta, só cria a sessao */ else {
-        await criarSessaoCookie(req, res, contaCriada.id);
-
-        return res.redirect(process.env.URL + "/exercicios");
+        await conectarGoogleNaConta(contaBanco.id, conexaoGoogle.id);
+        targetContaId = contaBanco.id;
       }
+      // conta e conexão já existem
+      else {
+        targetContaId = contaBanco.id;
+      }
+
+      await criarSessaoCookie(req, res, targetContaId);
+      return res.redirect(process.env.URL + "/exercicios");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -219,22 +213,26 @@ export async function autenticar(req, res) {
     const accessToken = req.cookies.access_token;
 
     if (!accessToken) {
-      return res.status(401).send("Token de acesso ausente");
+      return res.status(401).send({ erro: "Token de acesso ausente" });
     }
 
     const sessao = await buscarSessaoPorToken(accessToken);
-    const horaAtual = new Date(); // Declarado ANTES de comparar as datas
+    const horaAtual = new Date();
 
-    const tokenAcessoExpirou =
-      new Date(sessao?.access_token_expira_em) < horaAtual;
-    const tokenRefreshExpirou =
-      new Date(sessao?.refresh_token_expira_em) < horaAtual;
-
-    if (!sessao || (tokenAcessoExpirou && tokenRefreshExpirou)) {
-      return res.status(401).send("Sessão não encontrada ou expirada");
+    if (!sessao) {
+      return res.status(401).send({ erro: "Sessão não encontrada" });
     }
 
-    // Gerar novos tokens caso o access token tenha expirado, mas o refresh token ainda seja válido
+    const tokenAcessoExpirou =
+      new Date(sessao.access_token_expira_em) < horaAtual;
+    const tokenRefreshExpirou =
+      new Date(sessao.refresh_token_expira_em) < horaAtual;
+
+    if (tokenAcessoExpirou && tokenRefreshExpirou) {
+      return res.status(401).send({ erro: "Sessão expirada" });
+    }
+
+    // renovação do token
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
       const { expiraEmDuasHoras, accessToken: novoAccessToken } =
         criarAccessToken();
@@ -245,16 +243,16 @@ export async function autenticar(req, res) {
         path: "/",
         httpOnly: true,
         secure: process.env.ENV === "producao",
-        maxAge: 7 * 24 * 60 * 60,
+        maxAge: 2 * 60 * 60,
         sameSite: "lax",
       });
 
       res.setCookie("refresh_token", novoRefreshToken, {
-        path: "/auth/refresh",
+        path: "/",
         httpOnly: true,
         secure: process.env.ENV === "producao",
-        maxAge: 7 * 24 * 60 * 60,
-        sameSite: "strict",
+        maxAge: 60 * 24 * 60 * 60,
+        sameSite: "lax",
       });
 
       await atualizarTokens(
@@ -266,7 +264,7 @@ export async function autenticar(req, res) {
       );
     }
 
-    req.contaid = sessao.conta_id;
+    req.contaid = Number(sessao.conta_id);
   } catch (erro) {
     console.error(erro);
     return res.status(500).send({ erro });
