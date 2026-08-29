@@ -39,33 +39,24 @@ export async function buscarRegistroPorDia(dia, mes, ano, contaId) {
     throw new Error(conta.error.message);
   }
 
+  const inicioDia = new Date(ano, mes, dia, 0, 0, 0, 0).toISOString();
+  const fimDia = new Date(ano, mes, dia, 23, 59, 59, 999).toISOString();
+
   // registros
   const registros = await bancoDados
     .from("registros")
     .select()
     .eq("usuario_id", conta.data.usuario_id)
+    .gte("criado_em", inicioDia)
+    .lte("criado_em", fimDia)
     .single();
 
-  if (treino.error) {
-    console.error(treino.error);
-    throw new Error(treino.error.message);
+  if (registros.error) {
+    console.error(registros.error);
+    throw new Error(registros.error.message);
   }
 
-  // séries
-  const series = await bancoDados
-    .from("series")
-    .select()
-    .eq("treino_id", treinoId);
-
-  if (series.error) {
-    console.error(series.error);
-    throw new Error(series.error.message);
-  }
-
-  return {
-    treino,
-    series,
-  };
+  return registros;
 }
 
 export async function criarRegistro(contaId, quantidade) {
@@ -91,9 +82,9 @@ export async function criarRegistro(contaId, quantidade) {
     .select()
     .single();
 
-  if (treino.error) {
-    console.error(treino.error);
-    throw new Error(treino.error.message);
+  if (registro.error) {
+    console.error(registro.error);
+    throw new Error(registro.error.message);
   }
 
   return registro;
