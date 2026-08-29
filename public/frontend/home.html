@@ -3,14 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>Vitaliza</title>
   </head>
   <body>
     <header>
-      <a href="index.html">
-        <img src="" alt="" />
-      </a>
+      <div class="logo-button">
+        <img src="src/images/logo.png" alt="Logo-Vitaliza" />
+        <img
+          src="src/images/menu.svg"
+          id="botao-menu"
+          alt="Menu"
+          class="visivel icon"
+          onclick="menu()"
+        />
+        <img
+          src="src/images/Close.svg"
+          id="botao-fechar"
+          alt="Fechar"
+          class="invisivel icon"
+          onclick="menu()"
+        />
+      </div>
+
+      <nav class="menu-fechado menu" id="nav">
+        <a href="">Início</a>
+        <a href="">Artigos</a>
+        <a href="">Calculadora de calorias</a>
+        <p>© 2026 Vitaliza.inc All rights reserved</p>
+      </nav>
     </header>
     <main>
       <section class="banner">
@@ -20,5 +42,7 @@
         <a href="#">Crie sua conta</a>
       </section>
     </main>
+
+    <script src="src/scripts/header.js"></script>
   </body>
 </html>

@@ -239,8 +239,23 @@ select:focus {
   justify-content: end;
 }
 
-header {
-  
+.visivel {
+  display: block;
+}
+
+.invisivel {
+  display: none;
+}
+
+header .icon {
+  width: clamp(25px, 25px + 2vw, 40px);
+}
+
+header .logo-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 /* DESKTOP */
