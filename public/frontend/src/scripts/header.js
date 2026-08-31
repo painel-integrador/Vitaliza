@@ -1,7 +1,5 @@
 let isMenuAberto = false;
 
-console.log("Script carregado");
-
 function menu() {
   let botaoMenu = document.getElementById("botao-menu");
   let botaoFechar = document.getElementById("botao-fechar");
@@ -10,28 +8,20 @@ function menu() {
   // Menu fechado vai abrir
 
   if (!isMenuAberto) {
-    botaoMenu.classList.add("invisivel");
-    botaoMenu.classList.remove("visivel");
+    botaoMenu.classList.toggle("invisivel");
 
-    botaoFechar.classList.add("visivel");
-    botaoFechar.classList.remove("invisivel");
+    botaoFechar.classList.toggle("invisivel");
 
-    nav.classList.add("visivel");
-    nav.classList.remove("invisivel");
-
-    console.log("Hello 1");
+    nav.classList.add("menu-aberto");
+    nav.classList.remove("menu-fechado");
   } /* Fechar Menu */ else {
-    botaoMenu.classList.add("visivel");
-    botaoMenu.classList.remove("invisivel");
+    botaoMenu.classList.toggle("invisivel");
 
-    botaoFechar.classList.add("invisivel");
-    botaoFechar.classList.remove("visivel");
+    botaoFechar.classList.toggle("invisivel");
 
-    nav.classList.add("invisivel");
-    nav.classList.remove("visivel");
-
-    console.log("Hello 2");
+    nav.classList.add("menu-fechado");
+    nav.classList.remove("menu-aberto");
   }
 
-  isMenuAberto = !isMenuAberto;
+  isMenuAberto = !isMenuAberto; // troca o valor boolean (true => false | false => true)
 }

@@ -2,37 +2,49 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
     <title>Vitaliza</title>
   </head>
   <body>
     <header>
       <div class="logo-button">
-        <img src="src/images/logo.png" alt="Logo-Vitaliza" />
+        <img alt="Logo-Vitaliza" class="logo" src="src/images/logo.svg" />
         <img
-          src="src/images/menu.svg"
-          id="botao-menu"
           alt="Menu"
           class="visivel icon"
+          id="botao-menu"
           onclick="menu()"
+          src="src/images/menu.svg"
         />
         <img
-          src="src/images/Close.svg"
-          id="botao-fechar"
           alt="Fechar"
           class="invisivel icon"
+          id="botao-fechar"
           onclick="menu()"
+          src="src/images/close.svg"
         />
       </div>
 
-      <nav class="menu-fechado menu" id="nav">
-        <a href="">Início</a>
-        <a href="">Artigos</a>
-        <a href="">Calculadora de calorias</a>
-        <p>© 2026 Vitaliza.inc All rights reserved</p>
-      </nav>
+      <div class="menu-fechado" id="nav">
+        <nav class="menu">
+          <a class="focado shadow" href=""><p class="txt-branco">Início</p></a>
+          <a href=""><p>Artigos</p></a>
+          <a href=""><p>Calculadora de calorias</p></a>
+        </nav>
+
+        <div class="grid-horizontal centro-horizontalmente btns">
+          <a class="btn-2" href="">Criar conta</a>
+          <a class="btn-2" href="">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </div>
     </header>
     <main>
       <section class="banner">

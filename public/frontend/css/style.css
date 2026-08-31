@@ -35,10 +35,10 @@ h4 {
 }
 
 p {
-  font-size: clamp(1.5rem, 2vw, 3rem);
+  font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 300;
   color: #000;
-  margin: 15px;
+  margin: 10px;
 }
 
 .btn-1 {
@@ -46,9 +46,9 @@ p {
   background-color: #fff;
   color: #000;
   font-weight: 500;
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  padding: 10px 20px;
-  margin: 15px 0;
+  font-size: clamp(1rem, 2vw, 2rem);
+  padding: 10px 16px;
+  margin: 10px 0;
   cursor: pointer;
   transition: ease 0.3s;
 }
@@ -58,9 +58,9 @@ p {
   background-color: #d9d9d9;
   color: #000000;
   font-weight: 500;
-  font-size: clamp(1.5rem, 2vw, 3rem);
-  padding: 10px 20px;
-  margin: 15px 0;
+  font-size: clamp(1rem, 2vw, 2rem);
+  padding: 10px 16px;
+  margin: 10px 0;
   cursor: pointer;
   transition: ease 0.3s;
 }
@@ -101,6 +101,13 @@ p {
 
 .txt-centro {
   text-align: center;
+}
+
+.txt-detalhe {
+  font-size: clamp(0.8rem, 1vw, 2rem);
+  font-weight: 200;
+  color: #101010;
+  margin: 15px;
 }
 
 .bg-preto {
@@ -247,6 +254,14 @@ select:focus {
   display: none;
 }
 
+header {
+  padding: 6px 18px;
+}
+
+header .logo {
+  width: clamp(200px, 4vw, 4rem);
+}
+
 header .icon {
   width: clamp(25px, 25px + 2vw, 40px);
 }
@@ -258,6 +273,39 @@ header .logo-button {
   gap: 20px;
 }
 
+header .menu-fechado {
+  max-height: 0;
+  overflow: hidden;
+
+  transition: 0.5s ease;
+}
+
+header .menu-aberto {
+  max-height: 350px;
+
+  transition: 0.5s ease;
+}
+
+header .menu {
+  display: flex;
+  flex-direction: column;
+  margin: 24px 0;
+}
+
+.focado {
+  background-color: #000;
+  color: #fff;
+  border-radius: 12px;
+}
+
+.linha-pontilhada {
+  border: none;
+  border-top: 6px dotted #000;
+}
+
+header .btns {
+  margin: 24px 0;
+}
 /* DESKTOP */
 @media screen and (min-width: 600px) {
 }
