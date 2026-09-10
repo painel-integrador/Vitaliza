@@ -6,6 +6,10 @@ html {
     sans-serif;
 }
 
+section {
+  margin: 10px 20px;
+}
+
 h1 {
   font-size: clamp(3.5rem, 6vw, 4.5rem);
   color: #fff;
