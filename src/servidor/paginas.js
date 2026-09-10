@@ -9,10 +9,6 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/sobre", async (req, res) => {
     return res.sendFile("../../public/frontend/sobre.html");
   });
-
-  servidor.get("/sobre", async (req, res) => {
-    return res.sendFile("../../public/frontend/sobre.html");
-  });
   servidor.get("/artigos", async (req, res) => {
     return res.sendFile("../../public/frontend/artigos-home.html");
   });
