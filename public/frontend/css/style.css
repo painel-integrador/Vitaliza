@@ -136,10 +136,9 @@ legend {
 }
 
 label {
-  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 500;
   color: #000;
-  margin: 15px 0;
 
   white-space: normal;
   word-break: break-word;
@@ -152,8 +151,8 @@ select {
   color: #000;
   font-weight: 300;
   font-size: clamp(1.5rem, 2vw, 3rem);
-  padding: 10px 20px;
-  margin: 15px 0;
+  padding: 5px 10px;
+  margin: 10px 0;
   width: 100%;
   border: solid 1px #000000;
   transition: ease 0.3s;

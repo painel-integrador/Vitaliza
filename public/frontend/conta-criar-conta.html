@@ -6,23 +6,13 @@
     <title>Criar conta</title>
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/criar-conta.css" />
+    <link rel="stylesheet" href="css/conta.css" />
   </head>
   <body>
-    <header>
-      <img
-        class="logo"
-        src="src/images/Logo%202(1)%201.png"
-        alt="Logo vitaliza"
-      />
-      <div>
-        <img class="menu" src="src/images/menu.svg" alt="Menu" />
-      </div>
-    </header>
     <main>
-      <h1 class="txt-preto">Registra-se</h1>
+      <h1 class="txt-preto">Registre-se</h1>
 
-      <form action="/api/auth/login/email_senha" method="POST">
+      <form onsubmit="criarConta(event)">
         <label for="email">E-mail:</label><br />
         <input
           type="email"
@@ -40,17 +30,23 @@
           required
           class="input-text"
         /><br />
-        <a href="" class="link">Esqueceu a senha?</a> <br />
-        <a href="" class="link">Criar Conta</a> <br />
 
-        <button type="submit" class="btn-2">Entrar</button>
+        <a href="" class="link">Fazer Login</a> <br />
+
+        <div class="grid-horizontal centro-horizontalmente">
+          <button type="submit" class="btn-2">Entrar</button>
+        </div>
       </form>
 
       <p class="divider">Ou</p>
 
       <div class="grid-horizontal centro-horizontalmente">
         <button class="grid-horizontal btn-2">
-          <img src="src/images/google-svgrepo-com%201.svg" alt="Google logo" />
+          <img
+            src="src/images/google-svgrepo-com%201.svg"
+            alt="Google logo"
+            class="icon-google"
+          />
           <p>Google</p>
         </button>
       </div>
