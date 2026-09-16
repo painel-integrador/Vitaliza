@@ -32,9 +32,13 @@
           <a class="focado shadow" href=""><p class="txt-branco">Início</p></a>
           <a href=""><p>Artigos</p></a>
           <a href=""><p>Calculadora de calorias</p></a>
+          <a href="" class="invisivel"><p>Exercícios</p></a>
+          <a href="" class="invisivel"><p>Hidratação</p></a>
+          <a href="" class="invisivel"><p>Grupos</p></a>
+          <a href="" class="invisivel"><p>Perfil</p></a>
         </nav>
 
-        <div class="grid-horizontal centro-horizontalmente btns">
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
           <a class="btn-2" href="">Criar conta</a>
           <a class="btn-2" href="">Fazer Login</a>
         </div>
@@ -104,6 +108,6 @@
       </section>
     </main>
 
-    <script src="src/scripts/header.js"></script>
+    <script src="src/scripts/header.js" defer></script> <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
   </body>
 </html>
