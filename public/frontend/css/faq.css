@@ -1,10 +1,9 @@
-.card .icon {
+.faq .card .icon {
   width: 50px;
 }
 
-.faq-fechado {
-    
-}
-
-.faq-aberto {
+.faq .card div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 }

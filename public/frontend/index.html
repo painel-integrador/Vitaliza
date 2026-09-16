@@ -5,6 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="css/reset.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/faq.css">
     <title>Vitaliza</title>
   </head>
   <body>
@@ -58,47 +59,55 @@
         <a href="#">Crie sua conta</a>
       </section>
 
-      <section>
+      <section class="faq">
         <h2>Perguntas Frequentes</h2>
 
-        <div class="card faq-fechado">
-          <h4>Pergunta</h4>
-          <img src="src/images/mais.svg" alt="+" class="icon mais" onclick="faq(this)" />
-          <img src="src/images/menos.svg" alt="-" class="icon menos" onclick="faq(this)" />
-          <p>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
+            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+          </div>
+          <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
             cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
             ducimus facere quas, sequi consequuntur incidunt soluta rerum
             architecto voluptatibus at vel.
           </p>
         </div>
-        <div class="card faq-fechado">
-          <h4>Pergunta</h4>
-          <img src="src/images/mais.svg" alt="+" class="icon mais" onclick="faq(this)" />
-          <img src="src/images/menos.svg" alt="-" class="icon menos"  onclick="faq(this)" />
-          <p>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
+            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+          </div>
+          <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
             cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
             ducimus facere quas, sequi consequuntur incidunt soluta rerum
             architecto voluptatibus at vel.
           </p>
         </div>
-        <div class="card faq-fechado">
-          <h4>Pergunta</h4>
-          <img src="src/images/mais.svg" alt="+" class="icon mais"  onclick="faq(this)"/>
-          <img src="src/images/menos.svg" alt="-" class="icon menos" onclick="faq(this)" />
-          <p>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
+            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+          </div>
+          <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
             cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
             ducimus facere quas, sequi consequuntur incidunt soluta rerum
             architecto voluptatibus at vel.
           </p>
         </div>
-        <div class="card faq-fechado">
-          <h4>Pergunta</h4>
-          <img src="src/images/mais.svg" alt="+" class="icon" onclick="faq(this)" />
-          <img src="src/images/menos.svg" alt="-" class="icon" onclick="faq(this)" />
-          <p>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
+            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+          </div>
+          <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
             cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
             ducimus facere quas, sequi consequuntur incidunt soluta rerum
@@ -109,5 +118,7 @@
     </main>
 
     <script src="src/scripts/header.js" defer></script> <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
+    <script src="src/scripts/faq.js">
+    </script>
   </body>
 </html>

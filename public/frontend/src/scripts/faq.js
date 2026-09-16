@@ -1,11 +1,13 @@
-function faq(elemento) {
-  const card = elemento.parentElement;
-
+function faq(card) {
   card.classList.toggle("faq-aberto");
 
-  const menos = card.getElementByClassName("menos");
-  const mais = card.getElementByClassName("mais");
+  const menos = card.querySelector(".menos");
+  const mais = card.querySelector(".mais");
 
-  menos.classList.toggle("invisivel")
-  mais.classList.toggle("invisivel")
+  menos.classList.toggle("invisivel");
+  mais.classList.toggle("invisivel");
+
+  // remove o paragrafo
+
+  card.querySelector("p").classList.toggle("invisivel");
 }
