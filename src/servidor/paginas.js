@@ -4,7 +4,7 @@ export async function rotasPaginas(servidor, opts) {
   });
 
   servidor.get("/", async (req, res) => {
-    return res.sendFile("../../public/frontend/home.html");
+    return res.sendFile("../../public/frontend/index.html");
   });
   servidor.get("/sobre", async (req, res) => {
     return res.sendFile("../../public/frontend/sobre.html");
