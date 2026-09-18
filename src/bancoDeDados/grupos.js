@@ -57,7 +57,24 @@ export async function usuarios(grupoId) {
   return data;
 }
 
-export async function exerciciosAtividades() {}
+export async function exerciciosAtividades(usuarios) {
+  let treinos = [];
+  usuarios.forEach(async (usuario) => {
+    const { data, error } = await bancoDados
+      .from("treinos")
+      .select()
+      .eq("usuario_id", usuario.id);
+
+    if (error) {
+      console.error(error);
+      throw new Error(error.message);
+    }
+
+    treinos.push(data);
+  });
+
+  return treinos;
+}
 
 export async function sairGrupo(contaId) {
   const conta = await bancoDados
