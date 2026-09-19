@@ -26,18 +26,24 @@ function menu() {
   isMenuAberto = !isMenuAberto; // troca o valor boolean (true => false | false => true)
 }
 
-// Menu com conta logada
+async function checarAutenticacao() {
+  try {
+    const response = await fetch("/api/auth/me");
+    if (response.ok) {
+      // 1. Oculta o contêiner de botões de login/criar conta
+      if (btns) {
+        btns.classList.add("invisivel");
+      }
 
-if (document.cookie.includes("refresh_token=")) {
-  // esconder os botoes
-  btns.querySelectorAll("a").forEach((element) => {
-    element.classList.add("invisivel");
-  });
-
-  console.table(btns);
-
-  // mostrar itens do nav
-  nav.querySelectorAll(".invisivel").forEach((element) => {
-    element.classList.remove("invisivel");
-  });
+      // 2. Remove a classe 'invisivel' apenas dos links dentro da navegação
+      const linksInvisiveis = nav.querySelectorAll("nav.menu a.invisivel");
+      linksInvisiveis.forEach((element) => {
+        element.classList.remove("invisivel");
+      });
+    }
+  } catch (erro) {
+    console.error("Usuário não autenticado ou erro na API", erro);
+  }
 }
+
+checarAutenticacao();

@@ -1,10 +1,8 @@
 async function criarConta(event) {
-  event.preventDefault(); // Impede o recarregamento da página
+  event.preventDefault();
 
   const form = document.getElementById("formulario");
   const formData = new FormData(form);
-
-  // Converte os dados em um objeto JavaScript simples
   const dados = Object.fromEntries(formData);
 
   try {
@@ -17,10 +15,14 @@ async function criarConta(event) {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro no servidor: ${response.status}\n${response.text}`);
+      throw new Error(`Erro na requisição: ${response.status}`);
     }
 
-    const resultado = await response.json(); // Processa a resposta do servidor
-    console.log("Sucesso! Dados retornados:", resultado);
-  } catch (e) {}
+    // Se o backend respondeu com redirect (302), a propriedade .url conterá o destino final
+    if (response.redirected) {
+      window.location.href = response.url;
+    }
+  } catch (e) {
+    console.error("Erro ao processar criação de conta:", e);
+  }
 }

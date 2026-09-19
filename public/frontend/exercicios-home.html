@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/faq.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <title>Vitaliza</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo-button">
+        <img alt="Logo-Vitaliza" class="logo" src="src/images/logo.svg" />
+        <img
+          alt="Menu"
+          class="visivel icon"
+          id="botao-menu"
+          onclick="menu()"
+          src="src/images/menu.svg"
+        />
+        <img
+          alt="Fechar"
+          class="invisivel icon"
+          id="botao-fechar"
+          onclick="menu()"
+          src="src/images/close.svg"
+        />
+      </div>
+
+      <div class="menu-fechado" id="nav">
+        <nav class="menu">
+          <a class="focado shadow" href=""><p class="txt-branco">Início</p></a>
+          <a href=""><p>Artigos</p></a>
+          <a href=""><p>Calculadora de calorias</p></a>
+          <a href="" class="invisivel"><p>Exercícios</p></a>
+          <a href="" class="invisivel"><p>Hidratação</p></a>
+          <a href="" class="invisivel"><p>Grupos</p></a>
+          <a href="" class="invisivel"><p>Perfil</p></a>
+        </nav>
+
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
+          <a class="btn-2" href="">Criar conta</a>
+          <a class="btn-2" href="">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </div>
+    </header>
+    <main>
+      <section class="banner">
+        <img
+          src="src/images/banner-home.webp"
+          alt="Homem fazendo o exercício barra"
+          class="banner-img"
+        />
+        <div class="container">
+          <div>
+            <h1>Seja a sua melhor versão</h1>
+            <p>Veja como hábitos saudáveis podem melhorar sua vida!</p>
+          </div>
+          <div>
+            <a href="#" class="btn-2">Veja os serviços</a>
+            <a href="#" class="btn-3">Crie sua conta</a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section>
+        <h3 class="txt-centro">Aprenda a cuidar mais da sua saúde</h3>
+        <p class="txt-centro">
+          Veja nossas dicas e exemplos de como ter melhor proveito dos
+          exercícios físicos e hidratação!
+        </p>
+      </section>
+
+      <section>
+        <h3 class="txt-centro">Também funciona no computador!</h3>
+        <p class="txt-centro">
+          Você pode usar as funcionalidades por seu desktop, como registrar
+          treinos, criar rotinas, ou competir com os amigos.
+        </p>
+      </section>
+
+      <section class="faq">
+        <h2>Perguntas Frequentes</h2>
+
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
+          </div>
+          <p class="invisivel">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
+            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
+            ducimus facere quas, sequi consequuntur incidunt soluta rerum
+            architecto voluptatibus at vel.
+          </p>
+        </div>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
+          </div>
+          <p class="invisivel">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
+            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
+            ducimus facere quas, sequi consequuntur incidunt soluta rerum
+            architecto voluptatibus at vel.
+          </p>
+        </div>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
+          </div>
+          <p class="invisivel">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
+            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
+            ducimus facere quas, sequi consequuntur incidunt soluta rerum
+            architecto voluptatibus at vel.
+          </p>
+        </div>
+        <div class="card faq-fechado" onclick="faq(this)">
+          <div>
+            <h4>Pergunta</h4>
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
+          </div>
+          <p class="invisivel">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
+            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
+            ducimus facere quas, sequi consequuntur incidunt soluta rerum
+            architecto voluptatibus at vel.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <script src="src/scripts/header.js" defer></script>
+    <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
+    <script src="src/scripts/faq.js"></script>
+  </body>
+</html>

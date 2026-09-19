@@ -14,35 +14,35 @@ h1 {
   font-size: clamp(3.5rem, 6vw, 4.5rem);
   color: #fff;
   font-weight: 800;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 h2 {
-  font-size: clamp(3rem, 5vw, 4rem);
+  font-size: clamp(3rem, 5vw, 3.5rem);
   color: #000;
-  margin: 15px;
+  margin: 15px 0;
   font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-size: clamp(2rem, 3vw, 3rem);
   color: #000;
-  margin: 15px;
-  font-weight: 500;
+  margin: 15px 0;
+  font-weight: 600;
 }
 
 h4 {
-  font-size: clamp(2rem, 3vw, 3.5rem);
+  font-size: clamp(1.5rem, 2.5vw, 3rem);
   color: #000;
-  margin: 15px;
-  font-weight: 300;
+  margin: 15px 0;
+  font-weight: 500;
 }
 
 p {
   font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 300;
   color: #000;
-  margin: 10px;
+  margin: 20px;
 }
 
 .btn-1 {
@@ -68,8 +68,22 @@ p {
   cursor: pointer;
   transition: ease 0.3s;
 }
+
+.btn-3 {
+  border-radius: 20px;
+  background-color: #000;
+  color: #fff;
+  font-weight: 500;
+  font-size: clamp(1rem, 2vw, 2rem);
+  padding: 10px 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
 .btn-2:hover,
-.btn-1:hover {
+.btn-1:hover,
+.btn-3:hover {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   opacity: 80%;
 }
@@ -80,8 +94,8 @@ p {
 
 .card {
   border-radius: 20px;
-  padding: 20px;
-  margin: 20px;
+  padding: 10px 20px;
+  margin: 15px 0;
   background-color: #d9d9d9;
 }
 
@@ -254,7 +268,7 @@ select:focus {
 }
 
 .invisivel {
-  display: none;
+  display: none !important;
 }
 
 header {
@@ -284,7 +298,7 @@ header .menu-fechado {
 }
 
 header .menu-aberto {
-  max-height: 350px;
+  max-height: 1000px;
 
   transition: 0.5s ease;
 }
@@ -306,9 +320,32 @@ header .menu {
   border-top: 6px dotted #000;
 }
 
+.linha-simples {
+  width: 80%;
+  margin: 20px auto;
+  color: #d9d9d9;
+}
+
 header .btns {
   margin: 24px 0;
 }
 /* DESKTOP */
 @media screen and (min-width: 600px) {
+  section {
+    padding: 10px clamp(80px, 12vw, 180px);
+  }
+
+  p {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+  }
+
+  .btn-1,
+  .btn-2,
+  .btn-3 {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+  }
+
+  .linha-simples {
+    width: 40%;
+  }
 }

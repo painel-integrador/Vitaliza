@@ -5,7 +5,8 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link href="css/reset.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/faq.css">
+    <link rel="stylesheet" href="css/faq.css" />
+    <link rel="stylesheet" href="css/index.css" />
     <title>Vitaliza</title>
   </head>
   <body>
@@ -53,10 +54,39 @@
     </header>
     <main>
       <section class="banner">
-        <h1>Seja a sua melhor versão</h1>
-        <p>algum texto falando sobre o site ou algo do tipo</p>
-        <a href="#">Veja os serviços</a>
-        <a href="#">Crie sua conta</a>
+        <img
+          src="src/images/banner-home.webp"
+          alt="Homem fazendo o exercício barra"
+          class="banner-img"
+        />
+        <div class="container">
+          <div>
+            <h1>Seja a sua melhor versão</h1>
+            <p>Veja como hábitos saudáveis podem melhorar sua vida!</p>
+          </div>
+          <div>
+            <a href="#" class="btn-2">Veja os serviços</a>
+            <a href="#" class="btn-3">Crie sua conta</a>
+          </div>
+        </div>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section>
+        <h3 class="txt-centro">Aprenda a cuidar mais da sua saúde</h3>
+        <p class="txt-centro">
+          Veja nossas dicas e exemplos de como ter melhor proveito dos
+          exercícios físicos e hidratação!
+        </p>
+      </section>
+
+      <section>
+        <h3 class="txt-centro">Também funciona no computador!</h3>
+        <p class="txt-centro">
+          Você pode usar as funcionalidades por seu desktop, como registrar
+          treinos, criar rotinas, ou competir com os amigos.
+        </p>
       </section>
 
       <section class="faq">
@@ -65,8 +95,12 @@
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
             <h4>Pergunta</h4>
-            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
-            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
           </div>
           <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
@@ -78,8 +112,12 @@
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
             <h4>Pergunta</h4>
-            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
-            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
           </div>
           <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
@@ -91,8 +129,12 @@
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
             <h4>Pergunta</h4>
-            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
-            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
           </div>
           <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
@@ -104,8 +146,12 @@
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
             <h4>Pergunta</h4>
-            <img src="src/images/mais.svg" alt="+" class="icon mais"  />
-            <img src="src/images/menos.svg" alt="-" class="icon menos invisivel"   />
+            <img src="src/images/mais.svg" alt="+" class="icon mais" />
+            <img
+              src="src/images/menos.svg"
+              alt="-"
+              class="icon menos invisivel"
+            />
           </div>
           <p class="invisivel">
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
@@ -117,8 +163,8 @@
       </section>
     </main>
 
-    <script src="src/scripts/header.js" defer></script> <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
-    <script src="src/scripts/faq.js">
-    </script>
+    <script src="src/scripts/header.js" defer></script>
+    <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
+    <script src="src/scripts/faq.js"></script>
   </body>
 </html>

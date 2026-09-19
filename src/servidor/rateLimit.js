@@ -7,10 +7,10 @@ export async function rateLimit(req, res) {
   requests = requests.filter((request) => request.expira > agora);
 
   const requestsDoIp = requests.filter(
-    (request) => request.ip === req.ip
+    (request) => request.ip === req.ip,
   ).length;
 
-  if (requestsDoIp >= 20) {
+  if (requestsDoIp >= 50) {
     return res
       .status(429)
       .send({ message: "Muitas requisições. Tente novamente mais tarde." });

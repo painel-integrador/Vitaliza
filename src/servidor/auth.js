@@ -70,6 +70,69 @@ async function criarSessaoCookie(req, res, contaId) {
   });
 }
 
+export async function autenticar(req, res) {
+  try {
+    const accessToken = req.cookies.access_token;
+
+    if (!accessToken) {
+      return res.status(401).send({ erro: "Token de acesso ausente" });
+    }
+
+    const sessao = await buscarSessaoPorToken(accessToken);
+    const horaAtual = new Date();
+
+    if (!sessao) {
+      return res.status(401).send({ erro: "Sessão não encontrada" });
+    }
+
+    const tokenAcessoExpirou =
+      new Date(sessao.access_token_expira_em) < horaAtual;
+    const tokenRefreshExpirou =
+      new Date(sessao.refresh_token_expira_em) < horaAtual;
+
+    if (tokenAcessoExpirou && tokenRefreshExpirou) {
+      return res.status(401).send({ erro: "Sessão expirada" });
+    }
+
+    // renovação do token
+    if (tokenAcessoExpirou && !tokenRefreshExpirou) {
+      const { expiraEmDuasHoras, accessToken: novoAccessToken } =
+        criarAccessToken();
+      const { expiraEmDoisMeses, refreshToken: novoRefreshToken } =
+        criarRefreshToken();
+
+      res.setCookie("access_token", novoAccessToken, {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.ENV === "producao",
+        maxAge: 2 * 60 * 60,
+        sameSite: "lax",
+      });
+
+      res.setCookie("refresh_token", novoRefreshToken, {
+        path: "/",
+        httpOnly: true,
+        secure: process.env.ENV === "producao",
+        maxAge: 60 * 24 * 60 * 60,
+        sameSite: "lax",
+      });
+
+      await atualizarTokens(
+        sessao.id,
+        novoAccessToken,
+        novoRefreshToken,
+        expiraEmDuasHoras,
+        expiraEmDoisMeses,
+      );
+    }
+
+    req.contaid = Number(sessao.conta_id);
+  } catch (erro) {
+    console.error(erro);
+    return res.status(500).send({ erro });
+  }
+}
+
 export async function rotasAuth(servidor, opts) {
   // EMAIL E SENHA
 
@@ -206,67 +269,8 @@ export async function rotasAuth(servidor, opts) {
       return res.status(500).send({ erro });
     }
   });
-}
 
-export async function autenticar(req, res) {
-  try {
-    const accessToken = req.cookies.access_token;
-
-    if (!accessToken) {
-      return res.status(401).send({ erro: "Token de acesso ausente" });
-    }
-
-    const sessao = await buscarSessaoPorToken(accessToken);
-    const horaAtual = new Date();
-
-    if (!sessao) {
-      return res.status(401).send({ erro: "Sessão não encontrada" });
-    }
-
-    const tokenAcessoExpirou =
-      new Date(sessao.access_token_expira_em) < horaAtual;
-    const tokenRefreshExpirou =
-      new Date(sessao.refresh_token_expira_em) < horaAtual;
-
-    if (tokenAcessoExpirou && tokenRefreshExpirou) {
-      return res.status(401).send({ erro: "Sessão expirada" });
-    }
-
-    // renovação do token
-    if (tokenAcessoExpirou && !tokenRefreshExpirou) {
-      const { expiraEmDuasHoras, accessToken: novoAccessToken } =
-        criarAccessToken();
-      const { expiraEmDoisMeses, refreshToken: novoRefreshToken } =
-        criarRefreshToken();
-
-      res.setCookie("access_token", novoAccessToken, {
-        path: "/",
-        httpOnly: true,
-        secure: process.env.ENV === "producao",
-        maxAge: 2 * 60 * 60,
-        sameSite: "lax",
-      });
-
-      res.setCookie("refresh_token", novoRefreshToken, {
-        path: "/",
-        httpOnly: true,
-        secure: process.env.ENV === "producao",
-        maxAge: 60 * 24 * 60 * 60,
-        sameSite: "lax",
-      });
-
-      await atualizarTokens(
-        sessao.id,
-        novoAccessToken,
-        novoRefreshToken,
-        expiraEmDuasHoras,
-        expiraEmDoisMeses,
-      );
-    }
-
-    req.contaid = Number(sessao.conta_id);
-  } catch (erro) {
-    console.error(erro);
-    return res.status(500).send({ erro });
-  }
+  servidor.get("/me", { preHandler: [autenticar] }, async (req, res) => {
+    return res.send({ logado: true, contaId: req.contaid });
+  });
 }
