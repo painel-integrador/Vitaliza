@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fazer Login</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/conta.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1 class="txt-preto">Entrar</h1>
+
+        <form onsubmit="fazerLogin(event)" id="formulario">
+          <label for="email">E-mail:</label><br />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="input-text"
+          /><br />
+
+          <label for="senha">Senha:</label><br />
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            required
+            class="input-text"
+          /><br />
+
+          <a href="/conta" class="link">Criar Conta</a> <br />
+
+          <div class="grid-horizontal centro-horizontalmente">
+            <button type="submit" class="btn-2">Fazer Login</button>
+          </div>
+        </form>
+
+        <p class="divider">Ou</p>
+
+        <div class="grid-horizontal centro-horizontalmente">
+          <a href="/api/auth/google" class="grid-horizontal btn-2">
+            <img
+              src="/src/images/google-svgrepo-com%201.svg"
+              alt="Google logo"
+              class="icon-google"
+            />
+            <p>Google</p>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <script src="/src/scripts/conta.js"></script>
+  </body>
+</html>

@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
+/* == Tags Padrão == */
+
 html {
   font-family:
     work sans,
@@ -44,6 +46,18 @@ p {
   color: #000;
   margin: 20px;
 }
+
+ul {
+  margin: 20px;
+  font-weight: 300;
+  color: #000;
+}
+
+li {
+  font-size: clamp(1rem, 2vw, 2rem);
+}
+
+/* == Elementos == */
 
 .btn-1 {
   border-radius: 20px;
@@ -99,6 +113,8 @@ p {
   background-color: #d9d9d9;
 }
 
+/* == Texto == */
+
 .link {
   color: #0044ff;
   text-decoration: underline;
@@ -140,6 +156,8 @@ p {
   background-color: #d9d9d9;
 }
 
+/* == Formulário == */
+
 form {
   padding: 10px;
   margin: 10px 20px;
@@ -180,6 +198,19 @@ select:focus {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }
 
+/* == Linhas == */
+
+.linha-pontilhada {
+  border: none;
+  border-top: 6px dotted #000;
+}
+
+.linha-simples {
+  width: 80%;
+  margin: 20px auto;
+  color: #d9d9d9;
+}
+
 .divider {
   display: flex;
   align-items: center;
@@ -205,6 +236,8 @@ select:focus {
 .divider::after {
   margin-left: 15px;
 }
+
+/* == Grid == */
 
 .grid-horizontal {
   display: flex;
@@ -232,6 +265,8 @@ select:focus {
 .grid-2 {
   flex: 2;
 }
+
+/* == Alinhamento == */
 
 .centro-verticalmente {
   display: flex;
@@ -263,6 +298,8 @@ select:focus {
   justify-content: end;
 }
 
+/* == Visibilidade == */
+
 .visivel {
   display: block;
 }
@@ -270,6 +307,8 @@ select:focus {
 .invisivel {
   display: none !important;
 }
+
+/* == Header ==*/
 
 header {
   padding: 6px 18px;
@@ -309,28 +348,73 @@ header .menu {
   margin: 24px 0;
 }
 
+header .btns {
+  margin: 24px 0;
+}
+
 .focado {
   background-color: #000;
   color: #fff;
   border-radius: 12px;
 }
 
-.linha-pontilhada {
-  border: none;
-  border-top: 6px dotted #000;
+/* == Banner == */
+
+.banner {
 }
 
-.linha-simples {
-  width: 80%;
-  margin: 20px auto;
-  color: #d9d9d9;
+.banner-img {
+  display: none;
 }
 
-header .btns {
-  margin: 24px 0;
+.banner p {
+  color: #fff;
 }
+
+.home {
+  background-image: url("../src/images/banner-home.webp");
+  background-size: cover; /* Faz a imagem cobrir toda a seção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  min-height: 350px; /* Define uma altura mínima para aparecer */
+}
+
+.alongamento {
+  background-image: url("../src/images/banner-alongamento.webp");
+  background-size: cover; /* Faz a imagem cobrir toda a seção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  min-height: 350px; /* Define uma altura mínima para aparecer */
+}
+
+.hidratacao {
+  background-image: url("../src/images/banner-hidratacao.webp");
+  background-size: cover; /* Faz a imagem cobrir toda a seção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  min-height: 350px; /* Define uma altura mínima para aparecer */
+}
+
+.exercicios {
+  background-image: url("../src/images/banner-exercicio.webp");
+  background-size: cover; /* Faz a imagem cobrir toda a seção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  min-height: 350px; /* Define uma altura mínima para aparecer */
+}
+
+.suplementos {
+  background-image: url("../src/images/banner-suplementos.webp");
+  background-size: cover; /* Faz a imagem cobrir toda a seção */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  min-height: 350px; /* Define uma altura mínima para aparecer */
+}
+
 /* DESKTOP */
 @media screen and (min-width: 600px) {
+  /* == Tags == */
+
   section {
     padding: 10px clamp(80px, 12vw, 180px);
   }
@@ -338,6 +422,8 @@ header .btns {
   p {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
   }
+
+  /* == Elementos == */
 
   .btn-1,
   .btn-2,
@@ -347,5 +433,73 @@ header .btns {
 
   .linha-simples {
     width: 40%;
+  }
+
+  /* == Header == */
+
+  /* Oculta os ícones de hambúrguer/fechar */
+  header .icon {
+    display: none !important;
+  }
+
+  /* Faz o header organizar logo e navegação lado a lado */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Anula as restrições de altura da transição mobile */
+  header #nav,
+  header .menu-fechado,
+  header .menu-aberto {
+    display: flex !important;
+    align-items: center;
+    gap: 20px;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Organiza os links horizontalmente */
+  header .menu {
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+  }
+
+  /* Ajusta os botões e oculta elementos exclusivos do mobile */
+  header .btns {
+    margin: 0;
+  }
+
+  header .linha-pontilhada,
+  header .txt-detalhe {
+    display: none; /* Oculta a linha e o copyright dentro do menu no desktop */
+  }
+
+  /* == Banner == */
+
+  .banner {
+    background: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  .banner .container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .banner-img {
+    display: block;
+    width: clamp(300px, 40vw, 700px);
+    max-width: 700px;
+  }
+
+  .banner h1,
+  .banner p {
+    color: #000;
   }
 }

@@ -4,6 +4,11 @@ let botaoFechar = document.getElementById("botao-fechar");
 let nav = document.getElementById("nav");
 let btns = document.getElementById("btns");
 
+// Fechado para celulares
+if (window.matchMedia("(max-width: 600px)").matches) {
+  nav.classList.add("menu-fechado");
+}
+
 function menu() {
   // Menu fechado vai abrir
 
