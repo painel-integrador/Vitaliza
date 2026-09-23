@@ -90,7 +90,7 @@ export async function criarRegistro(contaId, quantidade) {
   return registro;
 }
 
-export async function deletarTreino(registroId) {
+export async function deletarRegistro(registroId) {
   // registro
   const registro = await bancoDados
     .from("registros_hidratacao")
