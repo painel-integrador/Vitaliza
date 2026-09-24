@@ -15,7 +15,7 @@ export async function buscarTodosRegistros(contaId) {
 
   const registros = await bancoDados
     .from("registros_hidratacao")
-    .select("id, criado_em", "quantidade")
+    .select("id, criado_em, quantidade")
     .eq("usuario_id", conta.data.usuario_id);
 
   if (registros.error) {
@@ -44,7 +44,7 @@ export async function buscarRegistroPorDia(dia, mes, ano, contaId) {
 
   // registros
   const registros = await bancoDados
-    .from("registros")
+    .from("registros_hidratacao")
     .select()
     .eq("usuario_id", conta.data.usuario_id)
     .gte("criado_em", inicioDia)

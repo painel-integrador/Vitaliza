@@ -55,7 +55,7 @@ export async function buscarTreinoPorId(treinoId) {
   };
 }
 
-export async function criarTreino(contaId, treinoDados, seriesDados) {
+export async function criarTreino(contaId, seriesDados) {
   const conta = await bancoDados
     .from("contas")
     .select("usuario_id")
@@ -71,7 +71,6 @@ export async function criarTreino(contaId, treinoDados, seriesDados) {
   const treino = await bancoDados
     .from("treinos")
     .insert({
-      calorias: treinoDados.calorias,
       usuario_id: conta.data.usuario_id,
     })
     .select()

@@ -34,9 +34,6 @@ export async function rotasTreino(servidor, opts) {
   });
 
   /* { 
-        treinoDados: {
-          calorias: number
-        },
         seriesDados: [
           {
             numero: number,
@@ -48,11 +45,7 @@ export async function rotasTreino(servidor, opts) {
   */
   servidor.post("/treino", async (req, res) => {
     try {
-      const treinos = await criarTreino(
-        req.contaid,
-        req.body.treinoDados,
-        req.body.seriesDados,
-      );
+      const treinos = await criarTreino(req.contaid, req.body.seriesDados);
 
       return res.status(201).send(treinos);
     } catch (erro) {
@@ -75,9 +68,5 @@ export async function rotasTreino(servidor, opts) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
-  });
-
-  servidor.get("/teste", async (req, res) => {
-    return res.status(200).send(req.contaid);
   });
 }

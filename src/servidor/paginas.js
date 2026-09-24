@@ -13,9 +13,11 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/", async (req, res) => {
     return res.sendFile("index.html");
   });
+
   servidor.get("/sobre", async (req, res) => {
     return res.sendFile("sobre.html");
   });
+
   servidor.get("/artigos", async (req, res) => {
     return res.sendFile("artigos-home.html");
   });
@@ -31,20 +33,38 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/artigos/alongamento", async (req, res) => {
     return res.sendFile("artigos-alongamento.html");
   });
+
   servidor.get("/conta", async (req, res) => {
     return res.sendFile("conta-criar-conta.html");
   });
   servidor.get("/conta/login", async (req, res) => {
     return res.sendFile("conta-login.html");
   });
-  servidor.get("/conta/perfil", async (req, res) => {
-    return res.sendFile("conta-perfil.html");
-  });
   servidor.get("/conta/criar-usuario", async (req, res) => {
     return res.sendFile("conta-criar-usuario.html");
   });
-  servidor.get("/exercicios", async (req, res) => {
-    return res.sendFile("exercicios-home.html");
+  servidor.get("/conta/usuario/me", async (req, res) => {
+    return res.sendFile("conta-usuario-me.html");
+  });
+  servidor.get("/conta/usuario/:id", async (req, res) => {
+    return res.sendFile("conta-usuario-id.html");
+  });
+
+  servidor.get("/calculadoras", async (req, res) => {
+    return res.sendFile("calculadoras.html");
+  });
+  servidor.get("/calculadoras/imc", async (req, res) => {
+    return res.sendFile("calculadoras-imc.html");
+  });
+  servidor.get("/calculadoras/calorias", async (req, res) => {
+    return res.sendFile("calculadoras-calorias");
+  });
+  servidor.get("/calculadoras/massa-ideal", async (req, res) => {
+    return res.sendFile("calculadoras-massa-ideal.html");
+  });
+
+  servidor.get("/home", async (req, res) => {
+    return res.sendFile("home.html");
   });
   servidor.get("/exercicios/vizualizar", async (req, res) => {
     return res.sendFile("exercicios-vizualizar.html");
@@ -52,7 +72,21 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/exercicios/criar-exercicio", async (req, res) => {
     return res.sendFile("exercicios-criar-exercicio.html");
   });
-  servidor.get("/hidratacao", async (req, res) => {
+
+  servidor.get("/rotinas", async (req, res) => {
+    return res.sendFile("rotinas-vizualizar.html");
+  });
+  servidor.get("/rotinas/:id", async (req, res) => {
+    return res.sendFile("rotinas-vizualizar-id.html");
+  });
+  servidor.get("/rotinas/criar-rotina", async (req, res) => {
+    return res.sendFile("rotinas-criar-rotina.html");
+  });
+
+  servidor.get("/hidratacao/registrar", async (req, res) => {
     return res.sendFile("hidratacao-registrar.html");
+  });
+  servidor.get("/hidratacao/vizualizar/:dia/:mes/:ano", async (req, res) => {
+    return res.sendFile("hidratacao-vizualizar-dia-mes-ano.html");
   });
 }

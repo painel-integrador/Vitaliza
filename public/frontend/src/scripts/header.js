@@ -52,3 +52,23 @@ async function checarAutenticacao() {
 }
 
 checarAutenticacao();
+
+async function sair() {
+  try {
+    const response = await fetch("/api/auth/sair", {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro na requisição: ${response.status}`);
+    }
+
+    // Se o backend respondeu com redirect (302), a propriedade .url conterá o destino final
+    if (response.redirected) {
+      window.location.href = response.url;
+    }
+  } catch (e) {
+    console.error("Erro ao processar logout:", e);
+  }
+}

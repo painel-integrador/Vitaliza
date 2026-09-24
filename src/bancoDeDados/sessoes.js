@@ -56,3 +56,15 @@ export async function atualizarTokens(
 
   return data;
 }
+
+export async function deletarSessao(accessToken) {
+  const { data, error } = await bancoDados
+    .from("sessoes")
+    .delete()
+    .eq("access_token", accessToken);
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+}

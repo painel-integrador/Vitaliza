@@ -30,18 +30,23 @@
 
       <div id="nav">
         <nav class="menu">
-          <a class="focado shadow" href=""><p class="txt-branco">Início</p></a>
-          <a href=""><p>Artigos</p></a>
-          <a href=""><p>Calculadora de calorias</p></a>
-          <a href="" class="invisivel"><p>Exercícios</p></a>
-          <a href="" class="invisivel"><p>Hidratação</p></a>
-          <a href="" class="invisivel"><p>Grupos</p></a>
-          <a href="" class="invisivel"><p>Perfil</p></a>
+          <a href="/"><p>Início</p></a>
+          <a href="/artigos"><p class="item">Artigos</p></a>
+          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
+          <a href="/home" class="invisivel"><p class="item">Exercícios</p></a>
+          <a href="/hidratacao" class="invisivel"
+            ><p class="item">Hidratação</p></a
+          >
+          <a href="/grupo" class="invisivel"><p class="item">Grupo</p></a>
+          <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
+          <a onclick="sair()" class="btn-2 invisivel"
+            ><p class="item">Sair</p></a
+          >
         </nav>
 
         <div class="grid-horizontal centro-horizontalmente btns" id="btns">
-          <a class="btn-2" href="">Criar conta</a>
-          <a class="btn-2" href="">Fazer Login</a>
+          <a class="btn-2" href="/conta">Criar conta</a>
+          <a class="btn-2" href="/conta/login">Fazer Login</a>
         </div>
 
         <hr class="linha-pontilhada" />
@@ -64,8 +69,8 @@
             <p>Veja como hábitos saudáveis podem melhorar sua vida!</p>
           </div>
           <div>
-            <a href="#" class="btn-2">Veja os serviços</a>
-            <a href="#" class="btn-3">Crie sua conta</a>
+            <a href="#carrossel" class="btn-2">Veja os serviços</a>
+            <a href="/conta" class="btn-3">Crie sua conta</a>
           </div>
         </div>
       </section>

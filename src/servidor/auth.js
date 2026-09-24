@@ -8,6 +8,7 @@ import {
   criarSessao,
   buscarSessaoPorToken,
   atualizarTokens,
+  deletarSessao,
 } from "../bancoDeDados/sessoes.js";
 import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
@@ -272,5 +273,38 @@ export async function rotasAuth(servidor, opts) {
 
   servidor.get("/me", { preHandler: [autenticar] }, async (req, res) => {
     return res.send({ logado: true, contaId: req.contaid });
+  });
+
+  servidor.post("/sair", async (req, res) => {
+    const accessToken = req.cookies.access_token;
+
+    if (!accessToken) {
+      return res.status(401).send({ erro: "Token de acesso ausente" });
+    }
+
+    await deletarSessao(accessToken);
+
+    // deletar cookies
+    // Força a expiração imediata do access_token
+    res.setCookie("access_token", "", {
+      path: "/",
+      httpOnly: true,
+      secure: process.env.ENV === "producao",
+      sameSite: "lax",
+      maxAge: 0,
+      expires: new Date(0),
+    });
+
+    // Força a expiração imediata do refresh_token
+    res.setCookie("refresh_token", "", {
+      path: "/",
+      httpOnly: true,
+      secure: process.env.ENV === "producao",
+      sameSite: "lax",
+      maxAge: 0,
+      expires: new Date(0),
+    });
+
+    return res.redirect(process.env.URL + "/");
   });
 }

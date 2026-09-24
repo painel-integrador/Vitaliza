@@ -6,7 +6,7 @@ import {
   deletarRegistro,
 } from "../bancoDeDados/hidratacao.js";
 
-async function rotasHidratacao(servidor, opts) {
+export async function rotasHidratacao(servidor, opts) {
   servidor.addHook("onRequest", autenticar);
 
   servidor.post("/criar", async (req, res) => {
@@ -36,6 +36,6 @@ async function rotasHidratacao(servidor, opts) {
   servidor.get("registro/:dia/:mes/:ano", async (req, res) => {
     const { dia, mes, ano } = req.params;
 
-    buscarRegistroPorDia(dia,mes,ano,)
+    buscarRegistroPorDia(dia, mes, ano);
   });
 }
