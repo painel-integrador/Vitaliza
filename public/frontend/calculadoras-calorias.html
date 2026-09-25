@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Calorias</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <!--o style deixa o titulo mais fino-->
+        <h2 class="txt-preto txt-centro" style="font-weight: 400">
+          Calculadora de Calorias
+        </h2>
+      </section>
+
+      <form
+        onsubmit="calcularCalorias(event)"
+        class="grid-vertical"
+        id="formulario"
+      >
+        <fieldset class="card grid-horizontal">
+          <h4 class="txt-esquerda">Gênero:</h4>
+
+          <div class="grid-horizontal centro-verticalmente">
+            <label>
+              Masculino <input type="radio" name="genero" value="Masculino" />
+            </label>
+
+            <label>
+              Feminino <input type="radio" name="genero" value="Feminino" />
+            </label>
+          </div>
+        </fieldset>
+
+        <label for="idade">Idade: </label>
+        <input
+          type="number"
+          name="idade"
+          required
+          class="input-text"
+          placeholder="16..."
+          max="120"
+          min="1"
+        />
+
+        <label for="massa">Massa em gramas: </label>
+        <input
+          type="number"
+          name="massa"
+          required
+          class="input-text"
+          placeholder="75000..."
+          min="1"
+        />
+
+        <button type="submit" class="btn-3">Calcular</button>
+      </form>
+
+      <section>
+        <h3>Resultado:</h3>
+        <p id="resultado"></p>
+      </section>
+    </main>
+
+    <script src="/src/scripts/calculadoras.js"></script>
+  </body>
+</html>

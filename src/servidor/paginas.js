@@ -57,7 +57,7 @@ export async function rotasPaginas(servidor, opts) {
     return res.sendFile("calculadoras-imc.html");
   });
   servidor.get("/calculadoras/calorias", async (req, res) => {
-    return res.sendFile("calculadoras-calorias");
+    return res.sendFile("calculadoras-calorias.html");
   });
   servidor.get("/calculadoras/massa-ideal", async (req, res) => {
     return res.sendFile("calculadoras-massa-ideal.html");
