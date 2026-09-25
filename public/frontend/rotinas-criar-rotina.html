@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Criar Rotina</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/faq.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1 class="txt-preto txt-centro">Criar Rotina:</h1>
+      </section>
+
+      <section>
+        <form id="form-rotina" class="grid-vertical">
+          <!-- Dados da Rotina -->
+          <div>
+            <label for="nome-rotina">Nome da Rotina</label>
+            <input
+              type="text"
+              id="nome-rotina"
+              required
+              class="input-text"
+              placeholder="Ex: Treino A - Costas e Biceps"
+            />
+          </div>
+
+          <!-- Container onde os exercícios serão inseridos -->
+          <div id="container-exercicios"></div>
+
+          <!-- Botão para adicionar mais um exercício -->
+          <button
+            type="button"
+            id="btn-add-exercicio"
+            class="btn-3 centro-horizontalmente"
+            onclick="adicionarBlocoExercicio()"
+          >
+            Novo exercício
+          </button>
+
+          <br /><br />
+          <button type="submit" class="btn-2">Salvar Rotina</button>
+        </form>
+      </section>
+      <!-- TEMPLATE: Este bloco não aparece na tela até ser clonado pelo JS -->
+      <template id="template-exercicio">
+        <fieldset class="bloco-exercicio card">
+          <h3 class="titulo-bloco-exercicio">Exercício</h3>
+
+          <div>
+            <label>Nome do Exercício:</label>
+            <input
+              type="text"
+              class="input-nome-exercicio input-text"
+              required
+              placeholder="Ex: Puxada Alta"
+              oninput="atualizarTitulo(this)"
+            />
+          </div>
+
+          <div>
+            <label>Séries padrão:</label>
+            <input
+              type="number"
+              class="input-series-exercicio input-text"
+              required
+              min="1"
+              value="3"
+            />
+          </div>
+
+          <div>
+            <label>URLs de Mídia (separadas por vírgula):</label>
+            <textarea
+              class="input-midia-exercicio input-text"
+              placeholder="https://..., https://..."
+            ></textarea>
+          </div>
+
+          <button type="button" class="btn-remover-exercicio btn-3">
+            Remover
+          </button>
+        </fieldset>
+      </template>
+    </main>
+
+    <script src="/src/scripts/itens-rotinas.js"></script>
+  </body>
+</html>
