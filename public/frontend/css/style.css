@@ -10,6 +10,7 @@ html {
 
 section {
   padding: 10px 20px;
+  position: relative;
 }
 
 h1 {
@@ -21,21 +22,18 @@ h1 {
 
 h2 {
   font-size: clamp(3rem, 5vw, 3.5rem);
-  color: #000;
   margin: 15px 0;
   font-weight: 700;
 }
 
 h3 {
   font-size: clamp(2rem, 3vw, 3rem);
-  color: #000;
   margin: 15px 0;
   font-weight: 600;
 }
 
 h4 {
   font-size: clamp(1.5rem, 2.5vw, 3rem);
-  color: #000;
   margin: 15px 0;
   font-weight: 500;
 }
@@ -43,14 +41,12 @@ h4 {
 p {
   font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 300;
-  color: #000;
-  margin: 20px;
+  margin: 20px 0;
 }
 
 ul {
-  margin: 20px;
+  margin: 20px 0 0 20px;
   font-weight: 300;
-  color: #000;
 }
 
 li {
@@ -107,10 +103,38 @@ li {
 }
 
 .card {
-  border-radius: 20px;
+  border-radius: 12px;
   padding: 10px 20px;
   margin: 15px 0;
   background-color: #d9d9d9;
+}
+
+.imagem {
+  width: 90%;
+  object-fit: cover; /* Corta a imagem levemente para preencher o espaço sem distorcer */
+  aspect-ratio: 2 / 1; /* Mantém a proporção de tela widescreen */
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.imagem-vertical {
+  width: 90%;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+  border-radius: 12px;
+  margin: 0 auto;
+}
+
+.secao2 {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+}
+
+.icon-secao {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 20px;
 }
 
 /* == Texto == */
@@ -182,7 +206,7 @@ label {
 
 .input-text,
 select {
-  border-radius: 20px;
+  border-radius: 12px;
   background-color: #fff;
   color: #000;
   font-weight: 300;
@@ -249,9 +273,9 @@ select:focus {
 .grid-vertical {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   white-space: normal;
   word-break: break-word;
+  gap: 0;
 }
 
 .grid-05 {
