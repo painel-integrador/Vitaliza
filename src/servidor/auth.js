@@ -153,7 +153,7 @@ export async function rotasAuth(servidor, opts) {
 
       await criarSessaoCookie(req, res, contaCriada.id);
 
-      return res.redirect(process.env.URL + "/exercicios");
+      return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -185,7 +185,7 @@ export async function rotasAuth(servidor, opts) {
 
       await criarSessaoCookie(req, res, conta.id);
 
-      return res.redirect(process.env.URL + "/exercicios");
+      return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -264,7 +264,7 @@ export async function rotasAuth(servidor, opts) {
       }
 
       await criarSessaoCookie(req, res, targetContaId);
-      return res.redirect(process.env.URL + "/exercicios");
+      return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });

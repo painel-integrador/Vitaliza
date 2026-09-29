@@ -15,7 +15,10 @@ async function criarConta(event) {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.status}`);
+      alert(`Erro na requisição: ${response.status}\n${response.body}`);
+      throw new Error(
+        `Erro na requisição: ${response.status}\n${response.body}`,
+      );
     }
 
     // Se o backend respondeu com redirect (302), a propriedade .url conterá o destino final
@@ -44,7 +47,10 @@ async function login(event) {
     });
 
     if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.status}`);
+      alert(`Erro na requisição: ${response.status}\n${response.body}`);
+      throw new Error(
+        `Erro na requisição: ${response.status}\n${response.body}`,
+      );
     }
 
     // Se o backend respondeu com redirect (302), a propriedade .url conterá o destino final

@@ -205,6 +205,7 @@ label {
   font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 500;
   color: #000;
+  cursor: pointer;
 
   white-space: normal;
   word-break: break-word;
@@ -216,7 +217,7 @@ select {
   background-color: #fff;
   color: #000;
   font-weight: 300;
-  font-size: clamp(1.5rem, 2vw, 3rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   padding: 5px 10px;
   margin: 10px 0;
   width: 100%;
@@ -455,7 +456,7 @@ header .btns {
   }
 
   form {
-    margin: 10px clamp(400px, 20vw, 700px);
+    margin: 10px clamp(350px, 20vw, 500px);
   }
 
   .paragrafo {

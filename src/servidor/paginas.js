@@ -19,7 +19,7 @@ export async function rotasPaginas(servidor, opts) {
   });
 
   servidor.get("/contato", async (req, res) => {
-    return res.sendFile("sobre.html");
+    return res.sendFile("contato.html");
   });
 
   servidor.get("/artigos", async (req, res) => {
