@@ -13,7 +13,7 @@ const servidor = Fastify({
   logger: true,
 });
 
-if (process.env.ENV === "producao") {
+if (process.env.RATE_LIMIT === "on") {
   servidor.addHook("onRequest", rateLimit);
 }
 
