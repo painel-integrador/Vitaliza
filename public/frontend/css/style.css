@@ -111,18 +111,16 @@ li {
 }
 
 .imagem {
-  width: 90%;
+  width: 100%;
   object-fit: cover; /* Corta a imagem levemente para preencher o espaço sem distorcer */
   aspect-ratio: 2 / 1; /* Mantém a proporção de tela widescreen */
-  border-radius: 12px;
   margin: 0 auto;
 }
 
 .imagem-vertical {
-  width: 90%;
+  width: 100%;
   object-fit: cover;
   aspect-ratio: 3 / 4;
-  border-radius: 12px;
   margin: 0 auto;
 }
 
@@ -389,7 +387,7 @@ header .item:hover {
 }
 
 header p {
-  margin: 10px;
+  margin: 5px;
 }
 
 header .btns {
@@ -481,6 +479,11 @@ header .btns {
 
   .linha-simples {
     width: 40%;
+  }
+
+  .imagem-vertical,
+  .imagem {
+    width: 80%;
   }
 
   /* == Grid == */
