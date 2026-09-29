@@ -39,7 +39,7 @@ h4 {
 }
 
 p {
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   font-weight: 300;
   margin: 20px 0;
 }
@@ -50,7 +50,7 @@ ul {
 }
 
 li {
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
 }
 
 /* == Elementos == */
@@ -60,7 +60,7 @@ li {
   background-color: #fff;
   color: #000;
   font-weight: 500;
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   padding: 10px 16px;
   margin: 10px 0;
   cursor: pointer;
@@ -72,7 +72,7 @@ li {
   background-color: #ececec;
   color: #000000;
   font-weight: 500;
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   padding: 10px 16px;
   margin: 10px 0;
   cursor: pointer;
@@ -84,7 +84,7 @@ li {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   font-weight: 500;
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   padding: 10px 16px;
   margin: 10px 0;
   cursor: pointer;
@@ -200,7 +200,7 @@ legend {
 }
 
 label {
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   font-weight: 500;
   color: #000;
   cursor: pointer;
