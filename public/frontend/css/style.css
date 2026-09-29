@@ -33,13 +33,13 @@ h3 {
 }
 
 h4 {
-  font-size: clamp(1.5rem, 2.5vw, 3rem);
+  font-size: clamp(1.5rem, 2vw, 2rem);
   margin: 15px 0;
   font-weight: 500;
 }
 
 p {
-  font-size: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
   font-weight: 300;
   margin: 20px 0;
 }
@@ -50,7 +50,7 @@ ul {
 }
 
 li {
-  font-size: clamp(1rem, 2vw, 2rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 /* == Elementos == */
@@ -69,7 +69,7 @@ li {
 
 .btn-2 {
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.075);
+  background-color: #ececec;
   color: #000000;
   font-weight: 500;
   font-size: clamp(1rem, 2vw, 2rem);
@@ -105,7 +105,7 @@ li {
 .card {
   border-radius: 12px;
   padding: 6px 20px;
-  margin: 15px 0;
+  margin: 6px 0;
   background-color: rgba(0, 0, 0, 0.075);
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
@@ -129,7 +129,7 @@ li {
 .secao2 {
   background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
-  border: 3px solid rgba(0, 0, 0, 0.4);
+  border: 5px solid rgba(0, 0, 0, 0.4);
 }
 
 .icon-secao {
@@ -271,7 +271,7 @@ select:focus {
 
 .grid-horizontal {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   white-space: normal;
   word-break: break-word;
 }
@@ -335,7 +335,13 @@ select:focus {
 /* == Header ==*/
 
 header {
-  padding: 6px 18px;
+  padding: 0 18px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 10000;
 }
 
 header .logo {
@@ -374,6 +380,7 @@ header .menu {
 
 header .item {
   color: rgba(0, 0, 0, 0.4);
+  transition: ease 0.3s;
 }
 
 header .item:hover {
@@ -399,7 +406,7 @@ header .btns {
 }
 
 .home {
-  background-image: url("../src/images/banner-home.webp");
+  background-image: url("../src/images/banner-home.jpg");
   background-size: cover; /* Faz a imagem cobrir toda a seção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -423,7 +430,7 @@ header .btns {
 }
 
 .exercicios {
-  background-image: url("../src/images/banner-exercicio.webp");
+  background-image: url("../src/images/banner-exercicios.webp");
   background-size: cover; /* Faz a imagem cobrir toda a seção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -479,7 +486,7 @@ header .btns {
 
   .grid-horizontal-pc {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     white-space: normal;
     word-break: break-word;
   }
@@ -551,8 +558,7 @@ header .btns {
 
   .banner-img {
     display: block;
-    width: clamp(300px, 40vw, 700px);
-    max-width: 700px;
+    width: clamp(300px, 40vw, 500px);
   }
 
   .banner h1,

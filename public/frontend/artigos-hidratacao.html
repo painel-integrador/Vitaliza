@@ -8,6 +8,58 @@
     <title>Hidratação</title>
   </head>
   <body>
+    <header>
+      <div class="logo-button">
+        <a href="/">
+          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
+        </a>
+        <img
+          alt="Menu"
+          class="visivel icon"
+          id="botao-menu"
+          onclick="menu()"
+          src="/src/images/menu.svg"
+        />
+        <img
+          alt="Fechar"
+          class="invisivel icon"
+          id="botao-fechar"
+          onclick="menu()"
+          src="/src/images/close.svg"
+        />
+      </div>
+
+      <div id="nav">
+        <nav class="menu">
+          <a href="/"><p class="item">Início</p></a>
+          <a href="/artigos"><p>Artigos</p></a>
+          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
+          <a href="/sobre"><p class="item">Sobre Nós</p></a>
+          <a href="/contato"><p class="item">Entre em Contato</p></a>
+          <a href="/home" class="invisivel"><p class="item">Exercícios</p></a>
+          <a href="/hidratacao" class="invisivel"
+            ><p class="item">Hidratação</p></a
+          >
+          <a href="/grupo" class="invisivel"><p class="item">Grupo</p></a>
+          <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
+          <a onclick="sair()" class="btn-2 invisivel"
+            ><p class="item">Sair</p></a
+          >
+        </nav>
+
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
+          <a class="btn-2" href="/conta">Criar conta</a>
+          <a class="btn-3" href="/conta/login">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </div>
+    </header>
+
     <main>
       <section class="banner hidratacao">
         <img
@@ -16,7 +68,7 @@
           alt=""
         />
         <div>
-          <h1>A importância da hidratação</h1>
+          <h1 class="txt-esquerda">A importância da hidratação</h1>
           <p>
             A hidratação trabalhando a favor da sua saúde, ela também é a
             gasolina do seu corpo.
@@ -76,6 +128,8 @@
         </ul>
       </section>
 
+      <hr class="linha-simples" />
+
       <section>
         <h2>Quanto Beber e Como Variar Além da Água Pura:</h2>
         <p class="paragrafo">
@@ -87,6 +141,7 @@
         </p>
       </section>
     </main>
-    <script src="src/scripts/header.js"></script>
+
+    <script src="/src/scripts/header.js"></script>
   </body>
 </html>

@@ -8,6 +8,58 @@
     <title>A importância do aquecimento e alongamento</title>
   </head>
   <body>
+    <header>
+      <div class="logo-button">
+        <a href="/">
+          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
+        </a>
+        <img
+          alt="Menu"
+          class="visivel icon"
+          id="botao-menu"
+          onclick="menu()"
+          src="/src/images/menu.svg"
+        />
+        <img
+          alt="Fechar"
+          class="invisivel icon"
+          id="botao-fechar"
+          onclick="menu()"
+          src="/src/images/close.svg"
+        />
+      </div>
+
+      <div id="nav">
+        <nav class="menu">
+          <a href="/"><p class="item">Início</p></a>
+          <a href="/artigos"><p>Artigos</p></a>
+          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
+          <a href="/sobre"><p class="item">Sobre Nós</p></a>
+          <a href="/contato"><p class="item">Entre em Contato</p></a>
+          <a href="/home" class="invisivel"><p class="item">Exercícios</p></a>
+          <a href="/hidratacao" class="invisivel"
+            ><p class="item">Hidratação</p></a
+          >
+          <a href="/grupo" class="invisivel"><p class="item">Grupo</p></a>
+          <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
+          <a onclick="sair()" class="btn-2 invisivel"
+            ><p class="item">Sair</p></a
+          >
+        </nav>
+
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
+          <a class="btn-2" href="/conta">Criar conta</a>
+          <a class="btn-3" href="/conta/login">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </div>
+    </header>
+
     <main>
       <section class="banner alongamento">
         <img
@@ -16,7 +68,9 @@
           alt=""
         />
         <div>
-          <h1>A importância do aquecimento e alongamento</h1>
+          <h1 class="txt-esquerda">
+            A importância do aquecimento e alongamento
+          </h1>
           <p>
             O escudo invisível: como pequenos hábitos evitam grandes acidentes
             no treino
@@ -26,7 +80,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2 grid-vertical">
+      <section class="grid-vertical">
         <h2>Alongamento</h2>
         <p class="paragrafo">
           A prática de exercícios físicos gera muitos benefícios para nossa
@@ -51,7 +105,7 @@
         />
       </section>
 
-      <section>
+      <section class="secao2">
         <h2>O que é aquecimento?</h2>
         <p class="paragrafo">
           O aquecimento é essencial para um bom resultado.
@@ -74,6 +128,8 @@
           <li>Além de ajudar no desempenho dos exercícios.</li>
         </ul>
       </section>
+
+      <hr class="linha-simples" />
 
       <section>
         <h2>Por que se alongar?</h2>

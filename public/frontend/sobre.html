@@ -8,13 +8,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <header>
+      <div class="logo-button">
+        <a href="/">
+          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
+        </a>
+        <img
+          alt="Menu"
+          class="visivel icon"
+          id="botao-menu"
+          onclick="menu()"
+          src="/src/images/menu.svg"
+        />
+        <img
+          alt="Fechar"
+          class="invisivel icon"
+          id="botao-fechar"
+          onclick="menu()"
+          src="/src/images/close.svg"
+        />
+      </div>
+
+      <div id="nav">
+        <nav class="menu">
+          <a href="/"><p class="item">Início</p></a>
+          <a href="/artigos"><p class="item">Artigos</p></a>
+          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
+          <a href="/sobre"><p>Sobre Nós</p></a>
+          <a href="/contato"><p class="item">Entre em Contato</p></a>
+          <a href="/home" class="invisivel"><p class="item">Exercícios</p></a>
+          <a href="/hidratacao" class="invisivel"
+            ><p class="item">Hidratação</p></a
+          >
+          <a href="/grupo" class="invisivel"><p class="item">Grupo</p></a>
+          <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
+          <a onclick="sair()" class="btn-2 invisivel"
+            ><p class="item">Sair</p></a
+          >
+        </nav>
+
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
+          <a class="btn-2" href="/conta">Criar conta</a>
+          <a class="btn-3" href="/conta/login">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </div>
+    </header>
+
     <main>
       <section>
         <h1 class="txt-centro txt-preto">Sobre Nós</h1>
       </section>
 
-      <section class="secao2">
-        <img src="/src/images/mais-branco.svg" class="icon-secao">
+      <hr class="linha-simples" />
+
+      <section>
         <h2>O que é a Vitaliza?</h2>
 
         <p class="paragrafo">
@@ -23,7 +76,7 @@
         </p>
       </section>
 
-      <section class="grid-vertical">
+      <section class="grid-vertical secao2">
         <h2>Nossa equipe</h2>
 
         <p class="paragrafo">
@@ -32,48 +85,52 @@
           Internet integraso ao Ensino Médio
         </p>
 
-        <img src="/src/images/equipe.webp" alt="Mãos junta de equipe" class="imagem">
+        <img
+          src="/src/images/equipe.webp"
+          alt="Mãos junta de equipe"
+          class="imagem"
+        />
       </section>
       <section>
         <h2>Desenvolvedores</h2>
 
         <div class="grid-horizontal">
-          <div class="card grid-1" style="margin: 5px 0">
+          <div class="card grid-1">
             <h4 class="txt-esquerda">André Luiz Matthies</h4>
             <p>Designer e Programador</p>
           </div>
 
-          <div class="card grid-05" style="margin: 5px 0">
+          <div class="card grid-05">
             <h4 class="txt-esquerda">Arthur Röber</h4>
             <p>Secretário e Social media</p>
           </div>
         </div>
 
         <div class="grid-horizontal">
-          <div class="card grid-05" style="margin: 5px 0">
+          <div class="card grid-05">
             <h4 class="txt-esquerda">Greghory Miranda</h4>
             <p>Programador e Designer</p>
           </div>
 
-          <div class="card grid-1" style="margin: 5px 0">
+          <div class="card grid-1">
             <h4 class="txt-esquerda">Gustavo Neto Rosa da Mota</h4>
-            <p>Programador e Designer</h4>
+            <p>Programador e Designer</p>
           </div>
         </div>
 
         <div class="grid-horizontal">
-          <div class="card grid-1" style="margin: 5px 0">
+          <div class="card grid-1">
             <h4 class="txt-esquerda">Pedro Paulo Dias de Oliveira</h4>
             <p>Programador e Designer</p>
           </div>
 
-          <div class="card grid-05" style="margin: 5px 0">
+          <div class="card grid-05">
             <h4 class="txt-esquerda">Timóteo Graebin</h4>
             <p>Programador e Líder do Projeto</p>
           </div>
         </div>
-
       </section>
     </main>
+    <script src="src/scripts/header.js" defer></script>
   </body>
 </html>

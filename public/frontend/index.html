@@ -11,20 +11,22 @@
   <body>
     <header>
       <div class="logo-button">
-        <img alt="Logo-Vitaliza" class="logo" src="src/images/logo.svg" />
+        <a href="/">
+          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
+        </a>
         <img
           alt="Menu"
           class="visivel icon"
           id="botao-menu"
           onclick="menu()"
-          src="src/images/menu.svg"
+          src="/src/images/menu.svg"
         />
         <img
           alt="Fechar"
           class="invisivel icon"
           id="botao-fechar"
           onclick="menu()"
-          src="src/images/close.svg"
+          src="/src/images/close.svg"
         />
       </div>
 
@@ -34,6 +36,7 @@
           <a href="/artigos"><p class="item">Artigos</p></a>
           <a href="/calculadoras"><p class="item">Calculadoras</p></a>
           <a href="/sobre"><p class="item">Sobre Nós</p></a>
+          <a href="/contato"><p class="item">Entre em Contato</p></a>
           <a href="/home" class="invisivel"><p class="item">Exercícios</p></a>
           <a href="/hidratacao" class="invisivel"
             ><p class="item">Hidratação</p></a
@@ -47,7 +50,7 @@
 
         <div class="grid-horizontal centro-horizontalmente btns" id="btns">
           <a class="btn-2" href="/conta">Criar conta</a>
-          <a class="btn-2" href="/conta/login">Fazer Login</a>
+          <a class="btn-3" href="/conta/login">Fazer Login</a>
         </div>
 
         <hr class="linha-pontilhada" />
@@ -58,20 +61,20 @@
       </div>
     </header>
     <main>
-      <section class="banner">
+      <section class="banner home">
         <img
-          src="src/images/banner-home.webp"
+          src="/src/images/banner-home.jpg"
           alt="Homem fazendo o exercício barra"
           class="banner-img"
         />
         <div class="container">
           <div>
-            <h1>Seja a sua melhor versão</h1>
+            <h1 class="txt-esquerda">Seja a sua melhor versão</h1>
             <p>Veja como hábitos saudáveis podem melhorar sua vida!</p>
           </div>
           <div>
-            <a href="#carrossel" class="btn-2">Veja os serviços</a>
-            <a href="/conta" class="btn-3">Crie sua conta</a>
+            <a href="#servicos" class="btn-2">Veja os serviços ↓</a>
+            <a href="/conta" class="btn-3">Crie sua conta →</a>
           </div>
         </div>
       </section>
@@ -79,12 +82,154 @@
       <hr class="linha-simples" />
 
       <section>
-        <h3 class="txt-centro">Aprenda a cuidar mais da sua saúde</h3>
+        <h2 class="txt-centro">Aprenda a cuidar mais da sua saúde</h2>
         <p class="txt-centro paragrafo">
           Veja nossas dicas e exemplos de como ter melhor proveito dos
           exercícios físicos e hidratação!
         </p>
+
+        <h4 id="servicos">Algumas dicas de saúde</h4>
+
+        <div class="card grid-horizontal-pc">
+          <!-- Card 1 -->
+          <article class="card grid-1">
+            <h3 class="txt-esquerda">Fique Hidratado</h3>
+            <a href="/artigos/hidratacao" class="link"
+              >Veja a importância da hidratação ↓</a
+            >
+            <img
+              src="/src/images/hidratacao-1.png"
+              alt="Homem se hidratando"
+              class="imagem-vertical"
+            />
+          </article>
+
+          <!-- Card 2 -->
+          <article class="card grid-1">
+            <h3 class="txt-esquerda">Mantenha-se em forma</h3>
+            <a href="/artigos/exercicios" class="link"
+              >Veja a importância dos exercícios físicos ↓</a
+            >
+            <img
+              src="/src/images/exercicio-1.png"
+              alt="Pessoa fazendo levantamento de peso"
+              class="imagem-vertical"
+            />
+          </article>
+
+          <!-- Card 3 -->
+          <article class="card grid-1">
+            <h3 class="txt-esquerda">Previna lesões</h3>
+            <a href="/artigos/alongamento" class="link"
+              >Veja por que é importante alongar e aquecer ↓</a
+            >
+            <img
+              src="/src/images/alongamento-1.png"
+              alt="Homem se alongando"
+              class="imagem-vertical"
+            />
+          </article>
+        </div>
       </section>
+
+      <hr class="linha-simples" />
+
+      <section class="secao2">
+        <h2>Cuide da sua saúde</h2>
+        <p class="paragrafo">
+          Cuidar da saúde é essencial para garantir mais qualidade de vida,
+          disposição e bem-estar em todas as fases da jornada.
+        </p>
+
+        <h3>Benefícios</h3>
+        <ul class="paragrafo">
+          <li>Prevenção de doenças;</li>
+          <li>Mais energia e disposição;</li>
+          <li>Equilíbrio mental e emocional;</li>
+          <li>Longevidade com autonomia;</li>
+          <li>Entre outros...</li>
+        </ul>
+      </section>
+
+      <!-- Progresso e Funcionalidades -->
+      <section class="secao-funcionalidades">
+        <h3 class="txt-centro">Registre seu progresso</h3>
+        <div class="card">
+          <img
+            src="src/images/treino-academia.png"
+            alt="Pessoas treinando na academia"
+            class="img-card"
+          />
+          <p class="txt-centro">
+            Analise seu desempenho, observando a quantidade de séries,
+            repetições, e peso!
+          </p>
+        </div>
+
+        <div class="grid-horizontal">
+          <div class="card grid-1">
+            <img
+              src="src/images/treino-academia.png"
+              alt="Pessoas treinando na academia"
+              class="imagem-horizontal"
+            />
+            <p>
+              Calcule quantas calorias diárias você precisa, seu IMC, ou até seu
+              peso ideal!
+            </p>
+          </div>
+          <div class="card grid-1">
+            <img
+              src="src/images/treino-academia.png"
+              alt="Pessoas treinando na academia"
+              class="imagem-horizontal"
+            />
+            <p>Registre a quantidade de água bebida em cada dia.</p>
+          </div>
+        </div>
+
+        <div class="txt-centro">
+          <h3>Crie rotinas</h3>
+          <p class="paragrafo">
+            Tenha modelos prontos de treinos, onde você consegue completar as
+            informações, e perceber o progresso, com gráficos, anotações, etc.
+          </p>
+          <a href="/funcionalidades" class="link">Funcionalidades ↓</a>
+        </div>
+
+        <div class="grid-horizontal-pc card">
+          <div class="txt-centro grid-1">
+            <h4>Mantenha-se hidratado</h4>
+            <div class="card">
+              <img
+                src="src/images/hidratacao-2.png"
+                alt="Mulher bebendo água"
+                class="imagem-horizontal"
+              />
+              <p>
+                Descubra quanto você está bebendo por dia, e quanto deve beber!
+              </p>
+            </div>
+          </div>
+
+          <div class="txt-centro grid-1">
+            <h4>Calcule macronutrientes e calorias</h4>
+            <div class="card">
+              <img
+                src="src/images/alimentacao-1.png"
+                alt="Prato saudável com comida"
+                class="img-card"
+              />
+              <p>
+                Calcule a quantidade calorias e macronutrientes necessários para
+                você!
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="linha-simples" />
 
       <section class="secao2">
         <h3 class="txt-centro">Também funciona no computador!</h3>
@@ -94,12 +239,14 @@
         </p>
       </section>
 
+      <hr class="linha-simples" />
+
       <section class="faq">
         <h2>Perguntas Frequentes</h2>
 
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
-            <h4>Pergunta</h4>
+            <h4>O programa é gratuito?</h4>
             <img src="src/images/mais.svg" alt="+" class="icon mais" />
             <img
               src="src/images/menos.svg"
@@ -108,15 +255,12 @@
             />
           </div>
           <p class="invisivel">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
-            ducimus facere quas, sequi consequuntur incidunt soluta rerum
-            architecto voluptatibus at vel.
+            Sim, é totalmente gratuito, de uso livre, e código livre.
           </p>
         </div>
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
-            <h4>Pergunta</h4>
+            <h4>É seguro?</h4>
             <img src="src/images/mais.svg" alt="+" class="icon mais" />
             <img
               src="src/images/menos.svg"
@@ -125,15 +269,13 @@
             />
           </div>
           <p class="invisivel">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
-            ducimus facere quas, sequi consequuntur incidunt soluta rerum
-            architecto voluptatibus at vel.
+            Sim, nosso serviço garante segurança, sem expor dados, e trabalhamos
+            para manter o código seguro.
           </p>
         </div>
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
-            <h4>Pergunta</h4>
+            <h4>É prático e fácil?</h4>
             <img src="src/images/mais.svg" alt="+" class="icon mais" />
             <img
               src="src/images/menos.svg"
@@ -142,15 +284,13 @@
             />
           </div>
           <p class="invisivel">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
-            ducimus facere quas, sequi consequuntur incidunt soluta rerum
-            architecto voluptatibus at vel.
+            Claro, nosso programa é destinado até para as pessoas mais leigas, e
+            pensado para o dia a dia.
           </p>
         </div>
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
-            <h4>Pergunta</h4>
+            <h4>Como posso entrar em contato?</h4>
             <img src="src/images/mais.svg" alt="+" class="icon mais" />
             <img
               src="src/images/menos.svg"
@@ -159,10 +299,11 @@
             />
           </div>
           <p class="invisivel">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt
-            cumque porro fugit, dolorem dicta nulla, deleniti repellat ipsum
-            ducimus facere quas, sequi consequuntur incidunt soluta rerum
-            architecto voluptatibus at vel.
+            Pelo email:
+            <a href="mailto:vitaliza.pi@gmail.com" class="link"
+              >vitaliza.pi@gmail.com</a
+            >, ou pela nossa página de contatos:
+            <a href="/contato" class="link">Entre em contato</a>.
           </p>
         </div>
       </section>
