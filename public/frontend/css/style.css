@@ -39,7 +39,7 @@ h4 {
 }
 
 p {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 2rem);
   font-weight: 300;
   margin: 20px 0;
 }
@@ -50,7 +50,7 @@ ul {
 }
 
 li {
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 2rem);
 }
 
 /* == Elementos == */
@@ -455,6 +455,11 @@ header .btns {
 
   form {
     margin: 10px clamp(350px, 20vw, 500px);
+  }
+
+  p,
+  li {
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
   }
 
   .paragrafo {
