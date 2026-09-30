@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Calorias</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <!--o style deixa o titulo mais fino-->
+        <h2 class="txt-preto txt-centro" style="font-weight: 400">
+          Calculadora de IMC
+        </h2>
+      </section>
+
+      <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
+        <label for="massa">Massa em Quilos: </label>
+        <input
+          type="number"
+          step="0.01"
+          name="massa"
+          required
+          class="input-text"
+          placeholder="75..."
+          min="1"
+        />
+        <label for="altura">Altura em Metros: </label>
+        <input
+          type="number"
+          name="altura"
+          step="0.01"
+          required
+          class="input-text"
+          placeholder="1.80..."
+          min="1"
+        />
+
+        <button type="submit" class="btn-3">Calcular</button>
+      </form>
+
+      <section>
+        <h3>Resultado:</h3>
+        <p class="txt-centro" id="resultado"></p>
+      </section>
+
+      <section>
+        <img
+          src="/src/images/tabela_imc.jpg"
+          alt="Tabela IMC"
+          style="margin: 0 auto"
+        />
+      </section>
+    </main>
+
+    <script src="/src/scripts/calculadoras.js"></script>
+  </body>
+</html>
