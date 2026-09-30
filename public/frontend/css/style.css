@@ -45,7 +45,7 @@ p {
 }
 
 ul {
-  margin: 20px 0 0 20px;
+  margin: 20px 0 20px 20px;
   font-weight: 300;
 }
 
@@ -115,7 +115,7 @@ li {
   object-fit: cover; /* Corta a imagem levemente para preencher o espaço sem distorcer */
   aspect-ratio: 2 / 1; /* Mantém a proporção de tela widescreen */
   margin: 0 auto;
-  border-radius: 4px;
+  border-radius: 12px;
 }
 
 .imagem-vertical {
@@ -123,7 +123,12 @@ li {
   object-fit: cover;
   aspect-ratio: 3 / 4;
   margin: 0 auto;
-  border-radius: 4px;
+  border-radius: 12px;
+}
+
+.imagem-card {
+  margin: 15px auto 0 auto;
+  border-radius: 12px;
 }
 
 .secao2 {
@@ -282,7 +287,6 @@ select:focus {
   flex-direction: column;
   white-space: normal;
   word-break: break-word;
-  gap: 0;
 }
 
 .grid-05 {
@@ -407,7 +411,7 @@ header .btns {
 }
 
 .home {
-  background-image: url("../src/images/banner-home.jpg");
+  background-image: url("../src/images/banner-inicio.webp");
   background-size: cover; /* Faz a imagem cobrir toda a seção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -439,7 +443,7 @@ header .btns {
 }
 
 .suplementos {
-  background-image: url("../src/images/banner-suplementos.webp");
+  background-image: url("../src/images/banner-suplementos.jpg");
   background-size: cover; /* Faz a imagem cobrir toda a seção */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -507,7 +511,6 @@ header .btns {
     flex-direction: column;
     white-space: normal;
     word-break: break-word;
-    gap: 0;
   }
 
   /* == Header == */
