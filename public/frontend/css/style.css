@@ -115,6 +115,7 @@ li {
   object-fit: cover; /* Corta a imagem levemente para preencher o espaço sem distorcer */
   aspect-ratio: 2 / 1; /* Mantém a proporção de tela widescreen */
   margin: 0 auto;
+  border-radius: 4px;
 }
 
 .imagem-vertical {
@@ -122,6 +123,7 @@ li {
   object-fit: cover;
   aspect-ratio: 3 / 4;
   margin: 0 auto;
+  border-radius: 4px;
 }
 
 .secao2 {
