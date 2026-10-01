@@ -164,6 +164,10 @@ li {
   color: #ffffff;
 }
 
+.txt-vermelho {
+  color: rgb(174, 22, 22);
+}
+
 .txt-centro {
   text-align: center;
 }
