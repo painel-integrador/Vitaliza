@@ -75,3 +75,22 @@ function calcularIMC(event) {
 
   resultado.innerText = `Seu IMC é: ${imc.toFixed(2)}`;
 }
+
+function calcularMassaIdeal(event) {
+  event.preventDefault();
+
+  const form = document.getElementById("formulario");
+  const formData = new FormData(form);
+  const dados = Object.fromEntries(formData);
+  const resultado = document.getElementById("resultado");
+  let imc = 0;
+  let massaIdeal = 0;
+
+  console.log(dados);
+
+  imc = dados.massa / (dados.altura * dados.altura);
+
+  massaIdeal = imc * (dados.altura * dados.altura)
+
+  resultado.innerText = `Seu IMC é: ${imc.toFixed(2)}`;
+}
