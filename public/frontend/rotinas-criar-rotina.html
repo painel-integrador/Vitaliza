@@ -18,7 +18,7 @@
         <form id="form-rotina" class="grid-vertical">
           <!-- Dados da Rotina -->
           <div>
-            <label for="nome-rotina">Nome da Rotina</label>
+            <label for="nome-rotina">Nome da Rotina<span class="txt-vermelho" >*</span></label>
             <input
               type="text"
               id="nome-rotina"
@@ -48,7 +48,7 @@
       <!-- TEMPLATE: Este bloco não aparece na tela até ser clonado pelo JS -->
       <template id="template-exercicio">
         <fieldset class="bloco-exercicio card">
-          <h3 class="titulo-bloco-exercicio">Exercício</h3>
+          <h3 class="titulo-bloco-exercicio">Exercício<span class="txt-vermelho" >*</span></h3>
 
           <div>
             <label>Nome do Exercício:</label>
@@ -62,7 +62,7 @@
           </div>
 
           <div>
-            <label>Séries padrão:</label>
+            <label>Séries padrão:<span class="txt-vermelho" >*</span></label>
             <input
               type="number"
               class="input-series-exercicio input-text"

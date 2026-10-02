@@ -17,7 +17,7 @@
       </section>
 
       <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
-        <label for="massa">Massa em Quilos: </label>
+        <label for="massa">Massa em Quilos: <span class="txt-vermelho" >*</span></label>
         <input
           type="number"
           step="0.1"
@@ -27,7 +27,7 @@
           placeholder="75..."
           min="1"
         />
-        <label for="altura">Altura em Metros: </label>
+        <label for="altura">Altura em Metros: <span class="txt-vermelho">*</span></label>
         <input
           type="number"
           name="altura"
