@@ -586,6 +586,7 @@ header .btns {
   .banner-img {
     display: block;
     width: clamp(300px, 40vw, 500px);
+    border-radius: 12px;
   }
 
   .banner h1,
