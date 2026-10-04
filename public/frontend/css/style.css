@@ -478,6 +478,8 @@ header .btns {
 
   section {
     padding: 24px clamp(80px, 12vw, 180px);
+    color: #000;
+    margin: 20px clamp(24px, 7vw, 200px);
   }
 
   form {
@@ -492,7 +494,6 @@ header .btns {
   .paragrafo {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
     margin: 20px clamp(0px, 2vw, 350px);
-    text-align: center;
   }
 
   h1,
@@ -593,6 +594,7 @@ header .btns {
     background: none;
     display: flex;
     gap: 20px;
+    margin: 0;
   }
 
   .banner .container {
