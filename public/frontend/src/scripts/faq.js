@@ -8,6 +8,5 @@ function faq(card) {
   mais.classList.toggle("invisivel");
 
   // remove o paragrafo
-
   card.querySelector("p").classList.toggle("invisivel");
 }
