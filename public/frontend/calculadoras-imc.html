@@ -11,13 +11,13 @@
     <main>
       <section>
         <!--o style deixa o titulo mais fino-->
-        <h2 class="txt-preto txt-centro" style="font-weight: 400">
-          Calculadora de IMC
-        </h2>
+        <h2 class="txt-preto txt-centro">Calculadora de IMC</h2>
       </section>
 
       <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
-        <label for="massa">Massa em Quilos: <span class="txt-vermelho" >*</span></label>
+        <label for="massa"
+          >Massa em Quilos: <span class="txt-vermelho">*</span></label
+        >
         <input
           type="number"
           step="0.1"
@@ -27,11 +27,13 @@
           placeholder="75..."
           min="1"
         />
-        <label for="altura">Altura em Metros: <span class="txt-vermelho">*</span></label>
+        <label for="altura"
+          >Altura em Metros: <span class="txt-vermelho">*</span></label
+        >
         <input
           type="number"
           name="altura"
-          step="0.1"
+          step="0.01"
           required
           class="input-text"
           placeholder="1.80..."
@@ -46,8 +48,19 @@
         <p class="txt-centro" id="resultado"></p>
       </section>
 
-      <section>
-        <img src="/src/images/tabela-imc.png" alt="Tabela IMC" class="imagem" />
+      <section class="grid-vertical">
+        <img src="/src/images/tabela-imc.png" alt="Tabela IMC" />
+
+        <div class="grid-horizontal centro-horizontalmente">
+          <ul>
+            <li><strong>Abaixo do normal: </strong>18,5 ou menos;</li>
+            <li><strong>Normal: </strong>Entre 18,6 e 24,9;</li>
+            <li><strong>Sobrepeso: </strong>Entre 25,0 e 29,9</li>
+            <li><strong>Obesidade Grau I: </strong>Entre 30,0 e 34,9</li>
+            <li><strong>Obesidade Grau II: </strong>Entre 35,0 e 39,9</li>
+            <li><strong>Obesidade Grau III: </strong>Acima de 40,0</li>
+          </ul>
+        </div>
       </section>
     </main>
 

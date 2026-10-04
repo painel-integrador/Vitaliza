@@ -53,6 +53,10 @@ li {
   font-size: clamp(1rem, 5vw, 2rem);
 }
 
+strong {
+  font-weight: 500;
+}
+
 /* == Elementos == */
 
 .btn-1 {
@@ -218,6 +222,11 @@ label {
 
   white-space: normal;
   word-break: break-word;
+}
+
+.label-menor {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 300;
 }
 
 .input-text,

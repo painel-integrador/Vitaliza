@@ -5,59 +5,54 @@ function calcularCalorias(event) {
   const formData = new FormData(form);
   const dados = Object.fromEntries(formData);
   const resultado = document.getElementById("resultado");
-  let calorias = 0;
 
   console.log(dados);
-  // de 0 a 3
-  if (dados.idade >= 0 || dados.idade <= 3) {
-    if ((dados.genero = "Masculino")) {
-      calorias = 59.512 * dados.massa - 30.4;
-    } else {
-      calorias = 58.317 * dados.massa - 31.1;
-    }
-  }
-  // de 3 a 10
-  if (dados.idade >= 4 || dados.idade <= 10) {
-    if ((dados.genero = "Masculino")) {
-      ((calorias = 22.706 * dados.massa - 504), 3);
-    } else {
-      ((calorias = 20.315 * dados.massa - 485), 9);
-    }
-  }
-  // de 10 a 18
-  if (dados.idade >= 0 || dados.idade <= 3) {
-    if ((dados.genero = "Masculino")) {
-      ((calorias = 17.686 * dados.massa - 658), 2);
-    } else {
-      ((calorias = 13.384 * dados.massa - 692), 6);
-    }
-  }
-  // de 18 a 30
-  if (dados.idade >= 0 || dados.idade <= 3) {
-    if ((dados.genero = "Masculino")) {
-      ((calorias = 15.057 * dados.massa - 692), 2);
-    } else {
-      ((calorias = 14.818 * dados.massa - 486), 6);
-    }
-  }
-  // de 30 a 60
-  if (dados.idade >= 0 || dados.idade <= 3) {
-    if ((dados.genero = "Masculino")) {
-      ((calorias = 11.472 * dados.massa - 873), 1);
-    } else {
-      ((calorias = 8.126 * dados.massa - 845), 6);
-    }
-  }
-  // 60+
-  if (dados.idade >= 0 || dados.idade <= 3) {
-    if ((dados.genero = "Masculino")) {
-      ((calorias = 11.711 * dados.massa - 587), 7);
-    } else {
-      ((calorias = 9.082 * dados.massa - 658), 5);
-    }
+
+  // Convertendo os dados necessários para números
+  let massa = Number(dados.massa);
+
+  let altura = Number(dados.altura);
+  altura = altura * 100;
+
+  let idade = Number(dados.idade);
+
+  let calorias = 0;
+  let tmb = 0;
+
+  // Calcular taxa metabólica basal (TMB)
+  if (dados.genero === "masculino") {
+    tmb = 10 * massa + 6.25 * altura - 5 * idade + 5;
+  } else {
+    tmb = 10 * massa + 6.25 * altura - 5 * idade - 161;
   }
 
-  resultado.innerText = calorias + " calorias";
+  // Calcular atividade diária
+  switch (dados.atividade) {
+    case "sedentario":
+      calorias = tmb * 1.2;
+      break;
+
+    case "levemente":
+      calorias = tmb * 1.375;
+      break;
+
+    case "moderado":
+      calorias = tmb * 1.55;
+      break;
+
+    case "muito":
+      calorias = tmb * 1.725;
+      break;
+
+    case "extremo":
+      calorias = tmb * 1.9;
+      break;
+  }
+
+  resultado.innerHTML = `
+    <p class="txt-centro">Seu gasto calórico diário deve ser por volta de: <strong>${calorias.toFixed(0)} calorias</strong></p>
+    <p class="txt-centro">Sua taxa metabólica basal é: <strong>${tmb.toFixed(0)} calorias</strong></p>
+  `;
 }
 
 function calcularIMC(event) {
@@ -90,7 +85,7 @@ function calcularMassaIdeal(event) {
 
   imc = dados.massa / (dados.altura * dados.altura);
 
-  massaIdeal = imc * (dados.altura * dados.altura)
+  massaIdeal = imc * (dados.altura * dados.altura);
 
   resultado.innerText = `Seu IMC é: ${imc.toFixed(2)}`;
 }
