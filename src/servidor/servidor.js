@@ -8,6 +8,7 @@ import { rotasGrupo } from "./grupos.js";
 import { rotasHidratacao } from "./hidratacao.js";
 import { rotasRotinas } from "./rotinas.js";
 import { rotasMensagens } from "./contato.js";
+import { rotasUsuario } from "./usuarios.js";
 
 const servidor = Fastify({
   logger: true,
@@ -28,5 +29,7 @@ servidor.register(rotasGrupo, { prefix: "/api/grupos" });
 servidor.register(rotasHidratacao, { prefix: "/api/hidratacao" });
 servidor.register(rotasRotinas, { prefix: "/api/rotinas" });
 servidor.register(rotasMensagens, { prefix: "/api/mensagem" });
+servidor.register(rotasUsuario, { prefix: "/api/usuario" });
+
 // localhost:3000/
 export default servidor;

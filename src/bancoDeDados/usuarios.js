@@ -1,10 +1,41 @@
 import bancoDados from "./db.js";
 
+export async function getUsuarioId(contaId) {
+  // busca o id do usuario
+  const conta = await bancoDados
+    .from("contas")
+    .select("usuario_id")
+    .eq("id", contaId)
+    .single();
+
+  if (conta.error) {
+    console.error(conta.error);
+    throw new Error(conta.error.message);
+  }
+
+  return conta.data;
+}
+
+export async function getUsuario(idUsuario) {
+  const { data, error } = await bancoDados
+    .from("usuarios")
+    .select("nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso")
+    .eq("id", idUsuario)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}
+
 export async function criarUsusario(dados) {
   const { data, error } = await bancoDados
     .from("usuarios") // seleciona a tabela
     .insert(dados) // insere os dados
-    .select()
+    .select("id")
     .single(); // retorna a conta criada
 
   if (error) {
@@ -31,7 +62,7 @@ export async function atualizarPesoUsuario(contaId, valor) {
   const { data, error } = bancoDados
     .from("usuarios")
     .update({ peso: valor })
-    .select()
+    .select("id")
     .single();
 
   if (error) {
