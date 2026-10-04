@@ -5,7 +5,7 @@ import {
   atualizarPesoUsuario,
   getUsuario,
   getUsuarioId,
-} from "../bancoDeDados/usuarios";
+} from "../bancoDeDados/usuarios.js";
 
 export async function rotasUsuario(servidor, opts) {
   servidor.addHook("onRequest", autenticar);
