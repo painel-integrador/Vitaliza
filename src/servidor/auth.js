@@ -153,6 +153,8 @@ export async function rotasAuth(servidor, opts) {
 
       await criarSessaoCookie(req, res, contaCriada.id);
 
+      // adicionar aqui envio de email
+
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
@@ -184,6 +186,8 @@ export async function rotasAuth(servidor, opts) {
       }
 
       await criarSessaoCookie(req, res, conta.id);
+
+      // adicionar aqui envio de email
 
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
@@ -264,6 +268,9 @@ export async function rotasAuth(servidor, opts) {
       }
 
       await criarSessaoCookie(req, res, targetContaId);
+
+      // adicionar aqui envio de email
+
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
