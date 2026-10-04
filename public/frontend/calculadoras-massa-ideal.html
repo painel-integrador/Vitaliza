@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/css/reset.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet" />
-    <title>Hidratação</title>
+    <title>Calculadora de Calorias</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <header>
@@ -108,110 +108,46 @@
     </header>
 
     <main>
-      <section class="banner hidratacao">
-        <img
-          src="/src/images/banner-hidratacao.webp"
-          class="banner-img"
-          alt=""
-        />
-        <div>
-          <h1 class="txt-esquerda">A importância da hidratação</h1>
-          <p>
-            A hidratação trabalhando a favor da sua saúde, ela também é a
-            gasolina do seu corpo.
-          </p>
-        </div>
+      <section>
+        <!--o style deixa o titulo mais fino-->
+        <h2 class="txt-preto txt-centro">Calculadora de massa ideal</h2>
       </section>
 
-      <hr class="linha-simples" />
-
-      <section class="grid-vertical">
-        <h2>Desidratação no Calor:</h2>
-        <p class="paragrafo">
-          Todos os dias, perdemos água por meio do suor. Essa perda pode variar
-          de <strong>500 ml diários</strong>, ao descansar em um ambiente
-          fresco, <strong>até 4 litros por dia</strong> durante a prática de
-          exercícios no calor. É por isso que jogos e grandes eventos esportivos
-          realizados em pleno verão são tão exaustantes para os atletas.
-        </p>
-        <img
-          src="/src/images/hidratacao3.webp"
-          alt="imagem-de-mulher-hidratando"
-          class="imagem"
+      <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
+        <label for="massa"
+          >Massa em quilos: <span class="txt-vermelho">*</span></label
+        >
+        <input
+          type="number"
+          name="massa"
+          required
+          class="input-text"
+          placeholder="75..."
+          min="1"
+          step="0.1"
         />
-      </section>
-
-      <hr class="linha-simples" />
-
-      <section class="secao2 grid-vertical">
-        <h2>Benefícios de Beber Água:</h2>
-        <p class="paragrafo">
-          Consumir água suficiente todos os dias é importante para a saúde.
-          <strong>Beber água pode prevenir a desidratação</strong>, que pode
-          causar:
-        </p>
-        <ul class="paragrafo">
-          <li>dificuldade de raciocínio,</li>
-          <li>alterações de humor,</li>
-          <li>superaquecimento do corpo,</li>
-          <li>prisão de ventre,</li>
-          <li>cálculos renais.</li>
-        </ul>
-        <p class="paragrafo">
-          A <strong>água não contém calorias</strong>; portanto, substituir
-          bebidas açucaradas por água pura pode ajudar a reduzir a ingestão
-          calórica.
-        </p>
-
-        <img
-          src="/src/images/hidratacao.webp"
-          alt="Homem bebendo água"
-          class="imagem-vertical"
+        <label for="altura"
+          >Altura em metros: <span class="txt-vermelho">*</span></label
+        >
+        <input
+          type="number"
+          name="altura"
+          required
+          class="input-text"
+          placeholder="1,80..."
+          min="1"
+          step="0.1"
         />
-      </section>
 
-      <hr class="linha-simples" />
+        <button type="submit" class="btn-3">Calcular</button>
+      </form>
 
       <section>
-        <h2>A Água ajuda seu corpo em:</h2>
-        <ul class="paragrafo">
-          <li>Manter uma temperatura normal.</li>
-          <li>Hidratar e amortecer as articulações.</li>
-          <li>Proteger a medula espinhal e outros tecidos sensíveis.</li>
-          <li>
-            Eliminar resíduos por meio da urina, da transpiração e da evacuação.
-          </li>
-        </ul>
-      </section>
-
-      <hr class="linha-simples" />
-
-      <section class="secao3">
-        <div class="grid-horizontal-pc">
-          <div class="grid-2">
-            <h2 class="txt-esquerda">
-              Quanto Beber e Como Variar Além da Água Pura:
-            </h2>
-            <p class="txt-esquerda">
-              Os especialistas recomendam beber cerca de 11 xícaras de água por
-              dia para a mulher média e 16 para homens. E nem todos esses copos
-              têm que vir de água pura; por exemplo, alguns podem vir de água
-              aromatizada com frutas ou legumes (limões, bagas ou fatias de
-              laranja ou pepino), ou de café ou chá.
-            </p>
-          </div>
-
-          <div class="grid-1">
-            <img
-              src="/src/images/hidratacao2.webp"
-              alt="Homem bebendo água"
-              class="imagem-vertical"
-            />
-          </div>
-        </div>
+        <h3>Resultado:</h3>
+        <p id="resultado"></p>
       </section>
     </main>
 
-    <script src="/src/scripts/header.js" defer></script>
+    <script src="/src/scripts/calculadoras.js"></script>
   </body>
 </html>

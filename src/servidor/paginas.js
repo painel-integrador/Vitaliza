@@ -63,7 +63,7 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/calculadoras/calorias", async (req, res) => {
     return res.sendFile("calculadoras-calorias.html");
   });
-  servidor.get("/calculadoras/massa-ideal", async (req, res) => {
+  servidor.get("/calculadoras/massa", async (req, res) => {
     return res.sendFile("calculadoras-massa-ideal.html");
   });
 

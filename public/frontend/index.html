@@ -30,19 +30,70 @@
         />
       </div>
 
-      <div id="nav">
-        <nav class="menu">
-          <a href="/"><p class="item">Início</p></a>
-          <a href="/artigos"><p>Artigos</p></a>
-          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
-          <a href="/sobre"><p class="item">Sobre Nós</p></a>
-          <a href="/contato"><p class="item">Entre em Contato</p></a>
-          <a href="/home" class="invisivel"><p class="item">Painel</p></a>
-          <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
-          <a onclick="sair()" class="btn-2 invisivel"
-            ><p class="item">Sair</p></a
-          >
-        </nav>
+      <nav class="menu" id="nav">
+        <a href="/"><p>Início</p></a>
+
+        <!-- Dropdown Artigos -->
+        <div class="menu-drop">
+          <a href="/artigos" class="title item"><p>Artigos ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/artigos/hidratacao" class="drop-item">
+              <strong>Importância da Hidratação</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra como a água impacta seu rendimento.</span
+              >
+            </a>
+            <a href="/artigos/alongamento" class="drop-item">
+              <strong>Alongamento e Aquecimento</strong>
+              <span class="txt-detalhe-drop"
+                >Evite lesões e melhore sua mobilidade.</span
+              >
+            </a>
+            <a href="/artigos/exercicios" class="drop-item">
+              <strong>Exercícios Físicos</strong>
+              <span class="txt-detalhe-drop"
+                >Dicas de treinos e rotinas saudáveis.</span
+              >
+            </a>
+            <a href="/artigos/suplementos" class="drop-item">
+              <strong>Suplementos</strong>
+              <span class="txt-detalhe-drop"
+                >Guia básico sobre suplementação.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropdown Calculadoras -->
+        <div class="menu-drop">
+          <a href="/calculadoras" class="title item"><p>Calculadoras ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/calculadoras/imc" class="drop-item">
+              <strong>Calculadora de IMC</strong>
+              <span class="txt-detalhe-drop">
+                Avalie seu Índice de Massa Corporal.
+              </span>
+            </a>
+            <a href="/calculadoras/calorias" class="drop-item">
+              <strong>Gasto Calórico</strong>
+              <span class="txt-detalhe-drop"
+                >Calcule quanto dever ser seu gasto diário de energia.</span
+              >
+            </a>
+            <a href="/calculadoras/massa" class="drop-item">
+              <strong>Peso Ideal</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra quanto deve ser seu peso ideal.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <a href="/sobre"><p class="item">Sobre Nós</p></a>
+        <a href="/contato"><p class="item">Entre em Contato</p></a>
+        <a href="/home" class="invisivel"><p class="item">Painel</p></a>
+        <a href="/perfil" class="invisivel"><p class="item">Perfil</p></a>
+        <a onclick="sair()" class="btn-2 invisivel"><p class="item">Sair</p></a>
 
         <div class="grid-horizontal centro-horizontalmente btns" id="btns">
           <a class="btn-2" href="/conta">Criar conta</a>
@@ -54,7 +105,7 @@
         <p class="txt-detalhe txt-centro">
           © 2026 Vitaliza.inc All rights reserved
         </p>
-      </div>
+      </nav>
     </header>
 
     <main>
@@ -113,7 +164,7 @@
               class="imagem-card"
             />
 
-            <h3 class="txt-esquerda">Mantenha-se em forma</h3>
+            <h3 class="txt-esquerda">Fique em forma</h3>
             <a href="/artigos/exercicios" class="link"
               >Veja a importância dos exercícios físicos ↓</a
             >

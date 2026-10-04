@@ -190,7 +190,7 @@ strong {
 
 .txt-detalhe {
   font-size: clamp(0.8rem, 1vw, 2rem);
-  font-weight: 200;
+  font-weight: 300;
   color: #101010;
   margin: 15px;
 }
@@ -401,7 +401,7 @@ header .menu-aberto {
 header .menu {
   display: flex;
   flex-direction: column;
-  margin: 24px 0;
+  margin: 0;
 }
 
 header .item {
@@ -419,6 +419,60 @@ header p {
 
 header .btns {
   margin: 24px 0;
+}
+
+/* Contêiner do menu com dropdown */
+.menu-drop {
+  position: relative;
+  display: inline-block;
+}
+
+/* Card flutuante (Estilo Dribbble) */
+.dropdown-conteudo {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 280px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  border: solid 1px rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Exibe a caixa ao passar o mouse */
+.menu-drop:hover .dropdown-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-drop:active .dropdown-conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Estilo de cada opção dentro do card */
+.drop-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+
+.drop-item:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
+
+.txt-detalhe-drop {
+  font-size: clamp(0.8rem, 1vw, 2rem);
+  font-weight: 300;
+  color: #101010;
+  margin: 5px 0;
 }
 
 /* == Banner == */
