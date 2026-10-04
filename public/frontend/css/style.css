@@ -141,6 +141,12 @@ strong {
   border: 5px solid rgba(0, 0, 0, 0.4);
 }
 
+.secao3 {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
+  border: solid 1px rgba(0, 0, 0, 0.4);
+}
+
 .icon-secao {
   position: absolute;
   top: 20px;
@@ -155,7 +161,9 @@ strong {
   text-decoration: underline;
   cursor: pointer;
   transition: ease 0.3s;
+  margin: 20px 0;
 }
+
 .link:hover {
   color: #113597;
 }
@@ -469,7 +477,7 @@ header .btns {
   /* == Tags == */
 
   section {
-    padding: 10px clamp(80px, 12vw, 180px);
+    padding: 24px clamp(80px, 12vw, 180px);
   }
 
   form {
@@ -483,7 +491,8 @@ header .btns {
 
   .paragrafo {
     font-size: clamp(1rem, 1.5vw, 1.5rem);
-    margin: 20px clamp(150px, 10vw, 350px);
+    margin: 20px clamp(0px, 2vw, 350px);
+    text-align: center;
   }
 
   h1,
@@ -505,9 +514,18 @@ header .btns {
     width: 40%;
   }
 
-  .imagem-vertical,
   .imagem {
     width: 80%;
+  }
+
+  .imagem-vertical {
+    width: 70%;
+  }
+
+  .secao2,
+  .secao3 {
+    margin: 20px clamp(24px, 7vw, 200px);
+    border-radius: 12px;
   }
 
   /* == Grid == */
@@ -585,7 +603,7 @@ header .btns {
 
   .banner-img {
     display: block;
-    width: clamp(300px, 40vw, 500px);
+    width: clamp(300px, 40vw, 700px);
     border-radius: 12px;
   }
 
