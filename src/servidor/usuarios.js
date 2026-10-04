@@ -22,9 +22,9 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
-  servidor.get("/id/:id", async (req, res) => {
+  servidor.get("/id", async (req, res) => {
     try {
-      const id = await getUsuarioId(req.params.id);
+      const id = await getUsuarioId(req.contaid);
 
       return res.status(200).send(id);
     } catch (erro) {
