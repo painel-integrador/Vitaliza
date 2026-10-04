@@ -6,6 +6,7 @@ import {
   getUsuario,
   getUsuarioId,
 } from "../bancoDeDados/usuarios.js";
+import { autenticar } from "./auth.js";
 
 export async function rotasUsuario(servidor, opts) {
   servidor.addHook("onRequest", autenticar);
