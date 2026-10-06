@@ -16,10 +16,10 @@ export async function getUsuarioId(contaId) {
   return conta.data;
 }
 
-export async function getUsuario(idUsuario) {
+export async function getUsuario(idUsuario, contaId) {
   const { data, error } = await bancoDados
     .from("usuarios")
-    .select("nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso")
+    .select("nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo")
     .eq("id", idUsuario)
     .single();
 
@@ -28,7 +28,21 @@ export async function getUsuario(idUsuario) {
     throw new Error(error.message);
   }
 
-  return data;
+  const conta = await bancoDados
+    .from("usuarios")
+    .select("grupo")
+    .eq("id", contaId)
+    .single();
+
+  if (conta.error) {
+    console.error(conta.error);
+    throw new Error(conta.error.message);
+  }
+
+  if (conta.data.grupo_id === data.grupo_id) return data;
+  else {
+    return "Usuário não encontrado ou sem permissão";
+  }
 }
 
 export async function criarUsusario(dados) {

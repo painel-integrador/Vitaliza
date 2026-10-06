@@ -1,3 +1,14 @@
 .icon-google {
   width: 30px;
 }
+
+.icon-editar {
+  width: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card {
+  position: relative;
+}
