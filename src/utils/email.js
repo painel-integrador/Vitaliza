@@ -1,41 +1,6 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-// Configuração atualizada com suporte forçado a IPv4 e timeouts
-const emailer = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true, // SSL
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.SMTP_GOOGLE_APP_KEY,
-  },
-  // Força o uso da família IPv4 (evita o erro ENETUNREACH em redes sem IPv6)
-  family: 4,
-  // Timeouts para evitar requisições presas em segundo plano
-  connectionTimeout: 10000,
-  greetingTimeout: 5000,
-  socketTimeout: 10000,
-});
-
-function criarEmailCadastro() {
-  let assunto = "Bem-vindo à Vitaliza!";
-  let mensagem = `
-      <h1>Bem vindo à Vitaliza!</h1>
-      <p>Obrigado por se juntar a nós, esperamos que aproveite nossos serviços.</p>
-    `;
-
-  return { assunto, mensagem };
-}
-
-function criarEmailLogin() {
-  let assunto = "Novo acesso detectado";
-  let mensagem = `
-      <h1>Novo acesso detectado!</h1>
-      <p>Você fez um login na sua conta.</p>
-    `;
-
-  return { assunto, mensagem };
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function enviarEmail(
   destinatario,
@@ -44,30 +9,23 @@ export async function enviarEmail(
   mensagem,
   tipoAcao,
 ) {
-  let email;
+  let assunto = "";
+  let html = "";
 
-  if (tipoAcao === "cadastro") {
-    email = criarEmailCadastro();
-  } else if (tipoAcao === "login") {
-    email = criarEmailLogin();
-  } else if (tipoAcao === "contato") {
-    email = {
-      assunto: `Mensagem de usuário: ${nomeUsuario} - ${emailUsuario}`,
-      mensagem,
-    };
+  if (tipoAcao === "contato") {
+    assunto = `Mensagem de usuário: ${nomeUsuario} - ${emailUsuario}`;
+    html = `<p>${mensagem}</p>`;
   }
 
-  const mailOptions = {
-    from: process.env.EMAIL || "vitaliza.pi@gmail.com",
-    to: destinatario,
-    subject: email.assunto,
-    html: email.mensagem,
-  };
-
   try {
-    const info = await emailer.sendMail(mailOptions);
-    console.log("Email enviado: " + email.assunto + " " + info.messageId);
+    const data = await resend.emails.send({
+      from: "onboarding@resend.dev", // Domínio de testes padrão do Resend
+      to: destinatario,
+      subject: assunto,
+      html: html,
+    });
+    console.log("Email enviado com sucesso via Resend:", data);
   } catch (erro) {
-    console.error("Erro ao enviar e-mail:", erro);
+    console.error("Erro ao enviar e-mail via API Resend:", erro);
   }
 }

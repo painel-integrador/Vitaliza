@@ -6,7 +6,7 @@ export async function rotasMensagens(servidor, opts) {
     try {
       await criarMensagem(req.body);
       enviarEmail(
-        "vitaliza.pi@gmail.com",
+        process.env.EMAIL,
         req.body.nome,
         req.body.email,
         req.body.mensagem,
