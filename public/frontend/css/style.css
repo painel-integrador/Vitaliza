@@ -375,10 +375,11 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 10000;
   border-bottom: 2px solid rgba(58, 118, 201, 0.5);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(10px);
 }
 
 header .logo {
@@ -495,6 +496,10 @@ footer {
   color: #fff;
   border: 5px solid rgba(0, 0, 0, 0.4);
   border-radius: 24px 24px 0 0;
+}
+
+footer .logo {
+  width: clamp(400px, 8vw, 8rem);
 }
 
 footer ul {
