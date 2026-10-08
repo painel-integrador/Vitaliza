@@ -6,6 +6,8 @@ html {
   font-family:
     work sans,
     sans-serif;
+
+  overflow-x: hidden;
 }
 
 section {
@@ -145,7 +147,7 @@ strong {
 }
 
 .secao3 {
-  background-color: rgba(58, 118, 201, 0.5);
+  background-color: rgba(58, 118, 201, 0.3);
   color: #000;
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
@@ -540,15 +542,15 @@ footer a:hover {
     rgba(255, 255, 255, 1) 100%
   );
   position: absolute;
-  width: 90vw;
-  height: 100vw;
+  width: 150vw;
+  height: 150vw;
   z-index: -1;
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
-  top: 350px;
-  right: -30vw;
+  top: 300px;
+  right: -50vw;
 }
 
-.gradiente-esquerda {
+.gradiente-cima-direita {
   padding: 40px;
   background: #3a76c9;
   background: radial-gradient(
@@ -558,14 +560,15 @@ footer a:hover {
     rgba(255, 255, 255, 1) 100%
   );
   position: absolute;
-  width: 90vw;
-  height: 100vw;
+  width: 150vw;
+  height: 150vw;
   z-index: -1;
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
-  left: -30vw;
+  top: -50vw;
+  right: -40vw;
 }
 
-.gradiente-direita {
+.gradiente-cima-esquerda {
   padding: 40px;
   background: #3a76c9;
   background: radial-gradient(
@@ -575,12 +578,12 @@ footer a:hover {
     rgba(255, 255, 255, 1) 100%
   );
   position: absolute;
-  width: 90vw;
-  height: 100vw;
+  width: 150vw;
+  height: 150vw;
   z-index: -1;
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
-  right: -30vw;
-  bottom: -350px;
+  top: -50vw;
+  left: -40vw;
 }
 
 .home {
@@ -627,6 +630,10 @@ footer a:hover {
 
 @media screen and (min-width: 600px) {
   /* == Tags == */
+
+  html {
+    overflow-x: hidden;
+  }
 
   section {
     padding: 24px clamp(80px, 12vw, 180px);
@@ -679,6 +686,19 @@ footer a:hover {
   .secao3 {
     margin: 20px clamp(24px, 7vw, 200px);
     border-radius: 12px;
+  }
+
+  .gradiente-cima-direita,
+  .gradiente-cima-esquerda {
+    top: -30vw;
+    width: 90vw;
+    height: 100vw;
+  }
+
+  .gradiente-banner {
+    width: 90vw;
+    height: 100vw;
+    right: -30vw;
   }
 
   /* == Grid == */
