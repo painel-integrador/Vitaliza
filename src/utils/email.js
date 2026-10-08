@@ -1,12 +1,19 @@
 import nodemailer from "nodemailer";
 
 // cria a configuração para enviar emails
+// utils/email.js
 const emailer = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // usa TLS/SSL
   auth: {
     user: process.env.EMAIL,
     pass: process.env.SMTP_GOOGLE_APP_KEY,
   },
+  // Define timeouts para a requisição não travar o servidor indefinidamente se falhar
+  connectionTimeout: 10000, // 10 segundos
+  greetingTimeout: 5000,
+  socketTimeout: 10000,
 });
 
 function criarEmailCadastro() {
@@ -59,8 +66,7 @@ export async function enviarEmail(
 
   try {
     const info = await emailer.sendMail(mailOptions);
-    console.log("Email enviado: " + email.assunto + info.messageId
-    );
+    console.log("Email enviado: " + email.assunto + info.messageId);
   } catch (erro) {
     console.error("Erro: " + erro);
   }
