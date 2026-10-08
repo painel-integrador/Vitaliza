@@ -6,8 +6,12 @@ html {
   font-family:
     work sans,
     sans-serif;
+}
 
-  overflow-x: hidden;
+main {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
 }
 
 section {
