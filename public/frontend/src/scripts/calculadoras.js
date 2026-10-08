@@ -78,14 +78,20 @@ function calcularMassaIdeal(event) {
   const formData = new FormData(form);
   const dados = Object.fromEntries(formData);
   const resultado = document.getElementById("resultado");
-  let imc = 0;
-  let massaIdeal = 0;
 
   console.log(dados);
 
-  imc = dados.massa / (dados.altura * dados.altura);
+  let alturaEmCm = Number(dados.altura) * 100;
+  let massaIdeal = 0;
 
-  massaIdeal = imc * (dados.altura * dados.altura);
+  // Cálculo pela Fórmula de Devine
+  if (dados.genero === "masculino") {
+    massaIdeal = 50 + 2.3 * (alturaEmCm / 2.54 - 60);
+  } else {
+    massaIdeal = 45.5 + 2.3 * (alturaEmCm / 2.54 - 60);
+  }
 
-  resultado.innerText = `Seu IMC é: ${imc.toFixed(2)}`;
+  resultado.innerHTML = `
+    <p class="txt-centro">Sua massa ideal estimada é de aproximadamente: <strong>${massaIdeal.toFixed(1)} kg</strong></p>
+  `;
 }

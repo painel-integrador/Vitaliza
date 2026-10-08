@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de Calorias</title>
+    <title>Calculadora de Massa Ideal</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
@@ -113,46 +113,88 @@
     <main>
       <div class="gradiente-cima-direita"></div>
       <section>
-        <!--o style deixa o titulo mais fino-->
-        <h2 class="txt-preto txt-centro">Calculadora de massa ideal</h2>
+        <h2 class="txt-preto txt-centro">Calculadora de Massa Ideal</h2>
       </section>
 
-      <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
-        <label for="massa"
-          >Massa em quilos: <span class="txt-vermelho">*</span></label
-        >
-        <input
-          type="number"
-          name="massa"
-          required
-          class="input-text"
-          placeholder="75..."
-          min="1"
-          step="0.1"
-        />
-        <label for="altura"
-          >Altura em metros: <span class="txt-vermelho">*</span></label
-        >
+      <form
+        onsubmit="calcularMassaIdeal(event)"
+        class="grid-vertical"
+        id="formulario"
+      >
+        <label for="altura">Altura: <span class="txt-vermelho">*</span></label>
         <input
           type="number"
           name="altura"
+          step="0.01"
           required
           class="input-text"
           placeholder="1,80..."
           min="1"
-          step="0.1"
         />
+
+        <fieldset class="card grid-horizontal">
+          <h4 class="txt-esquerda">
+            Gênero: <span class="txt-vermelho">*</span>
+          </h4>
+          <br />
+
+          <div class="grid-horizontal centro-verticalmente">
+            <label class="label-menor">
+              Masculino <input type="radio" name="genero" value="masculino" />
+            </label>
+
+            <label class="label-menor">
+              Feminino <input type="radio" name="genero" value="feminino" />
+            </label>
+          </div>
+        </fieldset>
 
         <button type="submit" class="btn-3">Calcular</button>
       </form>
 
       <section>
         <h3>Resultado:</h3>
-        <p id="resultado"></p>
+        <p class="txt-centro" id="resultado"></p>
+      </section>
+
+      <section class="grid-vertical">
+        <img
+          src="/src/images/massa-ideal.webp"
+          alt="Tabela de Massa Ideal"
+          class="imagem-card"
+        />
+
+        <div class="grid-horizontal centro-horizontalmente">
+          <ul>
+            <li>
+              <strong>Massa Mínima Saudável:</strong> IMC equivalente a 18,5;
+            </li>
+            <li><strong>Massa Ideal Média:</strong> IMC equivalente a 21,7;</li>
+            <li>
+              <strong>Massa Máxima Saudável:</strong> IMC equivalente a 24,9;
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="secao3">
+        <h3>O que é Massa Ideal?</h3>
+        <p>
+          A <strong>massa ideal</strong> (ou peso ideal) representa a faixa de
+          peso estimada em que uma pessoa apresenta menor risco de desenvolver
+          complicações de saúde associadas ao sobrepeso ou à magreza excessiva.
+          O cálculo é baseado na <strong>altura</strong> do indivíduo,
+          determinando os limites mínimo e máximo de peso para mantê-lo dentro
+          da faixa de <strong>IMC saudável</strong> (entre 18,5 e 24,9),
+          auxiliando no planejamento do seu
+          <strong>objetivo nutricional</strong>.
+        </p>
       </section>
       <hr class="linha-simples" />
     </main>
 
     <script src="/src/scripts/calculadoras.js"></script>
+
+    <script src="/src/scripts/header.js" defer></script>
   </body>
 </html>

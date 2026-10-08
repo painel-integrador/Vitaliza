@@ -124,7 +124,7 @@
       >
         <fieldset class="card grid-horizontal">
           <h4 class="txt-esquerda">
-            Gênero: <span class="txt-vermelho">*</span>
+            Gênero:<span class="txt-vermelho">*</span>
           </h4>
           <br />
 
@@ -150,32 +150,37 @@
           min="1"
         />
 
-        <label for="massa"
-          >Massa em Kg: <span class="txt-vermelho">*</span></label
-        >
-        <input
-          type="number"
-          name="massa"
-          required
-          class="input-text"
-          placeholder="75..."
-          min="1"
-          step="0.1"
-        />
+        <div class="grid-horizontal">
+          <div class="grid-1">
+            <label for="massa"
+              >Massa: <span class="txt-vermelho">*</span></label
+            >
+            <input
+              type="number"
+              name="massa"
+              required
+              class="input-text"
+              placeholder="75..."
+              min="1"
+              step="0.1"
+            />
+          </div>
 
-        <label for="altura"
-          >Altura em Metros: <span class="txt-vermelho">*</span></label
-        >
-        <input
-          type="number"
-          name="altura"
-          step="0.01"
-          required
-          class="input-text"
-          placeholder="1.80..."
-          min="1"
-        />
-
+          <div class="grid-1">
+            <label for="altura"
+              >Altura: <span class="txt-vermelho">*</span></label
+            >
+            <input
+              type="number"
+              name="altura"
+              step="0.01"
+              required
+              class="input-text"
+              placeholder="1.80..."
+              min="1"
+            />
+          </div>
+        </div>
         <label for="atividade"
           >Atividade física <span class="txt-vermelho">*</span></label
         >
@@ -208,17 +213,17 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao3">
+      <section class="secao3 grid-vertical">
         <h3>Sobre a Calculadora de Calorias</h3>
         <p>
-          A calculadora de calorias é uma <strong>ferramenta</strong> útil para
-          estimar a quantidade de <strong>calorias</strong> que uma pessoa
-          precisa consumir diariamente com base em fatores como
-          <strong>idade</strong> , <strong>sexo</strong> ,
-          <strong>peso</strong> , <strong>altura</strong> e nível de atividade
-          física. Ela ajuda a determinar as necessidades energéticas
-          individuais, auxiliando no planejamento de <strong>dietas</strong> e
-          na manutenção de um estilo de vida saudável.
+          A calculadora de calorias é uma >ferramenta> útil para estimar a
+          quantidade de <strong>calorias</strong> que uma pessoa precisa
+          consumir diariamente com base em fatores como <strong>idade</strong>,
+          <strong>sexo</strong>, <strong>peso</strong>,
+          <strong>altura</strong> e nível de <strong>atividade física</strong>.
+          Ela ajuda a determinar as necessidades energéticas individuais,
+          auxiliando no planejamento de <strong>dietas</strong> e na manutenção
+          de um estilo de vida <strong>saudável</strong>.
         </p>
 
         <img

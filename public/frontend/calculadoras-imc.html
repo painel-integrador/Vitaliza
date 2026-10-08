@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de Calorias</title>
+    <title>Calculadora de IMC</title>
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
@@ -118,9 +118,7 @@
       </section>
 
       <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
-        <label for="massa"
-          >Massa em Quilos: <span class="txt-vermelho">*</span></label
-        >
+        <label for="massa">Massa: <span class="txt-vermelho">*</span></label>
         <input
           type="number"
           step="0.1"
@@ -130,9 +128,7 @@
           placeholder="75..."
           min="1"
         />
-        <label for="altura"
-          >Altura em Metros: <span class="txt-vermelho">*</span></label
-        >
+        <label for="altura">Altura: <span class="txt-vermelho">*</span></label>
         <input
           type="number"
           name="altura"
