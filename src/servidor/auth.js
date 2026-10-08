@@ -12,7 +12,11 @@ import {
 } from "../bancoDeDados/sessoes.js";
 import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
-import { criarConexaoGoogle } from "../bancoDeDados/conexaoGoogle.js";
+import {
+  criarConexaoGoogle,
+  buscarConexaoGooglePorGoogleId,
+  atualizarConexaoGoogle,
+} from "../bancoDeDados/conexaoGoogle.js";
 
 function criarAccessToken() {
   const duasHoras = 2 * 60 * 60 * 1000;
@@ -207,12 +211,6 @@ export async function rotasAuth(servidor, opts) {
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
         "openid",
-
-        // health
-        "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.writeonly",
-        "https://www.googleapis.com/auth/googlehealth.activity_and_fitness.readonly",
-        "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.readonly",
-        "https://www.googleapis.com/auth/googlehealth.health_metrics_and_measurements.writeonly",
       ],
     });
 
@@ -231,21 +229,36 @@ export async function rotasAuth(servidor, opts) {
         })
       ).getPayload();
 
+      // 1. Verifica se já existe uma conexão Google salva com esse google_id
+      let conexaoExistente = await buscarConexaoGooglePorGoogleId(payload.sub);
+
+      const dadosConexao = {
+        google_id: payload.sub,
+        access_token: tokens.tokens.access_token,
+        refresh_token: tokens.tokens.refresh_token,
+        expira_em: new Date(tokens.tokens.expiry_date),
+      };
+
+      // Se a conexão já existe, apenas atualizamos os tokens
+      if (conexaoExistente) {
+        conexaoExistente = await atualizarConexaoGoogle(
+          conexaoExistente.id,
+          dadosConexao,
+        );
+      } else {
+        // Se não existe, criamos um novo registro
+        conexaoExistente = await criarConexaoGoogle(dadosConexao);
+      }
+
+      // 2. Busca a conta vinculada ao e-mail
       const contaBanco = await buscarContaPorEmail(payload.email);
       let targetContaId;
 
-      // conta não existe: cria conta e conexão
+      // Se a conta não existe, cria a nova conta vinculada à conexão Google
       if (!contaBanco) {
-        const conexaoGoogle = await criarConexaoGoogle({
-          google_id: payload.sub,
-          access_token: tokens.tokens.access_token,
-          refresh_token: tokens.tokens.refresh_token,
-          expira_em: new Date(tokens.tokens.expiry_date),
-        });
-
         const novaConta = await criarConta({
           email: payload.email,
-          conexao_google_id: conexaoGoogle.id,
+          conexao_google_id: conexaoExistente.id,
         });
 
         targetContaId = novaConta.id;
@@ -253,26 +266,15 @@ export async function rotasAuth(servidor, opts) {
         await criarSessaoCookie(req, res, targetContaId);
         return res.redirect(process.env.URL + "/conta/criar-usuario");
       }
-      // conta existe mas sem conexão Google: apenas conecta
-      else if (!contaBanco.conexao_google_id) {
-        const conexaoGoogle = await criarConexaoGoogle({
-          google_id: payload.sub,
-          access_token: tokens.tokens.access_token,
-          refresh_token: tokens.tokens.refresh_token,
-          expira_em: new Date(tokens.tokens.expiry_date),
-        });
 
-        await conectarGoogleNaConta(contaBanco.id, conexaoGoogle.id);
-        targetContaId = contaBanco.id;
+      // Se a conta existe mas ainda não está associada a essa conexao_google_id, vincula
+      if (!contaBanco.conexao_google_id) {
+        await conectarGoogleNaConta(contaBanco.id, conexaoExistente.id);
       }
-      // conta e conexão já existem
-      else {
-        targetContaId = contaBanco.id;
-      }
+
+      targetContaId = contaBanco.id;
 
       await criarSessaoCookie(req, res, targetContaId);
-
-      // adicionar aqui envio de email
 
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
