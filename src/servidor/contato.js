@@ -13,7 +13,7 @@ export async function rotasMensagens(servidor, opts) {
         "contato",
       );
 
-      return res.status(201).send(mensagem);
+      return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
