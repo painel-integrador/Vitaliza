@@ -111,8 +111,8 @@
     </header>
 
     <main>
-      <div class="gradiente-cima-direita"></div>
       <section>
+        <div class="gradiente-cima-direita"></div>
         <!--o style deixa o titulo mais fino-->
         <h2 class="txt-preto txt-centro">Calculadora de Calorias</h2>
       </section>
@@ -215,8 +215,8 @@
 
       <section class="secao3 grid-vertical">
         <h3>Sobre a Calculadora de Calorias</h3>
-        <p>
-          A calculadora de calorias é uma >ferramenta> útil para estimar a
+        <p class="paragrafo">
+          A calculadora de calorias é uma ferramenta útil para estimar a
           quantidade de <strong>calorias</strong> que uma pessoa precisa
           consumir diariamente com base em fatores como <strong>idade</strong>,
           <strong>sexo</strong>, <strong>peso</strong>,
@@ -232,6 +232,70 @@
           alt="Imagem de uma calculadora de calorias"
         />
       </section>
+
+      <hr class="linha-simples" />
+
+      <section class="secao2">
+        <h3>Equação de Mifflin-St Jeor</h3>
+
+        <p class="paragrafo">
+          Esta é uma equação preditiva para o gasto energético em repouso em
+          indivíduos saudáveis. <br />
+          O artigo que validou esta equação, em <strong>1990</strong>, estimou-a
+          através de um <strong>grupo de mulheres e homens</strong> com idades
+          compreendidas entre os 19 e os 78, e cujo IMC variava entre
+          <strong>normal e obesidade.</strong>
+        </p>
+
+        <h4>Fórmula</h4>
+
+        <ul class="paragrafo">
+          <li>
+            <p>
+              <strong>Homens: </strong>TMB = 10 * massa (kg) + 6,25 * altura
+              (cm) - 5 * idade (anos) + 5
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Mulheres: </strong>TMB = 10 * massa (kg) + 6,25 * altura
+              (cm) - 5 * idade (anos) - 161
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section class="secao3">
+        <h3>Gasto Energético Total (GET)</h3>
+
+        <p class="paragrafo"><strong>GET</strong> = TMB * NAF</p>
+
+        <p class="paragrafo">
+          Onde NAF é o <strong>Nível de Atividade Física</strong> (ou Fator de
+          Atividade).
+        </p>
+
+        <ul class="paragrafo">
+          <li>
+            <p><strong>Sedentário: </strong>1,2</p>
+          </li>
+          <li>
+            <p><strong>Levemente ativo: </strong>1,375</p>
+          </li>
+          <li>
+            <p><strong>Moderadamente ativo: </strong>1,55</p>
+          </li>
+          <li>
+            <p><strong>Muito ativo: </strong>1,725</p>
+          </li>
+          <li>
+            <p><strong>Extremamente ativo: </strong>1,9</p>
+          </li>
+        </ul>
+      </section>
+
       <hr class="linha-simples" />
     </main>
 
