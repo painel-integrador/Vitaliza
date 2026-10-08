@@ -113,35 +113,35 @@
 
     <main>
       <section>
+        <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto txt-centro">Entrar</h1>
       </section>
 
-      <form onsubmit="login(event)" id="formulario">
-        <label for="email">E-mail:<span class="txt-vermelho">*</span></label
-        ><br />
-        <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          class="input-text"
-        /><br />
-
-        <label for="senha">Senha:<span class="txt-vermelho">*</span></label
-        ><br />
-        <input
-          type="password"
-          id="senha"
-          name="senha"
-          required
-          class="input-text"
-        /><br />
-
-        <a href="/conta" class="link"><p>Criar Conta</p></a> <br />
-
-        <div class="grid-horizontal centro-horizontalmente">
-          <button type="submit" class="btn-2">Fazer Login</button>
+      <form onsubmit="login(event)" id="formulario" class="grid-vertical">
+        <div>
+          <label for="email">E-mail:<span class="txt-vermelho">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="input-text"
+          />
         </div>
+
+        <div>
+          <label for="senha">Senha:<span class="txt-vermelho">*</span></label>
+          <input
+            type="password"
+            id="senha"
+            name="senha"
+            required
+            class="input-text"
+          />
+
+          <a href="/conta" class="link"><p>Criar Conta</p></a>
+        </div>
+        <button type="submit" class="btn-3">Fazer Login</button>
       </form>
 
       <p class="divider">Ou</p>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crie seu usuário</title>
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <main>
+      <section>
+        <div class="gradiente-cima-esquerda"></div>
+        <h1 class="txt-preto">Crie seu usuário</h1>
+
+        <hr class="linha-simples" />
+      </section>
+
+      <form
+        onsubmit="criarUsuario(event)"
+        id="formulario"
+        class="grid-vertical"
+      >
+        <div>
+          <label for="nome">Nome: <span class="txt-vermelho">*</span></label>
+          <br />
+          <input
+            type="text"
+            id="nome"
+            name="nome"
+            required
+            class="input-text"
+            placeholder="João da Silva..."
+          />
+        </div>
+
+        <div class="grid-horizontal">
+          <div class="grid1">
+            <label for="idade">Idade <span class="txt-vermelho">*</span></label
+            ><input
+              type="number"
+              name="idade"
+              id="idade"
+              placeholder="26..."
+              min="0"
+              class="input-text"
+              required
+            />
+          </div>
+
+          <div class="grid1">
+            <label for="peso">Peso <span class="txt-vermelho">*</span></label
+            ><input
+              type="number"
+              required
+              name="peso"
+              id="peso"
+              placeholder="75,5..."
+              class="input-text"
+              step="0.01"
+              min="0"
+            />
+          </div>
+
+          <div class="grid1">
+            <label for="altura">Altura<span class="txt-vermelho">*</span></label
+            ><input
+              type="number"
+              required
+              name="altura"
+              id="altura"
+              placeholder="1,73..."
+              class="input-text"
+              step="0.01"
+              min="0"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="grid-1">
+            <label for="objetivo_hidratacao"
+              >Quanto de água beber por dia (ml)</label
+            ><input
+              type="number"
+              name="objetivo_hidratacao"
+              id="objetivo_hidratacao"
+              placeholder="2500..."
+              class="input-text"
+              step="0.01"
+              min="0"
+            />
+          </div>
+
+          <div class="grid-1">
+            <label for="objetivo_peso">Quantos kilos você quer pesar</label
+            ><input
+              type="number"
+              name="objetivo_peso"
+              id="objetivo_peso"
+              placeholder="75,5..."
+              class="input-text"
+              step="0.01"
+              min="0"
+            />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-3">Enviar</button>
+      </form>
+
+      <hr class="linha-simples" />
+    </main>
+
+    <footer>
+      <div class="grid-horizontal-pc">
+        <div class="grid-1 grid-vertical">
+          <img
+            src="/src/images/logo-branca.svg"
+            alt="Logo Vitaliza"
+            class="logo"
+          />
+          <p>Um site sobre sua saúde</p>
+        </div>
+      </div>
+      <p class="txt-centro txt-detalhe" style="color: #fff">
+        © Vitaliza Inc. All rights reserved.
+      </p>
+    </footer>
+
+    <script src="/src/scripts/header.js" defer></script>
+    <script src="/src/scripts/criar-usuario.js"></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 import {
-  criarUsusario,
+  criarUsuario,
   atualizarObjetivoHidratacaoUsuario,
   atualizarObjetivoPesoUsuario,
   atualizarPesoUsuario,
@@ -16,7 +16,7 @@ export async function rotasUsuario(servidor, opts) {
       const usuario = await getUsuario(req.params.id, req.contaid);
 
       if (usuario === "Usuário não encontrado ou sem permissão") {
-        return res.status(403).send("Usuário não encontrado ou sem permissão")
+        return res.status(403).send("Usuário não encontrado ou sem permissão");
       }
 
       return res.status(200).send(usuario);
@@ -39,9 +39,9 @@ export async function rotasUsuario(servidor, opts) {
 
   servidor.post("/usuario", async (req, res) => {
     try {
-      const usuario = criarUsusario(req.body);
+      await criarUsuario(req.body, req.contaid);
 
-      return res.status(201).send(usuario);
+      return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });

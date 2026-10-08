@@ -46,3 +46,19 @@ export async function conectarGoogleNaConta(contaId, conexaoGoogleId) {
 
   return data;
 }
+
+export async function conectarUsuarioNaConta(contaId, usuarioId) {
+  const { data, error } = await bancoDados
+    .from("contas")
+    .update({ usuario_id: usuarioId })
+    .eq("id", contaId)
+    .select()
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error(error.message);
+  }
+
+  return data;
+}

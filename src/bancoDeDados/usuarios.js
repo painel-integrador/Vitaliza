@@ -1,3 +1,4 @@
+import { conectarUsuarioNaConta } from "./contas.js";
 import bancoDados from "./db.js";
 
 export async function getUsuarioId(contaId) {
@@ -45,7 +46,7 @@ export async function getUsuario(idUsuario, contaId) {
   }
 }
 
-export async function criarUsusario(dados) {
+export async function criarUsuario(dados, contaId) {
   const { data, error } = await bancoDados
     .from("usuarios") // seleciona a tabela
     .insert(dados) // insere os dados
@@ -56,6 +57,9 @@ export async function criarUsusario(dados) {
     console.error(error);
     throw new Error(error.message);
   }
+
+  // conectar usuario na conta
+  conectarUsuarioNaConta(contaId, data.id); // data.id é o usuario criado
 
   return data;
 }
@@ -73,7 +77,7 @@ export async function atualizarPesoUsuario(contaId, valor) {
     throw new Error(conta.error.message);
   }
 
-  const { data, error } = bancoDados
+  const { data, error } = await bancoDados
     .from("usuarios")
     .update({ peso: valor })
     .select("id")
@@ -100,7 +104,7 @@ export async function atualizarObjetivoPesoUsuario(contaId, valor) {
     throw new Error(conta.error.message);
   }
 
-  const { data, error } = bancoDados
+  const { data, error } = await bancoDados
     .from("usuarios")
     .update({ objetivo_peso: valor })
     .select()
@@ -127,7 +131,7 @@ export async function atualizarObjetivoHidratacaoUsuario(contaId, valor) {
     throw new Error(conta.error.message);
   }
 
-  const { data, error } = bancoDados
+  const { data, error } = await bancoDados
     .from("usuarios")
     .update({ objetivo_hidratacao: valor })
     .select()

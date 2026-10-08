@@ -155,7 +155,7 @@ export async function rotasAuth(servidor, opts) {
 
       // adicionar aqui envio de email
 
-      return res.redirect(process.env.URL + "/home");
+      return res.redirect(process.env.URL + "/conta/criar-usuario");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -249,6 +249,9 @@ export async function rotasAuth(servidor, opts) {
         });
 
         targetContaId = novaConta.id;
+
+        await criarSessaoCookie(req, res, targetContaId);
+        return res.redirect(process.env.URL + "/conta/criar-usuario");
       }
       // conta existe mas sem conexão Google: apenas conecta
       else if (!contaBanco.conexao_google_id) {
