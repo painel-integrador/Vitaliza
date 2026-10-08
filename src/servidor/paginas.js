@@ -1,6 +1,7 @@
 import fastifyStatic from "@fastify/static";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { autenticar } from "./auth.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,10 @@ export async function rotasPaginas(servidor, opts) {
 
   servidor.get("/contato", async (req, res) => {
     return res.sendFile("contato.html");
+  });
+
+  servidor.get("/funcionalidades", async (req, res) => {
+    return res.sendFile("funcionalidades.html");
   });
 
   servidor.get("/artigos", async (req, res) => {
@@ -44,15 +49,27 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/conta/login", async (req, res) => {
     return res.sendFile("conta-login.html");
   });
-  servidor.get("/conta/criar-usuario", async (req, res) => {
-    return res.sendFile("conta-criar-usuario.html");
-  });
-  servidor.get("/conta/usuario/me", async (req, res) => {
-    return res.sendFile("conta-usuario-me.html");
-  });
-  servidor.get("/conta/usuario/:id", async (req, res) => {
-    return res.sendFile("conta-usuario-id.html");
-  });
+  servidor.get(
+    "/conta/criar-usuario",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("conta-criar-usuario.html");
+    },
+  );
+  servidor.get(
+    "/conta/usuario/me",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("conta-usuario-me.html");
+    },
+  );
+  servidor.get(
+    "/conta/usuario/:id",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("conta-usuario-id.html");
+    },
+  );
 
   servidor.get("/calculadoras", async (req, res) => {
     return res.sendFile("calculadoras.html");
@@ -67,30 +84,54 @@ export async function rotasPaginas(servidor, opts) {
     return res.sendFile("calculadoras-massa-ideal.html");
   });
 
-  servidor.get("/home", async (req, res) => {
+  servidor.get("/home", { preHandler: [autenticar] }, async (req, res) => {
     return res.sendFile("home.html");
   });
-  servidor.get("/exercicios/vizualizar", async (req, res) => {
-    return res.sendFile("exercicios-vizualizar.html");
-  });
-  servidor.get("/exercicios/criar-exercicio", async (req, res) => {
-    return res.sendFile("exercicios-criar-exercicio.html");
-  });
+  servidor.get(
+    "/exercicios/vizualizar",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("exercicios-vizualizar.html");
+    },
+  );
+  servidor.get(
+    "/exercicios/criar-exercicio",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("exercicios-criar-exercicio.html");
+    },
+  );
 
-  servidor.get("/rotinas", async (req, res) => {
+  servidor.get("/rotinas", { preHandler: [autenticar] }, async (req, res) => {
     return res.sendFile("rotinas-vizualizar.html");
   });
-  servidor.get("/rotinas/:id", async (req, res) => {
-    return res.sendFile("rotinas-vizualizar-id.html");
-  });
-  servidor.get("/rotinas/criar-rotina", async (req, res) => {
-    return res.sendFile("rotinas-criar-rotina.html");
-  });
+  servidor.get(
+    "/rotinas/:id",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("rotinas-vizualizar-id.html");
+    },
+  );
+  servidor.get(
+    "/rotinas/criar-rotina",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("rotinas-criar-rotina.html");
+    },
+  );
 
-  servidor.get("/hidratacao/registrar", async (req, res) => {
-    return res.sendFile("hidratacao-registrar.html");
-  });
-  servidor.get("/hidratacao/vizualizar/:dia/:mes/:ano", async (req, res) => {
-    return res.sendFile("hidratacao-vizualizar-dia-mes-ano.html");
-  });
+  servidor.get(
+    "/hidratacao/registrar",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("hidratacao-registrar.html");
+    },
+  );
+  servidor.get(
+    "/hidratacao/vizualizar/:dia/:mes/:ano",
+    { preHandler: [autenticar] },
+    async (req, res) => {
+      return res.sendFile("hidratacao-vizualizar-dia-mes-ano.html");
+    },
+  );
 }

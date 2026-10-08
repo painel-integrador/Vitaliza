@@ -551,7 +551,7 @@ footer a:hover {
     closest-side,
     rgba(58, 118, 201, 0.5) 20%,
     rgba(65, 163, 153, 0.5) 50%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 0) 100%
   );
   position: absolute;
   width: 150vw;
@@ -569,7 +569,7 @@ footer a:hover {
     closest-side,
     rgba(58, 118, 201, 0.5) 20%,
     rgba(65, 163, 153, 0.5) 50%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 0) 100%
   );
   position: absolute;
   width: 150vw;
@@ -587,7 +587,7 @@ footer a:hover {
     closest-side,
     rgba(58, 118, 201, 0.5) 20%,
     rgba(65, 163, 153, 0.5) 50%,
-    rgba(255, 255, 255, 1) 100%
+    rgba(255, 255, 255, 0) 100%
   );
   position: absolute;
   width: 150vw;
