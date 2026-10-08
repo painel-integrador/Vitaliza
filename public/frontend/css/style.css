@@ -475,6 +475,46 @@ header .btns {
   margin: 5px 0;
 }
 
+/* == Footer == */
+
+footer {
+  padding: 10px 20px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border: 5px solid rgba(0, 0, 0, 0.4);
+  border-radius: 24px 24px 0 0;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer nav {
+  border-left: 1px solid #fff;
+}
+
+footer a {
+  color: #ffffffd0;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  footer .cols {
+    grid-template-columns: 1fr 1fr;
+    padding: 44px 20px 32px;
+  }
+  footer .brand {
+    grid-column: 1 / -1;
+  }
+  footer .base {
+    padding: 18px 20px;
+  }
+}
+
 /* == Banner == */
 
 .banner-img {
@@ -640,6 +680,12 @@ header .btns {
   header .linha-pontilhada,
   header .txt-detalhe {
     display: none; /* Oculta a linha e o copyright dentro do menu no desktop */
+  }
+
+  /* == Footer == */
+
+  footer {
+    padding: 30px;
   }
 
   /* == Banner == */
