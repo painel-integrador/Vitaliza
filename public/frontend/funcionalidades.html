@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/css/reset.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/faq.css" rel="stylesheet" />
+    <title>Funcionalidades</title>
+    <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+  </head>
+  <body>
+    <header>
+      <div class="logo-button">
+        <a href="/">
+          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
+        </a>
+        <img
+          alt="Menu"
+          class="visivel icon"
+          id="botao-menu"
+          onclick="menu()"
+          src="/src/images/menu.svg"
+        />
+        <img
+          alt="Fechar"
+          class="invisivel icon"
+          id="botao-fechar"
+          onclick="menu()"
+          src="/src/images/close.svg"
+        />
+      </div>
+
+      <nav class="menu" id="nav">
+        <a href="/"><p class="item">Início</p></a>
+
+        <!-- Dropdown Artigos -->
+        <div class="menu-drop">
+          <a href="/artigos" class="title item"><p>Artigos ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/artigos/hidratacao" class="drop-item">
+              <strong>Importância da Hidratação</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra como a água impacta seu rendimento.</span
+              >
+            </a>
+            <a href="/artigos/alongamento" class="drop-item">
+              <strong>Alongamento e Aquecimento</strong>
+              <span class="txt-detalhe-drop"
+                >Evite lesões e melhore sua mobilidade.</span
+              >
+            </a>
+            <a href="/artigos/exercicios" class="drop-item">
+              <strong>Exercícios Físicos</strong>
+              <span class="txt-detalhe-drop"
+                >Dicas de treinos e rotinas saudáveis.</span
+              >
+            </a>
+            <a href="/artigos/suplementos" class="drop-item">
+              <strong>Suplementos</strong>
+              <span class="txt-detalhe-drop"
+                >Guia básico sobre suplementação.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropdown Calculadoras -->
+        <div class="menu-drop">
+          <a href="/calculadoras" class="title item"><p>Calculadoras ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/calculadoras/imc" class="drop-item">
+              <strong>Calculadora de IMC</strong>
+              <span class="txt-detalhe-drop">
+                Avalie seu Índice de Massa Corporal.
+              </span>
+            </a>
+            <a href="/calculadoras/calorias" class="drop-item">
+              <strong>Gasto Calórico</strong>
+              <span class="txt-detalhe-drop"
+                >Calcule quanto dever ser seu gasto diário de energia.</span
+              >
+            </a>
+            <a href="/calculadoras/massa" class="drop-item">
+              <strong>Peso Ideal</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra quanto deve ser seu peso ideal.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <a href="/sobre"><p class="item">Sobre Nós</p></a>
+        <a href="/contato"><p class="item">Entre em Contato</p></a>
+        <a href="/home" class="invisivel"><p class="item">Painel</p></a>
+        <a href="/conta/usuario/me" class="invisivel"
+          ><p class="item">Perfil</p></a
+        >
+        <a onclick="sair()" class="btn-2 invisivel"><p class="item">Sair</p></a>
+
+        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
+          <a class="btn-2" href="/conta">Criar conta</a>
+          <a class="btn-3" href="/conta/login">Fazer Login</a>
+        </div>
+
+        <hr class="linha-pontilhada" />
+
+        <p class="txt-detalhe txt-centro">
+          © 2026 Vitaliza.inc All rights reserved
+        </p>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="gradiente-cima-esquerda"></div>
+        <h1 class="txt-preto txt-centro">Funcionalidades</h1>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section>
+        <p class="txt-centro">
+          A Vitaliza oferece várias funcionalidades para você melhorar sua
+          saúde:
+        </p>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section class="grid-vertical">
+        <div class="grid-horizontal-pc">
+          <div class="grid-1">
+            <h3>Informação</h3>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Artigos</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Artigos claros com instruções e informações sobre:
+                  <strong
+                    >hidratação, exercícios, alongamento e aquecimento e
+                    suplementação.</strong
+                  >
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Calculadoras</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Temos calculadoras disponíveis para você descobrir seu
+                  <strong>IMC, gasto diário de calorias e peso ideal.</strong>
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Instagram</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Você pode nos seguir no
+                  <a href="https://instagram.com/vitaliza.ifc" class="link"
+                    >Instagram</a
+                  >
+                  para ter mais informações de treinos e dicas.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-1">
+            <h3>Hidratação</h3>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Registro</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Registre quanto de água você está bebendo cada dia.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Análise</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Análise com gráficos, para você ver se está indo bem ou não.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Conhecimento</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Entenda mais sobre se hidratar em:
+                  <a href="/artigos/hidratacao" class="link">Hidratação</a>, e
+                  também saiba quanto de água beber cada dia.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-horizontal-pc">
+          <div class="grid-1">
+            <h3>Exercícios</h3>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Registro</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Registre cada exercício e atividade física que você fizer, com
+                  dados detalhados.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Progressão</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Veja sua progressão na academia e em atividades físicas.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Rotinas</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Use rotinas para saber o treino de cada dia, e facilitar o
+                  registro do exercício.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Imagens e dicas</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Salve imagens e vídeos de cada exercício para saber fazer a
+                  execução de forma correta.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-1">
+            <h3>Grupos</h3>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Amigos</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Chame seus amigos para uma competição saudável de academia.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Progressão em grupo</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Veja os treinos de cada pessoa e sua progressão.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Compartilhamento</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Compartilhe rotinas e atividades para evoluirem em conjunto.
+                </p>
+              </div>
+            </div>
+            <div class="faq">
+              <div class="card faq-fechado" onclick="faq(this)">
+                <div>
+                  <h4>Motivação</h4>
+                  <img src="/src/images/mais.svg" alt="+" class="icon mais" />
+                  <img
+                    src="/src/images/menos.svg"
+                    alt="-"
+                    class="icon menos invisivel"
+                  />
+                </div>
+                <p class="invisivel">
+                  Treinar e praticar atividades com os amigos e colegas te deixa
+                  muito mais motivado para continuar.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="linha-simples" />
+    </main>
+    <script src="/src/scripts/header.js" defer></script>
+    <script src="/src/scripts/faq.js"></script>
+  </body>
+</html>
