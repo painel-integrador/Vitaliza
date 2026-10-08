@@ -111,7 +111,7 @@ strong {
   padding: 6px 20px;
   margin: 6px 0;
   background-color: rgba(0, 0, 0, 0.075);
-  border: solid 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .imagem {
@@ -120,6 +120,7 @@ strong {
   aspect-ratio: 2 / 1; /* Mantém a proporção de tela widescreen */
   margin: 0 auto;
   border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .imagem-vertical {
@@ -128,11 +129,13 @@ strong {
   aspect-ratio: 3 / 4;
   margin: 0 auto;
   border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .imagem-card {
   margin: 15px auto 0 auto;
   border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .secao2 {
@@ -142,7 +145,7 @@ strong {
 }
 
 .secao3 {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(58, 118, 201, 0.5);
   color: #000;
   border: solid 1px rgba(0, 0, 0, 0.4);
 }
