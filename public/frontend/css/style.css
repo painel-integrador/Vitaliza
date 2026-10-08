@@ -525,6 +525,59 @@ footer a:hover {
   color: #fff;
 }
 
+.gradiente-banner {
+  padding: 40px;
+  background: #3a76c9;
+  background: radial-gradient(
+    closest-side,
+    rgba(58, 118, 201, 0.5) 20%,
+    rgba(65, 163, 153, 0.5) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  position: absolute;
+  width: 90vw;
+  height: 100vw;
+  z-index: -1;
+  pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
+  top: 350px;
+  right: -30vw;
+}
+
+.gradiente-esquerda {
+  padding: 40px;
+  background: #3a76c9;
+  background: radial-gradient(
+    closest-side,
+    rgba(58, 118, 201, 0.5) 20%,
+    rgba(65, 163, 153, 0.5) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  position: absolute;
+  width: 90vw;
+  height: 100vw;
+  z-index: -1;
+  pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
+  left: -30vw;
+}
+
+.gradiente-direita {
+  padding: 40px;
+  background: #3a76c9;
+  background: radial-gradient(
+    closest-side,
+    rgba(58, 118, 201, 0.5) 20%,
+    rgba(65, 163, 153, 0.5) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  position: absolute;
+  width: 90vw;
+  height: 100vw;
+  z-index: -1;
+  pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
+  right: -30vw;
+  bottom: -350px;
+}
+
 .home {
   background-image: url("../src/images/banner-inicio.webp");
   background-size: cover; /* Faz a imagem cobrir toda a seção */
