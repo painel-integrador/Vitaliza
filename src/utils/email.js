@@ -1,33 +1,6 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-// cria a configuração para enviar emails
-const emailer = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.SMTP_GOOGLE_APP_KEY,
-  },
-});
-
-function criarEmailCadastro() {
-  let assunto = "Bem-vindo à Vitaliza!";
-  let mensagem = `
-      <h1>Bem vindo à Vitaliza!</h1>
-      <p>Obrigado por se juntar a nós, esperamos que aproveite nossos serviços.</p>
-    `;
-
-  return { assunto, mensagem };
-}
-
-function criarEmailLogin() {
-  let assunto = "Novo acesso detectado";
-  let mensagem = `
-      <h1>Novo acesso detectado!</h1>
-      <p>Você fez um login na sua conta.</p>
-    `;
-
-  return { assunto, mensagem };
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function enviarEmail(
   destinatario,
@@ -36,32 +9,23 @@ export async function enviarEmail(
   mensagem,
   tipoAcao,
 ) {
-  let email;
+  let assunto = "";
+  let html = "";
 
-  // da para colocar um switch case
-  if (tipoAcao === "cadastro") {
-    email = criarEmailCadastro();
-  } else if (tipoAcao === "login") {
-    email = criarEmailLogin();
-  } else if (tipoAcao === "contato") {
-    email = {
-      assunto: `Mensagem de usuário: ${nomeUsuario} - ${emailUsuario}`,
-      mensagem,
-    };
+  if (tipoAcao === "contato") {
+    assunto = `Mensagem de usuário: ${nomeUsuario} - ${emailUsuario}`;
+    html = `<p>${mensagem}</p>`;
   }
 
-  const mailOptions = {
-    from: "vitaliza.pi@gmail.com",
-    to: destinatario,
-    subject: email.assunto,
-    html: email.mensagem,
-  };
-
   try {
-    const info = await emailer.sendMail(mailOptions);
-    console.log("Email enviado: " + email.assunto + info.messageId
-    );
+    const data = await resend.emails.send({
+      from: "onboarding@resend.dev", // Domínio de testes padrão do Resend
+      to: destinatario,
+      subject: assunto,
+      html: html,
+    });
+    console.log("Email enviado com sucesso via Resend:", data);
   } catch (erro) {
-    console.error("Erro: " + erro);
+    console.error("Erro ao enviar e-mail via API Resend:", erro);
   }
 }
