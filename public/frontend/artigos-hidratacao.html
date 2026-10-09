@@ -7,16 +7,22 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>Hidratação</title>
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    AOS.init({ duration: 800, once: true });
-  });
-</script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 800, once: true });
+      });
+    </script>
   </head>
   <body>
-    <header data-aos="fade-right">
+    <header data-aos="fade-down">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -118,7 +124,7 @@
     </header>
 
     <main>
-      <section class="banner hidratacao"  data-aos="fade-down"  >
+      <section class="banner hidratacao" data-aos="fade-up">
         <img
           src="/src/images/banner-hidratacao.webp"
           class="banner-img"
@@ -133,9 +139,9 @@
         </div>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="grid-vertical"  data-aos="fade-down"  >
+      <section class="grid-vertical" data-aos="fade-up">
         <div class="gradiente-cima-direita"></div>
         <h2>Desidratação no Calor:</h2>
         <p class="paragrafo">
@@ -152,9 +158,9 @@
         />
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao2 grid-vertical" data-aos="fade-down"  >
+      <section class="secao2 grid-vertical" data-aos="fade-up">
         <h2>Benefícios de Beber Água:</h2>
         <p class="paragrafo">
           Consumir água suficiente todos os dias é importante para a saúde.
@@ -181,9 +187,9 @@
         />
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section  data-aos="fade-down"  >
+      <section data-aos="fade-up">
         <h2>A Água ajuda seu corpo em:</h2>
         <ul class="paragrafo">
           <li>Manter uma temperatura normal.</li>
@@ -195,9 +201,9 @@
         </ul>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao3" data-aos="fade-down"  >
+      <section class="secao3" data-aos="fade-up">
         <div class="gradiente-cima-esquerda"></div>
         <div class="grid-horizontal-pc">
           <div class="grid-2">
@@ -222,7 +228,7 @@
           </div>
         </div>
       </section>
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
     </main>
 
     <script src="/src/scripts/header.js" defer></script>

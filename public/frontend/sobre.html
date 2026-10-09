@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    AOS.init({ duration: 800, once: true });
-  });
-</script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 800, once: true });
+      });
+    </script>
   </head>
   <body>
-    <header data-aos="fade-right">
+    <header data-aos="fade-down">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -118,15 +124,15 @@
     </header>
 
     <main>
-      <section  data-aos="fade-down">
+      <section data-aos="fade-up">
         <h1 class="txt-centro txt-preto">Sobre Nós</h1>
       </section>
 
       <div class="gradiente-cima-direita"></div>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao3" data-aos="fade-down">
+      <section class="secao3" data-aos="fade-up">
         <h2>O que é a Vitaliza?</h2>
 
         <p class="paragrafo">
@@ -135,9 +141,9 @@
         </p>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="grid-vertical secao2" data-aos="fade-down">
+      <section class="grid-vertical secao2" data-aos="fade-up">
         <h2>Nossa equipe</h2>
 
         <p class="paragrafo">
@@ -153,9 +159,9 @@
         />
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section  data-aos="fade-down">
+      <section data-aos="fade-up">
         <h2>Integrantes</h2>
 
         <div class="grid-horizontal">
@@ -194,7 +200,7 @@
           </div>
         </div>
       </section>
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
     </main>
     <script src="/src/scripts/header.js" defer></script>
   </body>

@@ -8,29 +8,36 @@
     <link rel="stylesheet" href="/css/style.css" />
 
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    AOS.init({ duration: 800, once: true });
-  });
-</script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 800, once: true });
+      });
+    </script>
   </head>
   <body>
     <main>
-      <section  data-aos="fade-down">
+      <section data-aos="fade-up">
         <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto">Crie seu usuário</h1>
 
-        <hr class="linha-simples" />
+        <hr class="linha-simples" data-aos="fade-left" />
       </section>
 
-      <form data-aos="fade-down"
+      <form
+        data-aos="fade-up"
         onsubmit="criarUsuario(event)"
         id="formulario"
         class="grid-vertical"
       >
-        <div data-aos="fade-down">
+        <div data-aos="fade-up">
           <label for="nome">Nome: <span class="txt-vermelho">*</span></label>
           <br />
           <input
@@ -43,7 +50,7 @@
           />
         </div>
 
-        <div class="grid-horizontal"  data-aos="fade-down">
+        <div class="grid-horizontal" data-aos="fade-up">
           <div class="grid1">
             <label for="idade">Idade <span class="txt-vermelho">*</span></label
             ><input
@@ -86,8 +93,8 @@
           </div>
         </div>
 
-        <div  data-aos="fade-down"  >
-          <div class="grid-1" >
+        <div data-aos="fade-up">
+          <div class="grid-1">
             <label for="objetivo_hidratacao"
               >Quanto de água beber por dia (ml)</label
             ><input
@@ -118,7 +125,7 @@
         <button type="submit" class="btn-3">Enviar</button>
       </form>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
     </main>
 
     <footer>

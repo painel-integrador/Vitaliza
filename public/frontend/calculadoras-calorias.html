@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    AOS.init({ duration: 800, once: true });
-  });
-</script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
+      defer
+    ></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({ duration: 800, once: true });
+      });
+    </script>
   </head>
   <body>
-    <header data-aos="fade-right">
+    <header data-aos="fade-down">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -118,13 +124,14 @@
     </header>
 
     <main>
-      <section  data-aos="fade-down">
+      <section data-aos="fade-up">
         <div class="gradiente-cima-direita"></div>
         <!--o style deixa o titulo mais fino-->
         <h2 class="txt-preto txt-centro">Calculadora de Calorias</h2>
       </section>
 
-      <form data-aos="fade-down"
+      <form
+        data-aos="fade-up"
         onsubmit="calcularCalorias(event)"
         class="grid-vertical"
         id="formulario"
@@ -213,14 +220,14 @@
         <button type="submit" class="btn-3">Calcular</button>
       </form>
 
-      <section  data-aos="fade-down">
+      <section data-aos="fade-up">
         <h3>Resultado:</h3>
         <p id="resultado"></p>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao3 grid-vertical" data-aos="fade-down">
+      <section class="secao3 grid-vertical" data-aos="fade-up">
         <h3>Sobre a Calculadora de Calorias</h3>
         <p class="paragrafo">
           A calculadora de calorias é uma ferramenta útil para estimar a
@@ -240,9 +247,9 @@
         />
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao2" data-aos="fade-down">
+      <section class="secao2" data-aos="fade-up">
         <h3>Equação de Mifflin-St Jeor</h3>
 
         <p class="paragrafo">
@@ -272,9 +279,9 @@
         </ul>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao3" data-aos="fade-down">
+      <section class="secao3" data-aos="fade-up">
         <h3>Gasto Energético Total (GET)</h3>
 
         <p class="paragrafo"><strong>GET</strong> = TMB * NAF</p>
@@ -303,7 +310,7 @@
         </ul>
       </section>
 
-      <hr class="linha-simples" />
+      <hr class="linha-simples" data-aos="fade-left" />
     </main>
 
     <script src="/src/scripts/calculadoras.js"></script>

@@ -13,12 +13,21 @@ html {
 main {
   width: 100%;
   max-width: 100vw;
-  overflow: hidden;
+  position: relative;
+  overflow-x: clip;
+  overflow-y: visible;
+  isolation: isolate;
 }
 
 section {
   padding: 10px 20px;
   position: relative;
+}
+
+/* Remove o contexto de empilhamento do AOS depois da animação,
+   para os gradientes atravessarem as seções sem cortes */
+section[data-aos][data-aos].aos-animate {
+  transform: none;
 }
 
 h1 {
