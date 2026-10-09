@@ -50,7 +50,7 @@
         <div class="menu-drop">
           <a href="/artigos" class="title item"><p>Artigos ▾</p></a>
           <div class="dropdown-conteudo">
-            <a href="/artigos/hidratacao" class="drop-item">
+            <a href="/artigos/hidratacao" class="drop-item"">
               <strong>Importância da Hidratação</strong>
               <span class="txt-detalhe-drop"
                 >Descubra como a água impacta seu rendimento.</span
@@ -124,7 +124,7 @@
     </header>
 
     <main>
-      <h1 class="txt-centro txt-preto">Artigos</h1>
+      <h1 class="txt-centro txt-preto"  id="artigo">Artigos</h1>
 
       <div class="gradiente-cima-direita"></div>
 
@@ -133,22 +133,86 @@
       <section data-aos="fade-up">
         <ul>
           <li>
-            <a href="/artigos/hidratacao" class="link"
+            <a href="/artigos/hidratacao" class="link" id="hidratacao"
               >Importância da Hidratação;</a
             >
           </li>
           <li>
-            <a href="/artigos/alongamento" class="link"
+            <a href="/artigos/alongamento" class="link" id="alongamento"></a>
               >Importância do alongamento e aquecimento;</a
             >
           </li>
           <li>
-            <a href="/artigos/exercicios" class="link">Exercícios Físicos;</a>
+            <a href="/artigos/exercicios" class="link" id="exercicios">
+              >Exercícios Físicos;</a
+            >
           </li>
-          <li><a class="link" href="/artigos/suplementos">Suplementos.</a></li>
+          <li><a class="link" href="/artigos/suplementos" id="suplementos">Suplementos.</a></li>
         </ul>
       </section>
       <hr class="linha-simples" data-aos="fade-left" />
+      <footer data-aos="fade-up">
+      <div class="grid-horizontal-pc">
+        <div class="grid-1 grid-vertical">
+          <img
+            src="/src/images/logo-branca.svg"
+            alt="Logo Vitaliza"
+            class="logo"
+          />
+          <p>Um site sobre sua saúde</p>
+        </div>
+        <div class="grid-horizontal-pc grid-2">
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Produto</h3>
+            <nav>
+              <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/artigos">Artigos</a></li>
+                <li><a href="/calculadoras">Calculadoras</a></li>
+                <li>
+                  <div class="grid-horizontal">
+                    <a class="btn-3" href="/conta">Criar conta</a>
+                    <a class="btn-3" href="/conta/login">Fazer Login</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Trabalho</h3>
+            <nav>
+              <ul>
+                <li><a href="/sobre">Sobre nós</a></li>
+                <li><a href="/contato">Entre em contato</a></li>
+                <li>
+                  <a href="https://www.instagram.com/vitaliza.ifc/"
+                    >Nosso instagram</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Mapa</h3>
+            <nav>
+              <!--Mapa do site (página atual)-->
+              <ul>
+                <li><a href="#artigo">Inicio dos Artigos</a></li> 
+                <li><a href="#hidratacao">Hidratação</a></li>
+                <li><a href="#alongamento">Alongamento</a></li>
+                <li><a href="#exercicios">Exercícios Físicos</a></li>
+                <li><a href="#suplementos">Suplementos</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <p class="txt-centro txt-detalhe" style="color: #fff">
+        © Vitaliza Inc. All rights reserved.
+      </p>
+    </footer>
     </main>
 
     <script src="/src/scripts/header.js" defer></script>

@@ -129,7 +129,7 @@
     </header>
 
     <main>
-      <section class="banner home">
+      <section class="banner home" id="banner">
         <img
           src="/src/images/banner-inicio.webp"
           alt="Homem fazendo o exercício barra"
@@ -153,7 +153,7 @@
 
       <hr class="linha-simples" data-aos="fade-left" />
 
-      <section>
+      <section  id="Aprenda-cuidar-se">
         <h2 class="txt-centro">Aprenda a cuidar mais da sua saúde</h2>
         <p class="txt-centro paragrafo">
           Veja nossas dicas e exemplos de como ter melhor proveito dos
@@ -207,7 +207,7 @@
 
       <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao2" data-aos="fade-up">
+      <section class="secao2" data-aos="fade-up"  id="Cuidado-saude">
         <h2>Cuide da sua saúde</h2>
         <p class="paragrafo">
           Cuidar da saúde é essencial para garantir mais qualidade de vida,
@@ -227,7 +227,7 @@
       <hr class="linha-simples" data-aos="fade-left" />
 
       <!-- Progresso e Funcionalidades -->
-      <section class="secao-funcionalidades">
+      <section class="secao-funcionalidades" id="funcionalidades">
         <h3 class="txt-centro">Registre seu progresso</h3>
         <div class="card">
           <img
@@ -268,7 +268,7 @@
 
       <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-up" id="rotinas">
         <div class="txt-centro">
           <h3>Crie rotinas</h3>
           <p class="paragrafo">
@@ -320,7 +320,7 @@
       <hr class="linha-simples" data-aos="fade-left" />
 
       <section class="faq" data-aos="fade-up">
-        <h2>Perguntas Frequentes</h2>
+        <h2 id="perguntas-frequentes">Perguntas Frequentes</h2>
 
         <div class="card faq-fechado" onclick="faq(this)">
           <div>
@@ -399,5 +399,68 @@
     <script src="/src/scripts/header.js" defer></script>
     <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
     <script src="/src/scripts/faq.js"></script>
+
+    <footer data-aos="fade-up">
+      <div class="grid-horizontal-pc">
+        <div class="grid-1 grid-vertical">
+          <img
+            src="/src/images/logo-branca.svg"
+            alt="Logo Vitaliza"
+            class="logo"
+          />
+          <p>Um site sobre sua saúde</p>
+        </div>
+        <div class="grid-horizontal-pc grid-2">
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Produto</h3>
+            <nav>
+              <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/artigos">Artigos</a></li>
+                <li><a href="/calculadoras">Calculadoras</a></li>
+                <li>
+                  <div class="grid-horizontal">
+                    <a class="btn-3" href="/conta">Criar conta</a>
+                    <a class="btn-3" href="/conta/login">Fazer Login</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Trabalho</h3>
+            <nav>
+              <ul>
+                <li><a href="/sobre">Sobre nós</a></li>
+                <li><a href="/contato">Entre em contato</a></li>
+                <li>
+                  <a href="https://www.instagram.com/vitaliza.ifc/"
+                    >Nosso instagram</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Mapa</h3>
+            <nav>
+              <!--Mapa do site (página atual)-->
+              <ul>
+                <li><a href="#banner">Banner</a></li>
+                <li><a href="#Aprenda-cuidar-se">Aprenda a cuidar-se</a></li>
+                <li><a href="#Cuidado-saude">Cuide da sua saúde</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#perguntas-frequentes">Perguntas Frequentes</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <p class="txt-centro txt-detalhe" style="color: #fff">
+        © Vitaliza Inc. All rights reserved.
+      </p>
+    </footer>
   </body>
 </html>

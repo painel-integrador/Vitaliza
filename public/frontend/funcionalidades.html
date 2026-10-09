@@ -125,7 +125,7 @@
     </header>
 
     <main>
-      <section data-aos="fade-up">
+      <section data-aos="fade-up" id="funcionalidades">
         <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto txt-centro">Funcionalidades</h1>
       </section>
@@ -144,7 +144,7 @@
       <section class="grid-vertical" data-aos="fade-up">
         <div class="grid-horizontal-pc">
           <div class="grid-1">
-            <h3>Informação</h3>
+            <h3 id="Informação">Informação</h3>
             <div class="faq">
               <div class="card faq-fechado" onclick="faq(this)">
                 <div>
@@ -261,7 +261,7 @@
 
         <div class="grid-horizontal-pc">
           <div class="grid-1">
-            <h3>Exercícios</h3>
+            <h3 id="Exercícios">Exercícios</h3>
             <div class="faq">
               <div class="card faq-fechado" onclick="faq(this)">
                 <div>
@@ -332,7 +332,7 @@
           </div>
 
           <div class="grid-1">
-            <h3>Grupos</h3>
+            <h3 id="Grupos">Grupos</h3>
             <div class="faq">
               <div class="card faq-fechado" onclick="faq(this)">
                 <div>
@@ -403,6 +403,67 @@
       </section>
 
       <hr class="linha-simples" data-aos="fade-left" />
+      <footer data-aos="fade-up">
+      <div class="grid-horizontal-pc">
+        <div class="grid-1 grid-vertical">
+          <img
+            src="/src/images/logo-branca.svg"
+            alt="Logo Vitaliza"
+            class="logo"
+          />
+          <p>Um site sobre sua saúde</p>
+        </div>
+        <div class="grid-horizontal-pc grid-2">
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Produto</h3>
+            <nav>
+              <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/artigos">Artigos</a></li>
+                <li><a href="/calculadoras">Calculadoras</a></li>
+                <li>
+                  <div class="grid-horizontal">
+                    <a class="btn-3" href="/conta">Criar conta</a>
+                    <a class="btn-3" href="/conta/login">Fazer Login</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Trabalho</h3>
+            <nav>
+              <ul>
+                <li><a href="/sobre">Sobre nós</a></li>
+                <li><a href="/contato">Entre em contato</a></li>
+                <li>
+                  <a href="https://www.instagram.com/vitaliza.ifc/"
+                    >Nosso instagram</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Mapa</h3>
+            <nav>
+              <!--Mapa do site (página atual)-->
+              <ul>
+                <li><a href="#funcionalidades">funcionalidades</a></li>
+                <li><a href="#informacao">Informação</a></li>
+                <li><a href="#exercicios">Exercícios</a></li>
+                <li><a href="#grupos">Grupos</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <p class="txt-centro txt-detalhe" style="color: #fff">
+        © Vitaliza Inc. All rights reserved.
+      </p>
+    </footer>
     </main>
     <script src="/src/scripts/header.js" defer></script>
     <script src="/src/scripts/faq.js"></script>

@@ -125,7 +125,7 @@
     </header>
 
     <main>
-      <section class="banner alongamento">
+      <section class="banner alongamento" id="banner">
         <img
           src="/src/images/banner-alongamento.webp"
           class="banner-img"
@@ -145,7 +145,7 @@
 
       <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="grid-vertical">
+      <section class="grid-vertical" id="alongamento">
         <div class="gradiente-cima-direita"></div>
         <h2 data-aos="fade-up">Alongamento</h2>
         <p class="paragrafo" data-aos="fade-up">
@@ -174,7 +174,7 @@
 
       <hr class="linha-simples" data-aos="fade-left" />
 
-      <section class="secao2 grid-vertical">
+      <section class="secao2 grid-vertical" id="o-que-e-aquecimento">
         <h2 data-aos="fade-up">O que é aquecimento?</h2>
         <p class="paragrafo" data-aos="fade-up">
           O aquecimento é essencial para um bom resultado.
@@ -309,7 +309,7 @@
       <hr class="linha-simples" data-aos="fade-left" />
     </main>
 
-    <footer>
+    <footer data-aos="fade-up">
       <div class="grid-horizontal-pc">
         <div class="grid-1 grid-vertical">
           <img
@@ -318,49 +318,58 @@
             class="logo"
           />
           <p>Um site sobre sua saúde</p>
-          <div class="grid-horizontal">
-            <a class="btn-1" href="/conta">Criar conta</a>
-            <a class="btn-2" href="/conta/login">Fazer login</a>
+        </div>
+        <div class="grid-horizontal-pc grid-2">
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Produto</h3>
+            <nav>
+              <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/artigos">Artigos</a></li>
+                <li><a href="/calculadoras">Calculadoras</a></li>
+                <li>
+                  <div class="grid-horizontal">
+                    <a class="btn-3" href="/conta">Criar conta</a>
+                    <a class="btn-3" href="/conta/login">Fazer Login</a>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Trabalho</h3>
+            <nav>
+              <ul>
+                <li><a href="/sobre">Sobre nós</a></li>
+                <li><a href="/contato">Entre em contato</a></li>
+                <li>
+                  <a href="https://www.instagram.com/vitaliza.ifc/"
+                    >Nosso instagram</a
+                  >
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="grid-1">
+            <h3 class="txt-esquerda">Mapa</h3>
+            <nav>
+              <!--Mapa do site (página atual)-->
+              <ul>
+                <li><a href="#banner">Banner</a></li>
+                <li><a href="#alongamento">Alongamento</a></li>
+                <li><a href="#o-que-e-aquecimento">O que é aquecimento?</a></li>
+              </ul>
+            </nav>
           </div>
         </div>
-
-        <div class="grid-1">
-          <h4 class="txt-esquerda">Explorar</h4>
-          <nav>
-            <ul>
-              <li><a href="/">Início</a></li>
-              <li><a href="/artigos">Artigos</a></li>
-              <li><a href="/calculadoras">Calculadoras</a></li>
-              <li><a href="/mapa">Mapa do site</a></li>
-            </ul>
-          </nav>
-        </div>
-
-        <div class="grid-1">
-          <h4 class="txt-esquerda">Vitaliza</h4>
-          <nav>
-            <ul>
-              <li><a href="/sobre">Sobre nós</a></li>
-              <li><a href="/funcionalidades">Funcionalidades</a></li>
-              <li><a href="/contato">Entre em contato</a></li>
-              <li>
-                <a
-                  href="https://www.instagram.com/vitaliza.ifc/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Instagram</a
-                >
-              </li>
-            </ul>
-          </nav>
-        </div>
       </div>
-
-      <hr />
-      <p class="txt-centro txt-detalhe">
-        © 2026 Vitaliza. Todos os direitos reservados.
+      <p class="txt-centro txt-detalhe" style="color: #fff">
+        © Vitaliza Inc. All rights reserved.
       </p>
     </footer>
     <script src="/src/scripts/header.js" defer></script>
     <script src="/src/scripts/faq.js"></script>
   </body>
+</html>
