@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link href="css/reset.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
-    <link href="css/faq.css" rel="stylesheet" />
+    <link href="/css/reset.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/faq.css" rel="stylesheet" />
     <title>Vitaliza</title>
+    <meta
+      name="google-site-verification"
+      content="fwBMoIrVNDtMkPfpX70GnbM6O_kWoN7gCjarEC9KrXI"
+    />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
   </head>
   <body>
@@ -31,21 +35,72 @@
         />
       </div>
 
-      <div id="nav">
-        <nav class="menu">
-          <a href="/"><p>Início</p></a>
-          <a href="/artigos"><p class="item">Artigos</p></a>
-          <a href="/calculadoras"><p class="item">Calculadoras</p></a>
-          <a href="/sobre"><p class="item">Sobre Nós</p></a>
-          <a href="/contato"><p class="item">Entre em Contato</p></a>
-          <a href="/home" class="invisivel"><p class="item">Painel</p></a>
-          <a href="/conta/usuario/me" class="invisivel"
-            ><p class="item">Perfil</p></a
-          >
-          <a onclick="sair()" class="btn-2 invisivel"
-            ><p class="item">Sair</p></a
-          >
-        </nav>
+      <nav class="menu" id="nav">
+        <a href="/"><p>Início</p></a>
+
+        <!-- Dropdown Artigos -->
+        <div class="menu-drop">
+          <a href="/artigos" class="title item"><p>Artigos ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/artigos/hidratacao" class="drop-item">
+              <strong>Importância da Hidratação</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra como a água impacta seu rendimento.</span
+              >
+            </a>
+            <a href="/artigos/alongamento" class="drop-item">
+              <strong>Alongamento e Aquecimento</strong>
+              <span class="txt-detalhe-drop"
+                >Evite lesões e melhore sua mobilidade.</span
+              >
+            </a>
+            <a href="/artigos/exercicios" class="drop-item">
+              <strong>Exercícios Físicos</strong>
+              <span class="txt-detalhe-drop"
+                >Dicas de treinos e rotinas saudáveis.</span
+              >
+            </a>
+            <a href="/artigos/suplementos" class="drop-item">
+              <strong>Suplementos</strong>
+              <span class="txt-detalhe-drop"
+                >Guia básico sobre suplementação.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <!-- Dropdown Calculadoras -->
+        <div class="menu-drop">
+          <a href="/calculadoras" class="title item"><p>Calculadoras ▾</p></a>
+          <div class="dropdown-conteudo">
+            <a href="/calculadoras/imc" class="drop-item">
+              <strong>Calculadora de IMC</strong>
+              <span class="txt-detalhe-drop">
+                Avalie seu Índice de Massa Corporal.
+              </span>
+            </a>
+            <a href="/calculadoras/calorias" class="drop-item">
+              <strong>Gasto Calórico</strong>
+              <span class="txt-detalhe-drop"
+                >Calcule quanto dever ser seu gasto diário de energia.</span
+              >
+            </a>
+            <a href="/calculadoras/massa" class="drop-item">
+              <strong>Peso Ideal</strong>
+              <span class="txt-detalhe-drop"
+                >Descubra quanto deve ser seu peso ideal.</span
+              >
+            </a>
+          </div>
+        </div>
+
+        <a href="/sobre"><p class="item">Sobre Nós</p></a>
+        <a href="/contato"><p class="item">Entre em Contato</p></a>
+        <a href="/home" class="invisivel"><p class="item">Painel</p></a>
+        <a href="/conta/usuario/me" class="invisivel"
+          ><p class="item">Perfil</p></a
+        >
+        <a onclick="sair()" class="btn-2 invisivel"><p class="item">Sair</p></a>
 
         <div class="grid-horizontal centro-horizontalmente btns" id="btns">
           <a class="btn-2" href="/conta">Criar conta</a>
@@ -57,13 +112,14 @@
         <p class="txt-detalhe txt-centro">
           © 2026 Vitaliza.inc All rights reserved
         </p>
-      </div>
+      </nav>
     </header>
 
     <main>
       <section class="banner home">
+        <div class="gradiente-cima-direita"></div>
         <img
-          src="/src/images/banner-home.jpg"
+          src="/src/images/banner-inicio.webp"
           alt="Homem fazendo o exercício barra"
           class="banner-img"
         />
@@ -72,9 +128,13 @@
             <h1 class="txt-esquerda">Seja a sua melhor versão</h1>
             <p>Veja como hábitos saudáveis podem melhorar sua vida!</p>
           </div>
-          <div>
-            <a href="#servicos" class="btn-2">Veja os serviços ↓</a>
-            <a href="/conta" class="btn-3">Crie sua conta →</a>
+          <div class="grid-vertical">
+            <div class="grid-horizontal">
+              <a href="#servicos" class="btn-2">Veja os serviços ↓</a>
+            </div>
+            <div class="grid-horizontal">
+              <a href="/conta" class="btn-3">Crie sua conta →</a>
+            </div>
           </div>
         </div>
       </section>
@@ -82,6 +142,7 @@
       <hr class="linha-simples" />
 
       <section>
+        <div class="gradiente-cima-esquerda"></div>
         <h2 class="txt-centro">Aprenda a cuidar mais da sua saúde</h2>
         <p class="txt-centro paragrafo">
           Veja nossas dicas e exemplos de como ter melhor proveito dos
@@ -90,44 +151,45 @@
 
         <h4 id="servicos">Algumas dicas de saúde</h4>
 
-        <div class="card grid-horizontal-pc">
+        <div class="grid-horizontal-pc">
           <!-- Card 1 -->
-          <article class="card grid-1">
+          <article class="card grid-1 grid-vertical">
+            <img
+              src="/src/images/inicio-hidratacao.webp"
+              alt="Homem se hidratando"
+              class="imagem-card"
+            />
             <h3 class="txt-esquerda">Fique Hidratado</h3>
             <a href="/artigos/hidratacao" class="link"
               >Veja a importância da hidratação ↓</a
             >
-            <img
-              src="/src/images/hidratacao-1.png"
-              alt="Homem se hidratando"
-              class="imagem-vertical"
-            />
           </article>
 
           <!-- Card 2 -->
-          <article class="card grid-1">
-            <h3 class="txt-esquerda">Mantenha-se em forma</h3>
+          <article class="card grid-1 grid-vertical">
+            <img
+              src="/src/images/inicio-exercicios.webp"
+              alt="Pessoa fazendo levantamento de peso"
+              class="imagem-card"
+            />
+
+            <h3 class="txt-esquerda">Fique em forma</h3>
             <a href="/artigos/exercicios" class="link"
               >Veja a importância dos exercícios físicos ↓</a
             >
-            <img
-              src="/src/images/exercicio-1.png"
-              alt="Pessoa fazendo levantamento de peso"
-              class="imagem-vertical"
-            />
           </article>
 
           <!-- Card 3 -->
-          <article class="card grid-1">
+          <article class="card grid-1 grid-vertical">
+            <img
+              src="/src/images/inicio-alongamento.webp"
+              alt="Homem se alongando"
+              class="imagem-card"
+            />
             <h3 class="txt-esquerda">Previna lesões</h3>
             <a href="/artigos/alongamento" class="link"
               >Veja por que é importante alongar e aquecer ↓</a
             >
-            <img
-              src="/src/images/alongamento-1.png"
-              alt="Homem se alongando"
-              class="imagem-vertical"
-            />
           </article>
         </div>
       </section>
@@ -151,14 +213,16 @@
         </ul>
       </section>
 
+      <hr class="linha-simples" />
+
       <!-- Progresso e Funcionalidades -->
-      <section class="secao-funcionalidades">
+      <section>
         <h3 class="txt-centro">Registre seu progresso</h3>
         <div class="card">
           <img
-            src="/src/images/treino-academia.png"
+            src="/src/images/inicio-exercicios2.webp"
             alt="Pessoas treinando na academia"
-            class="img-card"
+            class="imagem-card"
           />
           <p class="txt-centro">
             Analise seu desempenho, observando a quantidade de séries,
@@ -166,12 +230,12 @@
           </p>
         </div>
 
-        <div class="grid-horizontal">
+        <div class="grid-horizontal-pc">
           <div class="card grid-1">
             <img
-              src="/src/images/treino-academia.png"
-              alt="Pessoas treinando na academia"
-              class="imagem-horizontal"
+              src="/src/images/adultos-18-64-anos.webp"
+              alt="Homem correndo"
+              class="imagem-card"
             />
             <p>
               Calcule quantas calorias diárias você precisa, seu IMC, ou até seu
@@ -180,14 +244,20 @@
           </div>
           <div class="card grid-1">
             <img
-              src="/src/images/treino-academia.png"
-              alt="Pessoas treinando na academia"
-              class="imagem-horizontal"
+              src="/src/images/hidratacao2.webp"
+              alt="Pessoa bebendo água"
+              class="imagem-card"
             />
             <p>Registre a quantidade de água bebida em cada dia.</p>
           </div>
         </div>
 
+        <div class="gradiente-banner"></div>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section class="secao3">
         <div class="txt-centro">
           <h3>Crie rotinas</h3>
           <p class="paragrafo">
@@ -197,14 +267,14 @@
           <a href="/funcionalidades" class="link">Funcionalidades ↓</a>
         </div>
 
-        <div class="grid-horizontal-pc card">
-          <div class="txt-centro grid-1">
-            <h4>Mantenha-se hidratado</h4>
+        <div class="grid-horizontal-pc">
+          <div class="grid-1">
+            <h4 class="txt-centro">Mantenha-se hidratado</h4>
             <div class="card">
               <img
-                src="/src/images/hidratacao-2.png"
+                src="/src/images/hidratacao4.webp"
                 alt="Mulher bebendo água"
-                class="imagem-horizontal"
+                class="imagem-card"
               />
               <p>
                 Descubra quanto você está bebendo por dia, e quanto deve beber!
@@ -212,18 +282,15 @@
             </div>
           </div>
 
-          <div class="txt-centro grid-1">
-            <h4>Calcule macronutrientes e calorias</h4>
-            <div class="card">
+          <div class="grid-1 txt-centro">
+            <h4>Calcule estatísticas</h4>
+            <div class="card grid-vertical">
               <img
-                src="/src/images/alimentacao-1.png"
+                src="/src/images/inicio-alimentacao.webp"
                 alt="Prato saudável com comida"
-                class="img-card"
+                class="imagem-card"
               />
-              <p>
-                Calcule a quantidade calorias e macronutrientes necessários para
-                você!
-              </p>
+              <p>Calcule a quantidade calorias, seu peso ideal, e IMC.</p>
             </div>
           </div>
         </div>
@@ -232,6 +299,7 @@
       <hr class="linha-simples" />
 
       <section class="secao2">
+        <div class="gradiente-cima-esquerda"></div>
         <h3 class="txt-centro">Também funciona no computador!</h3>
         <p class="txt-centro paragrafo">
           Você pode usar as funcionalidades por seu desktop, como registrar
@@ -306,6 +374,14 @@
             <a href="/contato" class="link">Entre em contato</a>.
           </p>
         </div>
+      </section>
+
+      <hr class="linha-simples" />
+
+      <section class="secao3">
+        <a href="https://forms.gle/9n9eEefKAznU5o866" class="link"
+          ><p class="txt-centro">Responda nossa pesquisa!</p></a
+        >
       </section>
       <hr class="linha-simples" />
     </main>
