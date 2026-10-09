@@ -8,9 +8,16 @@
     <link href="/css/faq.css" rel="stylesheet" />
     <title>A importância do aquecimento e alongamento</title>
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -112,7 +119,7 @@
     </header>
 
     <main>
-      <section class="banner alongamento">
+      <section class="banner alongamento" data-aos="fade-down">
         <img
           src="/src/images/banner-alongamento.webp"
           class="banner-img"
@@ -131,7 +138,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical">
+      <section class="grid-vertical"  data-aos="fade-down">
         <div class="gradiente-cima-direita"></div>
         <h2>Alongamento</h2>
         <p class="paragrafo">
@@ -159,7 +166,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2 grid-vertical">
+      <section class="secao2 grid-vertical" data-aos="fade-down"  >
         <h2>O que é aquecimento?</h2>
         <p class="paragrafo">
           O aquecimento é essencial para um bom resultado.
@@ -190,7 +197,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="faq">
+      <section class="faq"  data-aos="fade-down"  >
         <h2>Etapas do alongamento</h2>
 
         <div class="card faq-fechado" onclick="faq(this)">
@@ -263,7 +270,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical secao3">
+      <section class="grid-vertical secao3" data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h2>Por que se alongar?</h2>
         <p class="paragrafo">

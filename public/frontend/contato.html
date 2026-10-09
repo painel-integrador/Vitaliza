@@ -8,10 +8,17 @@
     <link rel="stylesheet" href="/css/style.css" />
 
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
-      <div class="logo-button">
+    <header data-aos="fade-right" >
+      <div class="logo-button" >
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
         </a>
@@ -112,7 +119,7 @@
     </header>
 
     <main>
-      <section>
+      <section data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto">Entre em Contato</h1>
 
@@ -121,7 +128,7 @@
         <p id="resultado" class="txt-centro"></p>
       </section>
 
-      <form
+      <form data-aos="fade-down"
         onsubmit="enviarMensagem(event)"
         id="formulario"
         class="grid-vertical"
@@ -174,7 +181,7 @@
 
       <p class="divider">Ou</p>
 
-      <section>
+      <section  data-aos="fade-down">
         <p class="txt-centro">
           Pelo email:
           <a href="mailto:vitaliza.pi@gmail.com" class="link"
@@ -186,7 +193,7 @@
       <hr class="linha-simples" />
     </main>
 
-    <footer>
+    <footer data-aos="fade-down">
       <div class="grid-horizontal-pc">
         <div class="grid-1 grid-vertical">
           <img

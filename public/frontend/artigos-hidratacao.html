@@ -7,9 +7,16 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>Hidratação</title>
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -111,7 +118,7 @@
     </header>
 
     <main>
-      <section class="banner hidratacao">
+      <section class="banner hidratacao"  data-aos="fade-down"  >
         <img
           src="/src/images/banner-hidratacao.webp"
           class="banner-img"
@@ -128,7 +135,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical">
+      <section class="grid-vertical"  data-aos="fade-down"  >
         <div class="gradiente-cima-direita"></div>
         <h2>Desidratação no Calor:</h2>
         <p class="paragrafo">
@@ -147,7 +154,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2 grid-vertical">
+      <section class="secao2 grid-vertical" data-aos="fade-down"  >
         <h2>Benefícios de Beber Água:</h2>
         <p class="paragrafo">
           Consumir água suficiente todos os dias é importante para a saúde.
@@ -176,7 +183,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down"  >
         <h2>A Água ajuda seu corpo em:</h2>
         <ul class="paragrafo">
           <li>Manter uma temperatura normal.</li>
@@ -190,7 +197,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-down"  >
         <div class="gradiente-cima-esquerda"></div>
         <div class="grid-horizontal-pc">
           <div class="grid-2">

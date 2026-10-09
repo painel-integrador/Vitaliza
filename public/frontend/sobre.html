@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -111,7 +118,7 @@
     </header>
 
     <main>
-      <section>
+      <section  data-aos="fade-down">
         <h1 class="txt-centro txt-preto">Sobre Nós</h1>
       </section>
 
@@ -119,7 +126,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-down">
         <h2>O que é a Vitaliza?</h2>
 
         <p class="paragrafo">
@@ -130,7 +137,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical secao2">
+      <section class="grid-vertical secao2" data-aos="fade-down">
         <h2>Nossa equipe</h2>
 
         <p class="paragrafo">
@@ -148,7 +155,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down">
         <h2>Integrantes</h2>
 
         <div class="grid-horizontal">

@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right"  >
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -117,7 +124,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down">
         <ul>
           <li>
             <a href="/artigos/hidratacao" class="link"

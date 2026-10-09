@@ -8,14 +8,21 @@
     <link href="/css/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="/css/faq.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
     <main>
-      <section>
+      <section  data-aos="fade-down">
         <h1 class="txt-preto txt-centro">Criar Rotina:</h1>
       </section>
 
-      <section>
+      <section  data-aos="fade-down">
         <form id="form-rotina" class="grid-vertical">
           <!-- Dados da Rotina -->
           <div>
@@ -49,7 +56,7 @@
         </form>
       </section>
       <!-- TEMPLATE: Este bloco não aparece na tela até ser clonado pelo JS -->
-      <template id="template-exercicio">
+      <template id="template-exercicio" data-aos="fade-down">
         <fieldset class="bloco-exercicio card">
           <h3 class="titulo-bloco-exercicio">
             Exercício<span class="txt-vermelho">*</span>

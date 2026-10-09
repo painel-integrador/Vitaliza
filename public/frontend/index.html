@@ -12,9 +12,16 @@
       content="fwBMoIrVNDtMkPfpX70GnbM6O_kWoN7gCjarEC9KrXI"
     />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -116,7 +123,7 @@
     </header>
 
     <main>
-      <section class="banner home">
+      <section class="banner home"  data-aos="fade-down">
         <div class="gradiente-cima-direita"></div>
         <img
           src="/src/images/banner-inicio.webp"
@@ -141,7 +148,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h2 class="txt-centro">Aprenda a cuidar mais da sua saúde</h2>
         <p class="txt-centro paragrafo">
@@ -196,7 +203,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2">
+      <section class="secao2" data-aos="fade-down">
         <h2>Cuide da sua saúde</h2>
         <p class="paragrafo">
           Cuidar da saúde é essencial para garantir mais qualidade de vida,
@@ -216,7 +223,7 @@
       <hr class="linha-simples" />
 
       <!-- Progresso e Funcionalidades -->
-      <section>
+      <section  data-aos="fade-down">
         <h3 class="txt-centro">Registre seu progresso</h3>
         <div class="card">
           <img
@@ -230,7 +237,7 @@
           </p>
         </div>
 
-        <div class="grid-horizontal-pc">
+        <div class="grid-horizontal-pc" data-aos="fade-down">
           <div class="card grid-1">
             <img
               src="/src/images/adultos-18-64-anos.webp"
@@ -257,7 +264,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-down">
         <div class="txt-centro">
           <h3>Crie rotinas</h3>
           <p class="paragrafo">
@@ -267,7 +274,7 @@
           <a href="/funcionalidades" class="link">Funcionalidades ↓</a>
         </div>
 
-        <div class="grid-horizontal-pc">
+        <div class="grid-horizontal-pc" data-aos="fade-down">
           <div class="grid-1">
             <h4 class="txt-centro">Mantenha-se hidratado</h4>
             <div class="card">
@@ -298,7 +305,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2">
+      <section class="secao2" data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h3 class="txt-centro">Também funciona no computador!</h3>
         <p class="txt-centro paragrafo">
@@ -309,7 +316,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="faq">
+      <section class="faq"  data-aos="fade-down">
         <h2>Perguntas Frequentes</h2>
 
         <div class="card faq-fechado" onclick="faq(this)">
@@ -378,7 +385,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-down">
         <a href="https://forms.gle/9n9eEefKAznU5o866" class="link"
           ><p class="txt-centro">Responda nossa pesquisa!</p></a
         >

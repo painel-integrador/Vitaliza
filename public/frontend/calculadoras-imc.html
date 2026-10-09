@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -111,13 +118,13 @@
     </header>
 
     <main>
-      <section>
+      <section  data-aos="fade-down">
         <div class="gradiente-cima-direita"></div>
         <!--o style deixa o titulo mais fino-->
         <h2 class="txt-preto txt-centro">Calculadora de IMC</h2>
       </section>
 
-      <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario">
+      <form onsubmit="calcularIMC(event)" class="grid-vertical" id="formulario" data-aos="fade-down"  >
         <label for="massa">Massa: <span class="txt-vermelho">*</span></label>
         <input
           type="number"
@@ -142,12 +149,12 @@
         <button type="submit" class="btn-3">Calcular</button>
       </form>
 
-      <section>
+      <section  data-aos="fade-down">
         <h3>Resultado:</h3>
         <p class="txt-centro" id="resultado"></p>
       </section>
 
-      <section class="grid-vertical">
+      <section class="grid-vertical"  data-aos="fade-down">
         <img
           src="/src/images/tabela-imc.png"
           alt="Tabela IMC"
@@ -165,7 +172,7 @@
           </ul>
         </div>
       </section>
-      <section class="secao3">
+      <section class="secao3" data-aos="fade-down"  >
         <h3>O que é IMC?</h3>
         <p>
           O Índice de Massa Corporal (IMC) é uma medida utilizada para avaliar

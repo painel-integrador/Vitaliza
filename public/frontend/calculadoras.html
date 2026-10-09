@@ -7,9 +7,16 @@
     <link rel="stylesheet" href="/css/reset.css" />
     <link href="/css/style.css" rel="stylesheet" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -112,10 +119,10 @@
 
     <main>
       <div class="gradiente-cima-direita"></div>
-      <h1 class="txt-centro txt-preto">Calculadoras</h1>
+      <h1 class="txt-centro txt-preto" data-aos="fade-down">Calculadoras</h1>
 
       <hr class="linha-simples" />
-      <section>
+      <section  data-aos="fade-down"  >
         <ul>
           <li>
             <a href="/calculadoras/imc" class="link"> Calculadora de IMC;</a>

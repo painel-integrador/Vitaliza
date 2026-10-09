@@ -8,9 +8,16 @@
     <link href="css/faq.css" rel="stylesheet" />
     <title>Vitaliza</title>
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -61,7 +68,7 @@
     </header>
 
     <main>
-      <section class="banner home">
+      <section class="banner home"  data-aos="fade-down">
         <img
           src="/src/images/banner-home.jpg"
           alt="Homem fazendo o exercício barra"
@@ -81,7 +88,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down">
         <h2 class="txt-centro">Aprenda a cuidar mais da sua saúde</h2>
         <p class="txt-centro paragrafo">
           Veja nossas dicas e exemplos de como ter melhor proveito dos
@@ -134,7 +141,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2">
+      <section class="secao2" data-aos="fade-down">
         <h2>Cuide da sua saúde</h2>
         <p class="paragrafo">
           Cuidar da saúde é essencial para garantir mais qualidade de vida,
@@ -152,7 +159,7 @@
       </section>
 
       <!-- Progresso e Funcionalidades -->
-      <section class="secao-funcionalidades">
+      <section class="secao-funcionalidades"  data-aos="fade-down">
         <h3 class="txt-centro">Registre seu progresso</h3>
         <div class="card">
           <img
@@ -231,7 +238,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2">
+      <section class="secao2" data-aos="fade-down">
         <h3 class="txt-centro">Também funciona no computador!</h3>
         <p class="txt-centro paragrafo">
           Você pode usar as funcionalidades por seu desktop, como registrar
@@ -241,7 +248,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="faq">
+      <section class="faq"  data-aos="fade-down">
         <h2>Perguntas Frequentes</h2>
 
         <div class="card faq-fechado" onclick="faq(this)">

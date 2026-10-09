@@ -7,9 +7,16 @@
     <link href="/css/style.css" rel="stylesheet" />
     <title>Exercícios</title>
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -111,7 +118,7 @@
     </header>
 
     <main>
-      <section class="banner exercicios">
+      <section class="banner exercicios" data-aos="fade-down">
         <img
           src="/src/images/banner-exercicios.webp"
           class="banner-img"
@@ -125,7 +132,7 @@
 
       <hr class="linha-simples" />
 
-      <section>
+      <section  data-aos="fade-down">
         <div class="gradiente-cima-direita"></div>
         <h2>
           Praticar atividades físicas ajuda pessoas de todas as idades a levar
@@ -141,7 +148,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical secao3">
+      <section class="grid-vertical secao3" data-aos="fade-down">
         <h3>Crianças e Adolescentes (5 a 17 anos)</h3>
         <p class="paragrafo">
           <strong>Tempo diário: </strong>Pelo menos 60 minutos de atividade
@@ -158,7 +165,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="secao2 grid-vertical">
+      <section class="secao2 grid-vertical" data-aos="fade-down"  >
         <h3>Adultos (18 a 64 anos)</h3>
         <p class="paragrafo">
           <strong>Tempo semanal: </strong>Pelo menos 150 minutos de intensidade
@@ -178,7 +185,7 @@
 
       <hr class="linha-simples" />
 
-      <section class="grid-vertical secao3">
+      <section class="grid-vertical secao3" data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h3>Idosos com 65 anos ou mais</h3>
         <p class="paragrafo">

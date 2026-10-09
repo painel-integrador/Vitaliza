@@ -8,9 +8,16 @@
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/conta.css" />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
-    <header>
+    <header data-aos="fade-right">
       <div class="logo-button">
         <a href="/">
           <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
@@ -112,12 +119,12 @@
     </header>
 
     <main>
-      <section>
+      <section  data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto txt-centro">Entrar</h1>
       </section>
 
-      <form onsubmit="login(event)" id="formulario" class="grid-vertical">
+      <form onsubmit="login(event)" id="formulario" class="grid-vertical" data-aos="fade-down">
         <div>
           <label for="email">E-mail:<span class="txt-vermelho">*</span></label>
           <input
@@ -146,7 +153,7 @@
 
       <p class="divider">Ou</p>
 
-      <section>
+      <section  data-aos="fade-down">
         <div class="grid-horizontal centro-horizontalmente">
           <a href="/api/auth/google" class="grid-horizontal btn-2">
             <img

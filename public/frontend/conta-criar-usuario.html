@@ -8,22 +8,29 @@
     <link rel="stylesheet" href="/css/style.css" />
 
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    AOS.init({ duration: 800, once: true });
+  });
+</script>
   </head>
   <body>
     <main>
-      <section>
+      <section  data-aos="fade-down">
         <div class="gradiente-cima-esquerda"></div>
         <h1 class="txt-preto">Crie seu usuário</h1>
 
         <hr class="linha-simples" />
       </section>
 
-      <form
+      <form data-aos="fade-down"
         onsubmit="criarUsuario(event)"
         id="formulario"
         class="grid-vertical"
       >
-        <div>
+        <div data-aos="fade-down">
           <label for="nome">Nome: <span class="txt-vermelho">*</span></label>
           <br />
           <input
@@ -36,7 +43,7 @@
           />
         </div>
 
-        <div class="grid-horizontal">
+        <div class="grid-horizontal"  data-aos="fade-down">
           <div class="grid1">
             <label for="idade">Idade <span class="txt-vermelho">*</span></label
             ><input
@@ -79,8 +86,8 @@
           </div>
         </div>
 
-        <div>
-          <div class="grid-1">
+        <div  data-aos="fade-down"  >
+          <div class="grid-1" >
             <label for="objetivo_hidratacao"
               >Quanto de água beber por dia (ml)</label
             ><input
