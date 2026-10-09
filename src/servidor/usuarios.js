@@ -13,7 +13,7 @@ export async function rotasUsuario(servidor, opts) {
 
   servidor.get("/usuario/:id", async (req, res) => {
     try {
-      const usuario = await getUsuario(req.params.id, req.contaid);
+      const usuario = await getUsuario(Number(req.params.id), req.contaid);
 
       if (usuario === "Usuário não encontrado ou sem permissão") {
         return res.status(403).send("Usuário não encontrado ou sem permissão");

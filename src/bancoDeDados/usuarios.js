@@ -18,30 +18,52 @@ export async function getUsuarioId(contaId) {
 }
 
 export async function getUsuario(idUsuario, contaId) {
-  const { data, error } = await bancoDados
+  // 1. Busca os dados do usuário requisitado (incluindo o grupo dele)
+  const { data: usuarioAlvo, error: erroUsuario } = await bancoDados
     .from("usuarios")
-    .select("nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo")
+    .select(
+      "nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo",
+    )
     .eq("id", idUsuario)
-    .single();
+    .maybeSingle();
 
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
+  if (erroUsuario) {
+    console.error(erroUsuario);
+    throw new Error(erroUsuario.message);
   }
 
-  const conta = await bancoDados
-    .from("usuarios")
-    .select("grupo")
+  if (!usuarioAlvo) {
+    return "Usuário não encontrado ou sem permissão";
+  }
+
+  // 2. Busca na tabela 'contas' para obter o 'usuario_id' da conta logada
+  const { data: contaLogada, error: erroConta } = await bancoDados
+    .from("contas")
+    .select("usuario_id")
     .eq("id", contaId)
     .single();
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
+  if (erroConta) {
+    console.error(erroConta);
+    throw new Error(erroConta.message);
   }
 
-  if (conta.data.grupo_id === data.grupo_id) return data;
-  else {
+  // 3. Busca o grupo do usuário logado na tabela 'usuarios'
+  const { data: usuarioLogado, error: erroUsuarioLogado } = await bancoDados
+    .from("usuarios")
+    .select("grupo")
+    .eq("id", contaLogada.usuario_id)
+    .single();
+
+  if (erroUsuarioLogado) {
+    console.error(erroUsuarioLogado);
+    throw new Error(erroUsuarioLogado.message);
+  }
+
+  // 4. Compara se ambos pertencem ao mesmo grupo (coluna 'grupo')
+  if (usuarioLogado.grupo === usuarioAlvo.grupo) {
+    return usuarioAlvo;
+  } else {
     return "Usuário não encontrado ou sem permissão";
   }
 }
