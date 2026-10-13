@@ -153,30 +153,34 @@
           </div>
         </fieldset>
 
-        <label for="idade">Idade: <span class="txt-vermelho">*</span></label>
+        <hr class="linha-simples" />
+
+        <label for="massa"
+          >Massa Corporal: <span class="txt-vermelho">*</span></label
+        >
         <input
           type="number"
-          name="idade"
+          name="massa"
           required
           class="input-text"
-          placeholder="16..."
-          max="120"
+          placeholder="75..."
           min="1"
+          step="0.1"
         />
 
         <div class="grid-horizontal">
           <div class="grid-1">
-            <label for="massa"
-              >Massa corporal: <span class="txt-vermelho">*</span></label
+            <label for="idade"
+              >Idade: <span class="txt-vermelho">*</span></label
             >
             <input
               type="number"
-              name="massa"
+              name="idade"
               required
               class="input-text"
-              placeholder="75..."
+              placeholder="16..."
+              max="120"
               min="1"
-              step="0.1"
             />
           </div>
 
@@ -196,7 +200,7 @@
           </div>
         </div>
         <label for="atividade"
-          >Atividade física <span class="txt-vermelho">*</span></label
+          >Atividade física: <span class="txt-vermelho">*</span></label
         >
         <select name="atividade" id="atividade" required>
           <option value="sedentario">
