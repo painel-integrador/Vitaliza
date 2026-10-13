@@ -720,7 +720,7 @@ footer .btn-2:hover {
 
   .secao2,
   .secao3 {
-    margin: 20px clamp(24px, 7vw, 200px);
+    margin: 20px clamp(104px, 19vw, 310px);
     border-radius: 12px;
   }
 
