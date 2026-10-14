@@ -12,11 +12,7 @@ import {
 } from "../bancoDeDados/sessoes.js";
 import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
-import {
-  criarConexaoGoogle,
-  buscarConexaoGooglePorGoogleId,
-  atualizarConexaoGoogle,
-} from "../bancoDeDados/conexaoGoogle.js";
+import { googleRepository } from "../bancoDeDados/conexaoGoogle.js";
 
 function criarAccessToken() {
   const duasHoras = 2 * 60 * 60 * 1000;
@@ -230,7 +226,11 @@ export async function rotasAuth(servidor, opts) {
       ).getPayload();
 
       // 1. Verifica se já existe uma conexão Google salva com esse google_id
-      let conexaoExistente = await buscarConexaoGooglePorGoogleId(payload.sub);
+      let conexaoExistente = await googleRepository.procurarUm({
+        coluna: "google_id",
+        dado: payload.sub,
+        dadosResposta: "*",
+      });
 
       const dadosConexao = {
         google_id: payload.sub,
@@ -241,13 +241,18 @@ export async function rotasAuth(servidor, opts) {
 
       // Se a conexão já existe, apenas atualizamos os tokens
       if (conexaoExistente) {
-        conexaoExistente = await atualizarConexaoGoogle(
-          conexaoExistente.id,
-          dadosConexao,
-        );
+        conexaoExistente = await googleRepository.atualizarTudo({
+          colunaFiltrar: "id",
+          dadoFiltrar: conexaoExistente.id,
+          dadosAtualizar: dadosConexao,
+          dadosResposta: "*",
+        });
       } else {
         // Se não existe, criamos um novo registro
-        conexaoExistente = await criarConexaoGoogle(dadosConexao);
+        conexaoExistente = await googleRepository.criar({
+          dados: dadosConexao,
+          dadosResposta: "*",
+        });
       }
 
       // 2. Busca a conta vinculada ao e-mail

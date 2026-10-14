@@ -1,10 +1,10 @@
-import { criarMensagem } from "../bancoDeDados/contato.js";
+import { contatoRepository } from "../bancoDeDados/contato.js";
 import { enviarEmail } from "../utils/email.js";
 
 export async function rotasMensagens(servidor, opts) {
   servidor.post("/mensagem", async (req, res) => {
     try {
-      await criarMensagem(req.body);
+      await contatoRepository.criar(req.body);
       enviarEmail(
         process.env.EMAIL,
         req.body.nome,

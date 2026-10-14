@@ -5,9 +5,10 @@ const supabaseClient = createClient(
   process.env.SUPABASE_KEY,
 );
 
-class entityDB {
-  constructor(client, table) {
-    this.client = client;
+// usa o client do supabase
+export default class EntityDB {
+  constructor(table) {
+    this.client = supabaseClient;
     this.table = table;
   }
 
@@ -104,6 +105,34 @@ class entityDB {
   async atualizar({
     colunaAtualizar,
     dadoAtualizar,
+    colunaFiltrar,
+    dadoFiltrar,
+    dadosResposta,
+  }) {
+    const { data, error } = await this.client
+      .from(this.table)
+      .update({ [colunaAtualizar]: dadoAtualizar }) // estar em colchetes, faz pegar o valor da variavel, e usar como campo no objeto
+      .eq(colunaFiltrar, dadoFiltrar)
+      .select(dadosResposta)
+      .single();
+
+    if (error) {
+      console.error(
+        "Erro ao atualizar na tabela: " +
+          this.table +
+          " | coluna: " +
+          colunaAtualizar +
+          " - " +
+          error,
+      );
+      throw new Error(error.message);
+    }
+
+    return data;
+  }
+
+  async atualizarTudo({
+    dadosAtualizar,
     colunaFiltrar,
     dadoFiltrar,
     dadosResposta,
@@ -329,7 +358,3 @@ class entityDB {
     return data;
   }
 }
-
-const DB = entityDB(supabaseClient);
-
-export default DB;
