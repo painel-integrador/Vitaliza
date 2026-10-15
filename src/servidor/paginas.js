@@ -134,4 +134,16 @@ export async function rotasPaginas(servidor, opts) {
       return res.sendFile("hidratacao-vizualizar-dia-mes-ano.html");
     },
   );
+
+  servidor.get("/erro/401", async (req, res) => {
+    return res.sendFile("error-401.html");
+  });
+
+  servidor.get("/erro/500", async (req, res) => {
+    return res.sendFile("error-500.html");
+  });
+
+  servidor.get("/erro/404", async (req, res) => {
+    return res.sendFile("error-404.html");
+  });
 }
