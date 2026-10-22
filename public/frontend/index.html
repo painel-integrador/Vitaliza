@@ -7,10 +7,6 @@
     <link href="/css/style.css" rel="stylesheet" />
     <link href="/css/faq.css" rel="stylesheet" />
     <title>Vitaliza</title>
-    <meta
-      name="google-site-verification"
-      content="fwBMoIrVNDtMkPfpX70GnbM6O_kWoN7gCjarEC9KrXI"
-    />
     <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
     <link
       rel="stylesheet"
@@ -152,10 +148,9 @@
         </div>
       </section>
 
-      <div class="pop-up">
-        <h2>Olá</h2>
-        <p class="txt-centro">Pop-up</p>
-      </div>
+      <button onclick="popUp(`<h2>TESTE</h2> <p>Olá</p>`)" class="btn-1">
+        CLIQUE
+      </button>
 
       <hr class="linha-simples" data-aos="fade-left" />
 
@@ -404,9 +399,6 @@
       <hr class="linha-simples" data-aos="fade-left" />
     </main>
 
-    <script src="/src/scripts/header.js" defer></script>
-    <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
-    <script src="/src/scripts/faq.js"></script>
     <footer data-aos="fade-up">
       <div class="grid-horizontal-pc">
         <div class="grid-1 grid-vertical">
@@ -469,5 +461,10 @@
         © Vitaliza Inc. All rights reserved.
       </p>
     </footer>
+
+    <script src="/src/scripts/header.js" defer></script>
+    <!-- O defer serve para o script só ser executado dps que a página for totalmente carregada -->
+    <script src="/src/scripts/faq.js"></script>
+    <script src="/src/scripts/pop-up.js"></script>
   </body>
 </html>

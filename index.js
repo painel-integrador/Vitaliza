@@ -5,7 +5,7 @@ import servidor from "./src/servidor/servidor.js";
 const PORT = process.env.PORT || 3000;
 
 if (process.env.ENV === "desenvolvimento") {
-  servidor.listen({ port: PORT }, function (err, address) {
+  servidor.listen({ port: PORT,host: "0.0.0.0" }, function (err, address) {
     if (err) {
       servidor.log.error(err);
       process.exit(1);

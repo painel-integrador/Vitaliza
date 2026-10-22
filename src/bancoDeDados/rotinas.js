@@ -1,4 +1,6 @@
-import bancoDados from "./db.js";
+import repository from "./db.js";
+
+export const rotinasRepository = new repository("rotinas", true); // precisa de usuario_id = true
 
 export async function buscarTodasRotinas(contaId) {
   const conta = await bancoDados

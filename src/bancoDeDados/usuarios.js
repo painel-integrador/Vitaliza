@@ -1,5 +1,7 @@
 import { conectarUsuarioNaConta } from "./contas.js";
-import bancoDados from "./db.js";
+import repository from "./db.js";
+
+export const usuarioRepository = new repository("usuarios");
 
 export async function getUsuarioId(contaId) {
   // busca o id do usuario

@@ -5,6 +5,7 @@ import {
   atualizarPesoUsuario,
   getUsuario,
   getUsuarioId,
+  usuarioRepository
 } from "../bancoDeDados/usuarios.js";
 import { autenticar } from "./auth.js";
 

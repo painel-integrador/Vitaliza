@@ -3,7 +3,9 @@ import {
   buscarRotinaPorId,
   criarRotina,
   deletarRotina,
+  rotinasRepository
 } from "../bancoDeDados/rotinas.js";
+import { usuarioRepository } from "../bancoDados/usuarios.js"
 import { autenticar } from "./auth.js";
 
 export async function rotasRotinas(servidor, opts) {
@@ -14,6 +16,8 @@ export async function rotasRotinas(servidor, opts) {
     console.log(req.contaid);
     try {
       const rotinas = await buscarTodasRotinas(req.contaid);
+
+      const rotinas = 
 
       return res.status(200).send(rotinas);
     } catch (erro) {
