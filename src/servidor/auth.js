@@ -1,24 +1,14 @@
 import { hash, compare } from "bcrypt";
-import {
-  buscarContaPorEmail,
-  conectarGoogleNaConta,
-  criarConta,
-} from "../bancoDeDados/contas.js";
-import {
-  criarSessao,
-  buscarSessaoPorToken,
-  atualizarTokens,
-  deletarSessao,
-} from "../bancoDeDados/sessoes.js";
 import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
+import { contasRepository } from "../bancoDeDados/contas.js";
+import { sessoesRepository } from "../bancoDeDados/sessoes.js";
 import { googleRepository } from "../bancoDeDados/conexaoGoogle.js";
 
 function criarAccessToken() {
   const duasHoras = 2 * 60 * 60 * 1000;
   const expiraEmDuasHoras = new Date(Date.now() + duasHoras);
   const accessToken = crypto.randomBytes(32).toString("hex");
-
   return { expiraEmDuasHoras, accessToken };
 }
 
@@ -26,7 +16,6 @@ function criarRefreshToken() {
   const doisMeses = 60 * 24 * 60 * 60 * 1000;
   const expiraEmDoisMeses = new Date(Date.now() + doisMeses);
   const refreshToken = crypto.randomBytes(32).toString("hex");
-
   return { expiraEmDoisMeses, refreshToken };
 }
 
@@ -36,22 +25,21 @@ export const oAuthClient = new OAuth2Client(
   "http://localhost:3000/api/auth/google/callback",
 );
 
-/* Função de criação de sessão que salva nos cookies */
 async function criarSessaoCookie(req, res, contaId) {
   const { expiraEmDuasHoras, accessToken } = criarAccessToken();
   const { expiraEmDoisMeses, refreshToken } = criarRefreshToken();
 
-  const userAgent = req.headers["user-agent"];
-  const enderecoIp = req.ip;
-
-  await criarSessao({
-    access_token: accessToken,
-    refresh_token: refreshToken,
-    access_token_expira_em: expiraEmDuasHoras,
-    refresh_token_expira_em: expiraEmDoisMeses,
-    endereco_ip: enderecoIp,
-    user_agent: userAgent,
-    conta_id: contaId,
+  await sessoesRepository.criar({
+    dados: {
+      access_token: accessToken,
+      refresh_token: refreshToken,
+      access_token_expira_em: expiraEmDuasHoras,
+      refresh_token_expira_em: expiraEmDoisMeses,
+      endereco_ip: req.ip,
+      user_agent: req.headers["user-agent"],
+      conta_id: contaId,
+    },
+    dadosResposta: "*",
   });
 
   res.setCookie("access_token", accessToken, {
@@ -74,33 +62,43 @@ async function criarSessaoCookie(req, res, contaId) {
 export async function autenticar(req, res) {
   try {
     const accessToken = req.cookies.access_token;
-
-    if (!accessToken) {
+    if (!accessToken)
       return res.status(401).send({ erro: "Token de acesso ausente" });
-    }
 
-    const sessao = await buscarSessaoPorToken(accessToken);
-    const horaAtual = new Date();
+    const sessao = await sessoesRepository.procurarUm({
+      coluna: "access_token",
+      dado: accessToken,
+      dadosResposta: "*",
+    });
 
-    if (!sessao) {
-      return res.status(401).send({ erro: "Sessão não encontrada" });
-    }
+    if (!sessao) return res.status(401).send({ erro: "Sessão não encontrada" });
 
-    const tokenAcessoExpirou =
-      new Date(sessao.access_token_expira_em) < horaAtual;
+    const agora = new Date();
+    const tokenAcessoExpirou = new Date(sessao.access_token_expira_em) < agora;
     const tokenRefreshExpirou =
-      new Date(sessao.refresh_token_expira_em) < horaAtual;
+      new Date(sessao.refresh_token_expira_em) < agora;
 
     if (tokenAcessoExpirou && tokenRefreshExpirou) {
       return res.status(401).send({ erro: "Sessão expirada" });
     }
 
-    // renovação do token
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
       const { expiraEmDuasHoras, accessToken: novoAccessToken } =
         criarAccessToken();
       const { expiraEmDoisMeses, refreshToken: novoRefreshToken } =
         criarRefreshToken();
+
+      await sessoesRepository.atualizarTudo({
+        dadosAtualizar: {
+          access_token: novoAccessToken,
+          refresh_token: novoRefreshToken,
+          access_token_expira_em: expiraEmDuasHoras,
+          refresh_token_expira_em: expiraEmDoisMeses,
+        },
+        colunaFiltrar: "id",
+        dadoFiltrar: sessao.id,
+        dadosResposta: "*",
+      });
 
       res.setCookie("access_token", novoAccessToken, {
         path: "/",
@@ -117,14 +115,6 @@ export async function autenticar(req, res) {
         maxAge: 60 * 24 * 60 * 60,
         sameSite: "lax",
       });
-
-      await atualizarTokens(
-        sessao.id,
-        novoAccessToken,
-        novoRefreshToken,
-        expiraEmDuasHoras,
-        expiraEmDoisMeses,
-      );
     }
 
     req.contaid = Number(sessao.conta_id);
@@ -135,26 +125,19 @@ export async function autenticar(req, res) {
 }
 
 export async function rotasAuth(servidor, opts) {
-  // EMAIL E SENHA
-
   servidor.post("/criar_conta/email_senha", async (req, res) => {
-    const dados = req.body;
-    const salt = 10;
-
     try {
-      const senhaCripto = await hash(dados.senha, salt);
+      const senhaCripto = await hash(req.body.senha, 10);
 
-      const conta = {
-        email: dados.email,
-        senha_cripto: senhaCripto,
-      };
-
-      const contaCriada = await criarConta(conta);
+      const contaCriada = await contasRepository.criar({
+        dados: {
+          email: req.body.email,
+          senha_cripto: senhaCripto,
+        },
+        dadosResposta: "*",
+      });
 
       await criarSessaoCookie(req, res, contaCriada.id);
-
-      // adicionar aqui envio de email
-
       return res.redirect(process.env.URL + "/conta/criar-usuario");
     } catch (erro) {
       console.error(erro);
@@ -162,33 +145,22 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
-  /* {
-    email: string,
-    senha: string,
-  }
-  */
   servidor.post("/login/email_senha", async (req, res) => {
-    const dados = req.body;
-
     try {
-      // Faltava o await na busca da conta
-      const conta = await buscarContaPorEmail(dados.email);
+      const conta = await contasRepository.procurarUm({
+        coluna: "email",
+        dado: req.body.email,
+        dadosResposta: "*",
+      });
 
-      if (!conta) {
+      if (!conta)
         return res.status(401).send({ erro: "Email ou senha inválidos" });
-      }
 
-      // Uso correto da comparação de hash via bcrypt.compare
-      const senhaValida = await compare(dados.senha, conta.senha_cripto);
-
-      if (!senhaValida) {
+      const senhaValida = await compare(req.body.senha, conta.senha_cripto);
+      if (!senhaValida)
         return res.status(401).send({ erro: "Email ou senha inválidos" });
-      }
 
       await criarSessaoCookie(req, res, conta.id);
-
-      // adicionar aqui envio de email
-
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
@@ -196,27 +168,22 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
-  // GOOGLE
-
   servidor.get("/google", async (req, res) => {
     const url = oAuthClient.generateAuthUrl({
       prompt: "consent",
       access_type: "offline",
       scope: [
-        // profile
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
         "openid",
       ],
     });
-
     return res.redirect(url);
   });
 
   servidor.get("/google/callback", async (req, res) => {
     try {
       const code = req.query.code;
-
       const tokens = await oAuthClient.getToken(code);
       const payload = (
         await oAuthClient.verifyIdToken({
@@ -225,7 +192,6 @@ export async function rotasAuth(servidor, opts) {
         })
       ).getPayload();
 
-      // 1. Verifica se já existe uma conexão Google salva com esse google_id
       let conexaoExistente = await googleRepository.procurarUm({
         coluna: "google_id",
         dado: payload.sub,
@@ -239,48 +205,54 @@ export async function rotasAuth(servidor, opts) {
         expira_em: new Date(tokens.tokens.expiry_date),
       };
 
-      // Se a conexão já existe, apenas atualizamos os tokens
       if (conexaoExistente) {
         conexaoExistente = await googleRepository.atualizarTudo({
+          dadosAtualizar: dadosConexao,
           colunaFiltrar: "id",
           dadoFiltrar: conexaoExistente.id,
-          dadosAtualizar: dadosConexao,
           dadosResposta: "*",
         });
       } else {
-        // Se não existe, criamos um novo registro
         conexaoExistente = await googleRepository.criar({
           dados: dadosConexao,
           dadosResposta: "*",
         });
       }
 
-      // 2. Busca a conta vinculada ao e-mail
-      const contaBanco = await buscarContaPorEmail(payload.email);
+      const contaBanco = await contasRepository.procurarUm({
+        coluna: "email",
+        dado: payload.email,
+        dadosResposta: "*",
+      });
+
       let targetContaId;
 
-      // Se a conta não existe, cria a nova conta vinculada à conexão Google
       if (!contaBanco) {
-        const novaConta = await criarConta({
-          email: payload.email,
-          conexao_google_id: conexaoExistente.id,
+        const novaConta = await contasRepository.criar({
+          dados: {
+            email: payload.email,
+            conexao_google_id: conexaoExistente.id,
+          },
+          dadosResposta: "*",
         });
 
         targetContaId = novaConta.id;
-
         await criarSessaoCookie(req, res, targetContaId);
         return res.redirect(process.env.URL + "/conta/criar-usuario");
       }
 
-      // Se a conta existe mas ainda não está associada a essa conexao_google_id, vincula
       if (!contaBanco.conexao_google_id) {
-        await conectarGoogleNaConta(contaBanco.id, conexaoExistente.id);
+        await contasRepository.atualizar({
+          colunaAtualizar: "conexao_google_id",
+          dadoAtualizar: conexaoExistente.id,
+          colunaFiltrar: "id",
+          dadoFiltrar: contaBanco.id,
+          dadosResposta: "*",
+        });
       }
 
       targetContaId = contaBanco.id;
-
       await criarSessaoCookie(req, res, targetContaId);
-
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
@@ -294,15 +266,14 @@ export async function rotasAuth(servidor, opts) {
 
   servidor.post("/sair", async (req, res) => {
     const accessToken = req.cookies.access_token;
-
-    if (!accessToken) {
+    if (!accessToken)
       return res.status(401).send({ erro: "Token de acesso ausente" });
-    }
 
-    await deletarSessao(accessToken);
+    await sessoesRepository.deletar({
+      coluna: "access_token",
+      dado: accessToken,
+    });
 
-    // deletar cookies
-    // Força a expiração imediata do access_token
     res.setCookie("access_token", "", {
       path: "/",
       httpOnly: true,
@@ -312,7 +283,6 @@ export async function rotasAuth(servidor, opts) {
       expires: new Date(0),
     });
 
-    // Força a expiração imediata do refresh_token
     res.setCookie("refresh_token", "", {
       path: "/",
       httpOnly: true,

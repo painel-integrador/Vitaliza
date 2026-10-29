@@ -1,23 +1,33 @@
-import {
-  buscarTodasRotinas,
-  buscarRotinaPorId,
-  criarRotina,
-  deletarRotina,
-  rotinasRepository
-} from "../bancoDeDados/rotinas.js";
-import { usuarioRepository } from "../bancoDados/usuarios.js"
 import { autenticar } from "./auth.js";
+import { contasRepository } from "../bancoDeDados/contas.js";
+import {
+  rotinasRepository,
+  exerciciosRotinasRepository,
+} from "../bancoDeDados/rotinas.js";
+
+async function usuarioIdDaConta(contaId) {
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
+
+  if (!conta?.usuario_id) throw new Error("Conta sem usuário vinculado");
+  return conta.usuario_id;
+}
 
 export async function rotasRotinas(servidor, opts) {
-  // os requests contém o req.contaid
   servidor.addHook("onRequest", autenticar);
 
   servidor.get("/rotinas", async (req, res) => {
-    console.log(req.contaid);
     try {
-      const rotinas = await buscarTodasRotinas(req.contaid);
+      const usuarioId = await usuarioIdDaConta(req.contaid);
 
-      const rotinas = 
+      const rotinas = await rotinasRepository.procurarVarios({
+        coluna: "usuario_id",
+        dado: usuarioId,
+        dadosResposta: "id,criado_em,nome",
+      });
 
       return res.status(200).send(rotinas);
     } catch (erro) {
@@ -28,52 +38,66 @@ export async function rotasRotinas(servidor, opts) {
 
   servidor.get("/rotina/:id", async (req, res) => {
     try {
-      const rotina = await buscarRotinaPorId(req.params.id);
+      const rotinaId = Number(req.params.id);
 
-      return res.status(200).send(rotina);
+      const rotina = await rotinasRepository.procurarUm({
+        coluna: "id",
+        dado: rotinaId,
+        dadosResposta: "*",
+      });
+
+      const exercicios = await exerciciosRotinasRepository.procurarVarios({
+        coluna: "rotina_id",
+        dado: rotinaId,
+        dadosResposta: "*",
+      });
+
+      return res.status(200).send({ rotina, exercicios });
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
   });
 
-  /* { 
-      rotinaDados: {
-        nome: string,
-      },
-      exerciciosDados: [
-        {
-          nome: string,
-          series: number,
-          midia?: string[]
-        }
-      ]
-  */
   servidor.post("/rotina", async (req, res) => {
     try {
-      const rotina = await criarRotina(
-        req.contaid,
-        req.body.rotinaDados,
-        req.body.exerciciosDados,
-      );
+      const usuarioId = await usuarioIdDaConta(req.contaid);
 
-      return res.status(201).send(rotina);
+      const rotina = await rotinasRepository.criar({
+        dados: {
+          nome: req.body.rotinaDados.nome,
+          usuario_id: usuarioId,
+        },
+        dadosResposta: "*",
+      });
+
+      const exerciciosReturn = [];
+      for (const exercicio of req.body.exerciciosDados) {
+        const criado = await exerciciosRotinasRepository.criar({
+          dados: { ...exercicio, rotina_id: rotina.id },
+          dadosResposta: "*",
+        });
+        exerciciosReturn.push(criado);
+      }
+
+      return res.status(201).send({
+        rotinaReturn: rotina,
+        exerciciosReturn,
+      });
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
   });
 
-  /* 
-    {
-      rotinaId: number,
-    }
-  */
   servidor.delete("/rotina", async (req, res) => {
     try {
-      await deletarRotina(req.body.rotinaId);
+      await rotinasRepository.deletar({
+        coluna: "id",
+        dado: req.body.rotinaId,
+      });
 
-      return res.status(204).send({ msg: "Rotina deletada" });
+      return res.status(204).send();
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });

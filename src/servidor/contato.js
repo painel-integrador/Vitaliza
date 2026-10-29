@@ -4,7 +4,11 @@ import { enviarEmail } from "../utils/email.js";
 export async function rotasMensagens(servidor, opts) {
   servidor.post("/mensagem", async (req, res) => {
     try {
-      await contatoRepository.criar(req.body);
+      await contatoRepository.criar({
+        dados: req.body,
+        dadosResposta: "*",
+      });
+
       enviarEmail(
         process.env.EMAIL,
         req.body.nome,
