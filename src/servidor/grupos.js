@@ -1,3 +1,4 @@
+import { autenticar } from "./auth.js";
 import {
   criarGrupo,
   entrarEmGrupo,
@@ -5,11 +6,13 @@ import {
   sairGrupo,
   usuarios,
 } from "../bancoDeDados/grupos.js";
-import { autenticar } from "./auth.js";
 
 export async function rotasGrupo(servidor, opts) {
   servidor.addHook("onRequest", autenticar);
 
+  /*
+    Cria um grupo e já vincula o usuário autenticado nele.
+  */
   servidor.post("/criar", async (req, res) => {
     try {
       const grupo = await criarGrupo();
@@ -23,44 +26,63 @@ export async function rotasGrupo(servidor, opts) {
     }
   });
 
+  /*
+    body: {
+      grupoId: number,
+    }
+  */
   servidor.post("/entrar", async (req, res) => {
     try {
       await entrarEmGrupo(req.contaid, req.body.grupoId);
 
-      res.send(200);
+      return res.status(200).send();
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
   });
 
+  /*
+    Remove o usuário autenticado do grupo atual.
+  */
   servidor.post("/sair", async (req, res) => {
     try {
       await sairGrupo(req.contaid);
 
-      res.status(200);
+      return res.status(200).send();
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
   });
 
+  /*
+    params: {
+      id: number,
+    }
+  */
   servidor.get("/usuarios/:id", async (req, res) => {
     try {
-      const usuarios = await usuarios(req.params.id);
+      const usuariosGrupo = await usuarios(req.params.id);
 
-      res.status(200).send(usuarios);
+      return res.status(200).send(usuariosGrupo);
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
     }
   });
 
+  /*
+    params: {
+      id: number,
+    }
+  */
   servidor.get("/exercicios-atividades/:id", async (req, res) => {
     try {
-      const exercicios = await exerciciosAtividades(req.params.id);
+      const usuariosGrupo = await usuarios(req.params.id);
+      const exercicios = await exerciciosAtividades(usuariosGrupo);
 
-      res.status(200).send(exercicios);
+      return res.status(200).send(exercicios);
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });

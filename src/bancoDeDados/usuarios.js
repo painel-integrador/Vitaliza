@@ -1,170 +1,103 @@
-import { conectarUsuarioNaConta } from "./contas.js";
+import { conectarUsuarioNaConta, contasRepository } from "./contas.js";
 import repository from "./db.js";
 
 export const usuarioRepository = new repository("usuarios");
 
 export async function getUsuarioId(contaId) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
+  if (!conta || !conta.usuario_id) {
+    throw new Error("Conta sem usuário vinculado");
   }
 
-  return conta.data;
+  return conta;
 }
 
 export async function getUsuario(idUsuario, contaId) {
-  // 1. Busca os dados do usuário requisitado (incluindo o grupo dele)
-  const { data: usuarioAlvo, error: erroUsuario } = await bancoDados
-    .from("usuarios")
-    .select(
-      "nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo",
-    )
-    .eq("id", idUsuario)
-    .maybeSingle();
-
-  if (erroUsuario) {
-    console.error(erroUsuario);
-    throw new Error(erroUsuario.message);
-  }
+  const usuarioAlvo = await usuarioRepository.procurarUm({
+    coluna: "id",
+    dado: idUsuario,
+    dadosResposta: "id,nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo",
+  });
 
   if (!usuarioAlvo) {
     return "Usuário não encontrado ou sem permissão";
   }
 
-  // 2. Busca na tabela 'contas' para obter o 'usuario_id' da conta logada
-  const { data: contaLogada, error: erroConta } = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const contaLogada = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
 
-  if (erroConta) {
-    console.error(erroConta);
-    throw new Error(erroConta.message);
+  if (!contaLogada || !contaLogada.usuario_id) {
+    throw new Error("Conta logada sem usuário vinculado");
   }
 
-  // 3. Busca o grupo do usuário logado na tabela 'usuarios'
-  const { data: usuarioLogado, error: erroUsuarioLogado } = await bancoDados
-    .from("usuarios")
-    .select("grupo")
-    .eq("id", contaLogada.usuario_id)
-    .single();
+  const usuarioLogado = await usuarioRepository.procurarUm({
+    coluna: "id",
+    dado: contaLogada.usuario_id,
+    dadosResposta: "grupo",
+  });
 
-  if (erroUsuarioLogado) {
-    console.error(erroUsuarioLogado);
-    throw new Error(erroUsuarioLogado.message);
+  if (!usuarioLogado) {
+    throw new Error("Usuário logado não encontrado");
   }
 
-  // 4. Compara se ambos pertencem ao mesmo grupo (coluna 'grupo')
   if (usuarioLogado.grupo === usuarioAlvo.grupo) {
     return usuarioAlvo;
-  } else {
-    return "Usuário não encontrado ou sem permissão";
   }
+
+  return "Usuário não encontrado ou sem permissão";
 }
 
 export async function criarUsuario(dados, contaId) {
-  const { data, error } = await bancoDados
-    .from("usuarios") // seleciona a tabela
-    .insert(dados) // insere os dados
-    .select("id")
-    .single(); // retorna a conta criada
+  const usuario = await usuarioRepository.criar({
+    dados,
+    dadosResposta: "id",
+  });
 
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
+  await conectarUsuarioNaConta(contaId, usuario.id);
 
-  // conectar usuario na conta
-  conectarUsuarioNaConta(contaId, data.id); // data.id é o usuario criado
-
-  return data;
+  return usuario;
 }
 
 export async function atualizarPesoUsuario(contaId, valor) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const conta = await getUsuarioId(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const { data, error } = await bancoDados
-    .from("usuarios")
-    .update({ peso: valor })
-    .select("id")
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuarioRepository.atualizar({
+    colunaAtualizar: "peso",
+    dadoAtualizar: valor,
+    colunaFiltrar: "id",
+    dadoFiltrar: conta.usuario_id,
+    dadosResposta: "id,peso",
+  });
 }
 
 export async function atualizarObjetivoPesoUsuario(contaId, valor) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const conta = await getUsuarioId(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const { data, error } = await bancoDados
-    .from("usuarios")
-    .update({ objetivo_peso: valor })
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuarioRepository.atualizar({
+    colunaAtualizar: "objetivo_peso",
+    dadoAtualizar: valor,
+    colunaFiltrar: "id",
+    dadoFiltrar: conta.usuario_id,
+    dadosResposta: "id,objetivo_peso",
+  });
 }
 
 export async function atualizarObjetivoHidratacaoUsuario(contaId, valor) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const conta = await getUsuarioId(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const { data, error } = await bancoDados
-    .from("usuarios")
-    .update({ objetivo_hidratacao: valor })
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuarioRepository.atualizar({
+    colunaAtualizar: "objetivo_hidratacao",
+    dadoAtualizar: valor,
+    colunaFiltrar: "id",
+    dadoFiltrar: conta.usuario_id,
+    dadosResposta: "id,objetivo_hidratacao",
+  });
 }

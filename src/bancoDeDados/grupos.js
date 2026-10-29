@@ -1,104 +1,73 @@
-import bancoDados from "./db.js";
+import { contasRepository } from "./contas.js";
+import repository from "./db.js";
 
-export async function criarGrupo() {
-  const { data, error } = await bancoDados
-    .from("grupos")
-    .insert()
-    .select()
-    .single();
+export const gruposRepository = new repository("grupos");
+export const usuariosRepository = new repository("usuarios");
+export const treinosRepository = new repository("treinos");
 
-  if (error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
+async function buscarUsuarioIdDaConta(contaId) {
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
+
+  if (!conta || !conta.usuario_id) {
+    throw new Error("Conta sem usuário vinculado");
   }
 
-  return data;
+  return conta.usuario_id;
+}
+
+export async function criarGrupo() {
+  return gruposRepository.criar({
+    dados: {},
+    dadosResposta: "*",
+  });
 }
 
 export async function entrarEmGrupo(contaId, grupoId) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const { data, error } = await bancoDados
-    .from("usuarios") // seleciona a tabela
-    .update({ grupo: grupoId }) // insere o id do grupo
-    .eq("usuario_id", conta.data.usuario_id)
-    .select()
-    .single(); // retorna o user com grupo
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuariosRepository.atualizar({
+    colunaAtualizar: "grupo",
+    dadoAtualizar: grupoId,
+    colunaFiltrar: "id",
+    dadoFiltrar: usuarioId,
+    dadosResposta: "*",
+  });
 }
 
 export async function usuarios(grupoId) {
-  const { data, error } = await bancoDados
-    .from("usuarios")
-    .eq("grupo", grupoId)
-    .select();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuariosRepository.procurarVarios({
+    coluna: "grupo",
+    dado: grupoId,
+    dadosResposta: "*",
+  });
 }
 
-export async function exerciciosAtividades(usuarios) {
-  let treinos = [];
-  usuarios.forEach(async (usuario) => {
-    const { data, error } = await bancoDados
-      .from("treinos")
-      .select()
-      .eq("usuario_id", usuario.id);
+export async function exerciciosAtividades(usuariosGrupo) {
+  const treinosPorUsuario = await Promise.all(
+    usuariosGrupo.map(async (usuario) =>
+      treinosRepository.procurarVarios({
+        coluna: "usuario_id",
+        dado: usuario.id,
+        dadosResposta: "*",
+      }),
+    ),
+  );
 
-    if (error) {
-      console.error(error);
-      throw new Error(error.message);
-    }
-
-    treinos.push(data);
-  });
-
-  return treinos;
+  return treinosPorUsuario.flat();
 }
 
 export async function sairGrupo(contaId) {
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const { data, error } = await bancoDados
-    .from("usuarios") // seleciona a tabela
-    .update({ grupo: null }) // deleta o id
-    .eq("usuario_id", conta.data.usuario_id)
-    .select()
-    .single(); // retorna o user sem o grupo
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return usuariosRepository.atualizar({
+    colunaAtualizar: "grupo",
+    dadoAtualizar: null,
+    colunaFiltrar: "id",
+    dadoFiltrar: usuarioId,
+    dadosResposta: "*",
+  });
 }

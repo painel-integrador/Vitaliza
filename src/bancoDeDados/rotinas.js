@@ -1,55 +1,49 @@
+import { contasRepository } from "./contas.js";
 import repository from "./db.js";
 
-export const rotinasRepository = new repository("rotinas", true); // precisa de usuario_id = true
+export const rotinasRepository = new repository("rotinas");
+export const exerciciosRotinasRepository = new repository("exercicios_rotinas");
+
+async function buscarUsuarioIdDaConta(contaId) {
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
+
+  if (!conta || !conta.usuario_id) {
+    throw new Error("Conta sem usuário vinculado");
+  }
+
+  return conta.usuario_id;
+}
 
 export async function buscarTodasRotinas(contaId) {
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const rotinas = await bancoDados
-    .from("rotinas")
-    .select("id, criado_em, nome")
-    .eq("usuario_id", conta.data.usuario_id);
-
-  if (rotinas.error) {
-    console.error(rotinas.error);
-    throw new Error(rotinas.error.message);
-  }
-
-  return rotinas.data;
+  return rotinasRepository.procurarVarios({
+    coluna: "usuario_id",
+    dado: usuarioId,
+    dadosResposta: "id,criado_em,nome",
+  });
 }
 
 export async function buscarRotinaPorId(rotinaId) {
-  // rotina
-  const rotina = await bancoDados
-    .from("rotinas")
-    .select()
-    .eq("id", rotinaId)
-    .single();
+  const rotina = await rotinasRepository.procurarUm({
+    coluna: "id",
+    dado: rotinaId,
+    dadosResposta: "*",
+  });
 
-  if (rotina.error) {
-    console.error(rotina.error);
-    throw new Error(rotina.error.message);
+  if (!rotina) {
+    throw new Error("Rotina não encontrada");
   }
 
-  // exercicios
-  const exercicios = await bancoDados
-    .from("exercicios_rotinas")
-    .select()
-    .eq("rotina_id", rotinaId);
-
-  if (exercicios.error) {
-    console.error(exercicios.error);
-    throw new Error(exercicios.error.message);
-  }
+  const exercicios = await exerciciosRotinasRepository.procurarVarios({
+    coluna: "rotina_id",
+    dado: rotinaId,
+    dadosResposta: "*",
+  });
 
   return {
     rotina,
@@ -58,64 +52,41 @@ export async function buscarRotinaPorId(rotinaId) {
 }
 
 export async function criarRotina(contaId, rotinaDados, exerciciosDados) {
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  // rotina
-  const rotina = await bancoDados
-    .from("rotinas")
-    .insert({
+  const rotina = await rotinasRepository.criar({
+    dados: {
       nome: rotinaDados.nome,
-      usuario_id: conta.data.usuario_id,
-    })
-    .select()
-    .single();
+      usuario_id: usuarioId,
+    },
+    dadosResposta: "*",
+  });
 
-  if (rotina.error) {
-    console.error(rotina.error);
-    throw new Error(rotina.error.message);
-  }
-
-  // inserir o rotinaId no objeto, para todos do array
   const exerciciosComRotinaId = exerciciosDados.map((exercicio) => ({
     ...exercicio,
-    rotina_id: rotina.data.id,
+    rotina_id: rotina.id,
   }));
 
-  // séries
-  const exercicios = await bancoDados
-    .from("exercicios_rotinas")
-    .insert(exerciciosComRotinaId)
-    .select();
+  const exerciciosCriados = [];
 
-  if (exercicios.error) {
-    console.error(exercicios.error);
-    throw new Error(exercicios.error.message);
+  for (const exercicio of exerciciosComRotinaId) {
+    const exercicioCriado = await exerciciosRotinasRepository.criar({
+      dados: exercicio,
+      dadosResposta: "*",
+    });
+
+    exerciciosCriados.push(exercicioCriado);
   }
 
-  const rotinaReturn = rotina.data;
-  const exerciciosReturn = exercicios.data;
-
   return {
-    rotinaReturn,
-    exerciciosReturn,
+    rotinaReturn: rotina,
+    exerciciosReturn: exerciciosCriados,
   };
 }
 
 export async function deletarRotina(rotinaId) {
-  // rotina
-  const rotina = await bancoDados.from("rotinas").delete().eq("id", rotinaId);
-
-  if (rotina.error) {
-    console.error(rotina.error);
-    throw new Error(rotina.error.message);
-  }
+  await rotinasRepository.deletar({
+    coluna: "id",
+    dado: rotinaId,
+  });
 }

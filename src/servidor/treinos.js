@@ -7,10 +7,11 @@ import {
 import { autenticar } from "./auth.js";
 
 export async function rotasTreino(servidor, opts) {
-  // os requests pegam o req.contaid
-
   servidor.addHook("onRequest", autenticar);
 
+  /*
+    Lista todos os treinos da conta autenticada.
+  */
   servidor.get("/treinos", async (req, res) => {
     try {
       const treinos = await buscarTodosTreinos(req.contaid);
@@ -22,9 +23,14 @@ export async function rotasTreino(servidor, opts) {
     }
   });
 
+  /*
+    params: {
+      id: number,
+    }
+  */
   servidor.get("/treinos/:id", async (req, res) => {
     try {
-      const treinos = await buscarTreinoPorId(req.params.id);
+      const treinos = await buscarTreinoPorId(Number(req.params.id));
 
       return res.status(200).send(treinos);
     } catch (erro) {
@@ -33,15 +39,17 @@ export async function rotasTreino(servidor, opts) {
     }
   });
 
-  /* { 
-        seriesDados: [
-          {
-            numero: number,
-            reps: number,
-            peso: number,
-            exercise_db_id
-          }
-        ]
+  /*
+    body: {
+      seriesDados: [
+        {
+          numero: number,
+          reps: number,
+          peso: number,
+          exercise_db_id: number,
+        },
+      ],
+    }
   */
   servidor.post("/treino", async (req, res) => {
     try {
@@ -54,14 +62,14 @@ export async function rotasTreino(servidor, opts) {
     }
   });
 
-  /* 
-    {
+  /*
+    body: {
       treinoId: number,
     }
   */
   servidor.delete("/treino", async (req, res) => {
     try {
-      const treinos = await deletarTreino(req.body.treinoId);
+      await deletarTreino(req.body.treinoId);
 
       return res.status(204).send();
     } catch (erro) {

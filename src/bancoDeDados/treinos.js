@@ -1,53 +1,49 @@
-import bancoDados from "./db.js";
+import { contasRepository } from "./contas.js";
+import repository from "./db.js";
+
+export const treinosRepository = new repository("treinos");
+export const seriesRepository = new repository("series");
+
+async function buscarUsuarioIdDaConta(contaId) {
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
+
+  if (!conta || !conta.usuario_id) {
+    throw new Error("Conta sem usuário vinculado");
+  }
+
+  return conta.usuario_id;
+}
 
 export async function buscarTodosTreinos(contaId) {
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const treinos = await bancoDados
-    .from("treinos")
-    .select("id, criado_em")
-    .eq("usuario_id", conta.data.usuario_id);
-
-  if (treinos.error) {
-    console.error(treinos.error);
-    throw new Error(treinos.error.message);
-  }
-
-  return treinos.data;
+  return treinosRepository.procurarVarios({
+    coluna: "usuario_id",
+    dado: usuarioId,
+    dadosResposta: "id,criado_em",
+  });
 }
 
 export async function buscarTreinoPorId(treinoId) {
-  // treino
-  const treino = await bancoDados
-    .from("treinos")
-    .select()
-    .eq("id", treinoId)
-    .single();
+  const treino = await treinosRepository.procurarUm({
+    coluna: "id",
+    dado: treinoId,
+    dadosResposta: "*",
+  });
 
-  if (treino.error) {
-    console.error(treino.error);
-    throw new Error(treino.error.message);
+  if (!treino) {
+    throw new Error("Treino não encontrado");
   }
 
-  // séries
-  const series = await bancoDados
-    .from("series")
-    .select()
-    .eq("treino_id", treinoId);
-
-  if (series.error) {
-    console.error(series.error);
-    throw new Error(series.error.message);
-  }
+  const series = await seriesRepository.procurarVarios({
+    coluna: "treino_id",
+    dado: treinoId,
+    dadosResposta: "*",
+  });
 
   return {
     treino,
@@ -56,63 +52,40 @@ export async function buscarTreinoPorId(treinoId) {
 }
 
 export async function criarTreino(contaId, seriesDados) {
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
+  const treino = await treinosRepository.criar({
+    dados: {
+      usuario_id: usuarioId,
+    },
+    dadosResposta: "*",
+  });
 
-  // treino
-  const treino = await bancoDados
-    .from("treinos")
-    .insert({
-      usuario_id: conta.data.usuario_id,
-    })
-    .select()
-    .single();
-
-  if (treino.error) {
-    console.error(treino.error);
-    throw new Error(treino.error.message);
-  }
-
-  // inserir o treino_id no objeto, para todos do array
   const seriesComTreinoId = seriesDados.map((serie) => ({
     ...serie,
-    treino_id: treino.data.id,
+    treino_id: treino.id,
   }));
 
-  // séries
-  const series = await bancoDados
-    .from("series")
-    .insert(seriesComTreinoId)
-    .select();
+  const seriesCriadas = [];
 
-  if (series.error) {
-    console.error(series.error);
-    throw new Error(series.error.message);
+  for (const serie of seriesComTreinoId) {
+    const serieCriada = await seriesRepository.criar({
+      dados: serie,
+      dadosResposta: "*",
+    });
+
+    seriesCriadas.push(serieCriada);
   }
 
-  const treinoReturn = treino.data;
-  const seriesReturn = series.data;
-
   return {
-    treinoReturn,
-    seriesReturn,
+    treinoReturn: treino,
+    seriesReturn: seriesCriadas,
   };
 }
 
 export async function deletarTreino(treinoId) {
-  // treino
-  const treino = await bancoDados.from("treinos").delete().eq("id", treinoId);
-
-  if (treino.error) {
-    console.error(treino.error);
-    throw new Error(treino.error.message);
-  }
+  await treinosRepository.deletar({
+    coluna: "id",
+    dado: treinoId,
+  });
 }

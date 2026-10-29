@@ -5,13 +5,17 @@ import {
   atualizarPesoUsuario,
   getUsuario,
   getUsuarioId,
-  usuarioRepository
 } from "../bancoDeDados/usuarios.js";
 import { autenticar } from "./auth.js";
 
 export async function rotasUsuario(servidor, opts) {
   servidor.addHook("onRequest", autenticar);
 
+  /*
+    params: {
+      id: number,
+    }
+  */
   servidor.get("/usuario/:id", async (req, res) => {
     try {
       const usuario = await getUsuario(Number(req.params.id), req.contaid);
@@ -27,6 +31,9 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
+  /*
+    Retorna o id do usuário vinculado à conta autenticada.
+  */
   servidor.get("/id", async (req, res) => {
     try {
       const id = await getUsuarioId(req.contaid);
@@ -38,6 +45,16 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
+  /*
+    body: {
+      nome: string,
+      idade: number,
+      altura: number,
+      peso: number,
+      objetivo_hidratacao?: number,
+      objetivo_peso?: number,
+    }
+  */
   servidor.post("/usuario", async (req, res) => {
     try {
       await criarUsuario(req.body, req.contaid);
@@ -49,6 +66,11 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
+  /*
+    body: {
+      peso: number,
+    }
+  */
   servidor.post("/atualizar/peso", async (req, res) => {
     try {
       const usuario = await atualizarPesoUsuario(req.contaid, req.body.peso);
@@ -60,6 +82,11 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
+  /*
+    body: {
+      objetivoPeso: number,
+    }
+  */
   servidor.post("/atualizar/objetivo-peso", async (req, res) => {
     try {
       const usuario = await atualizarObjetivoPesoUsuario(
@@ -74,6 +101,11 @@ export async function rotasUsuario(servidor, opts) {
     }
   });
 
+  /*
+    body: {
+      objetivoHidratacao: number,
+    }
+  */
   servidor.post("/atualizar/objetivo-hidratacao", async (req, res) => {
     try {
       const usuario = await atualizarObjetivoHidratacaoUsuario(

@@ -1,33 +1,20 @@
-import bancoDados from "./db.js";
+import repository from "./db.js";
+
+export const sessoesRepository = new repository("sessoes");
 
 export async function criarSessao(dados) {
-  const { data, error } = await bancoDados
-    .from("sessoes")
-    .insert(dados)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return sessoesRepository.criar({
+    dados,
+    dadosResposta: "*",
+  });
 }
 
 export async function buscarSessaoPorToken(accessToken) {
-  const { data, error } = await bancoDados
-    .from("sessoes")
-    .select("*")
-    .eq("access_token", accessToken)
-    .maybeSingle(); // Retorna o objeto direto ou null
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return sessoesRepository.procurarUm({
+    coluna: "access_token",
+    dado: accessToken,
+    dadosResposta: "*",
+  });
 }
 
 export async function atualizarTokens(
@@ -37,34 +24,22 @@ export async function atualizarTokens(
   expiraEmDuasHoras,
   expiraEmDoisMeses,
 ) {
-  const { data, error } = await bancoDados
-    .from("sessoes")
-    .update({
+  return sessoesRepository.atualizarTudo({
+    dadosAtualizar: {
       access_token: accessToken,
       refresh_token: refreshToken,
       access_token_expira_em: expiraEmDuasHoras,
-      refresh_token_expira_em: expiraEmDoisMeses, // Corrigido para expiraEmDoisMeses
-    })
-    .eq("id", sessionId) // Corrigido o método .eq
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+      refresh_token_expira_em: expiraEmDoisMeses,
+    },
+    colunaFiltrar: "id",
+    dadoFiltrar: sessionId,
+    dadosResposta: "*",
+  });
 }
 
 export async function deletarSessao(accessToken) {
-  const { data, error } = await bancoDados
-    .from("sessoes")
-    .delete()
-    .eq("access_token", accessToken);
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
+  await sessoesRepository.deletar({
+    coluna: "access_token",
+    dado: accessToken,
+  });
 }

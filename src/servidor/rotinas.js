@@ -3,21 +3,18 @@ import {
   buscarRotinaPorId,
   criarRotina,
   deletarRotina,
-  rotinasRepository
 } from "../bancoDeDados/rotinas.js";
-import { usuarioRepository } from "../bancoDados/usuarios.js"
 import { autenticar } from "./auth.js";
 
 export async function rotasRotinas(servidor, opts) {
-  // os requests contém o req.contaid
   servidor.addHook("onRequest", autenticar);
 
+  /*
+    Lista todas as rotinas da conta autenticada.
+  */
   servidor.get("/rotinas", async (req, res) => {
-    console.log(req.contaid);
     try {
       const rotinas = await buscarTodasRotinas(req.contaid);
-
-      const rotinas = 
 
       return res.status(200).send(rotinas);
     } catch (erro) {
@@ -26,9 +23,14 @@ export async function rotasRotinas(servidor, opts) {
     }
   });
 
+  /*
+    params: {
+      id: number,
+    }
+  */
   servidor.get("/rotina/:id", async (req, res) => {
     try {
-      const rotina = await buscarRotinaPorId(req.params.id);
+      const rotina = await buscarRotinaPorId(Number(req.params.id));
 
       return res.status(200).send(rotina);
     } catch (erro) {
@@ -37,7 +39,8 @@ export async function rotasRotinas(servidor, opts) {
     }
   });
 
-  /* { 
+  /*
+    body: {
       rotinaDados: {
         nome: string,
       },
@@ -45,9 +48,10 @@ export async function rotasRotinas(servidor, opts) {
         {
           nome: string,
           series: number,
-          midia?: string[]
-        }
-      ]
+          midia?: string[],
+        },
+      ],
+    }
   */
   servidor.post("/rotina", async (req, res) => {
     try {
@@ -64,8 +68,8 @@ export async function rotasRotinas(servidor, opts) {
     }
   });
 
-  /* 
-    {
+  /*
+    body: {
       rotinaId: number,
     }
   */
@@ -73,7 +77,7 @@ export async function rotasRotinas(servidor, opts) {
     try {
       await deletarRotina(req.body.rotinaId);
 
-      return res.status(204).send({ msg: "Rotina deletada" });
+      return res.status(204).send();
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });

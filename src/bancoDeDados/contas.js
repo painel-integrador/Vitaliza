@@ -1,64 +1,47 @@
-import bancoDados from "./db.js";
+import repository from "./db.js";
+
+export const contasRepository = new repository("contas");
 
 export async function criarConta(dados) {
-  const { data, error } = await bancoDados
-    .from("contas") // seleciona a tabela
-    .insert(dados) // insere os dados
-    .select()
-    .single(); // retorna a conta criada
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return contasRepository.criar({
+    dados,
+    dadosResposta: "*",
+  });
 }
 
 export async function buscarContaPorEmail(email) {
-  const { data, error } = await bancoDados
-    .from("contas") // seleciona a tabela
-    .select("*") // busca a conta
-    .eq("email", email) // que tenha o email inserido pelo usuário
-    .maybeSingle();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return contasRepository.procurarUm({
+    coluna: "email",
+    dado: email,
+    dadosResposta: "*",
+  });
 }
 
-/* Adiciona o id da linha da tabela de conexões com o Google, à linha da tabela de contas*/
+export async function buscarContaPorId(contaId) {
+  return contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "id,usuario_id,conexao_google_id,email",
+  });
+}
+
+/* Adiciona o id da linha da tabela de conexões com o Google, à linha da tabela de contas */
 export async function conectarGoogleNaConta(contaId, conexaoGoogleId) {
-  const { data, error } = await bancoDados
-    .from("contas")
-    .update({ conexao_google_id: conexaoGoogleId })
-    .eq("id", contaId)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return contasRepository.atualizar({
+    colunaAtualizar: "conexao_google_id",
+    dadoAtualizar: conexaoGoogleId,
+    colunaFiltrar: "id",
+    dadoFiltrar: contaId,
+    dadosResposta: "*",
+  });
 }
 
 export async function conectarUsuarioNaConta(contaId, usuarioId) {
-  const { data, error } = await bancoDados
-    .from("contas")
-    .update({ usuario_id: usuarioId })
-    .eq("id", contaId)
-    .select()
-    .single();
-
-  if (error) {
-    console.error(error);
-    throw new Error(error.message);
-  }
-
-  return data;
+  return contasRepository.atualizar({
+    colunaAtualizar: "usuario_id",
+    dadoAtualizar: usuarioId,
+    colunaFiltrar: "id",
+    dadoFiltrar: contaId,
+    dadosResposta: "*",
+  });
 }

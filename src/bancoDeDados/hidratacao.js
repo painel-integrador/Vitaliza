@@ -1,104 +1,64 @@
-import bancoDados from "./db.js";
+import { contasRepository } from "./contas.js";
+import repository from "./db.js";
+
+export const hidratacaoRepository = new repository("registros_hidratacao");
+
+async function buscarUsuarioIdDaConta(contaId) {
+  const conta = await contasRepository.procurarUm({
+    coluna: "id",
+    dado: contaId,
+    dadosResposta: "usuario_id",
+  });
+
+  if (!conta || !conta.usuario_id) {
+    throw new Error("Conta sem usuário vinculado");
+  }
+
+  return conta.usuario_id;
+}
 
 export async function buscarTodosRegistros(contaId) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  const registros = await bancoDados
-    .from("registros_hidratacao")
-    .select("id, criado_em, quantidade")
-    .eq("usuario_id", conta.data.usuario_id);
-
-  if (registros.error) {
-    console.error(registros.error);
-    throw new Error(registros.error.message);
-  }
-
-  return registros.data;
+  return hidratacaoRepository.procurarVarios({
+    coluna: "usuario_id",
+    dado: usuarioId,
+    dadosResposta: "id,criado_em,quantidade",
+  });
 }
 
 export async function buscarRegistroPorDia(dia, mes, ano, contaId) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
+  const mesIndex = Number(mes) - 1;
+  const inicioDia = new Date(Number(ano), mesIndex, Number(dia), 0, 0, 0, 0).toISOString();
+  const fimDia = new Date(Number(ano), mesIndex, Number(dia), 23, 59, 59, 999).toISOString();
 
-  const inicioDia = new Date(ano, mes, dia, 0, 0, 0, 0).toISOString();
-  const fimDia = new Date(ano, mes, dia, 23, 59, 59, 999).toISOString();
+  const registros = await hidratacaoRepository.procurarFaixa({
+    coluna: "criado_em",
+    inicio: inicioDia,
+    final: fimDia,
+    dadosResposta: "*",
+  });
 
-  // registros
-  const registros = await bancoDados
-    .from("registros_hidratacao")
-    .select()
-    .eq("usuario_id", conta.data.usuario_id)
-    .gte("criado_em", inicioDia)
-    .lte("criado_em", fimDia)
-    .single();
-
-  if (registros.error) {
-    console.error(registros.error);
-    throw new Error(registros.error.message);
-  }
-
-  return registros;
+  return registros.filter((registro) => registro.usuario_id === usuarioId);
 }
 
 export async function criarRegistro(contaId, quantidade) {
-  // busca o id do usuario
-  const conta = await bancoDados
-    .from("contas")
-    .select("usuario_id")
-    .eq("id", contaId)
-    .single();
+  const usuarioId = await buscarUsuarioIdDaConta(contaId);
 
-  if (conta.error) {
-    console.error(conta.error);
-    throw new Error(conta.error.message);
-  }
-
-  // registro
-  const registro = await bancoDados
-    .from("registros_hidratacao")
-    .insert({
+  return hidratacaoRepository.criar({
+    dados: {
       quantidade,
-      usuario_id: conta.data.usuario_id,
-    })
-    .select()
-    .single();
-
-  if (registro.error) {
-    console.error(registro.error);
-    throw new Error(registro.error.message);
-  }
-
-  return registro;
+      usuario_id: usuarioId,
+    },
+    dadosResposta: "*",
+  });
 }
 
 export async function deletarRegistro(registroId) {
-  // registro
-  const registro = await bancoDados
-    .from("registros_hidratacao")
-    .delete()
-    .eq("id", registroId);
-
-  if (registro.error) {
-    console.error(registro.error);
-    throw new Error(registro.error.message);
-  }
+  await hidratacaoRepository.deletar({
+    coluna: "id",
+    dado: registroId,
+  });
 }

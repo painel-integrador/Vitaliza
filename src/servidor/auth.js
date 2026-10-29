@@ -95,7 +95,6 @@ export async function autenticar(req, res) {
       return res.status(401).send({ erro: "Sessão expirada" });
     }
 
-    // renovação do token
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
       const { expiraEmDuasHoras, accessToken: novoAccessToken } =
         criarAccessToken();
@@ -135,8 +134,12 @@ export async function autenticar(req, res) {
 }
 
 export async function rotasAuth(servidor, opts) {
-  // EMAIL E SENHA
-
+  /*
+    body: {
+      email: string,
+      senha: string,
+    }
+  */
   servidor.post("/criar_conta/email_senha", async (req, res) => {
     const dados = req.body;
     const salt = 10;
@@ -153,8 +156,6 @@ export async function rotasAuth(servidor, opts) {
 
       await criarSessaoCookie(req, res, contaCriada.id);
 
-      // adicionar aqui envio de email
-
       return res.redirect(process.env.URL + "/conta/criar-usuario");
     } catch (erro) {
       console.error(erro);
@@ -162,23 +163,22 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
-  /* {
-    email: string,
-    senha: string,
-  }
+  /*
+    body: {
+      email: string,
+      senha: string,
+    }
   */
   servidor.post("/login/email_senha", async (req, res) => {
     const dados = req.body;
 
     try {
-      // Faltava o await na busca da conta
       const conta = await buscarContaPorEmail(dados.email);
 
       if (!conta) {
         return res.status(401).send({ erro: "Email ou senha inválidos" });
       }
 
-      // Uso correto da comparação de hash via bcrypt.compare
       const senhaValida = await compare(dados.senha, conta.senha_cripto);
 
       if (!senhaValida) {
@@ -187,8 +187,6 @@ export async function rotasAuth(servidor, opts) {
 
       await criarSessaoCookie(req, res, conta.id);
 
-      // adicionar aqui envio de email
-
       return res.redirect(process.env.URL + "/home");
     } catch (erro) {
       console.error(erro);
@@ -196,14 +194,14 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
-  // GOOGLE
-
+  /*
+    Inicia autenticação OAuth2 com Google.
+  */
   servidor.get("/google", async (req, res) => {
     const url = oAuthClient.generateAuthUrl({
       prompt: "consent",
       access_type: "offline",
       scope: [
-        // profile
         "https://www.googleapis.com/auth/userinfo.profile",
         "https://www.googleapis.com/auth/userinfo.email",
         "openid",
@@ -213,6 +211,9 @@ export async function rotasAuth(servidor, opts) {
     return res.redirect(url);
   });
 
+  /*
+    Callback de autenticação Google.
+  */
   servidor.get("/google/callback", async (req, res) => {
     try {
       const code = req.query.code;
@@ -225,7 +226,6 @@ export async function rotasAuth(servidor, opts) {
         })
       ).getPayload();
 
-      // 1. Verifica se já existe uma conexão Google salva com esse google_id
       let conexaoExistente = await googleRepository.procurarUm({
         coluna: "google_id",
         dado: payload.sub,
@@ -239,7 +239,6 @@ export async function rotasAuth(servidor, opts) {
         expira_em: new Date(tokens.tokens.expiry_date),
       };
 
-      // Se a conexão já existe, apenas atualizamos os tokens
       if (conexaoExistente) {
         conexaoExistente = await googleRepository.atualizarTudo({
           colunaFiltrar: "id",
@@ -248,18 +247,15 @@ export async function rotasAuth(servidor, opts) {
           dadosResposta: "*",
         });
       } else {
-        // Se não existe, criamos um novo registro
         conexaoExistente = await googleRepository.criar({
           dados: dadosConexao,
           dadosResposta: "*",
         });
       }
 
-      // 2. Busca a conta vinculada ao e-mail
       const contaBanco = await buscarContaPorEmail(payload.email);
       let targetContaId;
 
-      // Se a conta não existe, cria a nova conta vinculada à conexão Google
       if (!contaBanco) {
         const novaConta = await criarConta({
           email: payload.email,
@@ -272,7 +268,6 @@ export async function rotasAuth(servidor, opts) {
         return res.redirect(process.env.URL + "/conta/criar-usuario");
       }
 
-      // Se a conta existe mas ainda não está associada a essa conexao_google_id, vincula
       if (!contaBanco.conexao_google_id) {
         await conectarGoogleNaConta(contaBanco.id, conexaoExistente.id);
       }
@@ -288,10 +283,16 @@ export async function rotasAuth(servidor, opts) {
     }
   });
 
+  /*
+    Verifica sessão autenticada.
+  */
   servidor.get("/me", { preHandler: [autenticar] }, async (req, res) => {
     return res.send({ logado: true, contaId: req.contaid });
   });
 
+  /*
+    Encerra sessão e remove cookies de autenticação.
+  */
   servidor.post("/sair", async (req, res) => {
     const accessToken = req.cookies.access_token;
 
@@ -301,8 +302,6 @@ export async function rotasAuth(servidor, opts) {
 
     await deletarSessao(accessToken);
 
-    // deletar cookies
-    // Força a expiração imediata do access_token
     res.setCookie("access_token", "", {
       path: "/",
       httpOnly: true,
@@ -312,7 +311,6 @@ export async function rotasAuth(servidor, opts) {
       expires: new Date(0),
     });
 
-    // Força a expiração imediata do refresh_token
     res.setCookie("refresh_token", "", {
       path: "/",
       httpOnly: true,
