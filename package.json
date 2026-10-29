@@ -15,7 +15,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "docker build -t vitaliza .",
+    "run": "docker run --env-file .env -p 3000:3000 vitaliza"
   },
   "dependencies": {
     "@fastify/cookie": "^11.1.2",

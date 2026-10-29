@@ -610,6 +610,7 @@ footer .btn-2:hover {
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
   top: 300px;
   right: -50vw;
+  animation: infinite gradiente 5s;
 }
 
 .gradiente-cima-direita {
@@ -628,6 +629,7 @@ footer .btn-2:hover {
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
   top: -50vw;
   right: -40vw;
+  animation: infinite gradiente 5s;
 }
 
 .gradiente-cima-esquerda {
@@ -646,6 +648,21 @@ footer .btn-2:hover {
   pointer-events: none; /* Evita que o elemento bloqueie cliques em botões/links */
   top: -50vw;
   left: -40vw;
+  animation: infinite gradiente 5s;
+}
+
+@keyframes gradiente {
+  0% {
+    transform: scale(1.5);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.5);
+  }
 }
 
 .home {
@@ -852,5 +869,6 @@ footer .btn-2:hover {
   .banner h1,
   .banner p {
     color: #191919;
+    animation: subir 2s;
   }
 }
