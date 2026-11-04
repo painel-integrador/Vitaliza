@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-br" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Header</title>
+    <link rel="stylesheet" href="src/css/reset.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="box-logo">
+        <a href="/">
+          <img src="src/assets/icons/logo.svg" alt="Retorne a página inicial" />
+        </a>
+      </div>
+
+      <div class="box-nav">
+        <!-- Modo escuro e claro -->
+        <a href="#"
+          ><svg
+            width="30"
+            height="30"
+            fill="none"
+            viewBox="0 0 40 40"
+            xmlns="http://www.w3.org/2000/svg"
+            class="dark"
+            id="dark-mode"
+          >
+            <path
+              d="M15.29 30.6C11.0367 30.6 7.42669 29.1167 4.46002 26.15C1.49336 23.1833 0.00668904 19.57 2.23714e-05 15.31C-0.0066443 11.05 1.47669 7.43667 4.45002 4.47C7.42336 1.50333 11.0367 0.0133333 15.29 0C15.53 0 15.78 0.00666665 16.04 0.02C16.3 0.0333333 16.61 0.0566668 16.97 0.0900001C16.0834 1.01 15.3834 2.08333 14.87 3.31C14.3567 4.53667 14.1 5.82667 14.1 7.18C14.1 9.77333 15.01 11.9767 16.83 13.79C18.65 15.6033 20.8634 16.51 23.47 16.51C24.8167 16.51 26.1034 16.2733 27.33 15.8C28.5567 15.3267 29.6234 14.6667 30.53 13.82C30.5567 14.1467 30.5767 14.42 30.59 14.64C30.6034 14.86 30.61 15.0733 30.61 15.28C30.61 19.5333 29.12 23.15 26.14 26.13C23.16 29.11 19.5434 30.6 15.29 30.6ZM15.29 26.93C17.7767 26.93 19.99 26.21 21.93 24.77C23.87 23.33 25.18 21.5933 25.86 19.56C25.3467 19.76 24.7967 19.9067 24.21 20C23.6234 20.0933 23.0467 20.1233 22.48 20.09C19.2667 19.8633 16.53 18.6367 14.27 16.41C12.01 14.1833 10.7567 11.4133 10.51 8.1C10.4967 7.62 10.5267 7.1 10.6 6.54C10.6734 5.98 10.83 5.35333 11.07 4.66C8.92336 5.48667 7.15336 6.88333 5.76002 8.85C4.36669 10.8167 3.67002 12.97 3.67002 15.31C3.67002 18.5367 4.80002 21.28 7.06002 23.54C9.32002 25.8 12.0634 26.93 15.29 26.93Z"
+              fill="#636363"
+            />
+          </svg>
+        </a>
+        <a href="#">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 40 40"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="light"
+            id="light-mode"
+          >
+            <path
+              d="M21.44 21.44C22.32 20.56 22.76 19.4867 22.76 18.22C22.76 16.9533 22.32 15.88 21.44 15C20.56 14.12 19.4867 13.68 18.22 13.68C16.9533 13.68 15.88 14.12 15 15C14.12 15.88 13.68 16.9533 13.68 18.22C13.68 19.4867 14.12 20.56 15 21.44C15.88 22.32 16.9533 22.76 18.22 22.76C19.4867 22.76 20.56 22.32 21.44 21.44ZM12.56 23.88C11 22.3333 10.22 20.4467 10.22 18.22C10.22 15.9933 11 14.1067 12.56 12.56C14.12 11.0133 16.0067 10.2333 18.22 10.22C20.4333 10.2067 22.32 10.9867 23.88 12.56C25.44 14.1333 26.22 16.02 26.22 18.22C26.22 20.42 25.44 22.3067 23.88 23.88C22.32 25.4533 20.4333 26.2333 18.22 26.22C16.0067 26.2067 14.12 25.4267 12.56 23.88ZM7.44 19.94H0V16.5H7.44V19.96V19.94ZM36.44 19.94H29V16.5H36.46V19.96L36.44 19.94ZM16.5 7.44V0H19.96V7.44H16.5ZM16.5 36.44V29H19.96V36.46H16.5V36.44ZM9.42 11.8L4.82 7.32L7.26 4.7L11.84 9.32L9.42 11.8ZM29.18 31.58L24.64 27.08L27.02 24.62L31.64 29.12L29.2 31.58H29.18ZM24.56 9.42L29.1 4.9L31.56 7.26L27.12 11.88L24.56 9.42ZM4.7 29.18L9.38 24.72L11.74 27.02L7.36 31.66L4.7 29.18Z"
+              fill="#636363"
+            />
+          </svg>
+        </a>
+
+        <!-- Menu hamburguer - botao -->
+        <svg
+          width="38"
+          height="25"
+          viewBox="0 0 38 25"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="menu-burger"
+          id="menu-burger"
+        >
+          <path
+            d="M0 25V20.8333H37.5V25H0ZM0 14.5833V10.4167H37.5V14.5833H0ZM0 4.16667V0H37.5V4.16667H0Z"
+            fill="#636363"
+          />
+        </svg>
+
+        <div class="nav-desktop">
+          <nav>
+            <div class="links">
+              <ul>
+                <li>
+                  <a href="/" class="focado"><p class="focado">Início</p></a>
+                </li>
+                <li>
+                  <a href="/painel"><p>Painel</p></a>
+                </li>
+                <li>
+                  <a href="/calculadoras"
+                    ><p>Calculadoras</p>
+
+                    <svg
+                      width="8"
+                      height="14"
+                      viewBox="0 0 8 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M0 12.1533L1.18 13.3333L7.84667 6.66667L1.18 0L0 1.18L5.48667 6.66667L0 12.1533Z"
+                        fill="#636363"
+                      />
+                    </svg>
+
+                    <div>
+                      <ul>
+                        <li>
+                          <a href="/calculadoras/imc">
+                            <p>Calculadora de IMC</p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/calculadoras/calorias">
+                            <p>Calculadora de Gasto Calórico</p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="/calculadoras/peso">
+                            <p>Calculadora de Peso Ideal</p>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="/informativo"><p>Informativo</p> </a>
+                </li>
+                <li>
+                  <a href="/sobre"><p>Sobre Nós</p></a>
+                </li>
+              </ul>
+            </div>
+
+            <a href="/contato" class="btn">Entre em contato</a>
+
+            <a href="/perfil" class="perfil">
+              <img id="perfil" alt="Veja seu perfil" />
+
+              <div>
+                <ul>
+                  <li>
+                    <a href="/perfil">
+                      <p>Perfil</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/sair" class="btn">
+                      <p>Sair</p>
+
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 18 18"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                      >
+                        <path
+                          d="M2 18C1.44667 18 0.976667 17.8033 0.59 17.41C0.203333 17.0167 0.00666667 16.5467 0 16V2C0 1.44667 0.196667 0.976667 0.59 0.59C0.983333 0.203333 1.45333 0.00666667 2 0H9V2H2V16H9V18H2ZM13 14L11.62 12.55L14.18 10H6V8H14.18L11.63 5.45L13 4L18 9L13 14Z"
+                          fill="#636363"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="nav-mobile">
+        <nav>
+          <div class="links">
+            <ul>
+              <li>
+                <a href="/" class="focado"><p class="focado">Início</p></a>
+              </li>
+              <li>
+                <a href="/painel"><p>Painel</p></a>
+              </li>
+              <li>
+                <a href="/calculadoras"
+                  ><p>Calculadoras</p>
+
+                  <svg
+                    width="8"
+                    height="14"
+                    viewBox="0 0 8 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 12.1533L1.18 13.3333L7.84667 6.66667L1.18 0L0 1.18L5.48667 6.66667L0 12.1533Z"
+                      fill="#636363"
+                    />
+                  </svg>
+
+                  <div>
+                    <ul>
+                      <li>
+                        <a href="/calculadoras/imc">
+                          <p>Calculadora de IMC</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/calculadoras/calorias">
+                          <p>Calculadora de Gasto Calórico</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/calculadoras/peso">
+                          <p>Calculadora de Peso Ideal</p>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="/informativo"><p>Informativo</p> </a>
+              </li>
+              <li>
+                <a href="/sobre"><p>Sobre Nós</p></a>
+              </li>
+            </ul>
+          </div>
+
+          <a href="/contato" class="btn">Entre em contato</a>
+
+          <a href="/perfil" class="perfil">
+            <img id="perfil" alt="Veja seu perfil" />
+
+            <div>
+              <ul>
+                <li>
+                  <a href="/perfil">
+                    <p>Perfil</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="/sair" class="btn">
+                    <p>Sair</p>
+
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 18 18"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="icon"
+                    >
+                      <path
+                        d="M2 18C1.44667 18 0.976667 17.8033 0.59 17.41C0.203333 17.0167 0.00666667 16.5467 0 16V2C0 1.44667 0.196667 0.976667 0.59 0.59C0.983333 0.203333 1.45333 0.00666667 2 0H9V2H2V16H9V18H2ZM13 14L11.62 12.55L14.18 10H6V8H14.18L11.63 5.45L13 4L18 9L13 14Z"
+                        fill="#636363"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </a>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>

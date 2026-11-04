@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* PALETA */
+/* Light */
+:root[data-theme="light"] {
+  /* Primary */
+  --primary-0: #000000;
+  --primary-10: #030303;
+  --primary-20: #161616;
+  --primary-30: #2e2e2e;
+  --primary-40: #484848;
+  --primary-50: #636363;
+  --primary-60: #808080;
+  --primary-70: #9e9e9e;
+  --primary-80: #bebebe;
+  --primary-90: #dedede;
+  --primary-95: #eeeeee;
+  --primary-99: #fcfcfc;
+  --primary-100: #ffffff;
+  --primary-source: #191919;
+
+  /* Neutral */
+  --neutral-0: #000000;
+  --neutral-10: #030306;
+  --neutral-20: #15151e;
+  --neutral-30: #2c2d38;
+  --neutral-40: #454753;
+  --neutral-50: #616270;
+  --neutral-60: #7e7f8d;
+  --neutral-70: #9c9dab;
+  --neutral-80: #bbbdca;
+  --neutral-90: #dbddea;
+  --neutral-95: #ecedfa;
+  --neutral-99: #fafbff;
+  --neutral-100: #fdfeff;
+  --neutral-source: #f0f0ff;
+
+  /* Secondary */
+  --secondary-0: #000000;
+  --secondary-10: #000020;
+  --secondary-20: #000f49;
+  --secondary-30: #002a6f;
+  --secondary-40: #004694;
+  --secondary-50: #0063b7;
+  --secondary-60: #2d82d8;
+  --secondary-70: #52a2f7;
+  --secondary-80: #78c2ff;
+  --secondary-90: #9fe3ff;
+  --secondary-95: #b3f4ff;
+  --secondary-99: #c4ffff;
+  --secondary-100: #c8ffff;
+  --secondary-source: #3a76c9;
+
+  /* Tertiary */
+  --tertiary-0: #000000;
+  --tertiary-10: #000704;
+  --tertiary-20: #002018;
+  --tertiary-30: #003b30;
+  --tertiary-40: #00584b;
+  --tertiary-50: #007566;
+  --tertiary-60: #249383;
+  --tertiary-70: #4fb2a2;
+  --tertiary-80: #77d1c1;
+  --tertiary-90: #a0f0e1;
+  --tertiary-95: #b5fff1;
+  --tertiary-99: #c5fffe;
+  --tertiary-100: #caffff;
+  --tertiary-source: #41a399;
+}
+
+/* Dark */
+:root[data-theme="dark"] {
+  /* Primary */
+  --primary-10: #030303;
+  --primary-20: #141414;
+  --primary-30: #2f2f2f;
+  --primary-40: #505050;
+  --primary-50: #767676;
+  --primary-60: #9d9d9d;
+  --primary-70: #c1c1c1;
+  --primary-80: #dddddd;
+  --primary-source: #191919;
+
+  /* Neutral */
+  --neutral-10: #030306;
+  --neutral-20: #12131b;
+  --neutral-30: #2d2e39;
+  --neutral-40: #4e4f5c;
+  --neutral-50: #747583;
+  --neutral-60: #9a9caa;
+  --neutral-70: #bec0ce;
+  --neutral-80: #dbddea;
+  --neutral-source: #f0f0ff;
+
+  /* Secondary */
+  --secondary-10: #000020;
+  --secondary-20: #000c44;
+  --secondary-30: #002b71;
+  --secondary-40: #004f9f;
+  --secondary-50: #1f78cd;
+  --secondary-60: #50a0f6;
+  --secondary-70: #7cc6ff;
+  --secondary-80: #9fe3ff;
+  --secondary-source: #3a76c9;
+
+  /* Tertiary */
+  --tertiary-10: #000704;
+  --tertiary-20: #001d15;
+  --tertiary-30: #003c31;
+  --tertiary-40: #006153;
+  --tertiary-50: #0f897a;
+  --tertiary-60: #4db0a0;
+  --tertiary-70: #7bd4c4;
+  --tertiary-80: #9ff0e1;
+  --tertiary-source: #41a399;
+}
+
+/* == Tags Padrão == */
+
+html {
+  font-family:
+    work sans,
+    sans-serif;
+}
+
+body {
+  background-color: var(neutral-99);
+}
+
+/* HEADER */
+header {
+  position: sticky;
+  margin-top: 10px;
+  top: -10px;
+  z-index: 1000;
+  display: flex;
+  gap: 4px;
+  color: var(--primary-50);
+}
+
+/* Quando o tema for LIGHT, esconde o ícone/elemento do modo escuro */
+:root[data-theme="light"] .dark {
+  display: none;
+}
+
+/* Quando o tema for DARK, esconde o ícone/elemento do modo claro */
+:root[data-theme="dark"] .light {
+  display: none;
+}
+
+.dark:hover,
+.light:hover,
+.menu-burger:hover {
+  fill: var(--primary-20);
+}
+
+header .box-logo {
+  border-radius: 0 0 14px 32px;
+  background-color: var(--primary-95);
+  padding: 12px 14px;
+}
+
+header .box-logo a img {
+  width: 180px;
+  min-width: 180px;
+}
+
+header .box-nav {
+  border-radius: 0 0 32px 14px;
+  background-color: var(--primary-95);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 14px;
+}
+
+header .nav-desktop {
+  display: none;
+}
+
+/* ELEMENTOS */
+
+.btn {
+  padding: 12px 14px;
+  background-color: var(--primary-90);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+  transition: 200ms ease-in-out;
+}
+
+.btn:hover {
+  border-radius: 28px;
+  background-color: var(--neutral-80);
+  color: var(--primary-20);
+  fill: var(--primary-20);
+}
+
+@media screen and (min-width: 700px) {
+  header {
+    margin: 0 20px;
+  }
+  header .box-logo {
+    border-radius: 14px 14px 14px 32px;
+  }
+
+  header .box-nav {
+    border-radius: 14px 14px 32px 14px;
+  }
+
+  header .nav-desktop {
+    display: block
+  }
+
+  header .nav-mobile {
+    display: none
+  }
+}
