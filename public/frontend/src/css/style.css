@@ -121,13 +121,276 @@ html {
   font-family:
     work sans,
     sans-serif;
+
+  color: var(--primary-20);
 }
 
 body {
   background-color: var(--neutral-99);
 }
 
+/* ELEMENTOS */
+
+section {
+  padding: 12px 8px;
+  margin: 8px 0;
+}
+
+hr {
+  height: 3px;
+  border: 0;
+  background-color: #ecedfa7d;
+  margin: 12px auto;
+  width: 80%;
+}
+
+/* TEXT */
+h1 {
+  font-size: clamp(40px, calc(24px + 4vw), 80px);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(28px, calc(18px + 2vw), 50px);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: clamp(24px, calc(16px + 1.5vw), 40px);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: clamp(20px, calc(14px + 1vw), 30px);
+  font-weight: 400;
+}
+
+h5 {
+  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
+  font-weight: 400;
+}
+
+.destaque-titulo {
+  font-style: italic;
+}
+
+p {
+  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
+  font-weight: 300;
+}
+
+.centro {
+  text-align: center;
+}
+
+/* CARD e BOX */
+
+.card,
+.card-hor {
+  background-color: var(--primary-95);
+  border-radius: 28px;
+  overflow: hidden;
+  transition: 200ms ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.card > div,
+.card-hor > div {
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card > img,
+.card-hor > img {
+  width: 100%;
+  height: clamp(180px, calc(120px + 12.5vw), 300px);
+  border-radius: 28px;
+  object-fit: cover;
+  transition: 200ms ease;
+}
+
+.card-hor > img {
+  order: -1; /* como no html a imagem vem depois do texto, mas queremos que ela apareça antes, usamos order -1 */
+}
+
+.card:hover,
+.card-hor:hover {
+  background-color: var(--neutral-90);
+  border-radius: 48px;
+  cursor: pointer;
+}
+
+.box {
+  background-color: #ecedfa7d;
+  border-radius: 28px;
+  padding: 24px 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ICONES e IMAGENS */
+
+.flor-gradiente {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+}
+
+/* BACKGROUNDs */
+
+.gradiente-wrapper {
+  position: relative;
+  height: 0;
+  isolation: isolate;
+  z-index: -1;
+  bottom: 50vw; /* faz ele ficar no lugar onde a tag foi colocada */
+}
+.gradiente {
+  width: 100%;
+  aspect-ratio: 1;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: -1;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background-color: var(--neutral-99);
+  background-image:
+    url("../assets/images/gradiente-textura.svg"),
+    radial-gradient(#3a76c9 0%, #41a399 40%, var(--neutral-99) 70%);
+  background-blend-mode: soft-light, normal;
+  opacity: 30%;
+}
+
+.bg-quadrados {
+  background-image:
+    linear-gradient(var(--neutral-95) 1px, transparent 1px),
+    linear-gradient(90deg, var(--neutral-95) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-2 {
+  background-color: var(--neutral-95);
+}
+
+/* BUTTONS */
+
+.btn {
+  padding: 14px;
+  background-color: var(--primary-90);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  transition: 200ms ease;
+  min-width: 200px;
+}
+.btn:hover {
+  border-radius: 28px;
+  background-color: var(--neutral-80);
+  color: var(--primary-20);
+  fill: var(--primary-20);
+}
+
+.btn-2 {
+  padding: 14px;
+  background-color: var(--secondary-80);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  transition: 200ms ease;
+  min-width: 200px;
+}
+.btn-2:hover {
+  border-radius: 28px;
+  background-color: var(--secondary-70);
+  color: var(--primary-20);
+  fill: var(--primary-20);
+}
+
+.btn-3 {
+  padding: 14px;
+  background-color: var(--secondary-90);
+  border-radius: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  transition: 200ms ease;
+  min-width: 200px;
+}
+.btn-3:hover {
+  border-radius: 28px;
+  background-color: var(--secondary-80);
+  backdrop-filter: opacity(80%);
+  color: var(--primary-20);
+  fill: var(--primary-20);
+}
+
+.esquerda {
+  border-radius: 28px 14px 14px 28px;
+}
+
+.direita {
+  border-radius: 14px 28px 28px 14px;
+}
+
+.cima {
+  border-radius: 28px 28px 14px 14px;
+}
+
+.baixo {
+  border-radius: 14px 14px 28px 28px;
+}
+
+.meio {
+  border-radius: 14px;
+}
+
+/* LAYOUT */
+
+.flex-hor {
+  display: flex;
+  gap: 4px;
+  flex-direction: row;
+}
+
+.flex-ver {
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-centro {
+  justify-content: center;
+  align-items: center;
+}
+
+.abs-baixo-direita {
+  position: absolute;
+  bottom: 20px;
+  right: 24px;
+}
+
+.abs-cima-direita {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+}
+
 /* HEADER */
+
 header {
   position: sticky;
   top: 0px;
@@ -177,212 +440,20 @@ header .nav-desktop {
   display: none;
 }
 
-/* ELEMENTOS */
-
-section {
-  padding: 12px 8px;
-  margin: 8px 0;
+/* BANNER */
+.banner {
+  padding: 12px 20px;
 }
 
-hr {
-  height: 3px;
-  border: 0;
-  background-color: #ecedfa7d;
-  margin: 12px auto;
-  width: 80%;
-}
-
-/* TEXT */
-h1 {
-  font-size: clamp(40px, calc(24px + 4vw), 80px);
-  font-weight: 700;
-}
-
-h2 {
-  font-size: clamp(28px, calc(18px + 2vw), 50px);
-  font-weight: 700;
-}
-
-h3 {
-  font-size: clamp(24px, calc(16px + 1.5vw), 40px);
-  font-weight: 700;
-}
-
-h4 {
-  font-size: clamp(20px, calc(14px + 1vw), 30px);
-  font-weight: 400;
-}
-
-h5 {
-  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
-  font-weight: 400;
-}
-
-p {
-  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
-  font-weight: 300;
-}
-
-.centro {
-  text-align: center;
-}
-
-/* CARD */
-.card,
-.card-hor {
-  background-color: var(--primary-95);
-  border-radius: 28px;
-  overflow: hidden;
-  transition: 200ms ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.card > div,
-.card-hor > div {
-  padding: 24px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.card > img,
-.card-hor > img {
-  width: 100%;
-  height: clamp(180px, calc(120px + 12.5vw), 300px);
+.banner > img {
+  width: 50%;
+  aspect-ratio: 5/3;
   border-radius: 28px;
   object-fit: cover;
-  transition: 200ms ease;
 }
 
-.card-hor > img {
-  order: -1; /* como no html a imagem vem depois do texto, mas queremos que ela apareça antes, usamos order -1 */
-}
-
-.card:hover,
-.card-hor:hover {
-  background-color: var(--neutral-90);
-  border-radius: 48px;
-  cursor: pointer;
-}
-
-/* BACKGROUNDs */
-
-.gradiente-wrapper {
-  position: relative;
-  height: 0;
-  isolation: isolate;
-  z-index: -1;
-  bottom: 50vw; /* faz ele ficar no lugar onde a tag foi colocada */
-}
-.gradiente {
-  width: 100%;
-  aspect-ratio: 1;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  z-index: -1;
-  transform: translateX(-50%);
-  pointer-events: none;
-  background-color: var(--neutral-99);
-  background-image:
-    url("../assets/images/gradiente-textura.svg"),
-    radial-gradient(#3a76c9 0%, #41a399 40%, var(--neutral-99) 70%);
-  background-blend-mode: soft-light, normal;
-  opacity: 30%;
-}
-
-.bg-quadrados {
-  background-image:
-    linear-gradient(var(--neutral-95) 1px, transparent 1px),
-    linear-gradient(90deg, var(--neutral-95) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-.bg-2 {
-  background-color: var(--neutral-95);
-}
-
-/* BUTTONS */
-
-.btn {
-  padding: 12px 14px;
-  background-color: var(--primary-90);
-  border-radius: 14px;
-  display: flex;
-  justify-content: space-between;
-  margin: 4px 0;
-  transition: 200ms ease;
-}
-.btn:hover {
-  border-radius: 28px;
-  background-color: var(--neutral-80);
-  color: var(--primary-20);
-  fill: var(--primary-20);
-}
-
-.btn-2 {
-  padding: 12px 14px;
-  background-color: var(--secondary-80);
-  border-radius: 14px;
-  display: flex;
-  justify-content: space-between;
-  margin: 4px 0;
-  transition: 200ms ease;
-}
-.btn-2:hover {
-  border-radius: 28px;
-  background-color: var(--secondary-70);
-  color: var(--primary-20);
-  fill: var(--primary-20);
-}
-
-.btn-3 {
-  padding: 12px 14px;
-  background-color: var(--secondary-80);
-  backdrop-filter: opacity(30%);
-  border-radius: 14px;
-  display: flex;
-  justify-content: space-between;
-  margin: 4px 0;
-  transition: 200ms ease;
-}
-.btn-3:hover {
-  border-radius: 28px;
-  background-color: var(--secondary-80);
-  backdrop-filter: opacity(80%);
-  color: var(--primary-20);
-  fill: var(--primary-20);
-}
-
-.esquerda {
-  border-radius: 28px 14px 14px 28px;
-}
-
-.direita {
-  border-radius: 14px 28px 28px 14px;
-}
-
-.meio {
-  border-radius: 14px;
-}
-
-/* LAYOUT */
-
-.flex-hor {
-  display: flex;
-  gap: 4px;
-  flex-direction: row;
-}
-
-.flex-ver {
-  display: flex;
-  gap: 4px;
-  flex-direction: column;
-}
-
-.flex-1 {
-  flex: 1;
+.banner h3 {
+  font-weight: 400;
 }
 
 @media screen and (min-width: 700px) {
@@ -468,5 +539,21 @@ p {
     display: flex;
     gap: 4px;
     flex-direction: column;
+  }
+
+  .esquerda-desktop {
+    border-radius: 28px 14px 14px 28px;
+  }
+
+  .direita-desktop {
+    border-radius: 14px 28px 28px 14px;
+  }
+
+  .cima-desktop {
+    border-radius: 28px 28px 14px 14px;
+  }
+
+  .baixo-desktop {
+    border-radius: 14px 14px 28px 28px;
   }
 }
