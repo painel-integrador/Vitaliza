@@ -263,14 +263,18 @@
           class="flex-1"
           alt="Banner inicio"
         />
-        <div class="box flex-1">
+        <div class="box flex-1 flex-ver">
           <img
             src="src/assets/images/flor-gradiente.svg"
             alt="flor com gradiente azul"
             class="flor-gradiente"
           />
-          <h1>Seja sua <span class="destaque-titulo">melhor</span> versão!</h1>
-          <h4>Veja como hábitos saudáveis podem mudar sua vida!</h4>
+          <div>
+            <h1>
+              Seja sua <span class="destaque-titulo">melhor</span> versão!
+            </h1>
+            <h4>Veja como hábitos saudáveis podem mudar sua vida!</h4>
+          </div>
           <div class="flex-hor-desktop flex-ver">
             <a href="" class="esquerda-desktop cima btn-2">
               <p>Crie sua conta</p>
@@ -281,6 +285,20 @@
           </div>
         </div>
       </section>
+
+      <div class="gradiente-container"><div class="gradiente"></div></div>
+
+      <hr />
+
+      <section>
+        <h2 class="centro">Aprenda a cuidar mais da saúde</h2>
+        <p class="centro paragrafo">
+          Veja nossas dicas e exemplos de como ter melhor proveito dos
+          exercícios físicos e hidratação!
+        </p>
+      </section>
+
+      <hr />
 
       <section class="bg-quadrados">
         <div class="flex-ver">
@@ -348,7 +366,6 @@
         </div>
       </section>
 
-      <div class="gradiente-wrapper"><div class="gradiente"></div></div>
       <hr />
 
       <section>
@@ -391,8 +408,10 @@
       <hr />
 
       <section class="bg-2 flex-ver flex-centro">
-        <h2>Crie uma <span class="destaque-titulo">conta</span> já:</h2>
-        <p>É de graça!</p>
+        <div class="separacao flex-ver flex-centro">
+          <h2>Crie uma <span class="destaque-titulo">conta</span> já:</h2>
+          <p>É de graça!</p>
+        </div>
 
         <div class="flex-hor-desktop flex-ver">
           <a href="/conta" class="esquerda-desktop cima btn-2"
@@ -427,6 +446,78 @@
           </a>
         </div>
       </section>
+
+      <hr />
     </main>
+
+    <div class="gradiente-container"><div class="gradiente"></div></div>
+
+    <footer class="flex-hor-desktop flex-ver">
+      <div class="esquerda-desktop cima box box-logo bg-quadrados">
+        <img
+          src="src/assets/images/flor-gradiente.svg"
+          alt="flor com gradiente azul"
+          class="flor-gradiente"
+        />
+        <img src="src/assets/icons/logo.svg" alt="Logo" class="logo" />
+        <img
+          src="src/assets/icons/icons.svg"
+          alt="Ícones decorativos"
+          class="icons"
+        />
+      </div>
+      <div class="flex-ver direita-desktop bg-quadrados box box-links">
+        <div>
+          <h2>Produto</h2>
+          <ul class="lista">
+            <li>
+              <a href="#"><p class="link">Ínicio</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Perfil</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Painel</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Calculadora</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Informativo</p></a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Social</h2>
+          <ul class="lista">
+            <li>
+              <a href="#"><p class="link">Instagram</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">E-mail</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">GitHub</p></a>
+            </li>
+          </ul>
+        </div>
+
+        <a href="#" class="btn abs-baixo-esquerda"><p>Entre em contato</p></a>
+
+        <img
+          src="src/assets/images/degrade-cinza.svg"
+          alt="Degrade Cinza"
+          class="degrade-cinza abs-baixo-direita"
+        />
+      </div>
+
+      <p class="abs-baixo-direita branco">
+        Imagens de:
+        <a href="https://www.pexels.com/" class="link">Pexels</a> | Vitaliza ®
+      </p>
+    </footer>
+
+    <script src="src/scripts/grid-hover.js"></script>
   </body>
 </html>
