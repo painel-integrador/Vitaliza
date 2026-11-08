@@ -71,25 +71,33 @@
 /* Dark */
 :root[data-theme="dark"] {
   /* Primary */
-  --primary-10: #030303;
-  --primary-20: #141414;
-  --primary-30: #2f2f2f;
-  --primary-40: #505050;
-  --primary-50: #767676;
-  --primary-60: #9d9d9d;
-  --primary-70: #c1c1c1;
-  --primary-80: #dddddd;
+  --primary-10: #ffffff;
+  --primary-20: #fcfcfc;
+  --primary-30: #eeeeee;
+  --primary-40: #dedede;
+  --primary-50: #bebebe;
+  --primary-60: #9e9e9e;
+  --primary-70: #808080;
+  --primary-80: #636363;
+  --primary-90: #484848;
+  --primary-95: #2e2e2e;
+  --primary-99: #161616;
+  --primary-100: #030303;
   --primary-source: #191919;
 
   /* Neutral */
-  --neutral-10: #030306;
-  --neutral-20: #12131b;
-  --neutral-30: #2d2e39;
-  --neutral-40: #4e4f5c;
-  --neutral-50: #747583;
-  --neutral-60: #9a9caa;
-  --neutral-70: #bec0ce;
-  --neutral-80: #dbddea;
+  --neutral-10: #fdfeff;
+  --neutral-20: #fafbff;
+  --neutral-30: #ecedfa;
+  --neutral-40: #dbddea;
+  --neutral-50: #bbbdca;
+  --neutral-60: #9c9dab;
+  --neutral-70: #7e7f8d;
+  --neutral-80: #616270;
+  --neutral-90: #454753;
+  --neutral-95: #2c2d38;
+  --neutral-99: #15151e;
+  --neutral-100: #030306;
   --neutral-source: #f0f0ff;
 
   /* Secondary */
@@ -132,7 +140,7 @@ body {
 /* ELEMENTOS */
 
 section {
-  padding: 20px 8px;
+  padding: 20px 20px;
   margin: 8px 0;
 }
 
@@ -301,10 +309,10 @@ p {
   pointer-events: none;
   background-color: var(--neutral-99);
   background-image:
-    url("../assets/images/gradiente-textura.svg"),
+    url("../assets/images/gradiente-textura.webp"),
     radial-gradient(#3a76c9 0%, #41a399 40%, var(--neutral-99) 70%);
   background-blend-mode: soft-light, normal;
-  opacity: 30%;
+  opacity: 50%;
 }
 
 .bg-quadrados {
@@ -418,19 +426,19 @@ p {
 /* BORDAS */
 
 .esquerda {
-  border-radius: 28px 14px 14px 28px;
+  border-radius: 24px 14px 14px 24px;
 }
 
 .direita {
-  border-radius: 14px 28px 28px 14px;
+  border-radius: 14px 24px 24px 14px;
 }
 
 .cima {
-  border-radius: 28px 28px 14px 14px;
+  border-radius: 24px 24px 14px 14px;
 }
 
 .baixo {
-  border-radius: 14px 14px 28px 28px;
+  border-radius: 14px 14px 24px 24px;
 }
 
 .meio {
@@ -496,62 +504,13 @@ p {
 
 /* HEADER */
 
-header {
-  position: sticky;
-  top: 0px;
-  z-index: 1000;
-  display: none;
-  gap: 4px;
-  color: var(--primary-50);
-}
-
-/* Quando o tema for LIGHT, esconde o ícone/elemento do modo escuro */
-:root[data-theme="light"] .dark {
-  display: none;
-}
-
-/* Quando o tema for DARK, esconde o ícone/elemento do modo claro */
-:root[data-theme="dark"] .light {
-  display: none;
-}
-
-.dark:hover,
-.light:hover,
-.menu-burger:hover {
-  fill: var(--primary-20);
-}
-
-header .box-logo {
-  border-radius: 0 0 14px 32px;
-  background-color: var(--primary-95);
-  padding: 12px 14px;
-}
-
-header .box-logo a img {
-  width: 180px;
-  min-width: 180px;
-}
-
-header .box-nav {
-  border-radius: 0 0 32px 14px;
-  background-color: var(--primary-95);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 12px 14px;
-}
-
-header .nav-desktop {
-  display: none;
-}
-
 /* BANNER */
 .banner {
-  padding: 12px 20px;
+  padding: 12px;
 }
 
 .banner > img {
-  width: 50%;
+  width: 100%;
   aspect-ratio: 5/3;
   border-radius: 28px;
   object-fit: cover;
@@ -559,6 +518,20 @@ header .nav-desktop {
 
 .banner h4 {
   font-weight: 400;
+}
+
+.banner > .flex-ver {
+  justify-content: space-between;
+}
+
+.banner .btns {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.banner .btns > a {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* FOOTER */
@@ -605,26 +578,6 @@ footer .box > .degrade-cinza {
 @media screen and (min-width: 700px) {
   /* HEADER */
 
-  header {
-    margin: 0 20px;
-    top: 10px;
-  }
-  header .box-logo {
-    border-radius: 14px 14px 14px 32px;
-  }
-
-  header .box-nav {
-    border-radius: 14px 14px 32px 14px;
-  }
-
-  header .nav-desktop {
-    display: block;
-  }
-
-  header .nav-mobile {
-    display: none;
-  }
-
   /* FOOTER */
 
   footer {
@@ -660,6 +613,16 @@ footer .box > .degrade-cinza {
     right: -20%;
     bottom: auto;
     z-index: 0;
+  }
+
+  /* BANNER */
+
+  .banner {
+    padding: 12px 20px;
+  }
+
+  .banner > img {
+    width: 50%;
   }
 
   /* ELEMENTOS */
