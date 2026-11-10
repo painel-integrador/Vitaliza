@@ -125,6 +125,10 @@
 
 /* == Tags Padrão == */
 
+main {
+  padding-top: 90px;
+}
+
 html {
   font-family:
     work sans,
@@ -322,6 +326,7 @@ p {
     linear-gradient(var(--neutral-95) 1px, transparent 1px),
     linear-gradient(90deg, var(--neutral-95) 1px, transparent 1px);
   background-size: var(--tamanho-quadrado) var(--tamanho-quadrado);
+  border-bottom: 1px solid var(--neutral-95);
 }
 
 .hover-square {
@@ -484,6 +489,10 @@ p {
   align-items: center;
 }
 
+.spc-between {
+  justify-content: space-between;
+}
+
 .abs-baixo-direita {
   position: absolute;
   bottom: 20px;
@@ -504,9 +513,134 @@ p {
 
 /* HEADER */
 
+header {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+header > div {
+  background-color: var(--primary-95);
+  padding: 4px 12px;
+}
+
+header .nav {
+  flex: 1;
+  border-radius: 0 0 28px 14px;
+}
+
+header .logo {
+  width: clamp(200px, calc(80px + 9.5vw), 350px);
+  display: block;
+  margin: 0 auto;
+  border-radius: 0 0 14px 28px;
+}
+
+.theme-toggle {
+  background: transparent;
+  cursor: pointer;
+}
+
+.theme-toggle:has(.modo-claro),
+.theme-toggle:has(.modo-escuro),
+#logo-modo-escuro,
+.modo-claro,
+:root[data-theme="dark"] #logo-modo-claro,
+:root[data-theme="light"] #logo-modo-escuro {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle:has(.modo-claro),
+:root[data-theme="light"] .theme-toggle:has(.modo-escuro),
+:root[data-theme="dark"] #logo-modo-escuro,
+:root[data-theme="dark"] .modo-claro,
+:root[data-theme="light"] .modo-escuro {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle:has(.modo-claro),
+:root[data-theme="light"] .theme-toggle:has(.modo-escuro) {
+  display: flex;
+}
+
+.theme-toggle:hover .modo-claro,
+.theme-toggle:hover .modo-escuro {
+  fill: var(--primary-40);
+}
+
+header .nav .menu-fechar {
+  display: none;
+}
+
+header .nav p {
+  font-weight: 500;
+  color: var(--primary-60);
+}
+header .nav a:hover p {
+  color: var(--primary-20);
+  cursor: pointer;
+}
+
+header .nav p.destaque {
+  color: var(--primary-20);
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+}
+
+header .nav .nav-links {
+  gap: 16px;
+  display: none;
+}
+
+header .nav nav {
+  height: 100%;
+}
+
+header .nav .drop {
+  position: absolute;
+  background-color: var(--primary-95);
+  border-radius: 14px 14px 28px 28px;
+  padding: 8px 0;
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: max-content;
+}
+
+header .nav .drop-hover {
+  position: relative;
+}
+
+header .nav .drop-hover:hover > .drop,
+header .nav .drop-hover.drop-aberto > .drop {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+header .nav .contato-perfil {
+  gap: 8px;
+  display: none;
+}
+
+header .nav .contato-perfil .perfil img {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
 /* BANNER */
 .banner {
   padding: 12px;
+}
+
+.banner .box {
+  padding: 28px 28px;
 }
 
 .banner > img {
@@ -577,6 +711,27 @@ footer .box > .degrade-cinza {
 
 @media screen and (min-width: 700px) {
   /* HEADER */
+
+  header {
+    padding: 0 20px;
+  }
+
+  header .menu-hamburguer,
+  header .menu-fechar {
+    display: none;
+  }
+
+  header .nav .nav-links {
+    display: flex;
+  }
+
+  header .nav .contato-perfil {
+    display: flex;
+  }
+
+  header .logo {
+    width: clamp(150px, calc(80px + 9.5vw), 300px);
+  }
 
   /* FOOTER */
 
