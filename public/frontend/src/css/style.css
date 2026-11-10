@@ -371,6 +371,10 @@ p {
   background-color: var(--neutral-95);
 }
 
+.invisivel {
+  display: none;
+}
+
 /* BUTTONS */
 
 .btn {
@@ -521,9 +525,14 @@ header {
   z-index: 1000;
 }
 
-header > div {
+header .desktop > div,
+header .mobile > div {
   background-color: var(--primary-95);
   padding: 4px 12px;
+}
+
+header .mobile > div {
+  padding: 20px 24px;
 }
 
 header .nav {
@@ -570,10 +579,6 @@ header .logo {
   fill: var(--primary-40);
 }
 
-header .nav .menu-fechar {
-  display: none;
-}
-
 header .nav p {
   font-weight: 500;
   color: var(--primary-60);
@@ -591,7 +596,6 @@ header .nav p.destaque {
 
 header .nav .nav-links {
   gap: 16px;
-  display: none;
 }
 
 header .nav nav {
@@ -600,13 +604,13 @@ header .nav nav {
 
 header .nav .drop {
   position: absolute;
+  top: 24px;
   background-color: var(--primary-95);
-  border-radius: 14px 14px 28px 28px;
-  padding: 8px 0;
+  border-radius: 28px;
+  padding: 12px 14px;
   display: none;
   flex-direction: column;
   gap: 4px;
-  width: max-content;
 }
 
 header .nav .drop-hover {
@@ -616,15 +620,18 @@ header .nav .drop-hover {
 header .nav .drop-hover:hover > .drop,
 header .nav .drop-hover.drop-aberto > .drop {
   display: flex;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+}
+
+header .nav .drop-hover:hover svg {
+  transform: rotate(90deg);
 }
 
 header .nav .contato-perfil {
   gap: 8px;
-  display: none;
+}
+
+header .mobile .contato-perfil {
+  border-radius: 0 0 28px 28px;
 }
 
 header .nav .contato-perfil .perfil img {
@@ -632,6 +639,11 @@ header .nav .contato-perfil .perfil img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+}
+
+header .nav .contato-perfil .drop {
+  right: 0;
+  top: 50px;
 }
 
 /* BANNER */
@@ -855,5 +867,17 @@ footer .box > .degrade-cinza {
 
   .baixo-desktop {
     border-radius: 14px 14px 28px 28px;
+  }
+
+  .invisivel-desktop {
+    display: none;
+  }
+
+  .visivel-desktop {
+    display: block;
+  }
+
+  .visivel-desktop-flex {
+    display: flex;
   }
 }

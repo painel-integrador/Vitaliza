@@ -1,34 +1,22 @@
 let isMenuAberto = false;
-let botaoMenu = document.getElementById("botao-menu");
-let botaoFechar = document.getElementById("botao-fechar");
-let nav = document.getElementById("nav");
-let btns = document.getElementById("btns");
+let botaoMenu = document.getElementById("menu-hamburguer");
+let botaoFechar = document.getElementById("menu-fechar");
+let menuMobile = document.getElementById("menu-mobile");
 
-// Fechado para celulares
-if (window.matchMedia("(max-width: 600px)").matches) {
-  nav.classList.add("menu-fechado");
-}
+document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+  toggle.addEventListener("click", () => {
+    const html = document.documentElement;
+    html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+  });
+});
 
 function menu() {
   // Menu fechado vai abrir
+  botaoMenu.classList.toggle("invisivel");
 
-  if (!isMenuAberto) {
-    botaoMenu.classList.toggle("invisivel");
+  botaoFechar.classList.toggle("invisivel");
 
-    botaoFechar.classList.toggle("invisivel");
-
-    nav.classList.add("menu-aberto");
-    nav.classList.remove("menu-fechado");
-  } /* Fechar Menu */ else {
-    botaoMenu.classList.toggle("invisivel");
-
-    botaoFechar.classList.toggle("invisivel");
-
-    nav.classList.add("menu-fechado");
-    nav.classList.remove("menu-aberto");
-  }
-
-  isMenuAberto = !isMenuAberto; // troca o valor boolean (true => false | false => true)
+  menuMobile.classList.toggle("invisivel");
 }
 
 async function checarAutenticacao() {

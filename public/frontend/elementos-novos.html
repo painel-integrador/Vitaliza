@@ -6,6 +6,9 @@
     <title>Vitaliza</title>
     <link rel="stylesheet" href="src/css/reset.css" />
     <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="icon" type="image/x-icon" href="src/assets/icons/icone.svg" />
+
+    <base href="/" />
   </head>
   <body>
     <header class="flex-hor">
@@ -130,7 +133,7 @@
                   </p>
                 </a>
 
-                <ul class="drop">
+                <ul class="lista drop">
                   <li>
                     <a href="/calculadoras/imc">
                       <p>IMC</p>
@@ -491,27 +494,7 @@
     </footer>
 
     <script src="src/scripts/grid-hover.js"></script>
-    <script>
-      document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
-        toggle.addEventListener("click", () => {
-          const html = document.documentElement;
-          html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
-        });
-      });
-
-      document.querySelectorAll(".drop-hover").forEach((dropdown) => {
-        const trigger = dropdown.querySelector(":scope > a");
-
-        trigger.addEventListener("click", (event) => {
-          event.preventDefault();
-          dropdown.classList.toggle("drop-aberto");
-          trigger.setAttribute(
-            "aria-expanded",
-            dropdown.classList.contains("drop-aberto"),
-          );
-        });
-      });
-    </script>
+    <script src="src/scripts/dropdown.js" defer></script>
     <script src="src/scripts/header.js" defer></script>
   </body>
 </html>
