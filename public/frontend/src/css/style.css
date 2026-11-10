@@ -472,6 +472,10 @@ p {
   margin-bottom: 20px;
 }
 
+.separacao-hor {
+  margin-right: 20px;
+}
+
 .flex-hor {
   display: flex;
   gap: 4px;
@@ -487,10 +491,22 @@ p {
 .flex-1 {
   flex: 1;
 }
+.flex-75 {
+  flex: 0.75;
+}
+.flex-50 {
+  flex: 0.5;
+}
+.flex-25 {
+  flex: 0.25;
+}
 
 .flex-centro {
   justify-content: center;
   align-items: center;
+}
+.flex-centro-ver {
+  justify-content: center;
 }
 
 .spc-between {

@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Vitaliza - Início</title>
+
     <link rel="stylesheet" href="src/css/reset.css" />
     <link rel="stylesheet" href="src/css/style.css" />
+
+    <!-- <base href="/" /> -->
+
+    <link rel="icon" href="src/assets/icons/icone.svg" type="image/svg" />
   </head>
   <body>
     <header class="flex-ver">
@@ -183,7 +189,7 @@
               </a>
               <div class="drop">
                 <ul class="flex-ver">
-                  <li>
+                  <li class="separacao">
                     <a href="/perfil"><p>Perfil</p></a>
                   </li>
 
@@ -397,111 +403,91 @@
       <hr />
 
       <section class="bg-quadrados">
+        <h2 class="centro separacao">Funcionalidades</h2>
         <div class="flex-ver">
+          <!--Linha 1-->
           <div class="flex-hor-desktop flex-ver">
             <div class="flex-1 card">
               <img
-                src="src/assets/images/banner-exercicios.webp"
+                src="src/assets/images/progresso.webp"
                 alt="banner-exercicios"
               />
               <div>
                 <h3>
-                  Aprenda: <span class="destaque-titulo">Exercícios</span>
+                  Registre o <span class="destaque-titulo">Progresso</span>
                 </h3>
                 <h5>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Analise sua evolução, na academia, esportes, e outras
+                  atividades!
                 </h5>
               </div>
             </div>
 
             <div class="flex-1 card">
               <img
-                src="src/assets/images/alongamento5.webp"
+                src="src/assets/images/hidratacao.webp"
                 alt="banner-exercicios"
               />
               <div>
-                <h3>
-                  Aprenda: <span class="destaque-titulo">Alongamento</span>
-                </h3>
-                <h5>Lorem, ipsum dolor sit amet consectetur.</h5>
+                <h3>Hidrate-se</h3>
+                <h5>
+                  Descubra quanto de água está tomando, e quanto deve beber para
+                  se manter saudável.
+                </h5>
               </div>
-
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                class="abs-baixo-direita"
-              >
-                <path
-                  d="M7.5 10H0V7.5H7.5V0H10V7.5H17.5V10H10V17.5H7.5V10Z"
-                  fill="#636363"
-                />
-              </svg>
             </div>
           </div>
 
-          <div class="card-hor">
-            <div>
-              <h3>Importância da Hidratação</h3>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Impedit, sed. Aliquam ipsum voluptatum dolor.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Impedit, sed. Aliquam ipsum voluptatum dolor.
-              </p>
+          <!--Linha 2-->
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card">
+              <img src="src/assets/images/grupos.webp" alt="" />
+              <div>
+                <h3>Grupos</h3>
+                <h5>
+                  Compartilhe seus treinos, junte amigos, façam competições.
+                </h5>
+              </div>
             </div>
-            <img
-              src="src/assets/images/banner-hidratacao.webp"
-              alt="banner-hidratacao"
-            />
+            <div class="flex-1 card">
+              <img src="src/assets/images/profissional.webp" alt="" />
+              <div>
+                <h3>Profissionais</h3>
+                <h5>Tenha ajuda de profissionais qualificados.</h5>
+              </div>
+            </div>
+            <div class="flex-1 card">
+              <img src="src/assets/images/rotinas.webp" alt="" />
+              <div>
+                <h3>Rotinas</h3>
+                <h5>Salve rotinas para preencher seus exercícios.</h5>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <hr />
 
-      <section>
-        <div class="flex-hor-desktop flex-ver">
-          <div class="flex-1 card">
-            <img
-              src="src/assets/images/5-17-anos.webp"
-              alt="banner-exercicios"
-            />
-            <div>
-              <h3>Aprenda: <span class="destaque-titulo">Exercícios</span></h3>
-              <h5>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                hasdkjhadkjasdkjgdkhgdhasg askdhgdhkas hkdahgsd
-              </h5>
-            </div>
-          </div>
-
-          <div class="flex-1 card">
-            <img
-              src="src/assets/images/alongamento3.webp"
-              alt="banner-exercicios"
-            />
-            <div>
-              <h3>Aprenda: <span class="destaque-titulo">Alongamento</span></h3>
-              <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h5>
-            </div>
-          </div>
-
-          <div class="flex-1 card">
-            <img
-              src="src/assets/images/hidratacao3.webp"
-              alt="banner-exercicios"
-            />
-            <div>
-              <h3>Aprenda: <span class="destaque-titulo">Exercícios</span></h3>
-              <h5>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h5>
-            </div>
-          </div>
+      <section class="bg-2 flex-hor-desktop flex-ver">
+        <div class="separacao-hor flex-ver flex-75 flex-centro-ver">
+          <h2 class="separacao">
+            Também funciona no <span class="destaque-titulo">Desktop</span>
+          </h2>
+          <p>
+            A Vitaliza foi desenvolvida para funcionar com todo tipo de pessoa,
+            inclusive aqueles que preferem usar o computador.
+          </p>
+          <p>
+            Por isso, o software funciona tanto para celular, e também para
+            Desktop.
+          </p>
         </div>
+        <img
+          src="src/assets/images/desktop.webp"
+          alt="Desktop"
+          class="flex-25"
+        />
       </section>
 
       <hr />
