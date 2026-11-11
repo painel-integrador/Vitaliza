@@ -533,6 +533,138 @@
       </section>
 
       <hr />
+
+      <section class="flex-hor-desktop flex-ver spc-between">
+        <h2 class="flex-25">Perguntas Frequentes</h2>
+
+        <ul class="flex-ver flex-75">
+          <li>
+            <div class="flex-ver card" onclick="faq(this)">
+              <div>
+                <h4 class="separacao-hor">O que é a Vitaliza?</h4>
+
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Abrir pergunta"
+                  class="mais abs-baixo-direita"
+                />
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Fechar pergunta"
+                  style="transform: rotate(45deg)"
+                  class="menos invisivel abs-baixo-direita"
+                />
+
+                <p class="invisivel separacao-hor">Resposta</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex-ver card" onclick="faq(this)">
+              <div>
+                <h4 class="separacao-hor">Os serviços são gratuitos?</h4>
+
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Abrir pergunta"
+                  class="mais abs-baixo-direita"
+                />
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Fechar pergunta"
+                  style="transform: rotate(45deg)"
+                  class="menos invisivel abs-baixo-direita"
+                />
+
+                <p class="invisivel separacao-hor">Resposta</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex-ver card" onclick="faq(this)">
+              <div>
+                <h4 class="separacao-hor">Por que eu deveria usar?</h4>
+
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Abrir pergunta"
+                  class="mais abs-baixo-direita"
+                />
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Fechar pergunta"
+                  style="transform: rotate(45deg)"
+                  class="menos invisivel abs-baixo-direita"
+                />
+
+                <p class="invisivel separacao-hor">
+                  Nossos serviços como análise de progressão, compartilhamento e
+                  treinos em conjunto, ajuda de profissionais, entre outros,
+                  pode te ajudar a ter uma saúde melhor. E uma vida melhor!
+                </p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex-ver card" onclick="faq(this)">
+              <div>
+                <h4 class="separacao-hor">É seguro?</h4>
+
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Abrir pergunta"
+                  class="mais abs-baixo-direita"
+                />
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Fechar pergunta"
+                  style="transform: rotate(45deg)"
+                  class="menos invisivel abs-baixo-direita"
+                />
+
+                <p class="invisivel separacao-hor">Resposta</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="flex-ver card" onclick="faq(this)">
+              <div>
+                <h4 class="separacao-hor">
+                  Como a Vitaliza ajuda a cuidar da minha saúde?
+                </h4>
+
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Abrir pergunta"
+                  class="mais abs-baixo-direita"
+                />
+                <img
+                  src="src/assets/icons/mais.svg"
+                  alt="Fechar pergunta"
+                  style="transform: rotate(45deg)"
+                  class="menos invisivel abs-baixo-direita"
+                />
+
+                <p class="invisivel separacao-hor">Resposta</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <hr />
+
+      <section class="bg-quadrados flex-ver flex-hor-desktop flex-centro">
+        <div id="docs" class="flex-1"></div>
+        <div class="flex-ver flex-1 box">
+          <h2>Documentação</h2>
+          <a href="/docs">
+            <p>Veja a documentação da <span class="link">API</span>.</p>
+          </a>
+        </div>
+      </section>
+
+      <hr />
     </main>
 
     <div class="gradiente-container"><div class="gradiente"></div></div>
@@ -609,5 +741,12 @@
     <script src="src/scripts/grid-hover.js"></script>
     <script src="src/scripts/dropdown.js" defer></script>
     <script src="src/scripts/header.js" defer></script>
+    <script src="src/scripts/faq.js" defer></script>
+
+    <script type="module" defer>
+      import { riffle } from "https://esm.sh/@lucasmarkes/hairline";
+
+      riffle(document.getElementById("docs"));
+    </script>
   </body>
 </html>

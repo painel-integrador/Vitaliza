@@ -1,6 +1,5 @@
+/* Muda o mais para menos, e da toggle no p */
 function faq(card) {
-  card.classList.toggle("faq-aberto");
-
   const menos = card.querySelector(".menos");
   const mais = card.querySelector(".mais");
 

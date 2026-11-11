@@ -267,6 +267,10 @@ p {
   position: relative;
 }
 
+#docs {
+  width: 90%;
+}
+
 /* ICONES e IMAGENS */
 
 .flor-gradiente {
@@ -805,6 +809,10 @@ footer .box > .degrade-cinza {
   }
 
   .banner > img {
+    width: 50%;
+  }
+
+  #docs {
     width: 50%;
   }
 
