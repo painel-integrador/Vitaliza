@@ -829,7 +829,7 @@ footer .box > .degrade-cinza {
   /* CARD-HORizontal */
 
   .card-hor {
-    height: clamp(180px, calc(120px + 12.5vw), 300px);
+    min-height: clamp(180px, calc(120px + 12.5vw), 300px);
     background-color: var(--primary-95);
     border-radius: 28px;
     overflow: hidden;
@@ -853,7 +853,6 @@ footer .box > .degrade-cinza {
 
   .card-hor > img {
     width: 0;
-    height: 100%;
     object-fit: cover;
     border-radius: 28px;
   }
