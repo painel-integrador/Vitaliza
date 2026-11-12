@@ -146,4 +146,8 @@ export async function rotasPaginas(servidor, opts) {
   servidor.get("/erro/404", async (req, res) => {
     return res.sendFile("error-404.html");
   });
+
+  servidor.get("/elementos", async (req, res) => {
+    return res.sendFile("elementos-novos.html")
+  })
 }
