@@ -135,6 +135,8 @@ html {
     sans-serif;
 
   color: var(--primary-20);
+  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
+  font-weight: 300;
 }
 
 body {
@@ -191,9 +193,18 @@ h5 {
   font-style: italic;
 }
 
+.destaque-titulo-2 {
+  font-style: italic;
+  font-weight: 600;
+}
+
 p {
   font-size: clamp(16px, calc(14px + 0.4vw), 20px);
   font-weight: 300;
+}
+
+strong {
+  font-weight: 600;
 }
 
 .paragrafo {
@@ -216,6 +227,28 @@ p {
 
 .branco {
   color: var(--primary-99);
+}
+
+.titulo-wavy {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.titulo-wavy::after {
+  content: "";
+  flex: 1 1 auto;
+  min-width: 24px;
+  height: 14px;
+  position: relative;
+  background-color: var(--primary-20);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='-3 0 34 14'%3E%3Cpath d='M-1 7C3 0 11 0 16 7s13 7 17 0' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E")
+    repeat-x center;
+}
+
+img {
+  border-radius: 28px;
 }
 
 /* CARD e BOX */
@@ -246,10 +279,6 @@ p {
   border-radius: 28px;
   object-fit: cover;
   transition: 200ms ease;
-}
-
-.card-hor > img {
-  order: -1; /* como no html a imagem vem depois do texto, mas queremos que ela apareça antes, usamos order -1 */
 }
 
 .card:hover,
@@ -475,9 +504,15 @@ p {
 .separacao {
   margin-bottom: 20px;
 }
-
 .separacao-hor {
   margin-right: 20px;
+}
+
+.separacao-2 {
+  margin-bottom: 48px;
+}
+.separacao-hor-2 {
+  margin-right: 48px;
 }
 
 .flex-hor {
@@ -494,15 +529,19 @@ p {
 
 .flex-1 {
   flex: 1;
+  min-width: 0;
 }
 .flex-75 {
   flex: 0.75;
+  min-width: 0;
 }
 .flex-50 {
   flex: 0.5;
+  min-width: 0;
 }
 .flex-25 {
   flex: 0.25;
+  min-width: 0;
 }
 
 .flex-centro {
@@ -533,6 +572,23 @@ p {
   position: absolute;
   bottom: 20px;
   left: 24px;
+}
+
+.article > h1,
+.article > h2,
+.article > h3,
+.article > h4,
+.article > h5,
+.article > h6,
+.article > p,
+.article > ul {
+  margin-bottom: 20px;
+}
+
+.borda-lateral {
+  margin-left: 4px;
+  padding: 0 12px;
+  border-left: 3px solid var(--neutral-60);
 }
 
 /* HEADER */
