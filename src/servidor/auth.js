@@ -62,8 +62,7 @@ async function criarSessaoCookie(req, res, contaId) {
 export async function autenticar(req, res) {
   try {
     const accessToken = req.cookies.access_token;
-    if (!accessToken)
-      return res.status(401).send({ erro: "Token de acesso ausente" });
+    if (!accessToken) return res.redirect("/erro/401");
 
     const sessao = await sessoesRepository.procurarUm({
       coluna: "access_token",
@@ -71,7 +70,7 @@ export async function autenticar(req, res) {
       dadosResposta: "*",
     });
 
-    if (!sessao) return res.status(401).send({ erro: "Sessão não encontrada" });
+    if (!sessao) return res.redirect("/erro/401");
 
     const agora = new Date();
     const tokenAcessoExpirou = new Date(sessao.access_token_expira_em) < agora;
@@ -79,7 +78,7 @@ export async function autenticar(req, res) {
       new Date(sessao.refresh_token_expira_em) < agora;
 
     if (tokenAcessoExpirou && tokenRefreshExpirou) {
-      return res.status(401).send({ erro: "Sessão expirada" });
+      return res.redirect("/erro/401");
     }
 
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
@@ -120,7 +119,7 @@ export async function autenticar(req, res) {
     req.contaid = Number(sessao.conta_id);
   } catch (erro) {
     console.error(erro);
-    return res.status(500).send({ erro });
+    return res.redirect("/erro/500");
   }
 }
 

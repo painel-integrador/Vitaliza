@@ -1,4 +1,4 @@
-const tamanhoQuadrado = 24; // valor igual ao tamanho definido no CSS para o quadrado do background
+const tamanhoQuadrado = 20; // valor igual ao tamanho definido no CSS para o quadrado do background
 const coresQuadrados = [
   "var(--secondary-80)",
   "var(--tertiary-80)",
@@ -25,7 +25,7 @@ document.querySelectorAll(".bg-quadrados").forEach((grid) => {
     const y = event.clientY - limite.top;
 
     // arredonda a posição para o quadrado mais próximo,
-    // como os quadrados são de 24 em 24, ele arredonda para baixo para o quadrado mais próximo
+    // como os quadrados são de 20 em 20, ele arredonda para baixo para o quadrado mais próximo
     const quadradoX = Math.floor(x / tamanhoQuadrado) * tamanhoQuadrado;
     const quadradoY = Math.floor(y / tamanhoQuadrado) * tamanhoQuadrado;
 

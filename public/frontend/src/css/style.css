@@ -353,7 +353,7 @@ img {
 }
 
 .bg-quadrados {
-  --tamanho-quadrado: 24px;
+  --tamanho-quadrado: 20px;
   position: relative;
   background-image:
     linear-gradient(var(--neutral-95) 1px, transparent 1px),
@@ -798,6 +798,9 @@ footer .box > .degrade-cinza {
 }
 
 @media screen and (min-width: 700px) {
+  main {
+    padding-top: 150px;
+  }
   /* HEADER */
 
   header {
