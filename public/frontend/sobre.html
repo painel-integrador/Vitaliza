@@ -1,150 +1,368 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <title>Sobre Nós</title>
-    <link rel="stylesheet" href="/css/reset.css" />
-    <link rel="stylesheet" href="/css/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/src/images/icone.svg" type="image/x-icon" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"
-      defer
-    ></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        AOS.init({ duration: 800, once: true });
-      });
-    </script>
+
+    <title>Vitaliza - Alongamentos</title>
+
+    <link rel="stylesheet" href="src/css/reset.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+
+    <link rel="icon" href="src/assets/icons/icone.svg" type="image/svg" />
   </head>
   <body>
-    <header data-aos="fade-down">
-      <div class="logo-button">
-        <a href="/">
-          <img alt="Logo-Vitaliza" class="logo" src="/src/images/logo.svg" />
-        </a>
-        <img
-          alt="Menu"
-          class="visivel icon"
-          id="botao-menu"
-          onclick="menu()"
-          src="/src/images/menu.svg"
-        />
-        <img
-          alt="Fechar"
-          class="invisivel icon"
-          id="botao-fechar"
-          onclick="menu()"
-          src="/src/images/close.svg"
-        />
+  <header class="flex-ver">
+      <div class="flex-hor desktop">
+        <div class="logo flex-hor flex-centro bg-quadrados">
+          <img
+            src="src/assets/icons/logo.svg"
+            alt="Logo - voltar ao início"
+            id="logo-modo-claro"
+          />
+          <img
+            src="src/assets/icons/logo-branca.svg"
+            alt="Logo - Voltar ao início"
+            id="logo-modo-escuro"
+          />
+        </div>
+
+        <div class="flex-hor nav spc-between">
+          <div class="flex-hor flex-centro spc-between">
+            <button
+              type="button"
+              class="theme-toggle"
+              data-theme-toggle
+              aria-label="Alternar modo de cor"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 48 48"
+                height="50"
+                width="50"
+                fill="#636363"
+                class="modo-claro"
+              >
+                <path
+                  d="M23.3,23.29q1.36-1.36 1.36-3.29T23.3,16.7T20,15.34T16.71,16.7T15.36,20t1.36,3.29T20,24.64t3.3-1.36ZM14.1,25.9q-2.44-2.44-2.44-5.9t2.44-5.9T20,11.67t5.9,2.44T28.33,20T25.9,25.9T20,28.33T14.1,25.9ZM8.78,21.84H1.22V18.16H8.78v3.67Zm30,0H31.22V18.16h7.56v3.67ZM18.16,8.78V1.22h3.67V8.78H18.16Zm0,30V31.22h3.67v7.56H18.16ZM10.81,13.35L6.02,8.68l2.59-2.7l4.68,4.75l-2.48,2.62Zm20.6,20.64l-4.74-4.78l2.53-2.56l4.78,4.65l-2.56,2.69ZM26.65,10.81l4.67-4.78l2.7,2.56L29.3,13.32l-2.65-2.51ZM6.01,31.38l4.75-4.74l2.59,2.55L8.7,33.98L6.01,31.38ZM20,20Z"
+                />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              class="theme-toggle"
+              data-theme-toggle
+              aria-label="Alternar modo de cor"
+            >
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                class="modo-escuro"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20 35.2899C15.7467 35.2899 12.1367 33.8066 9.16998 30.8399C6.20332 27.8733 4.71665 24.2599 4.70998 19.9999C4.70332 15.7399 6.18665 12.1266 9.15998 9.15994C12.1333 6.19327 15.7467 4.70327 20 4.68994C20.24 4.68994 20.49 4.69661 20.75 4.70994C21.01 4.72327 21.32 4.74661 21.68 4.77994C20.7933 5.69994 20.0933 6.77327 19.58 7.99994C19.0667 9.22661 18.81 10.5166 18.81 11.8699C18.81 14.4633 19.72 16.6666 21.54 18.4799C23.36 20.2933 25.5733 21.1999 28.18 21.1999C29.5267 21.1999 30.8133 20.9633 32.04 20.4899C33.2667 20.0166 34.3333 19.3566 35.24 18.5099C35.2667 18.8366 35.2867 19.1099 35.3 19.3299C35.3133 19.5499 35.32 19.7633 35.32 19.9699C35.32 24.2233 33.83 27.8399 30.85 30.8199C27.87 33.7999 24.2533 35.2899 20 35.2899ZM20 31.6199C22.4867 31.6199 24.7 30.8999 26.64 29.4599C28.58 28.0199 29.89 26.2833 30.57 24.2499C30.0567 24.4499 29.5067 24.5966 28.92 24.6899C28.3333 24.7833 27.7567 24.8133 27.19 24.7799C23.9767 24.5533 21.24 23.3266 18.98 21.0999C16.72 18.8733 15.4667 16.1033 15.22 12.7899C15.2067 12.3099 15.2367 11.7899 15.31 11.2299C15.3833 10.6699 15.54 10.0433 15.78 9.34994C13.6333 10.1766 11.8633 11.5733 10.47 13.5399C9.07665 15.5066 8.37998 17.6599 8.37998 19.9999C8.37998 23.2266 9.50998 25.9699 11.77 28.2299C14.03 30.4899 16.7733 31.6199 20 31.6199Z"
+                  fill="#636363"
+                />
+              </svg>
+            </button>
+
+            <svg
+              width="48"
+              height="48"
+              viewBox="0 0 48 48"
+              class="menu-hamburguer"
+              id="menu-hamburguer"
+              fill="none"
+              onclick="menu()"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.25 37.5V33.3333H43.75V37.5H6.25ZM6.25 27.0833V22.9167H43.75V27.0833H6.25ZM6.25 16.6667V12.5H43.75V16.6667H6.25Z"
+                fill="#636363"
+              />
+            </svg>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 48 48"
+              height="48"
+              width="48"
+              fill="#636363"
+              id="menu-fechar"
+              onclick="menu()"
+              class="menu-fechar invisivel"
+            >
+              <path
+                d="M12.45,37.65l-2.1-2.1L21.9,24L10.35,12.45l2.1-2.1L24,21.9L35.55,10.35l2.1,2.1L26.1,24L37.65,35.55l-2.1,2.1L24,26.1L12.45,37.65Z"
+              />
+            </svg>
+          </div>
+
+          <div class="invisivel visivel-desktop">
+            <nav class="flex-hor">
+              <ul class="flex-hor flex-centro nav-links">
+                <li>
+                  <a href="/">
+                    <p class="destaque">Início</p>
+                  </a>
+                </li>
+                <li class="drop-hover">
+                  <a href="/calculadoras" aria-expanded="false">
+                    <p>
+                      Calculadoras
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="seta"
+                      >
+                        <g clip-path="url(#clip0_595_687)">
+                          <path
+                            d="M4.15332 13.4868L5.33332 14.6668L12 8.00016L5.33332 1.3335L4.15332 2.5135L9.63999 8.00016L4.15332 13.4868Z"
+                            fill="#636363"
+                          />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_595_687">
+                            <rect width="16" height="16" fill="white" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </p>
+                  </a>
+
+                  <ul class="drop">
+                    <li>
+                      <a href="/calculadoras/imc" class="btn cima">
+                        <p>IMC</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/calculadoras/calorias" class="btn meio">
+                        <p>Calorias</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/calculadoras/peso" class="btn baixo">
+                        <p>Peso Ideal</p>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="/informativo">
+                    <p>Informativo</p>
+                  </a>
+                </li>
+                <li>
+                  <a href="/sobre">
+                    <p>Sobre</p>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="invisivel flex-hor-desktop flex-centro contato-perfil">
+            <div>
+              <a href="/contato" class="btn">
+                <p>Entre em contato</p>
+              </a>
+            </div>
+
+            <div class="perfil drop-hover">
+              <a href="/perfil">
+                <img
+                  src="src/assets/images/avatar/5.svg"
+                  alt=""
+                  id="perfil"
+                  class="perfil"
+                />
+              </a>
+              <div class="drop">
+                <ul class="flex-ver">
+                  <li class="separacao">
+                    <a href="/perfil"><p>Perfil</p></a>
+                  </li>
+
+                  <li>
+                    <a href="/sair" class="btn">
+                      <p>Sair</p>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="transform: rotate(0deg)"
+                      >
+                        <path
+                          d="M5 21C4.44667 21 3.97667 20.8033 3.59 20.41C3.20333 20.0167 3.00667 19.5467 3 19V5C3 4.44667 3.19667 3.97667 3.59 3.59C3.98333 3.20333 4.45333 3.00667 5 3H12V5H5V19H12V21H5ZM16 17L14.62 15.55L17.18 13H9V11H17.18L14.63 8.45L16 7L21 12L16 17Z"
+                          fill="#191919"
+                        />
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <nav class="menu" id="nav">
-        <a href="/"><p class="item">Início</p></a>
+      <div class="nav mobile invisivel" id="menu-mobile">
+        <div>
+          <nav class="flex-ver">
+            <ul class="flex-ver nav-links">
+              <li>
+                <a href="/">
+                  <p class="destaque">Início</p>
+                </a>
+              </li>
+              <li class="drop-hover">
+                <a href="/calculadoras" aria-expanded="false">
+                  <p>
+                    Calculadoras
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="seta"
+                    >
+                      <g clip-path="url(#clip0_595_687)">
+                        <path
+                          d="M4.15332 13.4868L5.33332 14.6668L12 8.00016L5.33332 1.3335L4.15332 2.5135L9.63999 8.00016L4.15332 13.4868Z"
+                          fill="#636363"
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_595_687">
+                          <rect width="16" height="16" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </p>
+                </a>
 
-        <!-- Dropdown Artigos -->
-        <div class="menu-drop">
-          <a href="/artigos" class="title item"><p>Artigos ➽</p></a>
-          <div class="dropdown-conteudo">
-            <a href="/artigos/hidratacao" class="drop-item">
-              <strong>Importância da Hidratação</strong>
-              <span class="txt-detalhe-drop"
-                >Descubra como a água impacta seu rendimento.</span
-              >
-            </a>
-            <a href="/artigos/alongamento" class="drop-item">
-              <strong>Alongamento e Aquecimento</strong>
-              <span class="txt-detalhe-drop"
-                >Evite lesões e melhore sua mobilidade.</span
-              >
-            </a>
-            <a href="/artigos/exercicios" class="drop-item">
-              <strong>Exercícios Físicos</strong>
-              <span class="txt-detalhe-drop"
-                >Dicas de treinos e rotinas saudáveis.</span
-              >
-            </a>
-            <a href="/artigos/suplementos" class="drop-item">
-              <strong>Suplementos</strong>
-              <span class="txt-detalhe-drop"
-                >Guia básico sobre suplementação.</span
-              >
+                <ul class="drop">
+                  <li>
+                    <a href="/calculadoras/imc" class="btn cima">
+                      <p>IMC</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/calculadoras/calorias" class="btn meio">
+                      <p>Calorias</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/calculadoras/peso" class="btn baixo">
+                      <p>Peso Ideal</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <a href="/informativo">
+                  <p>Informativo</p>
+                </a>
+              </li>
+              <li>
+                <a href="/sobre">
+                  <p>Sobre</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="flex-hor spc-between contato-perfil">
+          <div>
+            <a href="/contato" class="btn">
+              <p>Entre em contato</p>
             </a>
           </div>
-        </div>
 
-        <!-- Dropdown Calculadoras -->
-        <div class="menu-drop">
-          <a href="/calculadoras" class="title item"><p>Calculadoras ➽</p></a>
-          <div class="dropdown-conteudo">
-            <a href="/calculadoras/imc" class="drop-item">
-              <strong>Calculadora de IMC</strong>
-              <span class="txt-detalhe-drop">
-                Avalie seu Índice de Massa Corporal.
-              </span>
+          <div class="perfil drop-hover">
+            <a href="/perfil">
+              <img
+                src="src/assets/images/avatar/5.svg"
+                alt=""
+                id="perfil"
+                class="perfil"
+              />
             </a>
-            <a href="/calculadoras/calorias" class="drop-item">
-              <strong>Gasto Calórico</strong>
-              <span class="txt-detalhe-drop"
-                >Calcule quanto dever ser seu gasto diário de energia.</span
-              >
-            </a>
-            <a href="/calculadoras/massa" class="drop-item">
-              <strong>Peso Ideal</strong>
-              <span class="txt-detalhe-drop"
-                >Descubra quanto deve ser seu peso ideal.</span
-              >
-            </a>
+            <div class="drop">
+              <ul class="flex-ver">
+                <li>
+                  <a href="/perfil"><p>Perfil</p></a>
+                </li>
+
+                <li>
+                  <a href="/sair" class="btn">
+                    <p>Sair</p>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="transform: rotate(0deg)"
+                    >
+                      <path
+                        d="M5 21C4.44667 21 3.97667 20.8033 3.59 20.41C3.20333 20.0167 3.00667 19.5467 3 19V5C3 4.44667 3.19667 3.97667 3.59 3.59C3.98333 3.20333 4.45333 3.00667 5 3H12V5H5V19H12V21H5ZM16 17L14.62 15.55L17.18 13H9V11H17.18L14.63 8.45L16 7L21 12L16 17Z"
+                        fill="#191919"
+                      />
+                    </svg>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-
-        <a href="/sobre"><p>Sobre Nós</p></a>
-        <a href="/contato"><p class="item">Entre em Contato</p></a>
-        <a href="/home" class="invisivel"><p class="item">Painel</p></a>
-        <a href="/conta/usuario/me" class="invisivel"
-          ><p class="item">Perfil</p></a
-        >
-        <a onclick="sair()" class="btn-2 invisivel"><p class="item">Sair</p></a>
-
-        <div class="grid-horizontal centro-horizontalmente btns" id="btns">
-          <a class="btn-2" href="/conta">Criar conta</a>
-          <a class="btn-3" href="/conta/login">Fazer Login</a>
-        </div>
-
-        <hr class="linha-pontilhada" />
-
-        <p class="txt-detalhe txt-centro">
-          © 2026 Vitaliza.inc All rights reserved
-        </p>
-      </nav>
+      </div>
     </header>
 
     <main>
-      <section data-aos="fade-up" id="sobre">
-        <h1 class="txt-centro txt-preto">Sobre Nós</h1>
+      <section class="banner flex-hor-desktop flex-ver">
+        <img
+          src="src/assets/images/grupos.webp"
+          class="flex-1"
+          alt="Banner inicio"
+        />
+        <div class="box flex-1 flex-ver">
+          <img
+            src="src/assets/images/flor-gradiente.svg"
+            alt="flor com gradiente azul"
+            class="flor-gradiente"
+          />
+          <div>
+            <h1 class="separacao">
+              <span class="destaque-titulo">Sobre nós</span>
+              <span class="destaque-titulo"></span>
+
+            </h1>
+            <h4>
+          </div>
+        </div>
       </section>
 
-      <div class="gradiente-cima-direita"></div>
 
       <hr class="linha-simples" data-aos="fade-left" />
-
-      <section class="secao3" data-aos="fade-up">
-        <h2 id="Vitaliza">O que é a Vitaliza?</h2>
-
-        <p class="paragrafo">
-          A Vitaliza é um site de vida saúdavel e exercícios com o intuito de
-          motivar as pessoas a ter uma vida mais longa e saúdavel.
-        </p>
-      </section>
-
-      <hr class="linha-simples" data-aos="fade-left" />
-
-      <section class="grid-vertical secao2" data-aos="fade-up">
-        <h2>Nossa equipe</h2>
+      <section class="bg-" data-aos="fade-up">
+        <div class="flex-75 flex-ver flex-hor-desktop">
+          <div class="flex-1 separacao-hor article">
+            <h3 class="destaque-titulo-2">
+              Nossa equipe
+            </h3>
 
         <p class="paragrafo">
           Nossa equipe é composta por estudantes do Instituto Federal
@@ -159,109 +377,158 @@
         />
       </section>
 
+      
       <hr class="linha-simples" data-aos="fade-left" />
 
       <section data-aos="fade-up" id="Integrantes">
         <h2>Integrantes</h2>
 
-        <div class="grid-horizontal">
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">André Luiz Matthies</h4>
-            <p>Designer e Programador</p>
+        <div class="flex-ver">
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"><h4 class="paragrafo">André Luiz Matthies</h4>
+            <p>Designer e Programador</p></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="card-1">
+            
           </div>
 
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">Arthur Röber</h4>
-            <p>Secretário e Social media</p>
+                  <div class="flex-ver">
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"><h4 class="paragrafo">Greghory</h4>
+            <p>Designer e Programador</p></div>
+            <div class="flex-1 card"></div>
           </div>
-        </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+                  <div class="flex-ver">
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"><h4 class="paragrafo">Timóteo</h4>
+            <p>Líder do Projeto</p></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+                  <div class="flex-ver">
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"><h4 class="paragrafo">Arthur</h4>
+            <p>Designer e Programador</p></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
+          <div class="flex-hor-desktop flex-ver">
+            <div class="flex-1 card"></div>
+            <div class="flex-1 card"></div>
+          </div>
 
-        <div class="grid-horizontal">
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">Greghory Miranda</h4>
-            <p>Programador e Designer</p>
-          </div>
-
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">Gustavo Neto Rosa da Mota</h4>
-            <p>Programador e Designer</p>
-          </div>
-        </div>
-
-        <div class="grid-horizontal">
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">Pedro Paulo Dias de Oliveira</h4>
-            <p>Programador e Designer</p>
-          </div>
-
-          <div class="card grid-1">
-            <h4 class="txt-esquerda">Timóteo Graebin</h4>
-            <p>Programador e Líder do Projeto</p>
-          </div>
-        </div>
+ 
       </section>
       <hr class="linha-simples" data-aos="fade-left" />
+      
     </main>
-    <script src="/src/scripts/header.js" defer></script>
-    <footer data-aos="fade-up">
-      <div class="grid-horizontal-pc">
-        <div class="grid-1 grid-vertical">
-          <img
-            src="/src/images/logo-branca.svg"
-            alt="Logo Vitaliza"
-            class="logo"
-          />
-          <p>Um site sobre sua saúde</p>
-        </div>
-        <div class="grid-horizontal-pc grid-2">
-          <div class="grid-1">
-            <h3 class="txt-esquerda">Produto</h3>
-            <nav>
-              <ul>
-                <li><a href="/">Início</a></li>
-                <li><a href="/artigos">Artigos</a></li>
-                <li><a href="/calculadoras">Calculadoras</a></li>
-                <li>
-                  <div class="grid-horizontal">
-                    <a class="btn-3" href="/conta">Criar conta</a>
-                    <a class="btn-3" href="/conta/login">Fazer Login</a>
-                  </div>
-                </li>
-              </ul>
-            </nav>
-          </div>
+ <div class="gradiente-container"><div class="gradiente"></div></div>
 
-          <div class="grid-1">
-            <h3 class="txt-esquerda">Trabalho</h3>
-            <nav>
-              <ul>
-                <li><a href="/sobre">Sobre nós</a></li>
-                <li><a href="/contato">Entre em contato</a></li>
-                <li>
-                  <a href="https://www.instagram.com/vitaliza.ifc/"
-                    >Nosso instagram</a
-                  >
-                </li>
-              </ul>
-            </nav>
-          </div>
-
-          <div class="grid-1">
-            <h3 class="txt-esquerda">Mapa</h3>
-            <nav>
-              <!--Mapa do site (página atual)-->
-              <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#Vitaliza">O que é a Vitaliza?</a></li>
-                <li><a href="#Integrantes">Integrantes</a></li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+    <footer class="flex-hor-desktop flex-ver">
+      <div class="esquerda-desktop cima box box-logo">
+        <img
+          src="src/assets/images/flor-gradiente.svg"
+          alt="flor com gradiente azul"
+          class="flor-gradiente"
+        />
+        <img src="src/assets/icons/logo.svg" alt="Logo" class="logo" />
+        <img
+          src="src/assets/icons/icons.svg"
+          alt="Ícones decorativos"
+          class="icons"
+        />
       </div>
-      <p class="txt-centro txt-detalhe" style="color: #fff">
-        © Vitaliza Inc. All rights reserved.
+      <div class="flex-ver direita-desktop bg-quadrados box box-links">
+        <div>
+          <h2>Produto</h2>
+          <ul class="lista">
+            <li>
+              <a href="#"><p class="link">Ínicio</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Perfil</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Painel</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Calculadora</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">Informativo</p></a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2>Social</h2>
+          <ul class="lista">
+            <li>
+              <a href="#"><p class="link">Instagram</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">E-mail</p></a>
+            </li>
+            <li>
+              <a href="#"><p class="link">GitHub</p></a>
+            </li>
+            <li>
+              <a href="">
+                <p class="link">Entre em contato</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <img
+          src="src/assets/images/degrade-cinza.svg"
+          alt="Degrade Cinza"
+          class="degrade-cinza abs-baixo-direita"
+        />
+      </div>
+
+      <p class="abs-baixo-direita branco">
+        Imagens de:
+        <a href="https://www.pexels.com/" class="link">Pexels</a> | Vitaliza ®
       </p>
     </footer>
+
+    <script src="src/scripts/grid-hover.js"></script>
+    <script src="src/scripts/dropdown.js" defer></script>
+    <script src="src/scripts/header.js" defer></script>
+    <script src="src/scripts/faq.js" defer></script>
+
+    <script type="module" defer>
+      import { riffle } from "https://esm.sh/@lucasmarkes/hairline";
+
+      riffle(document.getElementById("docs"));
+    </script>
   </body>
 </html>
