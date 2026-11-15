@@ -251,6 +251,12 @@ img {
   border-radius: 28px;
 }
 
+.img-proporcional {
+  height: auto;
+  align-self: flex-start;
+  width: 100%;
+}
+
 /* CARD e BOX */
 
 .card,
