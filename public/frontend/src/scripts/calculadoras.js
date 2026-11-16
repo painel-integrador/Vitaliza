@@ -50,8 +50,8 @@ function calcularCalorias(event) {
   }
 
   resultado.innerHTML = `
-    <p class="txt-centro">Seu gasto calórico diário deve ser por volta de: <strong>${calorias.toFixed(0)} calorias</strong></p>
-    <p class="txt-centro">Sua taxa metabólica basal é: <strong>${tmb.toFixed(0)} calorias</strong></p>
+    <p class="centro">Seu <strong>gasto calórico</strong> diário deve ser por volta de: <strong>${calorias.toFixed(0)} calorias</strong></p>
+    <p class="centro">Sua <strong>taxa metabólica basal</strong> é: <strong>${tmb.toFixed(0)} calorias</strong></p>
   `;
 }
 
@@ -68,7 +68,7 @@ function calcularIMC(event) {
 
   imc = dados.massa / (dados.altura * dados.altura);
 
-  resultado.innerText = `Seu IMC é: ${imc.toFixed(2)}`;
+  resultado.innerHTML = `<p class="centro">Seu <strong>IMC</strong> é: <strong>${imc.toFixed(2)}</strong></p>`;
 }
 
 function calcularMassaIdeal(event) {
@@ -92,6 +92,6 @@ function calcularMassaIdeal(event) {
   }
 
   resultado.innerHTML = `
-    <p class="txt-centro">Sua massa ideal estimada é de aproximadamente: <strong>${massaIdeal.toFixed(1)} kg</strong></p>
+    <p class="centro">Sua <strong>massa ideal</strong> estimada é de aproximadamente: <strong>${massaIdeal.toFixed(1)} kg</strong></p>
   `;
 }
