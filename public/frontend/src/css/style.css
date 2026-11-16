@@ -728,16 +728,16 @@ header.menu-aberto .desktop > div {
 
 .theme-toggle:has(.modo-claro),
 .theme-toggle:has(.modo-escuro),
-#logo-modo-escuro,
+.logo-modo-escuro,
 .modo-claro,
-:root[data-theme="dark"] #logo-modo-claro,
-:root[data-theme="light"] #logo-modo-escuro {
+:root[data-theme="dark"] .logo-modo-claro,
+:root[data-theme="light"] .logo-modo-escuro {
   display: none;
 }
 
 :root[data-theme="dark"] .theme-toggle:has(.modo-claro),
 :root[data-theme="light"] .theme-toggle:has(.modo-escuro),
-:root[data-theme="dark"] #logo-modo-escuro,
+:root[data-theme="dark"] .logo-modo-escuro,
 :root[data-theme="dark"] .modo-claro,
 :root[data-theme="light"] .modo-escuro {
   display: block;
@@ -873,7 +873,8 @@ footer .box-links {
   border-radius: 14px 14px 0 0;
 }
 
-footer .logo {
+footer .logo-modo-claro,
+footer .logo-modo-escuro {
   width: clamp(250px, calc(120px + 9.5vw), 500px);
   position: relative;
   left: 50%;
@@ -938,7 +939,8 @@ footer .box > .degrade-cinza {
     min-width: 0;
   }
 
-  footer .logo {
+  footer .logo-modo-claro,
+  footer .logo-modo-escuro {
     width: 80%;
   }
 
