@@ -127,6 +127,7 @@
 
 main {
   padding-top: 90px;
+  isolation: isolate;
 }
 
 html {
@@ -227,6 +228,10 @@ strong {
 
 .branco {
   color: var(--primary-99);
+}
+
+.vermelho {
+  color: red;
 }
 
 .titulo-wavy {
@@ -368,6 +373,14 @@ img {
   border-bottom: 1px solid var(--neutral-95);
 }
 
+.bg-img {
+  padding: 300px 0;
+  background-image: url("../assets/images/img-flores.svg");
+  background-size: cover;
+  margin: 20px;
+  border-radius: 28px;
+}
+
 .hover-square {
   position: absolute;
   top: var(--square-y);
@@ -426,12 +439,14 @@ img {
   gap: 4px;
   transition: 200ms ease;
   min-width: 200px;
+  font-weight: 400;
 }
-.btn:hover {
+.btn:hover, .btn:focus {
   border-radius: 28px;
   background-color: var(--neutral-80);
   color: var(--primary-20);
   fill: var(--primary-20);
+  cursor: pointer;
 }
 
 .btn-2 {
@@ -444,12 +459,14 @@ img {
   gap: 8px;
   transition: 200ms ease;
   min-width: 200px;
+  font-weight: 400;
 }
-.btn-2:hover {
+.btn-2:hover, .btn-2:focus {
   border-radius: 28px;
   background-color: var(--secondary-70);
   color: var(--primary-20);
   fill: var(--primary-20);
+  cursor: pointer;
 }
 
 .btn-3 {
@@ -462,13 +479,43 @@ img {
   gap: 8px;
   transition: 200ms ease;
   min-width: 200px;
+  font-weight: 400;
 }
-.btn-3:hover {
+.btn-3:hover, .btn-3:focus {
   border-radius: 28px;
   background-color: var(--secondary-80);
   backdrop-filter: opacity(80%);
   color: var(--primary-20);
   fill: var(--primary-20);
+  cursor: pointer;
+}
+
+/* FORMULARIOS */
+
+.input-text {
+  padding: 14px;
+  min-width: 200px;
+  border: 0;
+  border-radius: 14px;
+  background-color: var(--primary-90);
+  color: var(--primary-50);
+  font-weight: 400;
+  transition: 200ms ease;
+}
+
+.input-text:hover {
+  border-radius: 48px;
+}
+.input-text:active,
+.input-text:focus {
+  border-radius: 48px;
+  background-color: var(--neutral-80);
+  color: var(--primary-20);
+}
+
+label {
+  font-size: clamp(16px, calc(14px + 0.4vw), 20px);
+  font-weight: 500;
 }
 
 /* BORDAS */
@@ -491,6 +538,22 @@ img {
 
 .meio {
   border-radius: 14px;
+}
+
+.esquerda-cima {
+  border-radius: 24px 14px 14px 14px;
+}
+
+.direita-cima {
+  border-radius: 14px 24px 14px 14px;
+}
+
+.esquerda-baixo {
+  border-radius: 14px 14px 14px 24px;
+}
+
+.direita-baixo {
+  border-radius: 14px 14px 24px 14px;
 }
 
 /* LISTA */
@@ -955,6 +1018,22 @@ footer .box > .degrade-cinza {
 
   .baixo-desktop {
     border-radius: 14px 14px 28px 28px;
+  }
+
+  .esquerda-cima-desktop {
+    border-radius: 24px 14px 14px 14px;
+  }
+
+  .direita-cima-desktop {
+    border-radius: 14px 24px 14px 14px;
+  }
+
+  .esquerda-baixo-desktop {
+    border-radius: 14px 14px 14px 24px;
+  }
+
+  .direita-baixo-desktop {
+    border-radius: 14px 14px 24px 14px;
   }
 
   .invisivel-desktop {
