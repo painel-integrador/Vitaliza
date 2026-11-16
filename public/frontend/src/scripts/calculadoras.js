@@ -64,8 +64,6 @@ function calcularIMC(event) {
   const resultado = document.getElementById("resultado");
   let imc = 0;
 
-  console.log(dados);
-
   imc = dados.massa / (dados.altura * dados.altura);
 
   resultado.innerHTML = `<p class="centro">Seu <strong>IMC</strong> é: <strong>${imc.toFixed(2)}</strong></p>`;
