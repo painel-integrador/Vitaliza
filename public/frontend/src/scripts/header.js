@@ -2,11 +2,20 @@ let isMenuAberto = false;
 let botaoMenu = document.getElementById("menu-hamburguer");
 let botaoFechar = document.getElementById("menu-fechar");
 let menuMobile = document.getElementById("menu-mobile");
+let cabecalho = document.querySelector("header");
+let html = document.documentElement;
+let temaSalvo = localStorage.getItem("tema");
+
+if (temaSalvo === "light" || temaSalvo === "dark") {
+  html.dataset.theme = temaSalvo;
+} else {
+  html.dataset.theme = "light";
+}
 
 document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
   toggle.addEventListener("click", () => {
-    const html = document.documentElement;
     html.dataset.theme = html.dataset.theme === "dark" ? "light" : "dark";
+    localStorage.setItem("tema", html.dataset.theme);
   });
 });
 
@@ -17,6 +26,9 @@ function menu() {
   botaoFechar.classList.toggle("invisivel");
 
   menuMobile.classList.toggle("invisivel");
+
+  isMenuAberto = !menuMobile.classList.contains("invisivel");
+  cabecalho.classList.toggle("menu-aberto", isMenuAberto);
 }
 
 async function checarAutenticacao() {
