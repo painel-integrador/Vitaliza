@@ -1,7 +1,6 @@
 import Fastify from "fastify";
 import fastifyCookie from "@fastify/cookie";
 import rateLimit from "@fastify/rate-limit";
-import helmet from "@fastify/helmet"; // header pra segurança
 
 import { rotasAuth } from "./auth.js";
 import { rotasTreino } from "./treinos.js";
@@ -19,15 +18,13 @@ const servidor = Fastify({
 });
 
 await servidor.register(rateLimit, {
-  max: 80,
+  max: 150,
   timeWindow: "1 minute",
 });
 
 await servidor.register(fastifyCookie, {
   secret: process.env.COOKIE_SECRET,
 });
-
-await servidor.register(helmet);
 
 servidor.register(rotasPaginas, { prefix: "/" });
 servidor.register(rotasAuth, { prefix: "/api/auth" });

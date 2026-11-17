@@ -13,8 +13,10 @@ RUN npm install
 # Copia o restante dos arquivos do projeto para dentro do container
 COPY . .
 
-# (Opcional) Porta em que a aplicação roda (ajuste conforme necessário, ex: 3000)
+# Gera os arquivos estáticos otimizados que serão servidos pelo Fastify
+RUN npm run build:frontend
+
+# Expõe a porta que a aplicação irá rodar
 EXPOSE 3000
 
-# Comando para rodar a aplicação (substitua "start" pelo script do seu package.json, ex: "dev", "build", etc.)
 CMD ["node", "index.js"]

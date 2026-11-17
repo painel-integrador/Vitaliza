@@ -16,12 +16,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch index.js",
+    "build:frontend": "parcel build \"public/frontend/**/*.html\" --dist-dir public/dist --no-content-hash",
     "build": "docker build -t vitaliza .",
     "run": "docker run --env-file .env -p 3000:3000 vitaliza"
   },
   "dependencies": {
     "@fastify/cookie": "^11.1.2",
-    "@fastify/helmet": "^13.2.0",
     "@fastify/rate-limit": "^11.2.2",
     "@fastify/static": "^10.1.3",
     "@supabase/supabase-js": "^2.110.8",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^26.1.1",
+    "parcel": "^2.16.4",
     "prettier": "3.9.6"
   },
   "allowScripts": {

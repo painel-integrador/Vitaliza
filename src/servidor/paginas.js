@@ -6,9 +6,9 @@ import { autenticar } from "./auth.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export async function rotasPaginas(servidor, opts) {
+export async function rotasPaginas(servidor, _) {
   servidor.register(fastifyStatic, {
-    root: path.join(__dirname, "../../public/frontend/"),
+    root: path.join(__dirname, "../../public/dist/"),
   });
 
   servidor.get("/", async (req, res) => {
@@ -24,7 +24,7 @@ export async function rotasPaginas(servidor, opts) {
   });
 
   servidor.get("/informativo", async (req, res) => {
-    return res.sendFile("informativo/home.html");
+    return res.sendFile("informativo/index.html");
   });
 
   servidor.get("/informativo/funcionalidades", async (req, res) => {
@@ -47,35 +47,27 @@ export async function rotasPaginas(servidor, opts) {
     return res.sendFile("informativo/suplementos.html");
   });
 
-  servidor.get("/artigos", async (req, res) => {
-    return res.sendFile("informativo/home.html");
+  servidor.get("/conta", async (req, res) => {
+    return res.sendFile("conta/usuario.html");
   });
 
-  servidor.get("/conta", async (req, res) => {
-    return res.sendFile("conta/conta-criar-conta.html");
+  servidor.get("/perfil", async (req, res) => {
+    return res.sendFile("conta/usuario.html");
   });
 
   servidor.get("/conta/criar-conta", async (req, res) => {
-    return res.sendFile("conta/conta-criar-conta.html");
+    return res.sendFile("conta/criar-conta.html");
   });
 
   servidor.get("/conta/login", async (req, res) => {
-    return res.sendFile("conta/conta-login.html");
+    return res.sendFile("conta/login.html");
   });
 
   servidor.get(
     "/conta/criar-usuario",
     { preHandler: [autenticar] },
     async (req, res) => {
-      return res.sendFile("conta/conta-criar-usuario.html");
-    },
-  );
-
-  servidor.get(
-    "/conta/usuario/me",
-    { preHandler: [autenticar] },
-    async (req, res) => {
-      return res.sendFile("conta/conta-usuario-me.html");
+      return res.sendFile("conta/criar-usuario.html");
     },
   );
 
@@ -83,7 +75,7 @@ export async function rotasPaginas(servidor, opts) {
     "/conta/usuario/:id",
     { preHandler: [autenticar] },
     async (req, res) => {
-      return res.sendFile("conta/conta-usuario-id.html");
+      return res.sendFile("conta/usuario.html");
     },
   );
 
@@ -92,34 +84,30 @@ export async function rotasPaginas(servidor, opts) {
   });
 
   servidor.get("/calculadoras/imc", async (req, res) => {
-    return res.sendFile("calculadoras/calculadoras-imc.html");
+    return res.sendFile("calculadoras/imc.html");
   });
 
   servidor.get("/calculadoras/calorias", async (req, res) => {
-    return res.sendFile("calculadoras/calculadoras-calorias.html");
+    return res.sendFile("calculadoras/calorias.html");
   });
 
-  servidor.get("/calculadoras/massa", async (req, res) => {
-    return res.sendFile("calculadoras/calculadoras-massa-ideal.html");
+  servidor.get("/calculadoras/massa-ideal", async (req, res) => {
+    return res.sendFile("calculadoras/massa-ideal.html");
   });
 
   servidor.get("/painel", { preHandler: [autenticar] }, async (req, res) => {
-    return res.sendFile("painel/home.html");
+    return res.sendFile("painel/index.html");
   });
 
   servidor.get("/erro/401", async (req, res) => {
-    return res.sendFile("errors/error-401.html");
+    return res.sendFile("erros/401.html");
   });
 
   servidor.get("/erro/500", async (req, res) => {
-    return res.sendFile("errors/error-500.html");
+    return res.sendFile("erros/500.html");
   });
 
   servidor.get("/erro/404", async (req, res) => {
-    return res.sendFile("errors/error-404.html");
-  });
-
-  servidor.get("/elementos", async (req, res) => {
-    return res.sendFile("elementos-novos.html");
+    return res.sendFile("erros/404.html");
   });
 }
