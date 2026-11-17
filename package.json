@@ -16,7 +16,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch index.js",
-    "build:frontend": "parcel build \"public/frontend/**/*.html\" --dist-dir public/dist --no-content-hash",
+    "build:frontend": "rm -rf public/dist && html-minifier-terser --input-dir public/frontend --output-dir public/dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true && find public/dist -name '*.html' -exec sed -i 's|<base href=\"[^\"]*\"|<base href=\"/\"|' {} + && esbuild \"public/frontend/src/**/*.js\" \"public/frontend/src/**/*.css\" --minify --outdir=public/dist/src --outbase=public/frontend/src && cp -r public/frontend/src/assets public/dist/src/assets",
     "build": "docker build -t vitaliza .",
     "run": "docker run --env-file .env -p 3000:3000 vitaliza"
   },
@@ -35,7 +35,8 @@
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^26.1.1",
-    "parcel": "^2.16.4",
+    "esbuild": "^0.28.2",
+    "html-minifier-terser": "^7.2.0",
     "prettier": "3.9.6"
   },
   "allowScripts": {

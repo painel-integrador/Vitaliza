@@ -18,7 +18,7 @@ const servidor = Fastify({
 });
 
 await servidor.register(rateLimit, {
-  max: 150,
+  max: 350,
   timeWindow: "1 minute",
 });
 
