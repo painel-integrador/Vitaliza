@@ -5,6 +5,21 @@ async function criarConta(event) {
   const formData = new FormData(form);
   const dados = Object.fromEntries(formData);
 
+  if (dados.senha !== dados.confirmar) {
+    alert("A senha e a confirmação devem ser iguais.");
+    return;
+  }
+
+  if (dados.senha.length < 6) {
+    alert("A senha deve ter pelo menos 6 caracteres.");
+    return;
+  }
+
+  if (!/[A-Z]/.test(dados.senha)) {
+    alert("A senha deve conter pelo menos uma letra maiúscula.");
+    return;
+  }
+
   try {
     const response = await fetch("/api/auth/criar_conta/email_senha", {
       method: "POST",

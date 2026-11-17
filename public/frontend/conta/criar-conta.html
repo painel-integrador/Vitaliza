@@ -178,14 +178,9 @@
               </a>
             </div>
 
-            <div class="perfil drop-hover">
+            <div class="perfil drop-hover invisivel" id="perfil-mobile">
               <a href="/perfil">
-                <img
-                  src="src/assets/images/avatar/5.svg"
-                  alt=""
-                  id="perfil"
-                  class="perfil"
-                />
+                <img src="" alt="Avatar" class="perfil" />
               </a>
               <div class="drop">
                 <ul class="flex-ver">
@@ -194,7 +189,7 @@
                   </li>
 
                   <li>
-                    <a href="/sair" class="btn">
+                    <a href="#" onclick="sair(); return false;" class="btn">
                       <p>Sair</p>
                       <svg
                         width="24"
@@ -293,14 +288,9 @@
             </a>
           </div>
 
-          <div class="perfil drop-hover">
+          <div class="perfil drop-hover invisivel" id="perfil-mobile">
             <a href="/perfil">
-              <img
-                src="src/assets/images/avatar/5.svg"
-                alt=""
-                id="perfil"
-                class="perfil"
-              />
+              <img src="" alt="Avatar" class="perfil" />
             </a>
             <div class="drop">
               <ul class="flex-ver">
@@ -309,7 +299,7 @@
                 </li>
 
                 <li>
-                  <a href="/sair" class="btn">
+                  <a href="#" onclick="sair(); return false;" class="btn">
                     <p>Sair</p>
                     <svg
                       width="24"
@@ -340,15 +330,15 @@
 
           <div>
             Ou
-            <a href="/conta/criar-conta" class="btn">Faça Login</a>
+            <a href="/conta/login" class="btn">Faça Login</a>
           </div>
         </div>
 
         <div class="box flex-1">
           <form
             action="#"
-            onsubmit="criarConta()"
-            id="form"
+            onsubmit="criarConta(event)"
+            id="formulario"
             class="flex-ver separacao-2"
           >
             <div class="flex-hor-desktop flex-ver">
@@ -490,9 +480,9 @@
       </p>
     </footer>
 
+    <script src="src/scripts/header.js" defer></script>
+    <script src="src/scripts/conta.js" defer></script>
     <script src="src/scripts/grid-hover.js"></script>
     <script src="src/scripts/dropdown.js" defer></script>
-    <script src="src/scripts/header.js" defer></script>
-    <script src="src/scripts/faq.js" defer></script>
   </body>
 </html>

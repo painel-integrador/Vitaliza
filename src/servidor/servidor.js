@@ -26,6 +26,22 @@ await servidor.register(fastifyCookie, {
   secret: process.env.COOKIE_SECRET,
 });
 
+servidor.addHook("onSend", async (req, res, payload) => {
+  const paginasErro = {
+    404: "/erro/404",
+    401: "/erro/401",
+    500: "/erro/500",
+  };
+
+  const paginaErro = paginasErro[res.statusCode];
+  if (paginaErro && req.url !== paginaErro) {
+    res.code(302); // muda para redirecionar
+    res.header("location", paginaErro); // redireciona para a página de erro
+  }
+
+  return payload;
+});
+
 servidor.register(rotasPaginas, { prefix: "/" });
 servidor.register(rotasAuth, { prefix: "/api/auth" });
 servidor.register(rotasTreino, { prefix: "/api/treinos" });

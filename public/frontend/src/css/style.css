@@ -698,7 +698,7 @@ header {
 header .desktop > div,
 header .mobile > div {
   background-color: var(--primary-95);
-  padding: 4px 12px;
+  padding: 4px 20px;
 }
 
 header .mobile > div {

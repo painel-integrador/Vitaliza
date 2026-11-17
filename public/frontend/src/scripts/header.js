@@ -3,6 +3,8 @@ let botaoMenu = document.getElementById("menu-hamburguer");
 let botaoFechar = document.getElementById("menu-fechar");
 let menuMobile = document.getElementById("menu-mobile");
 let cabecalho = document.querySelector("header");
+let perfilMobile = document.getElementById("perfil-mobile");
+let perfilDesktop = document.getElementById("perfil-desktop");
 let html = document.documentElement;
 let temaSalvo = localStorage.getItem("tema");
 
@@ -34,17 +36,13 @@ function menu() {
 async function checarAutenticacao() {
   try {
     const response = await fetch("/api/auth/me");
-    if (response.ok) {
-      // 1. Oculta o contêiner de botões de login/criar conta
-      if (btns) {
-        btns.classList.add("invisivel");
-      }
+    if (response.ok && response.status === 200) {
+      const dados = await response.json();
 
-      // 2. Remove a classe 'invisivel' apenas dos links dentro da navegação
-      const linksInvisiveis = nav.querySelectorAll("nav.menu a.invisivel");
-      linksInvisiveis.forEach((element) => {
-        element.classList.remove("invisivel");
-      });
+      perfilMobile.classList.remove("invisivel");
+      perfilDesktop.classList.remove("invisivel");
+      perfilMobile.src = `src/assets/images/avatar/${dados.avatar}.svg`;
+      perfilDesktop.src = `src/assets/images/avatar/${dados.avatar}.svg`;
     }
   } catch (erro) {
     console.error("Usuário não autenticado ou erro na API", erro);

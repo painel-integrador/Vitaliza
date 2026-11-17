@@ -18,7 +18,7 @@
     "dev": "node --watch index.js",
     "build:frontend": "rm -rf public/dist && html-minifier-terser --input-dir public/frontend --output-dir public/dist --file-ext html --collapse-whitespace --remove-comments --minify-css true --minify-js true && find public/dist -name '*.html' -exec sed -i 's|<base href=\"[^\"]*\"|<base href=\"/\"|' {} + && esbuild \"public/frontend/src/**/*.js\" \"public/frontend/src/**/*.css\" --minify --outdir=public/dist/src --outbase=public/frontend/src && cp -r public/frontend/src/assets public/dist/src/assets",
     "build": "docker build -t vitaliza .",
-    "run": "docker run --env-file .env -p 3000:3000 vitaliza"
+    ".": "docker run --env-file .env -p 3000:3000 vitaliza"
   },
   "dependencies": {
     "@fastify/cookie": "^11.1.2",

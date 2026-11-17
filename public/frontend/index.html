@@ -178,14 +178,9 @@
               </a>
             </div>
 
-            <div class="perfil drop-hover">
+            <div class="perfil drop-hover invisivel" id="perfil-mobile">
               <a href="/perfil">
-                <img
-                  src="src/assets/images/avatar/5.svg"
-                  alt=""
-                  id="perfil"
-                  class="perfil"
-                />
+                <img src="" alt="Avatar" class="perfil" />
               </a>
               <div class="drop">
                 <ul class="flex-ver">
@@ -194,7 +189,7 @@
                   </li>
 
                   <li>
-                    <a href="/sair" class="btn">
+                    <a href="#" onclick="sair(); return false;" class="btn">
                       <p>Sair</p>
                       <svg
                         width="24"
@@ -293,14 +288,9 @@
             </a>
           </div>
 
-          <div class="perfil drop-hover">
+          <div class="perfil drop-hover invisivel" id="perfil-mobile">
             <a href="/perfil">
-              <img
-                src="src/assets/images/avatar/5.svg"
-                alt=""
-                id="perfil"
-                class="perfil"
-              />
+              <img src="" alt="Avatar" class="perfil" />
             </a>
             <div class="drop">
               <ul class="flex-ver">
@@ -309,7 +299,7 @@
                 </li>
 
                 <li>
-                  <a href="/sair" class="btn">
+                  <a href="#" onclick="sair(); return false;" class="btn">
                     <p>Sair</p>
                     <svg
                       width="24"
@@ -354,7 +344,7 @@
           </div>
 
           <div class="flex-hor-desktop flex-ver btns">
-            <a href="/conta" class="esquerda-desktop cima btn-2"
+            <a href="/conta/criar-conta" class="esquerda-desktop cima btn-2"
               ><p>Crie sua conta</p>
               <svg
                 width="16"
@@ -369,7 +359,7 @@
                 />
               </svg>
             </a>
-            <a href="/conta" class="direita-desktop baixo btn-3"
+            <a href="/informativo" class="direita-desktop baixo btn-3"
               ><p>Veja nossas dicas</p>
               <svg
                 width="18"
@@ -398,6 +388,9 @@
           Veja nossas dicas e exemplos de como ter melhor proveito dos
           exercícios físicos e hidratação!
         </p>
+        <a href="/informativo"
+          ><p class="centro link">Veja nosso conteúdo</p></a
+        >
       </section>
 
       <hr />
@@ -499,7 +492,7 @@
         </div>
 
         <div class="flex-hor-desktop flex-ver">
-          <a href="/conta" class="esquerda-desktop cima btn-2"
+          <a href="/conta/criar-conta" class="esquerda-desktop cima btn-2"
             ><p>Crie sua conta</p>
             <svg
               width="16"
@@ -514,7 +507,7 @@
               />
             </svg>
           </a>
-          <a href="/conta" class="direita-desktop baixo btn-3"
+          <a href="/conta/login" class="direita-desktop baixo btn-3"
             ><p>Faça login</p>
             <svg
               width="18"
@@ -654,9 +647,9 @@
 
       <hr />
 
-      <section class="bg-quadrados flex-ver flex-hor-desktop flex-centro">
+      <section class="bg-quadrados flex-ver">
         <div class="flex-ver flex-1 box">
-          <h2>Documentação</h2>
+          <h2 class="titulo-wavy separacao">Documentação</h2>
           <a href="/docs">
             <p>Veja a documentação da <span class="link">API</span>.</p>
           </a>

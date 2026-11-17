@@ -22,7 +22,7 @@ function criarRefreshToken() {
 export const oAuthClient = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
   process.env.GOOGLE_CLIENT_SECRET,
-  "http://localhost:3000/api/auth/google/callback",
+  process.env.URL + "/api/auth/google/callback",
 );
 
 async function criarSessaoCookie(req, res, contaId) {
@@ -160,7 +160,7 @@ export async function rotasAuth(servidor, opts) {
         return res.status(401).send({ erro: "Email ou senha inválidos" });
 
       await criarSessaoCookie(req, res, conta.id);
-      return res.redirect(process.env.URL + "/home");
+      return res.redirect(process.env.URL + "/painel");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -252,7 +252,7 @@ export async function rotasAuth(servidor, opts) {
 
       targetContaId = contaBanco.id;
       await criarSessaoCookie(req, res, targetContaId);
-      return res.redirect(process.env.URL + "/home");
+      return res.redirect(process.env.URL + "/painel");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -260,7 +260,18 @@ export async function rotasAuth(servidor, opts) {
   });
 
   servidor.get("/me", { preHandler: [autenticar] }, async (req, res) => {
-    return res.send({ logado: true, contaId: req.contaid });
+    // busca o avatar do usuário logado no usuarioRepository
+    const avatar = await usuarioRepository.procurarUm({
+      coluna: "id",
+      dado: req.contaid,
+      dadosResposta: "avatar",
+    });
+
+    return res.send({
+      logado: true,
+      contaId: req.contaid,
+      avatar: avatar.avatar,
+    });
   });
 
   servidor.post("/sair", async (req, res) => {
@@ -291,6 +302,6 @@ export async function rotasAuth(servidor, opts) {
       expires: new Date(0),
     });
 
-    return res.redirect(process.env.URL + "/");
+    return res.redirect("/");
   });
 }
