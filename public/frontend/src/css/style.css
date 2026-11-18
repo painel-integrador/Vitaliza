@@ -975,7 +975,7 @@ footer .box > .degrade-cinza {
     transform: translateY(-50%) rotate(0deg);
     position: absolute;
     top: 50%;
-    right: -20%;
+    right: -30%;
     bottom: auto;
     z-index: 0;
   }
