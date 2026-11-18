@@ -3,6 +3,7 @@ import { OAuth2Client } from "google-auth-library";
 import crypto from "crypto";
 import { contasRepository } from "../bancoDeDados/contas.js";
 import { sessoesRepository } from "../bancoDeDados/sessoes.js";
+import { usuarioRepository } from "../bancoDeDados/usuarios.js";
 import { googleRepository } from "../bancoDeDados/conexaoGoogle.js";
 
 function criarAccessToken() {
@@ -62,15 +63,23 @@ async function criarSessaoCookie(req, res, contaId) {
 export async function autenticar(req, res) {
   try {
     const accessToken = req.cookies.access_token;
-    if (!accessToken) return res.redirect("/erro/401");
+    if (!accessToken)
+      return res
+        .status(401)
+        .send({ erro: "Sessão expirada. Faça login novamente." });
 
-    const sessao = await sessoesRepository.procurarUm({
+    const sessoes = await sessoesRepository.procurarVarios({
       coluna: "access_token",
       dado: accessToken,
       dadosResposta: "*",
+      contadorRange: 0,
     });
+    const sessao = sessoes[0];
 
-    if (!sessao) return res.redirect("/erro/401");
+    if (!sessao)
+      return res
+        .status(401)
+        .send({ erro: "Sessão inválida. Faça login novamente." });
 
     const agora = new Date();
     const tokenAcessoExpirou = new Date(sessao.access_token_expira_em) < agora;
@@ -78,7 +87,9 @@ export async function autenticar(req, res) {
       new Date(sessao.refresh_token_expira_em) < agora;
 
     if (tokenAcessoExpirou && tokenRefreshExpirou) {
-      return res.redirect("/erro/401");
+      return res
+        .status(401)
+        .send({ erro: "Sessão expirada. Faça login novamente." });
     }
 
     if (tokenAcessoExpirou && !tokenRefreshExpirou) {
@@ -119,15 +130,27 @@ export async function autenticar(req, res) {
     req.contaid = Number(sessao.conta_id);
   } catch (erro) {
     console.error(erro);
-    return res.redirect("/erro/500");
+    return res.status(500).send({ erro: "Erro interno do servidor." });
   }
 }
 
 export async function rotasAuth(servidor, opts) {
   servidor.post("/criar_conta/email_senha", async (req, res) => {
     try {
-      const senhaCripto = await hash(req.body.senha, 10);
+      const contasExistentes = await contasRepository.procurarVarios({
+        coluna: "email",
+        dado: req.body.email,
+        dadosResposta: "id",
+        contadorRange: 0,
+      });
 
+      if (contasExistentes.length > 0) {
+        return res.status(409).send({
+          erro: "Conta já existente.",
+        });
+      }
+
+      const senhaCripto = await hash(req.body.senha, 10);
       const contaCriada = await contasRepository.criar({
         dados: {
           email: req.body.email,
@@ -153,14 +176,19 @@ export async function rotasAuth(servidor, opts) {
       });
 
       if (!conta)
-        return res.status(401).send({ erro: "Email ou senha inválidos" });
+        return res.status(404).send({
+          erro: "Conta não existe.",
+          codigo: "CONTA_INEXISTENTE",
+        });
 
-      const senhaValida = await compare(req.body.senha, conta.senha_cripto);
+      const senhaValida =
+        conta.senha_cripto &&
+        (await compare(req.body.senha, conta.senha_cripto));
       if (!senhaValida)
         return res.status(401).send({ erro: "Email ou senha inválidos" });
 
       await criarSessaoCookie(req, res, conta.id);
-      return res.redirect(process.env.URL + "/painel");
+      return res.redirect(process.env.URL + "/informativo");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -252,7 +280,7 @@ export async function rotasAuth(servidor, opts) {
 
       targetContaId = contaBanco.id;
       await criarSessaoCookie(req, res, targetContaId);
-      return res.redirect(process.env.URL + "/painel");
+      return res.redirect(process.env.URL + "/");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
@@ -260,18 +288,35 @@ export async function rotasAuth(servidor, opts) {
   });
 
   servidor.get("/me", { preHandler: [autenticar] }, async (req, res) => {
-    // busca o avatar do usuário logado no usuarioRepository
-    const avatar = await usuarioRepository.procurarUm({
-      coluna: "id",
-      dado: req.contaid,
-      dadosResposta: "avatar",
-    });
+    try {
+      const contas = await contasRepository.procurarVarios({
+        coluna: "id",
+        dado: req.contaid,
+        dadosResposta: "usuario_id",
+        contadorRange: 0,
+      });
+      const conta = contas[0];
 
-    return res.send({
-      logado: true,
-      contaId: req.contaid,
-      avatar: avatar.avatar,
-    });
+      let avatar = 1;
+      if (conta?.usuario_id) {
+        const usuarios = await usuarioRepository.procurarVarios({
+          coluna: "id",
+          dado: conta.usuario_id,
+          dadosResposta: "avatar",
+          contadorRange: 0,
+        });
+        if (usuarios[0]?.avatar) avatar = usuarios[0].avatar;
+      }
+
+      return res.send({
+        logado: true,
+        contaId: req.contaid,
+        avatar,
+      });
+    } catch (erro) {
+      console.error(erro);
+      return res.status(500).send({ erro: "Erro interno do servidor." });
+    }
   });
 
   servidor.post("/sair", async (req, res) => {

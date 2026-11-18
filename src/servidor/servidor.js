@@ -27,16 +27,9 @@ await servidor.register(fastifyCookie, {
 });
 
 servidor.addHook("onSend", async (req, res, payload) => {
-  const paginasErro = {
-    404: "/erro/404",
-    401: "/erro/401",
-    500: "/erro/500",
-  };
-
-  const paginaErro = paginasErro[res.statusCode];
-  if (paginaErro && req.url !== paginaErro) {
-    res.code(302); // muda para redirecionar
-    res.header("location", paginaErro); // redireciona para a página de erro
+  if (res.statusCode === 404 && req.url !== "/erro/404") {
+    res.code(302);
+    res.header("location", "/erro/404");
   }
 
   return payload;

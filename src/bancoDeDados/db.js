@@ -139,7 +139,7 @@ export default class EntityDB {
   }) {
     const { data, error } = await this.client
       .from(this.table)
-      .update({ [colunaAtualizar]: dadoAtualizar }) // estar em colchetes, faz pegar o valor da variavel, e usar como campo no objeto
+      .update(dadosAtualizar)
       .eq(colunaFiltrar, dadoFiltrar)
       .select(dadosResposta)
       .single();

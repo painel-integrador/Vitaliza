@@ -6,17 +6,30 @@ async function criarConta(event) {
   const dados = Object.fromEntries(formData);
 
   if (dados.senha !== dados.confirmar) {
-    alert("A senha e a confirmação devem ser iguais.");
+    const erroConta = document.getElementById("erro-conta");
+
+    erroConta.innerHTML = `<strong>Erro: </strong>As senhas não são iguais.`;
     return;
   }
 
   if (dados.senha.length < 6) {
-    alert("A senha deve ter pelo menos 6 caracteres.");
+    const erroConta = document.getElementById("erro-conta");
+
+    erroConta.innerHTML = `<strong>Erro: </strong>A senha deve ter pelo menos 6 caracteres.`;
     return;
   }
 
   if (!/[A-Z]/.test(dados.senha)) {
-    alert("A senha deve conter pelo menos uma letra maiúscula.");
+    const erroConta = document.getElementById("erro-conta");
+
+    erroConta.innerHTML = `<strong>Erro: </strong>A senha deve conter pelo menos uma letra maiúscula.`;
+    return;
+  }
+
+  if (!/[0-9]/.test(dados.senha)) {
+    const erroConta = document.getElementById("erro-conta");
+
+    erroConta.innerHTML = `<strong>Erro: </strong>A senha deve conter pelo menos um número.`;
     return;
   }
 
@@ -30,9 +43,17 @@ async function criarConta(event) {
     });
 
     if (!response.ok) {
-      alert(`Erro na requisição: ${response.status}\n${response.body}`);
+      const dadosErro = await response.json();
+      if (response.status === 409) {
+        const erroConta = document.getElementById("erro-conta");
+
+        erroConta.innerHTML = `<strong>Erro: </strong>Conta já existente,
+            <a href="/conta/login" class="centro link">faça login</a>`;
+        return;
+      }
+
       throw new Error(
-        `Erro na requisição: ${response.status}\n${response.body}`,
+        dadosErro.erro || `Erro na requisição: ${response.status}`,
       );
     }
 
@@ -62,9 +83,21 @@ async function login(event) {
     });
 
     if (!response.ok) {
-      alert(`Erro na requisição: ${response.status}\n${response.body}`);
+      const dadosErro = await response.json();
+      const erroLogin = document.getElementById("erro-login");
+      if (response.status === 401) {
+        erroLogin.innerHTML = `<strong>Erro: </strong>Conta não existe ou senha inválida,
+            <a href="/conta/criar-conta" class="centro link">crie sua conta</a>`;
+        return;
+      }
+
+      if (response.status === 401) {
+        erroLogin.innerHTML = `<strong>Erro: </strong>Email ou senha inválidos`;
+        return;
+      }
+
       throw new Error(
-        `Erro na requisição: ${response.status}\n${response.body}`,
+        dadosErro.erro || `Erro na requisição: ${response.status}`,
       );
     }
 

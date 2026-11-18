@@ -39,10 +39,21 @@ async function checarAutenticacao() {
     if (response.ok && response.status === 200) {
       const dados = await response.json();
 
-      perfilMobile.classList.remove("invisivel");
-      perfilDesktop.classList.remove("invisivel");
-      perfilMobile.src = `src/assets/images/avatar/${dados.avatar}.svg`;
-      perfilDesktop.src = `src/assets/images/avatar/${dados.avatar}.svg`;
+      if (perfilMobile) {
+        perfilMobile.classList.remove("invisivel");
+        const imagemMobile = perfilMobile.querySelector("img");
+        if (imagemMobile) {
+          imagemMobile.src = `src/assets/images/avatar/${dados.avatar}.svg`;
+        }
+      }
+
+      if (perfilDesktop) {
+        perfilDesktop.classList.remove("invisivel");
+        const imagemDesktop = perfilDesktop.querySelector("img");
+        if (imagemDesktop) {
+          imagemDesktop.src = `src/assets/images/avatar/${dados.avatar}.svg`;
+        }
+      }
     }
   } catch (erro) {
     console.error("Usuário não autenticado ou erro na API", erro);

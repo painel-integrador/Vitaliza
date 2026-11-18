@@ -303,6 +303,11 @@ img {
   cursor: pointer;
 }
 
+/* FAQ fechar */
+.menos {
+  transform: rotate(45deg);
+}
+
 .box {
   background-color: color-mix(in srgb, var(--primary-95) 50%, transparent);
   border-radius: 28px;
