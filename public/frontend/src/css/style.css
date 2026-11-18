@@ -728,6 +728,7 @@ header .mobile > div {
 header .nav {
   flex: 1;
   border-radius: 0 0 28px 14px;
+  justify-content: flex-end;
 }
 
 header .logo {
@@ -932,6 +933,10 @@ footer .box > .degrade-cinza {
 
   header .nav .nav-links {
     display: flex;
+  }
+
+  header .nav {
+    justify-content: space-between;
   }
 
   header .nav .contato-perfil {
