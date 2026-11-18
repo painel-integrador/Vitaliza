@@ -222,8 +222,23 @@ strong {
   text-decoration: underline;
   font-weight: 500;
 }
+.link::after {
+  content: "";
+  display: inline-block;
+  height: clamp(16px, calc(14px + 0.4vw), 20px);
+  width: clamp(16px, calc(14px + 0.4vw), 20px);
+  background-image: url("../assets/icons/seta-link.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
 .link:hover {
   color: var(--secondary-40);
+}
+.link:hover::after {
+  transform: translateX(4px) translateY(4px);
 }
 
 .centro {
