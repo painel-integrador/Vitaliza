@@ -17,16 +17,22 @@ async function enviarMensagem(event) {
     });
 
     if (!response.ok) {
-      alert(`Erro na requisição: ${response.status}\n${response.body}`);
+      const dadosErro = await response.json();
+      alert(dadosErro.erro || `Erro na requisição: ${response.status}`);
       throw new Error(
-        `Erro na requisição: ${response.status}\n${response.body}`,
+        dadosErro.erro || `Erro na requisição: ${response.status}`,
       );
     }
 
     if (response.redirected) {
       window.location.href = response.url;
+    } else {
+      window.location.href = "/";
     }
   } catch (e) {
     console.log("Erro ao processar envio de mensagem:", e);
+    if (botaoEnviar) {
+      botaoEnviar.classList.toggle("invisivel");
+    }
   }
 }

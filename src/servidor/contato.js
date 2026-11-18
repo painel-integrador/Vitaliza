@@ -9,7 +9,7 @@ export async function rotasMensagens(servidor, opts) {
         dadosResposta: "*",
       });
 
-      enviarEmail(
+      await enviarEmail(
         process.env.EMAIL,
         req.body.nome,
         req.body.email,

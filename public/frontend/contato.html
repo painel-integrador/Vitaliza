@@ -189,7 +189,14 @@
                   </li>
 
                   <li>
-                    <a href="#" onclick="sair(); return false;" class="btn">
+                    <a
+                      href="#"
+                      onclick="
+                        sair();
+                        return false;
+                      "
+                      class="btn"
+                    >
                       <p>Sair</p>
                       <svg
                         width="24"
@@ -299,7 +306,14 @@
                 </li>
 
                 <li>
-                  <a href="#" onclick="sair(); return false;" class="btn">
+                  <a
+                    href="#"
+                    onclick="
+                      sair();
+                      return false;
+                    "
+                    class="btn"
+                  >
                     <p>Sair</p>
                     <svg
                       width="24"
@@ -340,8 +354,8 @@
         <div class="box flex-1">
           <form
             action="#"
-            onsubmit="criarConta()"
-            id="form"
+            onsubmit="enviarMensagem(event)"
+            id="formulario"
             class="flex-ver separacao-2"
           >
             <div class="flex-hor-desktop flex-ver">
@@ -382,7 +396,11 @@
 
             <p class="centro">Deixe seu email caso queira ser respondido</p>
 
-            <button class="btn-2 baixo flex-centro flex-ver" type="submit">
+            <button
+              id="botao-enviar"
+              class="btn-2 baixo flex-centro flex-ver"
+              type="submit"
+            >
               Enviar
             </button>
           </form>
@@ -482,5 +500,6 @@
     <script src="src/scripts/dropdown.js" defer></script>
     <script src="src/scripts/header.js" defer></script>
     <script src="src/scripts/faq.js" defer></script>
+    <script src="src/scripts/contato.js" defer></script>
   </body>
 </html>

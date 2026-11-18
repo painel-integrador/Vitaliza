@@ -24,8 +24,14 @@ export async function enviarEmail(
       subject: assunto,
       html: html,
     });
+
+    if (data.error) {
+      throw new Error(data.error.message);
+    }
+
     console.log("Email enviado com sucesso via Resend:", data);
   } catch (erro) {
     console.error("Erro ao enviar e-mail via API Resend:", erro);
+    throw erro;
   }
 }
