@@ -1,3 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Agrave+Pro:wght@100..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap");
+
+.btn-fun-bar {
+  background-color: var(--primary-90);
+  padding: 14px 16px;
+  border-radius: 12px;
+  transition: 200ms ease;
+}
+
+.btn-fun-bar > .detalhe {
+  display: none;
+  font-weight: 300;
+  color: var(--primary-20);
+}
+
+.btn-fun-bar:hover,
+.btn-fun-bar:focus,
+.btn-fun-bar:active {
+  background-color: var(--neutral-80);
+  border-radius: 20px;
+}
+.btn-fun-bar:hover > .detalhe,
+.btn-fun-bar:focus > .detalhe {
+  display: block;
+}
+
+.btn-fun-bar > svg {
+  fill: white;
+}
+
+.font-1 {
+  font-family: "Work Sans", sans-serif;
+}
+.font-2 {
+  font-family: "Agrave Pro", sans-serif;
+  color: var(--secondary-90);
+}
+.font-3 {
+  font-family: "Kablammo", sans-serif;
+  color: var(--tertiary-70);
+  font-style: italic;
+}
+.font-4 {
+  font-family: "Monsieur La Doulaise", cursive;
+  color: var(--secondary-70);
+}
+
+.font,
+.apagavel {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.redimensionar {
+  display: inline-block;
+  cursor: nesw-resize;
+}
+
 .movivel,
 .giravel {
   display: inline-block;
@@ -5,7 +65,10 @@
 }
 
 .movivel:hover,
-.giravel:hover {
+.giravel:hover,
+.font:hover,
+.apagavel:hover,
+.redimensionar:hover {
   outline: 2px solid var(--secondary-60);
   outline-offset: 2px;
 }
