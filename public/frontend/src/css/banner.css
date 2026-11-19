@@ -1,8 +1,16 @@
-.movivel {
+.movivel,
+.giravel {
+  display: inline-block;
   cursor: grab;
-  touch-action: none; /* recomendado para funcionar bem no touch/mobile */
 }
 
-.movivel:active {
+.movivel:hover,
+.giravel:hover {
+  outline: 2px solid var(--secondary-60);
+  outline-offset: 2px;
+}
+
+.movivel:active,
+.giravel:active {
   cursor: grabbing;
 }
