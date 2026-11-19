@@ -1,0 +1,8 @@
+.movivel {
+  cursor: grab;
+  touch-action: none; /* recomendado para funcionar bem no touch/mobile */
+}
+
+.movivel:active {
+  cursor: grabbing;
+}
