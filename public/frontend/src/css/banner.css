@@ -1,0 +1,16 @@
+.movivel,
+.giravel {
+  display: inline-block;
+  cursor: grab;
+}
+
+.movivel:hover,
+.giravel:hover {
+  outline: 2px solid var(--secondary-60);
+  outline-offset: 2px;
+}
+
+.movivel:active,
+.giravel:active {
+  cursor: grabbing;
+}

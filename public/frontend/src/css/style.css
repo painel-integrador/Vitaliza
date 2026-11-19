@@ -563,6 +563,8 @@ label {
   font-weight: 500;
 }
 
+.avatar
+
 /* BORDAS */
 
 .esquerda {
@@ -842,7 +844,9 @@ header .nav .contato-perfil .drop {
 
 /* BANNER */
 .banner {
+  position: relative;
   padding: 12px;
+  width: 100%;
 }
 
 .banner .box {
