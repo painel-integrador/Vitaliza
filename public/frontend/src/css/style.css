@@ -130,7 +130,8 @@
 /* == Tags Padrão == */
 
 main {
-  padding-top: 90px;
+  margin-top: 50px;
+  padding-top: 40px;
   isolation: isolate;
 }
 
@@ -910,6 +911,7 @@ footer {
 
 footer .box {
   background-color: var(--primary-95);
+  overflow: hidden;
 }
 
 footer .box-logo {
@@ -946,7 +948,7 @@ footer .box > .degrade-cinza {
 
 @media screen and (min-width: 700px) {
   main {
-    padding-top: 150px;
+    margin-top: 100px;
   }
   /* HEADER */
 
