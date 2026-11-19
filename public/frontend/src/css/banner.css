@@ -2,32 +2,48 @@
 @import url("https://fonts.googleapis.com/css2?family=Kablammo&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&display=swap");
 
-.btn-fun-bar {
-  background-color: var(--primary-90);
+.btn-fun-bar,
+.btn-fun-bar-1,
+.btn-fun-bar-2,
+.btn-fun-bar-3,
+.btn-fun-bar-4,
+.btn-fun-bar-5 {
+  background-color: var(--tertiary-80);
   padding: 14px 16px;
   border-radius: 12px;
   transition: 200ms ease;
+  cursor: pointer;
 }
 
-.btn-fun-bar > .detalhe {
-  display: none;
-  font-weight: 300;
-  color: var(--primary-20);
+.btn-fun-bar-1 {
+  background-color: var(--secondary-70);
+}
+.btn-fun-bar-2 {
+  background-color: var(--secondary-80);
+}
+.btn-fun-bar-3 {
+  background-color: var(--secondary-90);
+}
+.btn-fun-bar-4 {
+  background-color: var(--secondary-95);
+}
+.btn-fun-bar-5 {
+  background-color: var(--secondary-99);
 }
 
 .btn-fun-bar:hover,
-.btn-fun-bar:focus,
-.btn-fun-bar:active {
-  background-color: var(--neutral-80);
+.btn-fun-bar-1:hover,
+.btn-fun-bar-2:hover,
+.btn-fun-bar-3:hover,
+.btn-fun-bar-4:hover,
+.btn-fun-bar-5:hover {
+  background-color: var(--neutral-60);
   border-radius: 20px;
 }
-.btn-fun-bar:hover > .detalhe,
-.btn-fun-bar:focus > .detalhe {
-  display: block;
-}
 
-.btn-fun-bar > svg {
-  fill: white;
+.active {
+  background-color: var(--neutral-70);
+  border-radius: 20px;
 }
 
 .font-1 {
@@ -53,27 +69,34 @@
   display: inline-block;
 }
 
-.redimensionar {
-  display: inline-block;
-  cursor: nesw-resize;
+.apagavel {
+  transition: 200ms ease;
 }
 
-.movivel,
+.movel,
 .giravel {
   display: inline-block;
   cursor: grab;
 }
 
-.movivel:hover,
+.movel:hover,
 .giravel:hover,
 .font:hover,
-.apagavel:hover,
-.redimensionar:hover {
+.apagavel:hover {
   outline: 2px solid var(--secondary-60);
   outline-offset: 2px;
 }
 
-.movivel:active,
+.movel:active,
 .giravel:active {
   cursor: grabbing;
+}
+
+.apagado-1 {
+  opacity: 0.5;
+}
+
+.apagado-2 {
+  opacity: 0;
+  pointer-events: none;
 }

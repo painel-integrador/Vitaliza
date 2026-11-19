@@ -208,6 +208,10 @@ p {
   font-weight: 300;
 }
 
+span {
+  display: inline-block;
+}
+
 strong {
   font-weight: 600;
 }
@@ -327,7 +331,6 @@ img {
   background-color: color-mix(in srgb, var(--primary-95) 50%, transparent);
   border-radius: 28px;
   padding: 24px 20px;
-  overflow: hidden;
   position: relative;
   backdrop-filter: blur(2px);
 }
@@ -337,6 +340,15 @@ img {
 }
 
 /* ICONES e IMAGENS */
+
+.flor-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 0;
+  pointer-events: none;
+}
 
 .flor-gradiente {
   position: absolute;
@@ -356,8 +368,8 @@ img {
   }
 }
 
-/* seleciona todos os elementos dentro de .box que não sejam .flor-gradiente e coloca eles acima da flor */
-.box > :not(.flor-gradiente) {
+/* seleciona todos os elementos dentro de .box que não sejam o container da flor e coloca eles acima da flor */
+.box > :not(.flor-container) {
   position: relative;
   z-index: 1;
 }
@@ -801,9 +813,9 @@ header .nav nav {
 
 header .nav .drop {
   position: absolute;
-  top: 24px;
+  top: 20px;
   background-color: var(--primary-95);
-  border-radius: 28px;
+  border-radius: 14px 14px 28px 28px;
   padding: 12px 14px;
   display: none;
   flex-direction: column;
@@ -818,8 +830,20 @@ header .nav .drop-hover.drop-aberto > .drop {
   display: flex;
 }
 
-header .nav .drop-hover.drop-aberto svg {
+header .nav .drop-hover:hover > .drop {
+  display: flex;
+}
+
+header .nav .drop-hover.drop-aberto > a .seta {
   transform: rotate(90deg);
+}
+
+header .nav .drop-hover > .fun-bar-drop {
+  left: 50%;
+  top: 50px;
+  transform: translateX(-50%);
+  flex-direction: row;
+  border-radius: 20px;
 }
 
 header .nav .contato-perfil {
