@@ -136,9 +136,8 @@ main {
 }
 
 html {
-  font-family:
-    work sans,
-    sans-serif;
+  font-family: work sans,
+  sans-serif;
 
   color: var(--primary-20);
   font-size: clamp(18px, calc(14px + 0.4vw), 20px);
@@ -227,6 +226,7 @@ strong {
   text-decoration: underline;
   font-weight: 500;
 }
+
 .link::after {
   content: "";
   display: inline-block;
@@ -239,9 +239,11 @@ strong {
   transform: rotate(-45deg);
   transition: transform 0.2s ease;
 }
+
 .link:hover {
   color: var(--secondary-40);
 }
+
 .link:hover::after {
   transform: translateX(4px) translateY(4px);
 }
@@ -272,8 +274,7 @@ strong {
   height: 14px;
   position: relative;
   background-color: var(--primary-20);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='-3 0 34 14'%3E%3Cpath d='M-1 7C3 0 11 0 16 7s13 7 17 0' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E")
-    repeat-x center;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='-3 0 34 14'%3E%3Cpath d='M-1 7C3 0 11 0 16 7s13 7 17 0' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") repeat-x center;
 }
 
 img {
@@ -384,6 +385,7 @@ img {
   z-index: -1;
   bottom: 50vw; /* faz ele ficar no lugar onde a tag foi colocada */
 }
+
 .gradiente {
   width: 100%;
   aspect-ratio: 1;
@@ -394,13 +396,12 @@ img {
   transform: translateX(-50%);
   pointer-events: none;
   background-color: transparent;
-  background-image:
-    url("../assets/images/gradiente-textura.webp"),
-    radial-gradient(
-      var(--secondary-source) 0%,
-      var(--tertiary-source) 30%,
-      transparent 55%
-    );
+  background-image: url("../assets/images/gradiente-textura.webp"),
+  radial-gradient(
+    var(--secondary-source) 0%,
+    var(--tertiary-source) 30%,
+    transparent 55%
+  );
   background-blend-mode: soft-light, normal;
   opacity: 40%;
 
@@ -422,9 +423,8 @@ img {
 .bg-quadrados {
   --tamanho-quadrado: 20px;
   position: relative;
-  background-image:
-    linear-gradient(var(--neutral-95) 1px, transparent 1px),
-    linear-gradient(90deg, var(--neutral-95) 1px, transparent 1px);
+  background-image: linear-gradient(var(--neutral-95) 1px, transparent 1px),
+  linear-gradient(90deg, var(--neutral-95) 1px, transparent 1px);
   background-size: var(--tamanho-quadrado) var(--tamanho-quadrado);
   border-bottom: 1px solid var(--neutral-95);
 }
@@ -497,6 +497,7 @@ img {
   min-width: 200px;
   font-weight: 400;
 }
+
 .btn:hover,
 .btn:focus {
   border-radius: 28px;
@@ -518,6 +519,7 @@ img {
   min-width: 200px;
   font-weight: 400;
 }
+
 .btn-2:hover,
 .btn-2:focus {
   border-radius: 28px;
@@ -539,6 +541,7 @@ img {
   min-width: 200px;
   font-weight: 400;
 }
+
 .btn-3:hover,
 .btn-3:focus {
   border-radius: 28px;
@@ -564,6 +567,7 @@ img {
 .input-text:hover {
   border-radius: 28px;
 }
+
 .input-text:active,
 .input-text:focus {
   border-radius: 28px;
@@ -577,9 +581,7 @@ label {
 }
 
 .avatar
-
-/* BORDAS */
-
+  /* BORDAS */
 .esquerda {
   border-radius: 24px 14px 14px 24px;
 }
@@ -633,6 +635,7 @@ label {
 .separacao {
   margin-bottom: 20px;
 }
+
 .separacao-hor {
   margin-right: 20px;
 }
@@ -640,6 +643,7 @@ label {
 .separacao-2 {
   margin-bottom: 48px;
 }
+
 .separacao-hor-2 {
   margin-right: 48px;
 }
@@ -660,14 +664,17 @@ label {
   flex: 1;
   min-width: 0;
 }
+
 .flex-75 {
   flex: 0.75;
   min-width: 0;
 }
+
 .flex-50 {
   flex: 0.5;
   min-width: 0;
 }
+
 .flex-25 {
   flex: 0.25;
   min-width: 0;
@@ -677,6 +684,7 @@ label {
   justify-content: center;
   align-items: center;
 }
+
 .flex-centro-ver {
   justify-content: center;
 }
@@ -793,6 +801,7 @@ header .nav p {
   font-weight: 500;
   color: var(--primary-60);
 }
+
 header .nav a:hover p {
   color: var(--primary-20);
   cursor: pointer;
@@ -950,8 +959,8 @@ footer .box > .degrade-cinza {
   main {
     margin-top: 100px;
   }
-  /* HEADER */
 
+  /* HEADER */
   header {
     padding: 0 20px;
   }
@@ -978,7 +987,6 @@ footer .box > .degrade-cinza {
   }
 
   /* FOOTER */
-
   footer {
     margin: 20px 20px;
   }
@@ -1016,7 +1024,6 @@ footer .box > .degrade-cinza {
   }
 
   /* BANNER */
-
   .banner {
     padding: 12px 20px;
   }
@@ -1030,7 +1037,6 @@ footer .box > .degrade-cinza {
   }
 
   /* ELEMENTOS */
-
   section {
     padding: 20px clamp(24px, calc(12px + 9.5vw), 150px);
   }
@@ -1040,7 +1046,6 @@ footer .box > .degrade-cinza {
   }
 
   /* CARD-HORizontal */
-
   .card-hor {
     min-height: clamp(180px, calc(120px + 12.5vw), 300px);
     background-color: var(--primary-95);
