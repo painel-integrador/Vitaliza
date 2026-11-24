@@ -578,13 +578,54 @@ img {
   color: var(--primary-20);
 }
 
-label {
+/* rótulo que não é de um input */
+label,
+legend {
   font-size: clamp(18px, calc(14px + 0.4vw), 20px);
   font-weight: 500;
 }
 
-.avatar
-  /* BORDAS */
+/* AVATAR */
+.avatar-lista {
+  display: flex;
+  gap: 12px;
+  padding: 10px 12px 14px; /* espaço para o anel de seleção e para a barra */
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: var(--primary-90);
+  border-radius: 14px;
+
+  /* encaixa cada avatar ao rolar */
+  scroll-snap-type: x proximity;
+  scroll-padding: 0 12px;
+}
+
+.avatar-opcao {
+  position: relative;
+  flex: 0 0 auto; /* não deixa os avatares encolherem */
+  display: block;
+  cursor: pointer;
+  scroll-snap-align: center;
+}
+
+/* input escondido, mas focável e validável */
+.avatar-radio {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+/* BORDAS */
 .esquerda {
   border-radius: 24px 14px 14px 24px;
 }

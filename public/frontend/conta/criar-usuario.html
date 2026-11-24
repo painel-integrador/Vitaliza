@@ -350,9 +350,9 @@
     <div class="box flex-1">
       <form
         action="#"
-        class="flex-ver separacao-2"
+        class="flex-ver"
         id="formulario"
-        onsubmit="criarConta(event)"
+        onsubmit="criarUsuario(event)"
       >
         <div class="flex-hor-desktop flex-ver">
           <div class="flex-1 flex-ver">
@@ -368,23 +368,70 @@
           </div>
 
           <div class="flex-1 flex-ver">
-            <label for="avatar"
-            ><img
-              alt="Avatar 1 - Pinguim"
-              class="avatar"
-              src="src/assets/images/avatar/1.svg"/>
-              <input name="avatar" type="checkbox"
-              /></label>
+            <label class="rotulo" id="avatar-legenda">Avatar <span class="vermelho">*</span></label>
+
+            <div class="avatar-lista" id="avatar-lista">
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="1">
+                <img alt="Avatar 1 - Pinguim" class="avatar" src="src/assets/images/avatar/1.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="2">
+                <img alt="Avatar 2 - Igreja" class="avatar" src="src/assets/images/avatar/2.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="3">
+                <img alt="Avatar 3 - Kiwi" class="avatar" src="src/assets/images/avatar/3.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="4">
+                <img alt="Avatar 4 - Limão" class="avatar" src="src/assets/images/avatar/4.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="5">
+                <img alt="Avatar 5 - Melancia" class="avatar" src="src/assets/images/avatar/5.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="6">
+                <img alt="Avatar 6 - Casa na neve" class="avatar"
+                     src="src/assets/images/avatar/6.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="7">
+                <img alt="Avatar 7 - Coliseu" class="avatar" draggable="false" src="src/assets/images/avatar/7.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="8">
+                <img alt="Avatar 8 - Floresta" class="avatar" draggable="false" src="src/assets/images/avatar/8.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="9">
+                <img alt="Avatar 9 - Avião de papel" class="avatar" draggable="false"
+                     src="src/assets/images/avatar/9.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="10">
+                <img alt="Avatar 10 - Drinks" class="avatar" draggable="false" src="src/assets/images/avatar/10.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="11">
+                <img alt="Avatar 11 - Bicicleta" class="avatar" draggable="false" src="src/assets/images/avatar/11.svg">
+              </label>
+              <label class="avatar-opcao">
+                <input name="avatar" required type="radio" value="12">
+                <img alt="Avatar 12 - Carro" class="avatar" draggable="false" src="src/assets/images/avatar/12.svg">
+              </label>
+            </div>
           </div>
         </div>
 
         <div class="flex-hor-desktop flex-ver">
           <div class="flex-1 flex-ver">
-            <label for="nome">Altura</label
+            <label for="altura">Altura</label
             ><input
             class="input-text esquerda-desktop meio"
-            id="nome"
-            name="nome"
+            id="altura"
+            name="altura"
             placeholder="Altura em centímetros"
             type="text"
           />
@@ -404,17 +451,23 @@
           </div>
         </div>
 
+        <div class="flex-1 flex-ver">
+          <label for="peso">Massa</label
+          ><input
+          class="input-text meio direita-desktop"
+          id="peso"
+          min="1"
+          name="peso"
+          placeholder="Informe sua massa corporal"
+          step="1"
+          type="number"
+        />
+        </div>
+
         <button class="btn-2 baixo flex-centro flex-ver" type="submit">
           Criar
         </button>
       </form>
-
-      <div>
-        Ou
-        <a class="btn-3 flex-hor flex-centro" href="/api/auth/google"
-        >Continuar com Google</a
-        >
-      </div>
     </div>
   </section>
 
@@ -539,5 +592,6 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script defer src="src/scripts/animacaoTitulo.js"></script>
 </body>
 </html>

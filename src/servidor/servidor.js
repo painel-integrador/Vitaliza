@@ -1,6 +1,10 @@
 import Fastify from "fastify";
 import fastifyCookie from "@fastify/cookie";
 import rateLimit from "@fastify/rate-limit";
+import fastifyStatic from "@fastify/static";
+import scalarApiReference from "@scalar/fastify-api-reference";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { rotasAuth } from "./auth.js";
 import { rotasTreino } from "./treinos.js";
@@ -10,6 +14,8 @@ import { rotasHidratacao } from "./hidratacao.js";
 import { rotasRotinas } from "./rotinas.js";
 import { rotasMensagens } from "./contato.js";
 import { rotasUsuario } from "./usuarios.js";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const servidor = Fastify({
   logger: true,
@@ -24,6 +30,20 @@ await servidor.register(rateLimit, {
 
 await servidor.register(fastifyCookie, {
   secret: process.env.COOKIE_SECRET,
+});
+
+await servidor.register(fastifyStatic, {
+  root: path.join(__dirname, "../../docs"),
+  prefix: "/docs/",
+  decorateReply: false,
+  index: false,
+});
+
+await servidor.register(scalarApiReference, {
+  routePrefix: "/docs",
+  configuration: {
+    url: "/docs/openapi.json",
+  },
 });
 
 servidor.addHook("onSend", async (req, res, payload) => {

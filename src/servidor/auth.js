@@ -178,7 +178,6 @@ export async function rotasAuth(servidor, opts) {
       if (!conta)
         return res.status(404).send({
           erro: "Conta não existe.",
-          codigo: "CONTA_INEXISTENTE",
         });
 
       const senhaValida =

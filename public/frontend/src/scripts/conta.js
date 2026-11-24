@@ -113,23 +113,18 @@ async function login(event) {
 async function criarUsuario(event) {
   event.preventDefault();
 
-  const form = document.getElementById("formulario");
-  const formData = new FormData(form);
-  const dadosNaoFiltrados = Object.fromEntries(formData);
+  const dadosForm = new FormData(event.target);
 
-  const dados = Object.fromEntries(
-    Object.entries(dadosNaoFiltrados).filter(([_, valor]) => valor !== ""),
-  );
-
-  dados.altura = Number(dados.altura).toFixed(2) * 100;
-  dados.peso = Number(dados.peso).toFixed(2) * 1000;
-
-  if (dados.objetivo_peso) {
-    dados.objetivo_peso = Number(dados.objetivo_peso).toFixed(2) * 1000;
-  }
+  const dados = {
+    nome: dadosForm.get("nome").trim(),
+    avatar: parseInt(dadosForm.get("avatar")), // 1 a 12
+    idade: parseInt(dadosForm.get("idade")),
+    altura: parseInt(dadosForm.get("altura")) * 100,
+    peso: parseInt(dadosForm.get("peso")) * 1000,
+  };
 
   try {
-    const response = await fetch("/api/usuario/usuario", {
+    const resposta = await fetch("/api/usuario/usuario", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -137,18 +132,19 @@ async function criarUsuario(event) {
       body: JSON.stringify(dados),
     });
 
-    if (!response.ok) {
-      alert(`Erro na requisição: ${response.status}\n${response.body}`);
-      throw new Error(
-        `Erro na requisição: ${response.status}\n${response.body}`,
-      );
+    if (!resposta.ok) {
+      const erro = await resposta.json().catch(() => ({}));
+      throw new Error(erro.message || `Erro ${resposta.status}`);
     }
 
-    // Se o backend respondeu com redirect (302), a propriedade .url conterá o destino final
+    const usuario = await resposta.json();
+    console.log("Usuário criado:", usuario);
+
+    // redirecionando para onde o back respondeu
     if (response.redirected) {
       window.location.href = response.url;
     }
-  } catch (e) {
-    console.error("Erro ao processar criação de usuario:", e);
+  } catch (err) {
+    console.error(err);
   }
 }

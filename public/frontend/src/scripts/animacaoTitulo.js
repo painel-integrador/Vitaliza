@@ -16,7 +16,7 @@ document.querySelectorAll("h2, h3").forEach((titulo) => {
         scrollTrigger: {
           trigger: titulo,
           start: "top 99%", // a partir de 1% começa a transicão
-          end: "top 65%",
+          end: "top 35%",
           scrub: true,
         },
       });

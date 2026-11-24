@@ -1,0 +1,1183 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Vitaliza API",
+    "version": "1.0.0",
+    "description": "Documentação da API do Vitaliza. As rotas de páginas e arquivos do frontend não estão incluídas. As operações protegidas usam o cookie de sessão `access_token`, criado pelo login."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Servidor atual"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Autenticação",
+      "description": "Cadastro, login e gerenciamento da sessão."
+    },
+    {
+      "name": "Mensagens",
+      "description": "Envio de mensagens de contato."
+    },
+    {
+      "name": "Grupos",
+      "description": "Criação e consulta de grupos."
+    },
+    {
+      "name": "Hidratação",
+      "description": "Registros de consumo de água."
+    },
+    {
+      "name": "Rotinas",
+      "description": "Rotinas e exercícios associados."
+    },
+    {
+      "name": "Treinos",
+      "description": "Treinos e séries associadas."
+    },
+    {
+      "name": "Usuários",
+      "description": "Perfil e objetivos do usuário."
+    }
+  ],
+  "paths": {
+    "/api/auth/criar_conta/email_senha": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Criar conta com email e senha",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "senha"],
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "senha": { "type": "string", "writeOnly": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "302": {
+            "description": "Conta criada, cookies de sessão definidos e redirecionamento para criar o perfil."
+          },
+          "409": {
+            "description": "Já existe uma conta para este email.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroTexto" }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroObjeto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login/email_senha": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Entrar com email e senha",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "senha"],
+                "properties": {
+                  "email": { "type": "string", "format": "email" },
+                  "senha": { "type": "string", "writeOnly": true }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "302": {
+            "description": "No login bem-sucedido, cookies são definidos e há redirecionamento para /informativo. Quando a conta não existe, a rota gera 404, mas o hook global altera a resposta para 302 e redireciona para /erro/404; nesse caso, mantém o corpo JSON abaixo.",
+            "headers": {
+              "Location": {
+                "schema": { "type": "string" },
+                "description": "Destino do redirecionamento."
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "erro": { "type": "string", "example": "Conta não existe." }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email ou senha inválidos.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroTexto" }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroObjeto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/google": {
+      "get": {
+        "tags": ["Autenticação"],
+        "summary": "Iniciar login com Google",
+        "description": "Redireciona o navegador para a tela de consentimento do Google.",
+        "responses": {
+          "302": { "description": "Redirecionamento para o Google." }
+        }
+      }
+    },
+    "/api/auth/google/callback": {
+      "get": {
+        "tags": ["Autenticação"],
+        "summary": "Callback do login com Google",
+        "parameters": [
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Código OAuth recebido do Google."
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "Login concluído, cookies de sessão definidos e redirecionamento."
+          },
+          "500": {
+            "description": "Falha ao concluir autenticação.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroObjeto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": ["Autenticação"],
+        "summary": "Consultar sessão atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": {
+            "description": "Sessão válida.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["logado", "contaId", "avatar"],
+                  "properties": {
+                    "logado": { "type": "boolean", "const": true },
+                    "contaId": { "type": "integer", "format": "int64" },
+                    "avatar": {
+                      "type": "integer",
+                      "description": "Avatar do usuário; valor padrão 1."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cookie ausente, inválido ou sessão expirada.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroTexto" }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroTexto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/sair": {
+      "post": {
+        "tags": ["Autenticação"],
+        "summary": "Encerrar sessão",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "302": {
+            "description": "Cookies removidos e navegador redirecionado para a página inicial."
+          },
+          "401": {
+            "description": "Cookie de acesso ausente.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroTexto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mensagem/mensagem": {
+      "post": {
+        "tags": ["Mensagens"],
+        "summary": "Enviar mensagem de contato",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["nome", "mensagem"],
+                "properties": {
+                  "nome": { "type": "string" },
+                  "email": { "type": ["string", "null"], "format": "email" },
+                  "mensagem": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "302": {
+            "description": "Mensagem registrada e navegador redirecionado para a página inicial."
+          },
+          "500": {
+            "description": "Erro ao registrar a mensagem ou enviar o email.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ErroObjeto" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/grupos/criar": {
+      "post": {
+        "tags": ["Grupos"],
+        "summary": "Criar grupo para o usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "201": {
+            "description": "Grupo criado e associado ao usuário.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["id"],
+                  "properties": {
+                    "id": { "type": "integer", "format": "int64" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/grupos/entrar": {
+      "post": {
+        "tags": ["Grupos"],
+        "summary": "Associar o usuário atual a um grupo",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["grupoId"],
+                "properties": {
+                  "grupoId": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Usuário associado ao grupo." },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/grupos/sair": {
+      "post": {
+        "tags": ["Grupos"],
+        "summary": "Remover o usuário atual do grupo",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": { "description": "Usuário removido do grupo." },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/grupos/usuarios/{id}": {
+      "get": {
+        "tags": ["Grupos"],
+        "summary": "Listar usuários de um grupo",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" },
+            "description": "ID do grupo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuários associados ao grupo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Usuario" }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/grupos/exercicios-atividades/{id}": {
+      "get": {
+        "tags": ["Grupos"],
+        "summary": "Listar séries de treino dos usuários de um grupo",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" },
+            "description": "ID do grupo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Séries dos treinos dos usuários do grupo.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Serie" }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/hidratacao/criar": {
+      "post": {
+        "tags": ["Hidratação"],
+        "summary": "Registrar consumo de água",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["quantidade"],
+                "properties": {
+                  "quantidade": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Quantidade consumida, em ml."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Registro criado.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RegistroHidratacao" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/hidratacao/registros": {
+      "get": {
+        "tags": ["Hidratação"],
+        "summary": "Listar registros de hidratação do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": {
+            "description": "Registros encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistroHidratacaoResumo"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/hidratacao/registro/{dia}/{mes}/{ano}": {
+      "get": {
+        "tags": ["Hidratação"],
+        "summary": "Listar registros de hidratação de um dia",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "dia",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "minimum": 1, "maximum": 31 }
+          },
+          {
+            "name": "mes",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "minimum": 1, "maximum": 12 },
+            "description": "Mês do calendário, de 1 a 12."
+          },
+          {
+            "name": "ano",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Registros do dia pertencentes ao usuário atual.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegistroHidratacaoResumo"
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/hidratacao/registro": {
+      "delete": {
+        "tags": ["Hidratação"],
+        "summary": "Excluir registro de hidratação",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["registroId"],
+                "properties": {
+                  "registroId": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Registro excluído." },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/rotinas/rotinas": {
+      "get": {
+        "tags": ["Rotinas"],
+        "summary": "Listar rotinas do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": {
+            "description": "Rotinas encontradas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/RotinaResumo" }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/rotinas/rotina/{id}": {
+      "get": {
+        "tags": ["Rotinas"],
+        "summary": "Consultar rotina e exercícios",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" },
+            "description": "ID da rotina."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rotina e exercícios associados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rotina": {
+                      "oneOf": [
+                        { "$ref": "#/components/schemas/Rotina" },
+                        { "type": "null" }
+                      ]
+                    },
+                    "exercicios": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ExercicioRotina"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/rotinas/rotina": {
+      "post": {
+        "tags": ["Rotinas"],
+        "summary": "Criar rotina e seus exercícios",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["rotinaDados", "exerciciosDados"],
+                "properties": {
+                  "rotinaDados": {
+                    "type": "object",
+                    "required": ["nome"],
+                    "properties": { "nome": { "type": "string" } }
+                  },
+                  "exerciciosDados": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/NovoExercicioRotina"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Rotina e exercícios criados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["rotinaReturn", "exerciciosReturn"],
+                  "properties": {
+                    "rotinaReturn": { "$ref": "#/components/schemas/Rotina" },
+                    "exerciciosReturn": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ExercicioRotina"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      },
+      "delete": {
+        "tags": ["Rotinas"],
+        "summary": "Excluir rotina",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["rotinaId"],
+                "properties": {
+                  "rotinaId": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Rotina excluída." },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/treinos/treinos": {
+      "get": {
+        "tags": ["Treinos"],
+        "summary": "Listar treinos do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": {
+            "description": "Treinos encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/TreinoResumo" }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/treinos/treinos/{id}": {
+      "get": {
+        "tags": ["Treinos"],
+        "summary": "Consultar treino e séries",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" },
+            "description": "ID do treino."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Treino e séries associadas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "treino": {
+                      "oneOf": [
+                        { "$ref": "#/components/schemas/Treino" },
+                        { "type": "null" }
+                      ]
+                    },
+                    "series": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Serie" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/treinos/treino": {
+      "post": {
+        "tags": ["Treinos"],
+        "summary": "Criar treino e suas séries",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["seriesDados"],
+                "properties": {
+                  "seriesDados": {
+                    "type": "array",
+                    "items": { "$ref": "#/components/schemas/NovaSerie" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Treino e séries criados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["treinoReturn", "seriesReturn"],
+                  "properties": {
+                    "treinoReturn": { "$ref": "#/components/schemas/Treino" },
+                    "seriesReturn": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Serie" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      },
+      "delete": {
+        "tags": ["Treinos"],
+        "summary": "Excluir treino",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["treinoId"],
+                "properties": {
+                  "treinoId": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Treino excluído." },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/usuario/{id}": {
+      "get": {
+        "tags": ["Usuários"],
+        "summary": "Consultar usuário do mesmo grupo",
+        "security": [{ "AccessToken": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer", "format": "int64" },
+            "description": "ID do usuário."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Perfil do usuário.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Usuario" }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "403": {
+            "description": "Usuário inexistente ou não pertence ao mesmo grupo.",
+            "content": {
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/id": {
+      "get": {
+        "tags": ["Usuários"],
+        "summary": "Consultar ID do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "responses": {
+          "200": {
+            "description": "ID do usuário associado à conta.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["usuario_id"],
+                  "properties": {
+                    "usuario_id": { "type": "integer", "format": "int64" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/usuario": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Criar perfil de usuário para a conta atual",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["nome", "avatar"],
+                "properties": {
+                  "nome": { "type": "string" },
+                  "idade": { "type": ["integer", "null"], "format": "int32" },
+                  "altura": {
+                    "type": ["integer", "null"],
+                    "description": "Altura em centímetros."
+                  },
+                  "peso": { "type": ["integer", "null"], "format": "int64" },
+                  "avatar": { "type": ["integer", "null"] }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "302": {
+            "description": "Perfil criado e navegador redirecionado para /home."
+          },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/atualizar/peso": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar peso do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["peso"],
+                "properties": {
+                  "peso": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Peso atualizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "format": "int64" },
+                    "peso": { "type": "integer", "format": "int64" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/atualizar/objetivo-peso": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar objetivo de peso do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["objetivoPeso"],
+                "properties": {
+                  "objetivoPeso": { "type": "integer", "format": "int64" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Objetivo de peso atualizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "format": "int64" },
+                    "objetivo_peso": { "type": "integer", "format": "int64" }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    },
+    "/api/usuario/atualizar/objetivo-hidratacao": {
+      "post": {
+        "tags": ["Usuários"],
+        "summary": "Atualizar objetivo de hidratação do usuário atual",
+        "security": [{ "AccessToken": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["objetivoHidratacao"],
+                "properties": {
+                  "objetivoHidratacao": { "type": "integer", "format": "int32" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Objetivo de hidratação atualizado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "format": "int64" },
+                    "objetivo_hidratacao": {
+                      "type": "integer",
+                      "format": "int32"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/SessaoInvalida" },
+          "500": { "$ref": "#/components/responses/ErroInterno" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "AccessToken": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "access_token",
+        "description": "Cookie HTTP-only criado no login/cadastro."
+      }
+    },
+    "responses": {
+      "SessaoInvalida": {
+        "description": "Sessão inválida ou expirada.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErroTexto" }
+          }
+        }
+      },
+      "ErroInterno": {
+        "description": "Erro interno do servidor.",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/ErroObjeto" }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "nome": { "type": "string" },
+          "idade": { "type": ["integer", "null"], "format": "int32" },
+          "altura": { "type": ["integer", "null"], "format": "int32" },
+          "objetivo_hidratacao": {
+            "type": ["integer", "null"],
+            "format": "int32"
+          },
+          "peso": { "type": ["integer", "null"], "format": "int64" },
+          "objetivo_peso": { "type": ["integer", "null"], "format": "int64" },
+          "grupo": { "type": ["integer", "null"], "format": "int64" },
+          "avatar": { "type": ["integer", "null"], "format": "int32" }
+        }
+      },
+      "RegistroHidratacao": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "quantidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Quantidade em ml."
+          },
+          "usuario_id": { "type": "integer", "format": "int64" }
+        }
+      },
+      "RegistroHidratacaoResumo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "quantidade": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Quantidade em ml."
+          }
+        }
+      },
+      "Rotina": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "usuario_id": { "type": ["integer", "null"], "format": "int64" },
+          "nome": { "type": "string" }
+        }
+      },
+      "RotinaResumo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "nome": { "type": "string" }
+        }
+      },
+      "ExercicioRotina": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "rotina_id": { "type": ["integer", "null"], "format": "int64" },
+          "nome": { "type": "string" },
+          "midia": {
+            "type": ["array", "null"],
+            "items": {},
+            "description": "Array de valores de mídia, conforme o registro enviado."
+          },
+          "series": { "type": ["integer", "null"], "format": "int32" }
+        }
+      },
+      "NovoExercicioRotina": {
+        "type": "object",
+        "properties": {
+          "nome": { "type": "string" },
+          "midia": { "type": "array", "items": {} },
+          "series": { "type": "integer", "format": "int32" }
+        }
+      },
+      "Treino": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" },
+          "usuario_id": { "type": ["integer", "null"], "format": "int64" }
+        }
+      },
+      "TreinoResumo": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "criado_em": { "type": "string", "format": "date-time" }
+        }
+      },
+      "Serie": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "format": "int64" },
+          "numero": { "type": ["integer", "null"], "format": "int32" },
+          "reps": { "type": ["integer", "null"], "format": "int32" },
+          "peso": { "type": ["integer", "null"], "format": "int32" },
+          "treino_id": { "type": "integer", "format": "int64" },
+          "nome_exercicio": { "type": "string" },
+          "midias": { "type": ["array", "null"], "items": {} }
+        }
+      },
+      "NovaSerie": {
+        "type": "object",
+        "properties": {
+          "numero": { "type": "integer", "format": "int32" },
+          "reps": { "type": "integer", "format": "int32" },
+          "peso": { "type": "integer", "format": "int32" },
+          "nome_exercicio": { "type": "string" },
+          "midias": { "type": "array", "items": {} }
+        }
+      }
+    }
+  }
+}
