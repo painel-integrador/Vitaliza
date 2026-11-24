@@ -300,6 +300,10 @@ img {
   position: relative;
 }
 
+.card-pointer {
+  cursor: pointer;
+}
+
 .card > div,
 .card-hor > div {
   padding: 24px 20px;
@@ -321,7 +325,6 @@ img {
 .card-hor:hover {
   background-color: var(--neutral-90);
   border-radius: 48px;
-  cursor: pointer;
 }
 
 /* FAQ fechar */

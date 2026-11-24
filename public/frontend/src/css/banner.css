@@ -18,15 +18,19 @@
 .btn-fun-bar-1 {
   background-color: var(--secondary-70);
 }
+
 .btn-fun-bar-2 {
   background-color: var(--secondary-80);
 }
+
 .btn-fun-bar-3 {
   background-color: var(--secondary-90);
 }
+
 .btn-fun-bar-4 {
   background-color: var(--secondary-95);
 }
+
 .btn-fun-bar-5 {
   background-color: var(--secondary-99);
 }
@@ -49,15 +53,18 @@
 .font-1 {
   font-family: "Work Sans", sans-serif;
 }
+
 .font-2 {
   font-family: "Agrave Pro", sans-serif;
   color: var(--secondary-90);
 }
+
 .font-3 {
   font-family: "Kablammo", sans-serif;
   color: var(--tertiary-70);
   font-style: italic;
 }
+
 .font-4 {
   font-family: "Monsieur La Doulaise", cursive;
   color: var(--secondary-70);
@@ -84,7 +91,6 @@
 .font:hover,
 .apagavel:hover {
   outline: 2px solid var(--secondary-60);
-  outline-offset: 2px;
 }
 
 .movel:active,

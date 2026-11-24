@@ -4,16 +4,33 @@ gsap.registerPlugin(InertiaPlugin);
 let modoAtivo = null;
 let draggablesAtivos = [];
 
+// adiciona a propriedade de apagavel
 document.querySelectorAll(".fun").forEach((elemento) => {
   elemento.addEventListener("click", () => {
-    if (modoAtivo !== "apagavel") {
-      return;
-    }
+    switch (modoAtivo) {
+      case "apagavel":
+        if (!elemento.classList.contains("apagado-1")) {
+          elemento.classList.add("apagado-1");
+        } else if (!elemento.classList.contains("apagado-2")) {
+          elemento.classList.add("apagado-2");
+        }
+        return;
 
-    if (!elemento.classList.contains("apagado-1")) {
-      elemento.classList.add("apagado-1");
-    } else if (!elemento.classList.contains("apagado-2")) {
-      elemento.classList.add("apagado-2");
+      case "texto":
+        if (!elemento.classList.contains("font-2")) {
+          elemento.classList.add("font-2");
+          elemento.classList.remove("font-1");
+        } else if (!elemento.classList.contains("font-3")) {
+          elemento.classList.add("font-3");
+        } else if (!elemento.classList.contains("font-4")) {
+          elemento.classList.add("font-4");
+        } else if (!elemento.classList.contains("font-1")) {
+          elemento.classList.add("font-1");
+          elemento.classList.remove("font-2");
+          elemento.classList.remove("font-3");
+          elemento.classList.remove("font-4");
+        }
+        return;
     }
   });
 });
@@ -23,7 +40,7 @@ function destruirDraggables() {
   draggablesAtivos = [];
 
   document.querySelectorAll(".fun").forEach((elemento) => {
-    elemento.classList.remove("movel", "giravel", "apagavel");
+    elemento.classList.remove("movel", "giravel", "apagavel", "font");
   });
 
   document
@@ -64,12 +81,17 @@ function selecionarModo(modo, botao) {
     document.querySelectorAll(".fun").forEach((elemento) => {
       elemento.classList.add("apagavel");
     });
+  } else if (modo === "texto") {
+    document.querySelectorAll(".fun").forEach((elemento) => {
+      elemento.classList.add("font");
+    });
   }
 
   const classeBotao = {
     movel: ".btn-fun-bar-3",
     giravel: ".btn-fun-bar-4",
     apagavel: ".btn-fun-bar-1",
+    texto: ".btn-fun-bar-2",
   }[modo]; // usa o objeto para mapear o modo para a classe do botão correspondente
   // o modo é um dos valores: "movel", "giravel", "apagavel"
   // no caso uma string
@@ -89,4 +111,8 @@ function giravel(botao) {
 
 function apagavel(botao) {
   selecionarModo("apagavel", botao);
+}
+
+function texto(botao) {
+  selecionarModo("texto", botao);
 }
