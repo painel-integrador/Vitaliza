@@ -188,6 +188,12 @@ h4 {
   line-height: 1.2;
 }
 
+.subtitulo {
+  font-size: clamp(24px, calc(14px + 1vw), 30px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 h5 {
   font-size: clamp(20px, calc(14px + 0.4vw), 20px);
   font-weight: 400;
@@ -274,7 +280,7 @@ strong {
   height: 14px;
   position: relative;
   background-color: var(--primary-20);
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='-3 0 34 14'%3E%3Cpath d='M-1 7C3 0 11 0 16 7s13 7 17 0' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") repeat-x center;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14' viewBox='-3 0 34 14'%3E%3Cpath d='M-1 7C3 0 11 0 16 7s13 7 17 0' fill='none' stroke='black' stroke-width='3'/%3E%3C/svg%3E") repeat-x;
 }
 
 img {
@@ -874,6 +880,7 @@ header .nav .drop {
   display: none;
   flex-direction: column;
   gap: 4px;
+  z-index: 3;
 }
 
 header .nav .drop-hover {

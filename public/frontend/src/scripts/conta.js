@@ -139,7 +139,7 @@ async function criarUsuario(event) {
 
     // redirecionando para onde o back respondeu
     if (resposta.redirected) {
-      window.location.href = response.url;
+      window.location.href = resposta.url;
     }
   } catch (err) {
     console.error(err);
