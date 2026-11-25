@@ -5,6 +5,8 @@ async function criarConta(event) {
   const formData = new FormData(form);
   const dados = Object.fromEntries(formData);
 
+  document.getElementById("btn-criar").classList.add("invisivel");
+
   if (dados.senha !== dados.confirmar) {
     const erroConta = document.getElementById("erro-conta");
 
@@ -72,6 +74,9 @@ async function login(event) {
   const form = document.getElementById("formulario");
   const formData = new FormData(form);
   const dados = Object.fromEntries(formData);
+  
+  document.getElementById("btn-criar").classList.add("invisivel");
+
 
   try {
     const response = await fetch("/api/auth/login/email_senha", {
@@ -114,6 +119,9 @@ async function criarUsuario(event) {
   event.preventDefault();
 
   const dadosForm = new FormData(event.target);
+  
+  document.getElementById("btn-criar").classList.add("invisivel");
+
 
   const dados = {
     nome: dadosForm.get("nome").trim(),

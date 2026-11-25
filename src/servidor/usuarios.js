@@ -86,7 +86,7 @@ export async function rotasUsuario(servidor, opts) {
         dadosResposta: "*",
       });
 
-      return res.redirect(process.env.URL + "/home");
+      return res.redirect(process.env.URL + "/perfil");
     } catch (erro) {
       console.error(erro);
       return res.status(500).send({ erro });
