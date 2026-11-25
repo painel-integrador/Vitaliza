@@ -506,7 +506,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--primary-90) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn:hover,
@@ -516,6 +516,7 @@ img {
   color: var(--primary-20);
   fill: var(--primary-20);
   cursor: pointer;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--primary-90) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn-2 {
@@ -529,7 +530,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn-2:hover,
@@ -539,6 +540,7 @@ img {
   color: var(--primary-20);
   fill: var(--primary-20);
   cursor: pointer;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn-3 {
@@ -552,7 +554,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
-  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-90) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn-3:hover,
@@ -562,6 +564,7 @@ img {
   color: var(--primary-20);
   fill: var(--primary-20);
   cursor: pointer;
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-90) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 /* FORMULARIOS */
