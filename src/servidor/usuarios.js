@@ -18,20 +18,32 @@ export async function rotasUsuario(servidor, opts) {
 
   servidor.get("/usuario/:id", async (req, res) => {
     try {
-      const idUsuario = Number(req.params.id);
+      const usuarioLogadoId = await usuarioIdDaConta(req.contaid);
+
+      // "me" vira o id do usuário logado
+      const idUsuario =
+        req.params.id === "me" ? usuarioLogadoId : Number(req.params.id);
+
+      if (!Number.isInteger(idUsuario)) {
+        return res.status(400).send({ erro: "ID de usuário inválido" });
+      }
 
       const usuarioAlvo = await usuarioRepository.procurarUm({
         coluna: "id",
         dado: idUsuario,
-        dadosResposta:
-          "id,nome,idade,altura,peso,objetivo_hidratacao,objetivo_peso,grupo",
+        dadosResposta: "id,nome,idade,altura,peso,grupo,avatar,criado_em",
       });
 
       if (!usuarioAlvo) {
         return res.status(403).send("Usuário não encontrado ou sem permissão");
       }
 
-      const usuarioLogadoId = await usuarioIdDaConta(req.contaid);
+      // O próprio usuário sempre pode ver o próprio perfil
+      if (idUsuario === usuarioLogadoId) {
+        return res.status(200).send(usuarioAlvo);
+      }
+
+      // Outro usuário: só se estiver no mesmo grupo
       const usuarioLogado = await usuarioRepository.procurarUm({
         coluna: "id",
         dado: usuarioLogadoId,
@@ -45,7 +57,7 @@ export async function rotasUsuario(servidor, opts) {
       return res.status(200).send(usuarioAlvo);
     } catch (erro) {
       console.error(erro);
-      return res.status(500).send({ erro });
+      return res.status(500).send({ erro: erro.message });
     }
   });
 
@@ -91,44 +103,6 @@ export async function rotasUsuario(servidor, opts) {
         colunaFiltrar: "id",
         dadoFiltrar: usuarioId,
         dadosResposta: "id,peso",
-      });
-
-      return res.status(200).send(usuario);
-    } catch (erro) {
-      console.error(erro);
-      return res.status(500).send({ erro });
-    }
-  });
-
-  servidor.post("/atualizar/objetivo-peso", async (req, res) => {
-    try {
-      const usuarioId = await usuarioIdDaConta(req.contaid);
-
-      const usuario = await usuarioRepository.atualizar({
-        colunaAtualizar: "objetivo_peso",
-        dadoAtualizar: req.body.objetivoPeso,
-        colunaFiltrar: "id",
-        dadoFiltrar: usuarioId,
-        dadosResposta: "id,objetivo_peso",
-      });
-
-      return res.status(200).send(usuario);
-    } catch (erro) {
-      console.error(erro);
-      return res.status(500).send({ erro });
-    }
-  });
-
-  servidor.post("/atualizar/objetivo-hidratacao", async (req, res) => {
-    try {
-      const usuarioId = await usuarioIdDaConta(req.contaid);
-
-      const usuario = await usuarioRepository.atualizar({
-        colunaAtualizar: "objetivo_hidratacao",
-        dadoAtualizar: req.body.objetivoHidratacao,
-        colunaFiltrar: "id",
-        dadoFiltrar: usuarioId,
-        dadosResposta: "id,objetivo_hidratacao",
       });
 
       return res.status(200).send(usuario);

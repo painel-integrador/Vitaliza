@@ -35,7 +35,7 @@ const preencherPerfil = (usuario) => {
 };
 
 // Se o último pedaço da URL for um número, é o id. Senão (vazio, "me", "usuario"...), é "me".
-const obterIdDaUrl = () => {
+const idUrl = () => {
   const pedacos = window.location.pathname.split("/").filter(Boolean);
   const ultimo = pedacos[pedacos.length - 1];
   return /^\d+$/.test(ultimo) ? ultimo : "me";
@@ -43,7 +43,7 @@ const obterIdDaUrl = () => {
 
 const carregarDadosUsuario = async () => {
   try {
-    let id = obterIdDaUrl();
+    let id = idUrl();
 
     // Se for "me", busca primeiro o id do usuário logado
     if (id === "me") {
