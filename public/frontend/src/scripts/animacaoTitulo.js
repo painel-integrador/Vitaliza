@@ -3,6 +3,10 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 // pega todos os h2 e h3
 document.querySelectorAll("h2, h3").forEach((titulo) => {
+  // exclue os titulos que já tem o wavy
+  if (titulo.classList.contains("titulo-wavy")) {
+    return;
+  }
   // adiciona a animação
   SplitText.create(titulo, {
     type: "words",
