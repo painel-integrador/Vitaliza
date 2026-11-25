@@ -1,10 +1,14 @@
+// adiciona os plugins
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+// pega todos os h2 e h3
 document.querySelectorAll("h2, h3").forEach((titulo) => {
+  // adiciona a animação
   SplitText.create(titulo, {
     type: "words",
-    autoSplit: true, // refaz o split em resize / troca de fonte
+    autoSplit: true,
     onSplit(self) {
+      // coloca para ficar desativado
       gsap.set(self.words, { opacity: 0.1, top: 8 });
 
       return gsap.to(self.words, {

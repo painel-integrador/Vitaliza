@@ -6,8 +6,9 @@ async function enviarMensagem(event) {
   const dados = Object.fromEntries(formData);
   const botaoEnviar = document.getElementById("botao-enviar");
 
+  botaoEnviar.classList.add("invisivel");
+
   try {
-    botaoEnviar.classList.toggle("invisivel");
     const response = await fetch("/api/mensagem/mensagem", {
       method: "POST",
       headers: {
@@ -16,6 +17,7 @@ async function enviarMensagem(event) {
       body: JSON.stringify(dados),
     });
 
+    // se responder sem ser 200
     if (!response.ok) {
       const dadosErro = await response.json();
       alert(dadosErro.erro || `Erro na requisição: ${response.status}`);
@@ -31,8 +33,5 @@ async function enviarMensagem(event) {
     }
   } catch (e) {
     console.log("Erro ao processar envio de mensagem:", e);
-    if (botaoEnviar) {
-      botaoEnviar.classList.toggle("invisivel");
-    }
   }
 }

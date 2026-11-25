@@ -1,13 +1,13 @@
 document.querySelectorAll(".drop-hover").forEach((dropdown) => {
-  const trigger = dropdown.querySelector(":scope > a, :scope > button");
+  const drop = dropdown.querySelector(":scope > a, :scope > button");
 
-  if (!trigger) {
+  if (!drop) {
     return;
   }
 
-  trigger.addEventListener("click", (event) => {
+  drop.addEventListener("click", (event) => {
     event.preventDefault();
     dropdown.classList.toggle("drop-aberto");
-    trigger.setAttribute(String(dropdown.classList.contains("drop-aberto")));
+    drop.setAttribute(String(dropdown.classList.contains("drop-aberto")));
   });
 });

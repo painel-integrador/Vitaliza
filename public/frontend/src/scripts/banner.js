@@ -1,10 +1,11 @@
+// adiciona os plugins
 gsap.registerPlugin(Draggable);
 gsap.registerPlugin(InertiaPlugin);
 
 let modoAtivo = null;
 let draggablesAtivos = [];
 
-// adiciona a propriedade de apagavel
+// adiciona a propriedade de apagavel e texto
 document.querySelectorAll(".fun").forEach((elemento) => {
   elemento.addEventListener("click", () => {
     switch (modoAtivo) {
@@ -22,12 +23,12 @@ document.querySelectorAll(".fun").forEach((elemento) => {
           elemento.classList.remove("font-1");
         } else if (!elemento.classList.contains("font-3")) {
           elemento.classList.add("font-3");
+          elemento.classList.remove("font-2");
         } else if (!elemento.classList.contains("font-4")) {
           elemento.classList.add("font-4");
+          elemento.classList.remove("font-3");
         } else if (!elemento.classList.contains("font-1")) {
           elemento.classList.add("font-1");
-          elemento.classList.remove("font-2");
-          elemento.classList.remove("font-3");
           elemento.classList.remove("font-4");
         }
         return;

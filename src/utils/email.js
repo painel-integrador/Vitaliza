@@ -7,17 +7,19 @@ export async function enviarEmail(
   nomeUsuario,
   emailUsuario,
   mensagem,
-  tipoAcao,
+  tipoAcao, // diferentes envios de email, ex: criar conta
 ) {
   let assunto = "";
   let html = "";
 
+  // cria o corpo e titulo do email
   if (tipoAcao === "contato") {
     assunto = `Mensagem de usuário: ${nomeUsuario} - ${emailUsuario}`;
     html = `<p>${mensagem}</p>`;
   }
 
   try {
+    // envia o email
     const data = await resend.emails.send({
       from: "onboarding@resend.dev", // Domínio de testes padrão do Resend
       to: destinatario,
