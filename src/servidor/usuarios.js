@@ -24,10 +24,6 @@ export async function rotasUsuario(servidor, opts) {
       const idUsuario =
         req.params.id === "me" ? usuarioLogadoId : Number(req.params.id);
 
-      if (!Number.isInteger(idUsuario)) {
-        return res.status(400).send({ erro: "ID de usuário inválido" });
-      }
-
       const usuarioAlvo = await usuarioRepository.procurarUm({
         coluna: "id",
         dado: idUsuario,
