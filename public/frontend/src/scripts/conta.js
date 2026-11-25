@@ -137,9 +137,6 @@ async function criarUsuario(event) {
       throw new Error(erro.message || `Erro ${resposta.status}`);
     }
 
-    const usuario = await resposta.json();
-    console.log("Usuário criado:", usuario);
-
     // redirecionando para onde o back respondeu
     if (response.redirected) {
       window.location.href = response.url;
