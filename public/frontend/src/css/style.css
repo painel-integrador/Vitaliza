@@ -111,7 +111,7 @@
   --secondary-80: #9fe3ff;
   --secondary-90: #b9edff;
   --secondary-95: #c9f4ff;
-  --secondary-99: #d9f9ff;
+  --secondary-99: #b6e7f0;
   --secondary-100: #e2fbff;
   --secondary-source: #3a76c9;
 
@@ -309,6 +309,10 @@ img {
 
 .card-pointer {
   cursor: pointer;
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--primary-90) 90%, rgb(0 0 0 / 10%) 100%);
+}
+.card-pointer:hover {
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--primary-90) 90%, rgb(0 0 0 / 10%) 100%);
 }
 
 .card > div,
@@ -415,13 +419,6 @@ img {
   background-blend-mode: soft-light, normal;
   opacity: 40%;
 
-  /* firefox e safari */
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    #000 0%,
-    #000 40%,
-    transparent 65%
-  );
   mask-image: radial-gradient(
     ellipse at center,
     #000 0%,
@@ -530,7 +527,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 10%) 100%);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 40%) 100%);
 }
 
 .btn-2:hover,
@@ -540,12 +537,12 @@ img {
   color: var(--primary-20);
   fill: var(--primary-20);
   cursor: pointer;
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 10%) 100%);
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-60) 90%, rgb(0 0 0 / 40%) 100%);
 }
 
 .btn-3 {
   padding: 14px;
-  background-color: color-mix(in srgb, var(--secondary-90) 80%, transparent);
+  background-color: color-mix(in srgb, var(--secondary-70) 70%, transparent);
   border-radius: 14px;
   display: flex;
   justify-content: space-between;
@@ -554,17 +551,17 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
-  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-90) 90%, rgb(0 0 0 / 10%) 100%);
+  box-shadow: 0 4px 0 0 color-mix(in srgb, var(--secondary-60) 50%, rgb(0 0 0 / 10%) 100%);
 }
 
 .btn-3:hover,
 .btn-3:focus {
   border-radius: 28px;
-  background-color: color-mix(in srgb, var(--secondary-80) 80%, transparent);
+  background-color: color-mix(in srgb, var(--secondary-60) 50%, transparent);
   color: var(--primary-20);
   fill: var(--primary-20);
   cursor: pointer;
-  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-90) 90%, rgb(0 0 0 / 10%) 100%);
+  box-shadow: 0 2px 0 0 color-mix(in srgb, var(--secondary-60) 50%, rgb(0 0 0 / 10%) 100%);
 }
 
 /* FORMULARIOS */
@@ -707,13 +704,13 @@ legend {
 
 .flex-hor {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   flex-direction: row;
 }
 
 .flex-ver {
   display: flex;
-  gap: 4px;
+  gap: 6px;
   flex-direction: column;
 }
 
@@ -886,7 +883,7 @@ header .nav .drop {
   padding: 12px 14px;
   display: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   z-index: 3;
 }
 
@@ -1142,13 +1139,13 @@ footer .box > .degrade-cinza {
   /* LAYOUT */
   .flex-hor-desktop {
     display: flex;
-    gap: 4px;
+    gap: 6px;
     flex-direction: row;
   }
 
   .flex-ver-desktop {
     display: flex;
-    gap: 4px;
+    gap: 6px;
     flex-direction: column;
   }
 
