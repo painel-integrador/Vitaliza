@@ -2,8 +2,7 @@ const nome = document.getElementById("nome");
 const idade = document.getElementById("idade");
 const altura = document.getElementById("altura");
 const peso = document.getElementById("peso");
-const objetivoHidratacao = document.getElementById("objetivo-hidratacao");
-const objetivoPeso = document.getElementById("objetivo-peso");
+const avatar = document.getElementById("avatar");
 
 const carregarDadosUsuario = async () => {
   try {
@@ -12,7 +11,7 @@ const carregarDadosUsuario = async () => {
     let id = pedacos[pedacos.length - 1]; // Pega a última parte da URL
 
     // Se a URL for /conta/usuario/me, busca primeiro o ID do usuário logado
-    if (id === "me") {
+    if (id === "me" || !id) {
       const respId = await fetch("/api/usuario/id", { method: "GET" });
       if (!respId.ok) {
         throw new Error(`Erro ao buscar ID do usuário: ${respId.status}`);
@@ -34,29 +33,20 @@ const carregarDadosUsuario = async () => {
     const usuario = await response.json();
 
     // Preenche os elementos do HTML
-    if (nome) nome.innerText = usuario.nome || "Não informado";
-    if (idade)
-      idade.innerText = usuario.idade
-        ? `${usuario.idade} anos`
-        : "Não informado";
-    if (altura)
-      altura.innerText = usuario.altura
-        ? `${usuario.altura} cm`
-        : "Não informado";
-    if (peso)
-      peso.innerText = usuario.peso
-        ? `${usuario.peso / 1000} kg`
-        : "Não informado";
-    if (objetivoHidratacao) {
-      objetivoHidratacao.innerText = usuario.objetivo_hidratacao
-        ? `${usuario.objetivo_hidratacao} ml`
-        : "Não informado";
-    }
-    if (objetivoPeso) {
-      objetivoPeso.innerText = usuario.objetivo_peso
-        ? `${usuario.objetivo_peso / 1000} kg`
-        : "Não informado";
-    }
+    nome.innerText = usuario.nome ? usuario.nome : "Não informado";
+    avatar.src = usuario.avatar
+      ? "src/assets/images/avatar/"`${usuario.avatar}` + ".svg"
+      : "src/assets/images/avatar/0.jpg";
+
+    idade.innerText = usuario.idade ? `${usuario.idade} anos` : "Não informado";
+
+    altura.innerText = usuario.altura
+      ? `${usuario.altura} cm`
+      : "Não informado";
+
+    peso.innerText = usuario.peso
+      ? `${usuario.peso / 1000} kg`
+      : "Não informado";
   } catch (e) {
     console.error(`Erro ao processar dados do usuário: ${e}`);
   }
