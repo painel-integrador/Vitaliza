@@ -138,7 +138,7 @@ async function criarUsuario(event) {
     }
 
     // redirecionando para onde o back respondeu
-    if (response.redirected) {
+    if (resposta.redirected) {
       window.location.href = response.url;
     }
   } catch (err) {

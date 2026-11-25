@@ -35,7 +35,7 @@ document.querySelectorAll(".fun").forEach((elemento) => {
   });
 });
 
-function destruirDraggables() {
+function destruirFun() {
   draggablesAtivos.forEach((draggable) => draggable.kill());
   draggablesAtivos = [];
 
@@ -53,13 +53,13 @@ function destruirDraggables() {
 function selecionarModo(modo, botao) {
   // quando clica no mesmo botão, desativa o modo
   if (modoAtivo === modo) {
-    destruirDraggables();
+    destruirFun();
     modoAtivo = null;
     return;
   }
 
   // desativa o modo anterior
-  destruirDraggables();
+  destruirFun();
   modoAtivo = modo;
 
   document.querySelectorAll(".fun").forEach((elemento) => {
