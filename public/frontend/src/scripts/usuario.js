@@ -47,7 +47,7 @@ const carregarDadosUsuario = async () => {
 
     // Se for "me", busca primeiro o id do usuário logado
     if (id === "me") {
-      const respId = await fetch("/api/usuario/me", { method: "GET" });
+      const respId = await fetch("/api/usuario/usuario/me", { method: "GET" });
       if (!respId.ok) {
         throw new Error(`Erro ao buscar ID do usuário: ${respId.status}`);
       }
