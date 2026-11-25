@@ -212,6 +212,7 @@ h5 {
 p {
   font-size: clamp(18px, calc(14px + 0.4vw), 20px);
   font-weight: 300;
+  line-height: 1.4;
 }
 
 span {
@@ -505,6 +506,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .btn:hover,
@@ -527,6 +529,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-2:hover,
@@ -549,6 +552,7 @@ img {
   transition: 200ms ease;
   min-width: 200px;
   font-weight: 400;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
 }
 
 .btn-3:hover,
